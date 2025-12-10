@@ -1,0 +1,278 @@
+{
+  "main": {
+    "id": "eb5868f1de9ae3b7",
+    "type": "split",
+    "children": [
+      {
+        "id": "1860f518c1bdf2bb",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "MOCs/Quantum Mechanics MOC.md",
+            "mode": "preview",
+            "backlinks": true,
+            "source": false
+          }
+        }
+      },
+      {
+        "id": "44622d45fae6cba1",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Notes/Quantum State.md",
+            "mode": "source",
+            "backlinks": true,
+            "source": false
+          }
+        }
+      },
+      {
+        "id": "e89314f29f6f9bb0",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Notes/Atomic Orbitals.md",
+            "mode": "preview",
+            "backlinks": false,
+            "source": false
+          }
+        }
+      },
+      {
+        "id": "8f7cec760fd62c98",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Notes/Addition of Angular Momenta.md",
+            "mode": "source",
+            "backlinks": false,
+            "source": false
+          }
+        }
+      },
+      {
+        "id": "4c5d67e9552c2c93",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Notes/Madelung Energy.md",
+            "mode": "preview",
+            "backlinks": false,
+            "source": false
+          }
+        }
+      },
+      {
+        "id": "131175c8b1f19458",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Notes/Madelung Energy.md",
+            "mode": "preview",
+            "backlinks": false,
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "92ee4c03ba5c4d05",
+    "type": "split",
+    "children": [
+      {
+        "id": "adbbde570b2c7efd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4608fc39667b577a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 211.5,
+    "collapsed": true
+  },
+  "right": {
+    "id": "24ddcda17b86b7e4",
+    "type": "split",
+    "children": [
+      {
+        "id": "234eadf9b47ada89",
+        "type": "tabs",
+        "dimension": 48.784194528875375,
+        "children": [
+          {
+            "id": "0ef95715b940d155",
+            "type": "leaf",
+            "state": {
+              "type": "localgraph",
+              "state": {
+                "file": "Notes/Madelung Energy.md",
+                "options": {
+                  "collapse-filter": false,
+                  "search": "",
+                  "localJumps": 1,
+                  "localBacklinks": true,
+                  "localForelinks": true,
+                  "localInterlinks": false,
+                  "showTags": false,
+                  "showAttachments": false,
+                  "hideUnresolved": false,
+                  "collapse-color-groups": true,
+                  "colorGroups": [],
+                  "collapse-display": false,
+                  "showArrow": false,
+                  "textFadeMultiplier": -1,
+                  "nodeSizeMultiplier": 1.20043386300776,
+                  "lineSizeMultiplier": 1.23444872281577,
+                  "collapse-forces": true,
+                  "centerStrength": 0.518713248970312,
+                  "repelStrength": 10,
+                  "linkStrength": 1,
+                  "linkDistance": 250,
+                  "scale": 0.6316046762907676,
+                  "close": true
+                }
+              }
+            }
+          },
+          {
+            "id": "f899f37f2e274a1e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "965da3331b970131",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#attractive",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "4f28e0f3e8422b6c",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          },
+          {
+            "id": "b3058e54118f558a",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 2
+      },
+      {
+        "id": "83d2f265dc39d376",
+        "type": "tabs",
+        "dimension": 51.215805471124625,
+        "children": [
+          {
+            "id": "2a86eb40506afd71",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Notes/Madelung Energy.md"
+              }
+            }
+          },
+          {
+            "id": "6bdc66d4e3e405cf",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Notes/Madelung Energy.md",
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c3f8ea084e4227b3",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Notes/Madelung Energy.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          },
+          {
+            "id": "ce8002c6463f36fa",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "MOCs/Physics MOC.md",
+                "mode": "preview",
+                "backlinks": true,
+                "source": false
+              },
+              "pinned": true
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 344
+  },
+  "active": "131175c8b1f19458",
+  "lastOpenFiles": [
+    "Notes/Addition of Angular Momenta.md",
+    "Notes/Madelung Energy.md",
+    "Notes/Quantum State.md",
+    "Notes/Var der Waals - London Interactions.md",
+    "MOCs/Quantum Mechanics MOC.md",
+    "Notes/Atomic Orbitals.md",
+    "Notes/Black Body Radiation.md",
+    "MOCs/Physics MOC.md",
+    "Notes/Quantum State 1.md",
+    "MOCs/MOCs.md"
+  ]
+}

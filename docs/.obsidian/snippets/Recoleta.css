@@ -1,0 +1,10 @@
+/* Reading Mode */
+.markdown-preview-view {
+	font-family: 'Recoleta-Regular' !important;
+}
+
+/* Source Mode & Live Preview */
+.markdown-source-view.mod-cm6 .cm-scroller {
+	font-family: 'Recoleta-Regular' !important;
+}
+

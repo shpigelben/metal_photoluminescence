@@ -1,0 +1,57 @@
+\section{Interband Emission (Ongoing)}
+\subsection{Valley-specific formulations}
+For a valley $\nu\in\{X,L\}$,
+\begin{equation}
+  \Gamma^{\nu}_{cv}(\hbarw)=\frac{2\pi}{\hbar}\!\int\!\!\int |\mu^{\nu}_{cv}|^{2}\,\feq_{c}(\mathbf{k})\bigl[1-\feq_{v}(\mathbf{k}')\bigr]\delta\!\bigl(\E^{\nu}_{v}(\mathbf{k}')-\E^{\nu}_{c}(\mathbf{k})+\hbarw\bigr)\frac{d^{3}k}{(2\pi)^{3}}\frac{d^{3}k'}{(2\pi)^{3}}.
+  \label{eq:inter_valley}
+\end{equation}
+With cylindrical symmetry around the valley axis, $d^{3}k\to 2\pi k_{\perp}dk_{\perp}dk_{\parallel}$, reducing the six-dimensional integral to four dimensions; a Gaussian delta maintains tractability.
+
+\subsection{Isotropization via Eq.~\eqref{eq:anisotropic_cov}}
+Applying the scaling in Eq.~\eqref{eq:anisotropic_cov} makes constant-energy surfaces spherical in $(q_{\perp},q_{\parallel})$, converting Eq.~\eqref{eq:inter_valley} into coupled 1D integrals with a known Jacobian. This mirrors the intraband workflow and should accelerate convergence.
+
+\subsection{Non-equilibrium extension}
+Use Eqs.~\eqref{eq:nonthermal_dist}--\eqref{eq:deltaE} for both bands, noting that $\epsilon_{m}''$ should be taken from Lorentz terms for interband frequencies. Hole generation depends on $\hbarwl$ crossing the $5d\to6sp$ threshold; emission is then computed with $f_{c}$, $f_{v}$ modified accordingly.
+
+\subsection{Expected spectral features}
+\begin{itemize}
+  \item Onset near interband threshold; X and L contributions weighted by degeneracy and effective masses.
+  \item Broader features if phonon-assisted indirect terms are added; sharper if only direct transitions are retained.
+  \item Relative magnitude versus intraband determined by $\delta_{E}(\omega_{\mathrm{L}})$ and valley dipole moments $|\mu^{\nu}_{cv}|$.
+\end{itemize}
+
+\section{Numerical Implementation and Reproducibility}
+\begin{itemize}
+  \item \texttt{intra\_energy.ipynb}: numeric and analytic intraband in energy space, with and without eDOS.
+  \item \texttt{intra\_momentum.ipynb}: momentum-space intraband with Gaussian delta; convergence tests on $\sigma$ and grid size.
+  \item \texttt{inter\_momentum (anisotropic).ipynb} and \texttt{interband\_emission\_momentum\_space.ipynb}: working notebooks to implement Eq.~\eqref{eq:inter_valley} and the anisotropic change of variables.
+  \item \texttt{delta\_gaussian\_approx.ipynb}: convergence study of Gaussian delta approximations in 1D and 2D.
+  \item \texttt{symbolic\_integration\_thermal\_intraband\_emission.nb}: Mathematica check of equilibrium analytic expression.
+  \item Python/NumPy/Matplotlib stack; LaTeX-ready plots can be exported once interband runs complete.
+\end{itemize}
+
+\section{Corrections and Insights}
+\begin{itemize}
+  \item The non-thermal distribution in ``Theory of Hot Photoluminescence from Drude Metals'' overpopulates states; replaced with Eq.~\eqref{eq:nonthermal_dist} following photocatalysis literature.
+  \item Explicitly retain both initial and final eDOS factors in $\rho_{J}$ to avoid the typo in the same references.
+  \item Constant-eDOS approximations are reliable only near $\EF$; departures at high $\hbarw$ call for the full $\E$-dependent $\Edos$.
+  \item Intraband momentum conservation must involve phonons; otherwise emission vanishes. The present numerics effectively assume assistance.
+\end{itemize}
+
+\section{Open Questions for Advisor}
+\begin{enumerate}
+  \item For interband recombination, should we enforce strict crystal momentum conservation (direct transitions only), or include phonon-assisted terms? How to parameterize the latter without overcounting?
+  \item Preferred treatment of $\epsilon_{m}''$ for interband frequencies in $\delta_{E}$: pure Lorentz contribution or full Drude-Lorentz sum?
+  \item Are valley-specific dipole moments $|\mu^{X}_{cv}|$, $|\mu^{L}_{cv}|$ available or should they be fitted to experimental spectra?
+  \item Tolerance for Gaussian delta width in final plots (balance between smoothness and conservation accuracy).
+\end{enumerate}
+
+\section{Roadmap to Completion}
+\begin{enumerate}
+  \item \textbf{Convergence criteria.} Finalize $\sigma$ and grid-size rules for 4D interband integrals; document error bars versus $\sigma$.
+  \item \textbf{Anisotropy reduction.} Implement Eq.~\eqref{eq:anisotropic_cov} in the interband notebooks and benchmark against isotropic test cases.
+  \item \textbf{Distribution consistency.} Apply Eqs.~\eqref{eq:nonthermal_dist}--\eqref{eq:deltaE} to both bands with Lorentz $\epsilon_{m}''$; verify occupations stay $\leq 1$.
+  \item \textbf{Spectral assembly.} Combine $\Gamma_{cc}$, $6\Gamma^{X}_{cv}$, $8\Gamma^{L}_{cv}$, and the photonic prefactor to produce full spectra across pump intensities.
+  \item \textbf{Comparison.} Where possible, overlay with available experimental PL spectra of Au nanoparticles; otherwise provide parameter sweeps to illustrate scaling.
+  \item \textbf{Write-up.} Expand interband sections with results, plots, and sensitivity analysis; consolidate into thesis main chapters.
+\end{enumerate}

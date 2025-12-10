@@ -1,0 +1,43 @@
+/* START PRINT FRIENDLY */
+@media print {
+  .author-bio, #breadcrumbs, .blog-pager, #decomments-form-add-comment, .feed-links, #footer, .footer, .footer-outer, #header-widgets, nav, .sidebar, #sidebar, #header, .sidebar div div, .content-ads, .make-comment, .heading, .related-posts, .body #navbar, .Navbar, .meta, .main-inner .fauxcolumn-right-outer, .main-inner .column-right-outer, .navigation, .noprint, .post-byline, .meta-single, .post-tags, .readability, .site-title img
+  {
+  display: none !important;
+  }
+  .main-inner .fauxcolumn-right-outer {
+  padding-right: 0px;
+  width: 0px;
+  }
+  .main-inner .column-right-outer {
+  padding-right: 0px;
+  width: 0px;
+  }
+  .main-inner .columns {
+  padding-right: 0px;
+  width: 100%;
+  }
+  /* PRINT Avoid breaking images in the middle */
+  p {
+  page-break-inside: avoid;
+  }
+  /* PRINT Inhaltsbreite setzen */
+  @page {
+  size:210mm 297mm; /* portrait */
+  margin: 1.5cm;
+  }
+  /* PRINT SAVE INK: Set fontsize, background white and font black.*/
+  body, .content, .post-outer, html .main-inner .date-outer, .body-fauxcolumns, .content-fauxcolumns {
+  font: 18pt Georgia, "Times New Roman", Times, serif;
+  line-height: 1.3;
+  background: #fff !important;
+  color: #000 !important;;
+  }
+  h1 {
+  font-size: 24pt;
+  }
+  h2, h3, h4 {
+  font-size: 16pt;
+  margin-top: 25px;
+  }
+  }
+  /* END PRINT FRIENDLY */

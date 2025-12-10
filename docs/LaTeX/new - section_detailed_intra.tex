@@ -1,0 +1,24 @@
+\section{Detailed Intraband Derivations}
+\subsection{Step-by-step equilibrium calculation}
+\begin{enumerate}
+  \item Start from Eq.~\eqref{eq:general_rate} with $\alpha=\beta=c$, $|\mu_{cc}|=\mathrm{const}$, $\E_{c}=\hbar^{2}k^{2}/2m_{e}$.
+  \item Change variables $d^{3}k\to \Edos(\E)\,d\E$ using Eq.~\eqref{eq:dos} to obtain Eq.~\eqref{eq:energy_rate}.
+  \item Resolve the delta to remove one energy integral, arriving at Eq.~\eqref{eq:energy_rate} with $\E_{\mathrm{f}}=\E-\hbarw$.
+  \item Insert $\FD$ and use the identity $\FD(\E+\hbarw)[1-\FD(\E)]=\BE(\hbarw)[\FD(\E)-\FD(\E+\hbarw)]$.
+  \item Approximate $\Edos(\E)\to \Edos(\EF)$ to integrate analytically, yielding Eq.~\eqref{eq:analytic_eq}.
+\end{enumerate}
+
+\subsection{Step-by-step non-equilibrium calculation}
+\begin{enumerate}
+  \item Replace $\FD$ by Eq.~\eqref{eq:nonthermal_dist}; expand Eq.~\eqref{eq:energy_rate} to second order in $\delta_{E}$.
+  \item Collect terms to match the series coefficients $A(\hbarw)$ and $B(\hbarw)$ in Eq.~\eqref{eq:nonthermal_series}; these are computed numerically in the notebooks.
+  \item Verify $0\leq f(\E;\omega_{\mathrm{L}})\leq 1$ for the chosen pump strengths to ensure Pauli consistency.
+  \item Compare against full numeric integration without the series to quantify truncation error (reported in Section~\ref{sec:results}).
+\end{enumerate}
+
+\subsection{Momentum-space intraband cross-check}
+\begin{itemize}
+  \item Implement Eq.~\eqref{eq:general_rate} directly with $\delta(\E_{f}-\E_{i}-\hbarw)\to G_{\sigma}$.
+  \item Use spherical symmetry to reduce to two radial integrals; confirm recovery of Eq.~\eqref{eq:energy_rate} in the $\sigma\to0$ limit.
+  \item This exercise validates the Gaussian replacement and the numerical quadrature infrastructure later used for anisotropic valleys.
+\end{itemize}

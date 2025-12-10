@@ -1,0 +1,21 @@
+{
+  "pdfExportSettings": {
+    "includeName": true,
+    "pageSize": "A4",
+    "landscape": false,
+    "margin": "1",
+    "downscalePercent": 75
+  },
+  "useMarkdownLinks": true,
+  "showInlineTitle": true,
+  "newLinkFormat": "relative",
+  "alwaysUpdateLinks": true,
+  "attachmentFolderPath": "9. Misc/attachments",
+  "readableLineLength": true,
+  "focusNewTab": false,
+  "rightToLeft": false,
+  "livePreview": true,
+  "uriCallbacks": false,
+  "showUnsupportedFiles": false,
+  "showLineNumber": false
+}

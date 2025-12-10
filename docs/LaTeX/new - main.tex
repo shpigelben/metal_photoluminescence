@@ -1,0 +1,69 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{siunitx}
+\usepackage{physics}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{cite}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue
+}
+
+\setlist[itemize]{topsep=3pt,itemsep=3pt,leftmargin=14pt}
+\setlist[enumerate]{topsep=3pt,itemsep=3pt,leftmargin=16pt}
+
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\feq}{f^{\mathrm{T}}}
+\newcommand{\fne}{f}
+\newcommand{\Edos}{\rho}
+\newcommand{\hbarw}{\hbar\omega}
+\newcommand{\hbarwl}{\hbar\omega_{\mathrm{L}}}
+\newcommand{\kB}{k_{\mathrm{B}}}
+\newcommand{\EF}{\mathcal{E}_{\mathrm{F}}}
+\newcommand{\BE}{f_{\mathrm{BE}}}
+\newcommand{\FD}{f_{\mathrm{FD}}}
+
+\title{Contribution of Interband Transitions to Non-equilibrium Emission from Gold\\[0.5em]Thesis Progress Document}
+\author{}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+  \includegraphics[width=0.25\textwidth]{new - figs/bgu_logo.png}
+\end{center}
+
+\begin{abstract}
+This document consolidates the thesis work completed so far on non-equilibrium photoluminescence from gold. It follows the structure and notation used in the working summary \textit{Contribution of Interband Transitions to Non-equilibrium Emission From Gold}, expanding each element into a thesis-length narrative. The report reviews the physical background, lays out the emission formalism in both momentum and energy space, records the derivations and numerical benchmarks achieved, documents corrections to prior literature, and sets a clear path to finalize the interband calculations in anisotropic bands. All content is self-contained for Overleaf compilation.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\input{new - section_overview.tex}
+\input{new - section_literature.tex}
+\input{new - section_background.tex}
+\input{new - section_formalism.tex}
+\input{new - section_supporting.tex}
+\input{new - section_numerical.tex}
+\input{new - section_intraband.tex}
+\input{new - section_results.tex}
+\input{new - section_detailed_intra.tex}
+\input{new - section_sensitivity.tex}
+\input{new - section_experimental.tex}
+\input{new - section_thesis_outline.tex}
+\input{new - section_interband.tex}
+
+\appendix
+\input{new - section_appendix.tex}
+
+\end{document}

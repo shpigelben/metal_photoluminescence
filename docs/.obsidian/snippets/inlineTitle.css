@@ -1,0 +1,21 @@
+/* Base styling for inline titles */
+.inline-title {
+  font-size: 3em;
+  color: currentColor; /* Black text color in light mode */
+  /* background-color: #548dbb7c; Background color */
+  border: 4px solid currentColor; /* Black border in light mode */
+  border-radius: 10px; /* Rounded corners */
+  text-align: center;
+  padding: 10px 0; /* Padding around text, with extra space below */
+  display: block; /* Makes it extend to the end of the page */
+  width: 100%; /* Ensures the title spans the page width */
+  margin: 0 auto 20px; /* Centers the content within the block */
+}
+
+/* Dark mode adjustments */
+.theme-dark .inline-title {
+  color: currentColor; /* White text color in dark mode */
+  border-color: currentColor; /* White border color in dark mode */
+}
+
+/* Editing mode adjustments

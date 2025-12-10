@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "type": "file",
+      "ctime": 1759258532294,
+      "path": "Home.md"
+    },
+    {
+      "type": "group",
+      "ctime": 1730782087727,
+      "items": [
+        {
+          "type": "file",
+          "ctime": 1730782009427,
+          "path": "2. Notes/ITO Based Desalination.md",
+          "title": "ITO"
+        }
+      ],
+      "title": "MSc Research"
+    },
+    {
+      "type": "file",
+      "ctime": 1709720862258,
+      "path": "5. Misc/Light Generated Bubbles for Microscopic Propulsion.pdf",
+      "title": "Light Generated Bubbles for Microscopic Propulsion.pdf"
+    }
+  ]
+}

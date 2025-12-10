@@ -1,0 +1,39 @@
+.tag[href="#margin-note"], .markdown-preview-view blockquote {
+    border: 3px solid;
+    border-color: var(--accent-middle) !important;
+    border-left-width: 3px !important;
+    border-radius: 8px 8px 8px 8px;
+    font-size: 15px;
+    line-height: 1.5em;
+    margin: 10px 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+  }
+
+/* Hides the text of the #tag  */
+
+.tag[href="#margin-note"] {
+    position: relative;
+    color: transparent;
+    padding-top: 0em;
+    padding-bottom: 0em;
+  }
+
+/* Defines the styling of the text and tag content */
+
+.tag[href="#margin-note"]:after {
+  	font-family: 'Whitney-book';
+  	font-weight:var(--bold-weight);
+  	content: "MN";
+    position: absolute;
+    top: 0.40em;
+    left: -4em;
+    font-size: 2em;
+  	color: #00D4FF;
+  }
+
+.tag[href="#margin-note"], p:not(:last-child) {
+    padding-bottom: 0.7em`;
+  }

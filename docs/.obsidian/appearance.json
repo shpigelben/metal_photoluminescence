@@ -1,0 +1,20 @@
+{
+  "accentColor": "#ffbd2e",
+  "theme": "moonstone",
+  "cssTheme": "AnuPpuccin",
+  "baseFontSize": 20,
+  "textFontFamily": "ITC Garamond Std,Palatino,FiraCode Nerd Font,Palatino Linotype",
+  "interfaceFontFamily": "Sathu,Inter",
+  "enabledCssSnippets": [
+    "pictureCenter",
+    "hide_properties",
+    "Annupucin-extended-colorschemes",
+    "inlineTitle"
+  ],
+  "showViewHeader": false,
+  "nativeMenus": false,
+  "translucency": false,
+  "baseFontSizeAction": true,
+  "showRibbon": false,
+  "monospaceFontFamily": "FiraCode Nerd Font"
+}

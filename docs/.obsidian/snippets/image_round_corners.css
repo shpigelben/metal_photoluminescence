@@ -1,0 +1,40 @@
+/* Center and style images with captions in Reading View */
+.markdown-preview-view img[src] {
+    border-radius: 10px; /* Rounded corners */
+    object-fit: cover;
+    max-width: 95%;
+    outline: 3px solid #575279;
+    display: block; /*Makes the image occupy the full width of its container */
+    margin: 4px auto 4px auto; /* Centers the image and adds space below */
+}
+
+/* Caption styling in Reading View */
+.markdown-preview-view img[src]::after {
+    content: attr(alt); /* Use the alt text as a caption */
+    display: block;
+    text-align: center;
+    font-size: 0.9em;
+    color: #575279;
+    margin-top: 4px;
+}
+
+/* Center and style images in Live Preview mode */
+.cm-syntax--image img, .markdown-source-view img[src] {
+    border-radius: 10px; /* Rounded corners */
+    object-fit: cover;
+    max-width: 95%;
+    outline: 3px solid #575279;
+    display: block;
+    margin: 4px auto 4px auto; /* Centers the image and adds space below */
+}
+
+/* Caption styling in Live Preview */
+.cm-syntax--image img::after,
+.markdown-source-view img[src]::after {
+    content: attr(alt);
+    display: block;
+    text-align: center;
+    font-size: 0.9em;
+    color: #303447;
+    margin-top: 4px;
+}
