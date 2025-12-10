@@ -1,0 +1,191 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6561,        183]
+NotebookOptionsPosition[      5990,        165]
+NotebookOutlinePosition[      6385,        181]
+CellTagsIndexPosition[      6342,        178]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Clear", " ", "any", " ", "previous", " ", "definitions"}], "*)"}], 
+  RowBox[{
+   RowBox[{"ClearAll", "[", 
+    RowBox[{
+    "kB", ",", "T", ",", "\[HBar]", ",", "\[Omega]", ",", "\[Mu]", ",", 
+     "\[ScriptE]"}], "]"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Specify", " ", "assumptions"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Assumptions", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"T", ">", "0"}], ",", 
+       RowBox[{"kB", ">", "0"}], ",", 
+       RowBox[{"\[HBar]", ">", "0"}], ",", 
+       RowBox[{"\[Omega]", ">", "0"}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Define", " ", "the", " ", "Fermi"}], "-", 
+     RowBox[{"Dirac", " ", "distribution", " ", "function"}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"fT", "[", "\[ScriptE]_", "]"}], ":=", 
+     RowBox[{"1", "/", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Exp", "[", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"\[ScriptE]", "-", "\[Mu]"}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{"kB", " ", "T"}], ")"}]}], "]"}], "+", "1"}], ")"}]}]}], 
+    ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Perform", " ", "the", " ", "symbolic", " ", "integration"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"IeT", "=", 
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"fT", "[", 
+         RowBox[{"\[ScriptE]", "+", 
+          RowBox[{"\[HBar]", " ", "\[Omega]"}]}], "]"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "-", 
+          RowBox[{"fT", "[", "\[ScriptE]", "]"}]}], ")"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\[ScriptE]", ",", "0", ",", "Infinity"}], "}"}], ",", 
+       RowBox[{"Assumptions", "->", "Assumptions"}]}], "]"}]}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Simplify", " ", "the", " ", "result", " ", "under", " ", "the", " ", 
+     "given", " ", "assumptions"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"IeTSimplified", "=", 
+     RowBox[{"Simplify", "[", 
+      RowBox[{"IeT", ",", 
+       RowBox[{"Assumptions", "->", "Assumptions"}]}], "]"}]}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Display", " ", "the", " ", "result"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<The value of the integral is: \>\"", ",", "IeTSimplified"}], 
+    "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.939117868403987*^9, 3.939117868406578*^9}, 
+   3.9391183662771473`*^9},
+ CellLabel->
+  "In[148]:=",ExpressionUUID->"3a6ffa9e-a2c2-4711-bee2-ef825044778d"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Set", "wrsym", 
+   "\"Symbol \\!\\(\\*RowBox[{\\\"Assumptions\\\"}]\\) is Protected.\"", 2, 
+   149, 30, 31600919581585864679, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.939117870402594*^9, 3.93911836951015*^9},
+ CellLabel->
+  "During evaluation of \
+In[148]:=",ExpressionUUID->"311a50b9-7853-4491-a941-50c636e267de"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"The value of the integral is: \"\>", "\[InvisibleSpace]", 
+   TemplateBox[{
+     FractionBox[
+      RowBox[{"kB", " ", "T", " ", 
+        RowBox[{"(", 
+          RowBox[{
+            RowBox[{"Log", "[", 
+              SuperscriptBox["\[ExponentialE]", 
+               FractionBox[
+                RowBox[{"\[Omega]", " ", "\[HBar]"}], 
+                RowBox[{"kB", " ", "T"}]]], "]"}], "+", 
+            RowBox[{"Log", "[", 
+              RowBox[{"1", "+", 
+                SuperscriptBox["\[ExponentialE]", 
+                 FractionBox["\[Mu]", 
+                  RowBox[{"kB", " ", "T"}]]]}], "]"}], "-", 
+            RowBox[{"Log", "[", 
+              RowBox[{
+                SuperscriptBox["\[ExponentialE]", 
+                 FractionBox["\[Mu]", 
+                  RowBox[{"kB", " ", "T"}]]], "+", 
+                SuperscriptBox["\[ExponentialE]", 
+                 FractionBox[
+                  RowBox[{"\[Omega]", " ", "\[HBar]"}], 
+                  RowBox[{"kB", " ", "T"}]]]}], "]"}]}], ")"}]}], 
+      RowBox[{
+        RowBox[{"-", "1"}], "+", 
+        SuperscriptBox["\[ExponentialE]", 
+         FractionBox[
+          RowBox[{"\[Omega]", " ", "\[HBar]"}], 
+          RowBox[{"kB", " ", "T"}]]]}]], 
+     RowBox[{
+       RowBox[{"Re", "[", 
+         FractionBox["1", 
+          RowBox[{"kB", " ", "T"}]], "]"}], ">", "0"}]},
+    "ConditionalExpression"]}],
+  SequenceForm["The value of the integral is: ", 
+   ConditionalExpression[(-1 + 
+      E^($CellContext`kB^(-1) $CellContext`T^(-1) $CellContext`\[Omega] \
+$CellContext`\[HBar]))^(-1) $CellContext`kB $CellContext`T (
+     Log[E^($CellContext`kB^(-1) $CellContext`T^(-1) $CellContext`\[Omega] \
+$CellContext`\[HBar])] + 
+     Log[1 + E^($CellContext`kB^(-1) $CellContext`T^(-1) $CellContext`\[Mu])] - 
+     Log[E^($CellContext`kB^(-1) $CellContext`T^(-1) $CellContext`\[Mu]) + 
+      E^($CellContext`kB^(-1) $CellContext`T^(-1) $CellContext`\[Omega] \
+$CellContext`\[HBar])]), Re[$CellContext`kB^(-1)/$CellContext`T] > 0]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9391180275252867`*^9, 3.9391183991399612`*^9},
+ CellLabel->
+  "During evaluation of \
+In[148]:=",ExpressionUUID->"15369d20-995a-4126-8a82-6b2d81146a9c"]
+}, Open  ]]
+},
+WindowSize->{838, 605},
+WindowMargins->{{358, Automatic}, {Automatic, 113}},
+FrontEndVersion->"13.3 for Mac OS X ARM (64-bit) (July 24, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"38f45c46-1bfe-4dd9-9d81-a75629dccbe4"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 2760, 75, 454, "Input",ExpressionUUID->"3a6ffa9e-a2c2-4711-bee2-ef825044778d"],
+Cell[3343, 99, 378, 9, 35, "Message",ExpressionUUID->"311a50b9-7853-4491-a941-50c636e267de"],
+Cell[3724, 110, 2250, 52, 124, "Print",ExpressionUUID->"15369d20-995a-4126-8a82-6b2d81146a9c"]
+}, Open  ]]
+}
+]
+*)
+
