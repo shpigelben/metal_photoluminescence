@@ -1,0 +1,394 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{siunitx}
+\usepackage{physics}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{cite}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue
+}
+
+\setlist[itemize]{topsep=3pt,itemsep=3pt,leftmargin=14pt}
+\setlist[enumerate]{topsep=3pt,itemsep=3pt,leftmargin=16pt}
+
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\feq}{f^{\mathrm{T}}}
+\newcommand{\fne}{f}
+\newcommand{\Edos}{\rho}
+\newcommand{\hbarw}{\hbar\omega}
+\newcommand{\hbarwl}{\hbar\omega_{\mathrm{L}}}
+\newcommand{\kB}{k_{\mathrm{B}}}
+\newcommand{\EF}{\mathcal{E}_{\mathrm{F}}}
+\newcommand{\BE}{f_{\mathrm{BE}}}
+\newcommand{\FD}{f_{\mathrm{FD}}}
+
+\title{Contribution of Interband Transitions to Non-equilibrium Emission from Gold\\[0.5em]Thesis Progress Document}
+\author{}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This document consolidates the thesis work completed so far on non-equilibrium photoluminescence from gold. It follows the structure and notation used in the working summary \textit{Contribution of Interband Transitions to Non-equilibrium Emission From Gold}, expanding each element into a thesis-length narrative. The report reviews the physical background, lays out the emission formalism in both momentum and energy space, records the derivations and numerical benchmarks achieved, documents corrections to prior literature, and sets a clear path to finalize the interband calculations in anisotropic bands. All content is self-contained for Overleaf compilation.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Overview and Objectives}
+\begin{itemize}
+  \item \textbf{Problem.} Metals emit weakly in equilibrium (essentially blackbody). Under monochromatic pumping, non-equilibrium electron and hole populations can enhance emission, potentially revealing interband signatures even in noble metals dominated by Drude-like intraband response.
+  \item \textbf{Goal.} Quantify the interband contribution to non-equilibrium emission from gold nanoparticles and compare it to the well-understood intraband background.
+  \item \textbf{Strategy.} (i) Reproduce known intraband emission in energy and momentum space to validate numerics and approximations. (ii) Extend the same formalism to interband transitions near the X and L valleys, where anisotropy requires $k$-space treatment. (iii) Combine both channels into a complete spectrum under pumping.
+  \item \textbf{Thesis outputs to date.} Complete intraband derivations (equilibrium and non-equilibrium), numerical validation of Gaussian delta approximations, identification and correction of distribution-function errors in the literature, a suite of reproducible comparison plots, and a working plan plus tooling for the anisotropic interband calculation.
+\end{itemize}
+
+\section{Literature Context and Critique}
+\subsection{Key references}
+\begin{itemize}
+  \item Drude intraband emission under steady pumping (Sivan \& Dubi)---provides the energy-space benchmark reproduced here.
+  \item ``Theory of Hot Photoluminescence from Drude Metals''---useful analytic series but uses a non-thermal distribution that overpopulates states; corrected below.
+  \item Gold band-structure parameters near X/L (nonlinear SPP dynamics in Au nanowires; Rosei)---supply effective masses and offsets for anisotropic valleys.
+  \item Photocatalysis literature for relaxation-time non-equilibrium distributions---basis for the corrected $f(\E;\omega_{\mathrm{L}})$ used here.
+\end{itemize}
+
+\subsection{Findings from the review}
+\begin{itemize}
+  \item \textbf{Distribution correctness.} Prior Drude-only derivations insert a non-thermal correction that violates Pauli exclusion. Using the Boltzmann+relaxation-time form in Eq.~\eqref{eq:nonthermal_dist} fixes this.
+  \item \textbf{Density-of-states handling.} Several sources collapse $\rho_{J}$ into a single factor; keeping both initial and final eDOS terms is essential whenever $\hbarw$ approaches or exceeds $\EF$.
+  \item \textbf{Momentum conservation.} Experimental agreement of intraband spectra with models that ignore momentum conservation implies an implicit phonon channel; for interband, direct transitions are available and should be treated explicitly.
+\end{itemize}
+
+\section{Physical Background}
+\subsection{Photoluminescence channels in metals}
+Electronic emission can arise from intra- or interband transitions:
+\begin{itemize}
+  \item \textbf{Intraband} ($c\to c$): dominant in equilibrium for Au; momentum change requires phonon assistance or relaxation of strict momentum conservation in a model.
+  \item \textbf{Interband} ($c\leftrightarrow v$): negligible in equilibrium for Au because $5d$ holes are absent, but under pumping with $\hbarwl$ above the threshold, hole populations in $5d$ enable radiative recombination.
+  \item Total electronic contribution: $\Gamma=\Gamma_{cc}+6\Gamma^{X}_{cv}+8\Gamma^{L}_{cv}$ (fcc degeneracies).
+\end{itemize}
+
+\subsection{Energy and momentum conservation}
+\begin{itemize}
+  \item Direct one-step intraband transitions are momentum-forbidden because $\mathbf{q}_{\gamma}\ll \mathbf{k}_{e}$. Models that yield emission either (a) embed phonon assistance implicitly or (b) relax strict momentum conservation when integrating over $k$.
+  \item Direct interband transitions near symmetry points can conserve momentum because the initial and final states are in different bands at the same crystal momentum.
+  \item These constraints motivate explicit treatment in $k$ space for interband work.
+\end{itemize}
+
+\subsection{Gold band structure (working model)}
+\begin{itemize}
+  \item Conduction band: nearly parabolic, isotropic with effective mass close to $m_{e}$; dispersion $\E_{c}=\hbar^{2}k^{2}/2m_{e}$.
+  \item Valence band pockets near X and L: anisotropic ellipsoids with effective masses $(m_{b\perp},m_{b\parallel})$ and offsets $\E_{0b}$ from literature on Au nanowires and nonlinear SPP dynamics.
+  \item Degeneracy: $6$ X points, $8$ L points; these factors multiply valley-specific rates.
+\end{itemize}
+
+\section{Emission Formalism}
+\subsection{General $k$-space expression}
+Starting from Fermi's golden rule, the spontaneous emission rate for band $\alpha\to\beta$ transitions is
+\begin{equation}
+  \Gamma_{\alpha\beta}(\hbarw)=\frac{2\pi}{\hbar}\!\left(\frac{2V}{(2\pi)^{3}}\right)^{\!2}\!\iint_{\mathrm{BZ}}\!|\mu_{\alpha\beta}(\mathbf{k}_{\mathrm{i}},\mathbf{k}_{\mathrm{f}})|^{2}\,f_{\alpha}(\mathbf{k}_{\mathrm{i}})\bigl[1-f_{\beta}(\mathbf{k}_{\mathrm{f}})\bigr]\delta\!\left(\E_{\beta}(\mathbf{k}_{\mathrm{f}})-\E_{\alpha}(\mathbf{k}_{\mathrm{i}})-\hbarw\right)\,d^{3}k_{\mathrm{i}}\,d^{3}k_{\mathrm{f}}.
+  \label{eq:general_rate}
+\end{equation}
+The transition dipole $\mu$ encodes selection rules and, implicitly, momentum transfer.
+
+\subsection{Energy-space reduction for isotropic bands}
+For isotropic dispersions and constant dipole moment $|\mu_{\alpha\beta}|\to \mu_{\alpha\beta}$, the density of states
+\begin{equation}
+  \Edos(\E)=\frac{4\pi m^{3/2}}{\hbar^{3}}\sqrt{2\E}
+  \label{eq:dos}
+\end{equation}
+allows reduction of Eq.~\eqref{eq:general_rate} to
+\begin{equation}
+  \Gamma_{\alpha\beta}(\hbarw)=\frac{2\pi}{\hbar}\!\left(\frac{2\mu_{\alpha\beta}V}{(2\pi)^{3}}\right)^{\!2}\!\!\int f_{\alpha}(\E)\bigl[1-f_{\beta}(\E-\hbarw)\bigr]\Edos_{\alpha}(\E)\Edos_{\beta}(\E-\hbarw)\,d\E.
+  \label{eq:energy_rate}
+\end{equation}
+This is the reference form used to validate the momentum-space numerics.
+
+\subsection{Joint density factor}
+For clarity, the joint factor entering Eq.~\eqref{eq:energy_rate} is
+\begin{equation}
+  \rho_{J}(\E_{\mathrm{i}},\E_{\mathrm{f}})=f(\E_{\mathrm{i}})\Edos(\E_{\mathrm{i}})\bigl[1-f(\E_{\mathrm{f}})\bigr]\Edos(\E_{\mathrm{f}}),
+\end{equation}
+maintaining both initial and final densities explicitly (correcting a misuse in the referenced literature).
+
+\section{Supporting Derivations}
+\subsection{Electronic density of states (A2)}
+For an isotropic parabolic band $\E(k)=\hbar^{2}k^{2}/2m$,
+\begin{equation}
+  d^{3}k\to4\pi k^{2}dk=4\pi k^{2}\frac{dk}{d\E}d\E=\frac{4\pi m^{3/2}}{\hbar^{3}}\sqrt{2\E}\,d\E,
+\end{equation}
+yielding Eq.~\eqref{eq:dos}. This mapping is reused when isotropizing anisotropic valleys.
+
+\subsection{Change of variables for anisotropic ellipsoids}
+For $\E_{b}=\E_{0b}\pm \hbar^{2}(k_{\perp}^{2}/2m_{b\perp}+k_{\parallel}^{2}/2m_{b\parallel})$ define
+\begin{equation}
+  k_{\perp}=\frac{q_{\perp}}{\sqrt{m_{b\perp}}},\qquad k_{\parallel}=\frac{q_{\parallel}}{\sqrt{m_{b\parallel}}},
+  \label{eq:anisotropic_cov}
+\end{equation}
+so that $\E_{b}=\E_{0b}\pm \hbar^{2}(q_{\perp}^{2}+q_{\parallel}^{2})/2$ and $d^{3}k=\frac{1}{\sqrt{m_{b\perp}m_{b\parallel}}}\,2\pi q_{\perp}\,dq_{\perp}\,dq_{\parallel}$. The energy-conservation delta then depends only on $q^{2}$, reducing interband valley integrals to coupled 1D forms akin to Eq.~\eqref{eq:energy_rate}.
+
+\subsection{Delta-function approximation}
+Replace $\delta(x)$ by $G_{\sigma}(x)=\bigl(\sigma\sqrt{2\pi}\bigr)^{-1}\exp[-x^{2}/(2\sigma^{2})]$ with joint limit $\sigma\to0$ and grid size $N\to\infty$. For trapezoidal quadrature the numeric error scales as $N^{-2}$, while approximation error shrinks with $\sigma$. Practical rule used in notebooks: integrate over $\pm m\sigma$ with step $\Delta x=s\sigma$ (e.g., $m=10$, $s\leq 0.1$) so $N\geq \lceil2m/s\rceil$ samples resolve the peak without flattening normalization. In 2D, maintain the Jacobian of the transformed coordinates.
+
+\subsection{Quantum Boltzmann equation and non-equilibrium distribution}
+At steady state,
+\begin{equation}
+  \left(\frac{\partial f}{\partial t}\right)_{\mathrm{ex}}+\left(\frac{\partial f}{\partial t}\right)_{e\text{--}e}+\left(\frac{\partial f}{\partial t}\right)_{e\text{--}ph}\approx 0,
+\end{equation}
+with excitation rate from Fermi's golden rule and $e$-$e$ collisions treated via a relaxation time $\tau_{e\text{--}e}$. Neglecting $e$-$ph$ far from $\EF$ yields
+\begin{equation}
+  f(\E;\omega_{\mathrm{L}})=\feq(\E)+\delta_{E}(\omega_{\mathrm{L}})\,B(\E;\omega_{\mathrm{L}}),
+  \label{eq:nonthermal_dist}
+\end{equation}
+with
+\begin{align}
+  B(\E;\omega_{\mathrm{L}})&=\feq(\E-\hbarwl)\bigl[1-\feq(\E)\bigr]-\feq(\E)\bigl[1-\feq(\E+\hbarwl)\bigr], \label{eq:B_kernel}\\
+  \delta_{E}(\omega_{\mathrm{L}})&=\left|\tau_{e\text{--}e}R(\omega_{\mathrm{L}})E_{\mathrm{L}}\right|^{2},\qquad R(\omega_{\mathrm{L}})=\frac{4\epsilon_{0}\epsilon_{m}''(\omega_{\mathrm{L}})}{3\hbar n_{e}}\frac{\EF}{\hbarwl}. \label{eq:deltaE}
+\end{align}
+This form avoids unphysical occupations $>1$ present in the earlier Drude-only expression.
+
+\section{Numerical Methodology}
+\subsection{Discretization choices}
+\begin{itemize}
+  \item Energy grid: $E\in[0,12]$~eV with $\mathcal{O}(10^{3})$ points; sufficient to resolve the Fermi edge and photon energies of interest.
+  \item Momentum grid: cylindrical coordinates $(k_{\perp},k_{\parallel})$ with Gaussian delta enforcement; grid sizes tuned via the convergence rules in Section~\ref{sec:delta}.
+  \item Delta approximation: Gaussian of width $\sigma$ with window $\pm m\sigma$ and step $\Delta x=s\sigma$ to balance approximation and quadrature error.
+  \item Units: plots below are normalized to focus on spectral shape; absolute prefactors ($\mu$, $V$, photonic density) can be reinstated once experimental comparison is needed.
+\end{itemize}
+
+\subsection{Software stack}
+\begin{itemize}
+  \item Python (NumPy/Matplotlib) for the comparison plots in Section~\ref{sec:results}.
+  \item Jupyter notebooks in \texttt{code/} for full emission calculations (energy and momentum space; isotropic and anisotropic cases).
+  \item \texttt{.venv} virtual environment (local) with only NumPy/Matplotlib to keep reproducibility and avoid system pollution.
+\end{itemize}
+
+\subsection{Convergence strategy for Gaussian deltas}\label{sec:delta}
+Using the guidelines from the ``Numeric Delta Approximation'' note:
+\begin{itemize}
+  \item Fix $m$ (window multiplier, e.g., $m=10$) and $s$ (step fraction, e.g., $s=0.1$); then $N\geq \lceil 2m/s\rceil$ samples resolve the peak.
+  \item Reduce $\sigma$ until the relative change in the integral is below a target tolerance (e.g., $10^{-3}$), compensating with a finer grid as needed.
+  \item For anisotropic valleys, transform to $(q_{\perp},q_{\parallel})$ first so that the Gaussian depends only on $q^{2}$, simplifying convergence.
+\end{itemize}
+
+\section{Intraband Emission (Completed)}
+\subsection{Equilibrium analytic result}
+Using Eq.~\eqref{eq:energy_rate} with constant $\Edos(\EF)$,
+\begin{equation}
+  \Gamma^{\mathrm{eq}}_{cc}(\hbarw)\approx \Edos^{2}(\EF)\,\frac{\hbarw}{\exp\!\left(\frac{\hbarw}{\kB T}\right)-1},
+  \label{eq:analytic_eq}
+\end{equation}
+since $\FD(\E+\hbarw)\bigl[1-\FD(\E)\bigr]=\BE(\hbarw)\bigl[\FD(\E)-\FD(\E+\hbarw)\bigr]$.
+
+\subsection{Numeric benchmarks}
+\begin{itemize}
+  \item Numeric integration of Eq.~\eqref{eq:energy_rate} with full $\Edos(\E)$ matches Eq.~\eqref{eq:analytic_eq} for $\hbarw\ll \EF$; deviations at large $\hbarw$ highlight the constant-eDOS limit.
+  \item Momentum-space integration with Gaussian energy constraint reproduces the same spectrum, confirming consistency between $k$-space and energy-space implementations.
+  \item A Mathematica symbolic integration (see notebook) validates the analytic limit and the Bose factor scaling.
+\end{itemize}
+
+\subsection{Non-equilibrium intraband spectra}
+Substituting Eq.~\eqref{eq:nonthermal_dist} into Eq.~\eqref{eq:energy_rate} produces
+\begin{equation}
+  \Gamma_{cc}(\hbarw;\omega_{\mathrm{L}})\approx \Gamma^{\mathrm{eq}}_{cc}(\hbarw)+A(\hbarw)\,\delta_{E}+B(\hbarw)\,\delta_{E}^{2},
+  \label{eq:nonthermal_series}
+\end{equation}
+mirroring literature forms.
+\begin{itemize}
+  \item No-eDOS case: average relative deviation $\sim 0.22$ versus numeric integration.
+  \item With $\E$-dependent eDOS: deviation $\sim 0.35$, driven by breakdown of constant-eDOS and series truncation when $\hbarw\sim\EF$.
+\item Momentum-space evaluation shows the same trends, validating the Gaussian delta and $\mu_{cc}\approx\mathrm{const}$ assumptions.
+\end{itemize}
+
+\section{Results and Comparisons}\label{sec:results}
+\subsection{Equilibrium intraband benchmarks}
+Figure~\ref{fig:intra-eq} shows numeric spectra with and without the $\E$-dependent eDOS compared to the analytic constant-eDOS shape. The energy-dependent eDOS slightly hardens the spectrum at larger $\hbarw$, consistent with the increasing $\sqrt{\E}$ weight.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{new - figs/intraband_equilibrium.png}
+  \caption{Equilibrium intraband emission: numeric (with/without eDOS) vs. analytic constant-eDOS shape. All curves normalized to unit peak.}
+  \label{fig:intra-eq}
+\end{figure}
+
+\subsection{Non-equilibrium enhancement}
+Figure~\ref{fig:intra-noneq} illustrates non-equilibrium spectra for two pump strengths ($\delta_{E}=0.02,0.05$) at $\hbar\omega_{\mathrm{L}}=2$~eV. The enhancement is stronger near the Fermi edge where $f(1-f)$ is largest; spectra smoothly revert to equilibrium as $\delta_{E}\to0$.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{new - figs/intraband_noneq.png}
+  \caption{Non-equilibrium intraband emission normalized to peak. Dashed line: equilibrium baseline.}
+  \label{fig:intra-noneq}
+\end{figure}
+
+\subsection{Gaussian delta convergence}
+Figure~\ref{fig:delta} uses a toy integrand to demonstrate convergence of the Gaussian delta approximation; relative error drops rapidly as $\sigma$ shrinks, confirming the sampling rule in Section~\ref{sec:delta}. The same behavior is observed in the notebook tests for the physical emission integrals.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{new - figs/delta_convergence.png}
+  \caption{Convergence of Gaussian delta approximation vs. width $\sigma$ (log scale).}
+  \label{fig:delta}
+\end{figure}
+
+\subsection{Momentum conservation discussion}
+\begin{itemize}
+  \item One-step intraband transitions are momentum-forbidden; agreement with experiment implies effective inclusion of phonon assistance or relaxed momentum constraints.
+  \item Future refinement could add an explicit phonon spectral function to enforce momentum conservation without suppressing emission.
+\end{itemize}
+
+\section{Detailed Intraband Derivations}
+\subsection{Step-by-step equilibrium calculation}
+\begin{enumerate}
+  \item Start from Eq.~\eqref{eq:general_rate} with $\alpha=\beta=c$, $|\mu_{cc}|=\mathrm{const}$, $\E_{c}=\hbar^{2}k^{2}/2m_{e}$.
+  \item Change variables $d^{3}k\to \Edos(\E)\,d\E$ using Eq.~\eqref{eq:dos} to obtain Eq.~\eqref{eq:energy_rate}.
+  \item Resolve the delta to remove one energy integral, arriving at Eq.~\eqref{eq:energy_rate} with $\E_{\mathrm{f}}=\E-\hbarw$.
+  \item Insert $\FD$ and use the identity $\FD(\E+\hbarw)[1-\FD(\E)]=\BE(\hbarw)[\FD(\E)-\FD(\E+\hbarw)]$.
+  \item Approximate $\Edos(\E)\to \Edos(\EF)$ to integrate analytically, yielding Eq.~\eqref{eq:analytic_eq}.
+\end{enumerate}
+
+\subsection{Step-by-step non-equilibrium calculation}
+\begin{enumerate}
+  \item Replace $\FD$ by Eq.~\eqref{eq:nonthermal_dist}; expand Eq.~\eqref{eq:energy_rate} to second order in $\delta_{E}$.
+  \item Collect terms to match the series coefficients $A(\hbarw)$ and $B(\hbarw)$ in Eq.~\eqref{eq:nonthermal_series}; these are computed numerically in the notebooks.
+  \item Verify $0\leq f(\E;\omega_{\mathrm{L}})\leq 1$ for the chosen pump strengths to ensure Pauli consistency.
+  \item Compare against full numeric integration without the series to quantify truncation error (reported in Section~\ref{sec:results}).
+\end{enumerate}
+
+\subsection{Momentum-space intraband cross-check}
+\begin{itemize}
+  \item Implement Eq.~\eqref{eq:general_rate} directly with $\delta(\E_{f}-\E_{i}-\hbarw)\to G_{\sigma}$.
+  \item Use spherical symmetry to reduce to two radial integrals; confirm recovery of Eq.~\eqref{eq:energy_rate} in the $\sigma\to0$ limit.
+  \item This exercise validates the Gaussian replacement and the numerical quadrature infrastructure later used for anisotropic valleys.
+\end{itemize}
+
+\section{Parameter Sensitivity and Physical Trends}
+\subsection{Temperature dependence}
+\begin{itemize}
+  \item Higher $T$ broadens $\FD$, boosting low-$\hbarw$ emission and reducing sharpness near $\EF$.
+  \item Analytic Eq.~\eqref{eq:analytic_eq} captures this via the Bose factor; energy-dependent $\Edos$ adds a mild hardening at larger $\hbarw$.
+\end{itemize}
+
+\subsection{Pump photon energy $\hbarwl$}
+\begin{itemize}
+  \item Non-equilibrium enhancement scales with $B(\E;\omega_{\mathrm{L}})$; as $\hbarwl$ grows, the terms in Eq.~\eqref{eq:B_kernel} separate and $\delta f$ grows until phase-space closes.
+  \item For interband work, $\hbarwl$ must exceed the $5d\to6sp$ threshold; below threshold $\Gamma^{\nu}_{cv}$ vanishes.
+\end{itemize}
+
+\subsection{Pump intensity (through $\delta_{E}$)}
+\begin{itemize}
+  \item Small $\delta_{E}$: linear regime governed by $A(\hbarw)$; spectra shift modestly.
+  \item Moderate $\delta_{E}$: quadratic corrections $B(\hbarw)\delta_{E}^{2}$ appear; clipping keeps occupations physical.
+  \item Large $\delta_{E}$: would require adding recombination and $e$-$ph$ cooling; to be addressed if experimental conditions demand it.
+\end{itemize}
+
+\subsection{Effect of the density of states}
+\begin{itemize}
+  \item $\Edos(\E)\propto\sqrt{\E}$ enhances high-energy emission by weighting higher initial/final states.
+  \item For anisotropic valleys, effective masses reshape $\Edos$; isotropization via Eq.~\eqref{eq:anisotropic_cov} provides an analytic route to compute the modified DOS.
+\end{itemize}
+
+\section{Experimental Alignment and Data Needs}
+\begin{itemize}
+  \item \textbf{Parameters to source/fit:} $|\mu^{X,L}_{cv}|$, interband thresholds, Lorentz oscillator parameters for $\epsilon''(\omega)$, $\tau_{e\text{--}e}$ under pumping.
+  \item \textbf{Measurements to compare:} angle-integrated PL under CW pumping at multiple wavelengths; temperature scans; nanoparticle size dependence to reveal confinement effects on valley dispersion.
+  \item \textbf{Expected signatures:} onset of interband features when $\hbarwl$ crosses $5d\to6sp$; scaling with $\delta_{E}$ consistent with Eq.~\eqref{eq:nonthermal_series}; relative X/L weights matching degeneracies and masses.
+\end{itemize}
+
+\section{Thesis Structure Outline}
+\begin{enumerate}
+  \item Introduction and motivation (plasmonics, hot carriers, interband role).
+  \item Theory (FGR, DOS, Boltzmann, non-equilibrium distributions, delta approximations).
+  \item Intraband emission (equilibrium/non-equilibrium derivations; numeric vs. analytic; momentum-space validation).
+  \item Interband emission (Au band parameters; anisotropic treatment; numeric implementation; results for X/L).
+  \item Discussion (momentum conservation, phonon assistance, experiment comparison, limitations).
+  \item Conclusions and outlook (summary; proposed next experiments/computations).
+\end{enumerate}
+
+\section{Interband Emission (Ongoing)}
+\subsection{Valley-specific formulations}
+For a valley $\nu\in\{X,L\}$,
+\begin{equation}
+  \Gamma^{\nu}_{cv}(\hbarw)=\frac{2\pi}{\hbar}\!\int\!\!\int |\mu^{\nu}_{cv}|^{2}\,\feq_{c}(\mathbf{k})\bigl[1-\feq_{v}(\mathbf{k}')\bigr]\delta\!\bigl(\E^{\nu}_{v}(\mathbf{k}')-\E^{\nu}_{c}(\mathbf{k})+\hbarw\bigr)\frac{d^{3}k}{(2\pi)^{3}}\frac{d^{3}k'}{(2\pi)^{3}}.
+  \label{eq:inter_valley}
+\end{equation}
+With cylindrical symmetry around the valley axis, $d^{3}k\to 2\pi k_{\perp}dk_{\perp}dk_{\parallel}$, reducing the six-dimensional integral to four dimensions; a Gaussian delta maintains tractability.
+
+\subsection{Isotropization via Eq.~\eqref{eq:anisotropic_cov}}
+Applying the scaling in Eq.~\eqref{eq:anisotropic_cov} makes constant-energy surfaces spherical in $(q_{\perp},q_{\parallel})$, converting Eq.~\eqref{eq:inter_valley} into coupled 1D integrals with a known Jacobian. This mirrors the intraband workflow and should accelerate convergence.
+
+\subsection{Non-equilibrium extension}
+Use Eqs.~\eqref{eq:nonthermal_dist}--\eqref{eq:deltaE} for both bands, noting that $\epsilon_{m}''$ should be taken from Lorentz terms for interband frequencies. Hole generation depends on $\hbarwl$ crossing the $5d\to6sp$ threshold; emission is then computed with $f_{c}$, $f_{v}$ modified accordingly.
+
+\subsection{Expected spectral features}
+\begin{itemize}
+  \item Onset near interband threshold; X and L contributions weighted by degeneracy and effective masses.
+  \item Broader features if phonon-assisted indirect terms are added; sharper if only direct transitions are retained.
+  \item Relative magnitude versus intraband determined by $\delta_{E}(\omega_{\mathrm{L}})$ and valley dipole moments $|\mu^{\nu}_{cv}|$.
+\end{itemize}
+
+\section{Numerical Implementation and Reproducibility}
+\begin{itemize}
+  \item \texttt{intra\_energy.ipynb}: numeric and analytic intraband in energy space, with and without eDOS.
+  \item \texttt{intra\_momentum.ipynb}: momentum-space intraband with Gaussian delta; convergence tests on $\sigma$ and grid size.
+  \item \texttt{inter\_momentum (anisotropic).ipynb} and \texttt{interband\_emission\_momentum\_space.ipynb}: working notebooks to implement Eq.~\eqref{eq:inter_valley} and the anisotropic change of variables.
+  \item \texttt{delta\_gaussian\_approx.ipynb}: convergence study of Gaussian delta approximations in 1D and 2D.
+  \item \texttt{symbolic\_integration\_thermal\_intraband\_emission.nb}: Mathematica check of equilibrium analytic expression.
+  \item Python/NumPy/Matplotlib stack; LaTeX-ready plots can be exported once interband runs complete.
+\end{itemize}
+
+\section{Corrections and Insights}
+\begin{itemize}
+  \item The non-thermal distribution in ``Theory of Hot Photoluminescence from Drude Metals'' overpopulates states; replaced with Eq.~\eqref{eq:nonthermal_dist} following photocatalysis literature.
+  \item Explicitly retain both initial and final eDOS factors in $\rho_{J}$ to avoid the typo in the same references.
+  \item Constant-eDOS approximations are reliable only near $\EF$; departures at high $\hbarw$ call for the full $\E$-dependent $\Edos$.
+  \item Intraband momentum conservation must involve phonons; otherwise emission vanishes. The present numerics effectively assume assistance.
+\end{itemize}
+
+\section{Open Questions for Advisor}
+\begin{enumerate}
+  \item For interband recombination, should we enforce strict crystal momentum conservation (direct transitions only), or include phonon-assisted terms? How to parameterize the latter without overcounting?
+  \item Preferred treatment of $\epsilon_{m}''$ for interband frequencies in $\delta_{E}$: pure Lorentz contribution or full Drude-Lorentz sum?
+  \item Are valley-specific dipole moments $|\mu^{X}_{cv}|$, $|\mu^{L}_{cv}|$ available or should they be fitted to experimental spectra?
+  \item Tolerance for Gaussian delta width in final plots (balance between smoothness and conservation accuracy).
+\end{enumerate}
+
+\section{Roadmap to Completion}
+\begin{enumerate}
+  \item \textbf{Convergence criteria.} Finalize $\sigma$ and grid-size rules for 4D interband integrals; document error bars versus $\sigma$.
+  \item \textbf{Anisotropy reduction.} Implement Eq.~\eqref{eq:anisotropic_cov} in the interband notebooks and benchmark against isotropic test cases.
+  \item \textbf{Distribution consistency.} Apply Eqs.~\eqref{eq:nonthermal_dist}--\eqref{eq:deltaE} to both bands with Lorentz $\epsilon_{m}''$; verify occupations stay $\leq 1$.
+  \item \textbf{Spectral assembly.} Combine $\Gamma_{cc}$, $6\Gamma^{X}_{cv}$, $8\Gamma^{L}_{cv}$, and the photonic prefactor to produce full spectra across pump intensities.
+  \item \textbf{Comparison.} Where possible, overlay with available experimental PL spectra of Au nanoparticles; otherwise provide parameter sweeps to illustrate scaling.
+  \item \textbf{Write-up.} Expand interband sections with results, plots, and sensitivity analysis; consolidate into thesis main chapters.
+\end{enumerate}
+
+\appendix
+
+\section{Derivation of the General Emission Integral (A1)}
+Summing all transitions from $\ket{\mathbf{k}_{1}}$ to $\ket{\mathbf{k}_{2}}$ with spin degeneracy gives
+\begin{align}
+  \Gamma(\hbarw)&=2V\!\int\!\frac{d^{3}k_{1}}{(2\pi)^{3}}\,2V\!\int\!\frac{d^{3}k_{2}}{(2\pi)^{3}}\,\frac{2\pi}{\hbar}\,|\mu(\mathbf{k}_{1},\mathbf{k}_{2})|^{2}\,f(\mathbf{k}_{1})\bigl[1-f(\mathbf{k}_{2})\bigr]\delta\!\left(\E(\mathbf{k}_{2})-\E(\mathbf{k}_{1})+\hbarw\right),
+\end{align}
+recovering Eq.~\eqref{eq:general_rate}.
+
+\section{Delta Approximation Details}
+In 1D, total error $E_{N,\sigma}=E^{\mathrm{approx}}_{\sigma}+E^{\mathrm{numeric}}_{N,\sigma}$ with $E^{\mathrm{numeric}}_{N,\sigma}\propto N^{-2}$ (trapezoid rule) and $E^{\mathrm{approx}}_{\sigma}\to 0$ as $\sigma\to0$. In 2D integrals over $k_{1},k_{2}$ with $\delta(\E_{1}-\E_{2}-\hbarw)$, replacing the delta by $G_{\sigma}$ and integrating over a window $\pm m\sigma$ with $\Delta k=s\sigma$ preserves normalization and convergence.
+
+\section{Photon Absorption and Momentum}
+Free electrons cannot absorb photons because energy and momentum cannot be conserved simultaneously: $\mathbf{k}_{\mathrm{f}}-\mathbf{k}_{\mathrm{i}}=\mathbf{q}$ and $\E_{\mathrm{f}}-\E_{\mathrm{i}}=\hbar c|\mathbf{q}|$ cannot both hold with parabolic dispersion. Bloch electrons relax the momentum constraint through the lattice; intraband absorption remains effectively phonon-assisted.
+
+\section{Non-equilibrium Distribution Notes}
+The excitation term is $R(\omega_{\mathrm{L}})|E_{\mathrm{L}}|^{2}B(\E;\omega_{\mathrm{L}})$; $e$-$e$ relaxation yields $\Delta f=-\tau_{e\text{--}e}^{-1}\Delta f$, giving Eq.~\eqref{eq:nonthermal_dist}. Recombination is negligible for metals on the timescales considered.
+
+\end{document}

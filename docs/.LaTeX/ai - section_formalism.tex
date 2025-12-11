@@ -1,0 +1,28 @@
+\section{Emission Formalism}
+\subsection{General $k$-space expression}
+Starting from Fermi's golden rule, the spontaneous emission rate for band $\alpha\to\beta$ transitions is
+\begin{equation}
+  \Gamma_{\alpha\beta}(\hbarw)=\frac{2\pi}{\hbar}\!\left(\frac{2V}{(2\pi)^{3}}\right)^{\!2}\!\iint_{\mathrm{BZ}}\!|\mu_{\alpha\beta}(\mathbf{k}_{\mathrm{i}},\mathbf{k}_{\mathrm{f}})|^{2}\,f_{\alpha}(\mathbf{k}_{\mathrm{i}})\bigl[1-f_{\beta}(\mathbf{k}_{\mathrm{f}})\bigr]\delta\!\left(\E_{\beta}(\mathbf{k}_{\mathrm{f}})-\E_{\alpha}(\mathbf{k}_{\mathrm{i}})-\hbarw\right)\,d^{3}k_{\mathrm{i}}\,d^{3}k_{\mathrm{f}}.
+  \label{eq:general_rate}
+\end{equation}
+The transition dipole $\mu$ encodes selection rules and, implicitly, momentum transfer.
+
+\subsection{Energy-space reduction for isotropic bands}
+For isotropic dispersions and constant dipole moment $|\mu_{\alpha\beta}|\to \mu_{\alpha\beta}$, the density of states
+\begin{equation}
+  \Edos(\E)=\frac{4\pi m^{3/2}}{\hbar^{3}}\sqrt{2\E}
+  \label{eq:dos}
+\end{equation}
+allows reduction of Eq.~\eqref{eq:general_rate} to
+\begin{equation}
+  \Gamma_{\alpha\beta}(\hbarw)=\frac{2\pi}{\hbar}\!\left(\frac{2\mu_{\alpha\beta}V}{(2\pi)^{3}}\right)^{\!2}\!\!\int f_{\alpha}(\E)\bigl[1-f_{\beta}(\E-\hbarw)\bigr]\Edos_{\alpha}(\E)\Edos_{\beta}(\E-\hbarw)\,d\E.
+  \label{eq:energy_rate}
+\end{equation}
+This is the reference form used to validate the momentum-space numerics.
+
+\subsection{Joint density factor}
+For clarity, the joint factor entering Eq.~\eqref{eq:energy_rate} is
+\begin{equation}
+  \rho_{J}(\E_{\mathrm{i}},\E_{\mathrm{f}})=f(\E_{\mathrm{i}})\Edos(\E_{\mathrm{i}})\bigl[1-f(\E_{\mathrm{f}})\bigr]\Edos(\E_{\mathrm{f}}),
+\end{equation}
+maintaining both initial and final densities explicitly (correcting a misuse in the referenced literature).

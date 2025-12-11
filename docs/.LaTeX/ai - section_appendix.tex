@@ -1,0 +1,15 @@
+\section{Derivation of the General Emission Integral (A1)}
+Summing all transitions from $\ket{\mathbf{k}_{1}}$ to $\ket{\mathbf{k}_{2}}$ with spin degeneracy gives
+\begin{align}
+  \Gamma(\hbarw)&=2V\!\int\!\frac{d^{3}k_{1}}{(2\pi)^{3}}\,2V\!\int\!\frac{d^{3}k_{2}}{(2\pi)^{3}}\,\frac{2\pi}{\hbar}\,|\mu(\mathbf{k}_{1},\mathbf{k}_{2})|^{2}\,f(\mathbf{k}_{1})\bigl[1-f(\mathbf{k}_{2})\bigr]\delta\!\left(\E(\mathbf{k}_{2})-\E(\mathbf{k}_{1})+\hbarw\right),
+\end{align}
+recovering Eq.~\eqref{eq:general_rate}.
+
+\section{Delta Approximation Details}
+In 1D, total error $E_{N,\sigma}=E^{\mathrm{approx}}_{\sigma}+E^{\mathrm{numeric}}_{N,\sigma}$ with $E^{\mathrm{numeric}}_{N,\sigma}\propto N^{-2}$ (trapezoid rule) and $E^{\mathrm{approx}}_{\sigma}\to 0$ as $\sigma\to0$. In 2D integrals over $k_{1},k_{2}$ with $\delta(\E_{1}-\E_{2}-\hbarw)$, replacing the delta by $G_{\sigma}$ and integrating over a window $\pm m\sigma$ with $\Delta k=s\sigma$ preserves normalization and convergence.
+
+\section{Photon Absorption and Momentum}
+Free electrons cannot absorb photons because energy and momentum cannot be conserved simultaneously: $\mathbf{k}_{\mathrm{f}}-\mathbf{k}_{\mathrm{i}}=\mathbf{q}$ and $\E_{\mathrm{f}}-\E_{\mathrm{i}}=\hbar c|\mathbf{q}|$ cannot both hold with parabolic dispersion. Bloch electrons relax the momentum constraint through the lattice; intraband absorption remains effectively phonon-assisted.
+
+\section{Non-equilibrium Distribution Notes}
+The excitation term is $R(\omega_{\mathrm{L}})|E_{\mathrm{L}}|^{2}B(\E;\omega_{\mathrm{L}})$; $e$-$e$ relaxation yields $\Delta f=-\tau_{e\text{--}e}^{-1}\Delta f$, giving Eq.~\eqref{eq:nonthermal_dist}. Recombination is negligible for metals on the timescales considered.

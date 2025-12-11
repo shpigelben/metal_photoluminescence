@@ -1,0 +1,36 @@
+\section{Results and Comparisons}\label{sec:results}
+\subsection{Equilibrium intraband benchmarks}
+Figure~\ref{fig:intra-eq} shows numeric spectra with and without the $\E$-dependent eDOS compared to the analytic constant-eDOS shape. The energy-dependent eDOS slightly hardens the spectrum at larger $\hbarw$, consistent with the increasing $\sqrt{\E}$ weight.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{new - figs/intraband_equilibrium.png}
+  \caption{Equilibrium intraband emission: numeric (with/without eDOS) vs. analytic constant-eDOS shape. All curves normalized to unit peak.}
+  \label{fig:intra-eq}
+\end{figure}
+
+\subsection{Non-equilibrium enhancement}
+Figure~\ref{fig:intra-noneq} illustrates non-equilibrium spectra for two pump strengths ($\delta_{E}=0.02,0.05$) at $\hbar\omega_{\mathrm{L}}=2$~eV. The enhancement is stronger near the Fermi edge where $f(1-f)$ is largest; spectra smoothly revert to equilibrium as $\delta_{E}\to0$.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{new - figs/intraband_noneq.png}
+  \caption{Non-equilibrium intraband emission normalized to peak. Dashed line: equilibrium baseline.}
+  \label{fig:intra-noneq}
+\end{figure}
+
+\subsection{Gaussian delta convergence}
+Figure~\ref{fig:delta} uses a toy integrand to demonstrate convergence of the Gaussian delta approximation; relative error drops rapidly as $\sigma$ shrinks, confirming the sampling rule in Section~\ref{sec:delta}. The same behavior is observed in the notebook tests for the physical emission integrals.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{new - figs/delta_convergence.png}
+  \caption{Convergence of Gaussian delta approximation vs. width $\sigma$ (log scale).}
+  \label{fig:delta}
+\end{figure}
+
+\subsection{Momentum conservation discussion}
+\begin{itemize}
+  \item One-step intraband transitions are momentum-forbidden; agreement with experiment implies effective inclusion of phonon assistance or relaxed momentum constraints.
+  \item Future refinement could add an explicit phonon spectral function to enforce momentum conservation without suppressing emission.
+\end{itemize}

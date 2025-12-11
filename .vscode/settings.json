@@ -1,0 +1,11 @@
+{
+  // Hide only common clutter; keep .LaTeX visible.
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/.venv": true,
+    "**/.obsidian": true,
+    "**/.gitignore": true,
+    "**/README.md": true
+  }
+}

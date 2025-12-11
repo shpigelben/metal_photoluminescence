@@ -1,0 +1,35 @@
+\section{Supporting Derivations}
+\subsection{Electronic density of states (A2)}
+For an isotropic parabolic band $\E(k)=\hbar^{2}k^{2}/2m$,
+\begin{equation}
+  d^{3}k\to4\pi k^{2}dk=4\pi k^{2}\frac{dk}{d\E}d\E=\frac{4\pi m^{3/2}}{\hbar^{3}}\sqrt{2\E}\,d\E,
+\end{equation}
+yielding Eq.~\eqref{eq:dos}. This mapping is reused when isotropizing anisotropic valleys.
+
+\subsection{Change of variables for anisotropic ellipsoids}
+For $\E_{b}=\E_{0b}\pm \hbar^{2}(k_{\perp}^{2}/2m_{b\perp}+k_{\parallel}^{2}/2m_{b\parallel})$ define
+\begin{equation}
+  k_{\perp}=\frac{q_{\perp}}{\sqrt{m_{b\perp}}},\qquad k_{\parallel}=\frac{q_{\parallel}}{\sqrt{m_{b\parallel}}},
+  \label{eq:anisotropic_cov}
+\end{equation}
+so that $\E_{b}=\E_{0b}\pm \hbar^{2}(q_{\perp}^{2}+q_{\parallel}^{2})/2$ and $d^{3}k=\frac{1}{\sqrt{m_{b\perp}m_{b\parallel}}}\,2\pi q_{\perp}\,dq_{\perp}\,dq_{\parallel}$. The energy-conservation delta then depends only on $q^{2}$, reducing interband valley integrals to coupled 1D forms akin to Eq.~\eqref{eq:energy_rate}.
+
+\subsection{Delta-function approximation}
+Replace $\delta(x)$ by $G_{\sigma}(x)=\bigl(\sigma\sqrt{2\pi}\bigr)^{-1}\exp[-x^{2}/(2\sigma^{2})]$ with joint limit $\sigma\to0$ and grid size $N\to\infty$. For trapezoidal quadrature the numeric error scales as $N^{-2}$, while approximation error shrinks with $\sigma$. Practical rule used in notebooks: integrate over $\pm m\sigma$ with step $\Delta x=s\sigma$ (e.g., $m=10$, $s\leq 0.1$) so $N\geq \lceil2m/s\rceil$ samples resolve the peak without flattening normalization. In 2D, maintain the Jacobian of the transformed coordinates.
+
+\subsection{Quantum Boltzmann equation and non-equilibrium distribution}
+At steady state,
+\begin{equation}
+  \left(\frac{\partial f}{\partial t}\right)_{\mathrm{ex}}+\left(\frac{\partial f}{\partial t}\right)_{e\text{--}e}+\left(\frac{\partial f}{\partial t}\right)_{e\text{--}ph}\approx 0,
+\end{equation}
+with excitation rate from Fermi's golden rule and $e$-$e$ collisions treated via a relaxation time $\tau_{e\text{--}e}$. Neglecting $e$-$ph$ far from $\EF$ yields
+\begin{equation}
+  f(\E;\omega_{\mathrm{L}})=\feq(\E)+\delta_{E}(\omega_{\mathrm{L}})\,B(\E;\omega_{\mathrm{L}}),
+  \label{eq:nonthermal_dist}
+\end{equation}
+with
+\begin{align}
+  B(\E;\omega_{\mathrm{L}})&=\feq(\E-\hbarwl)\bigl[1-\feq(\E)\bigr]-\feq(\E)\bigl[1-\feq(\E+\hbarwl)\bigr], \label{eq:B_kernel}\\
+  \delta_{E}(\omega_{\mathrm{L}})&=\left|\tau_{e\text{--}e}R(\omega_{\mathrm{L}})E_{\mathrm{L}}\right|^{2},\qquad R(\omega_{\mathrm{L}})=\frac{4\epsilon_{0}\epsilon_{m}''(\omega_{\mathrm{L}})}{3\hbar n_{e}}\frac{\EF}{\hbarwl}. \label{eq:deltaE}
+\end{align}
+This form avoids unphysical occupations $>1$ present in the earlier Drude-only expression.
