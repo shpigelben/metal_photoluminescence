@@ -6,8 +6,6 @@ pip install -r requirements.txt
 ```
 
 
-
-````text
 repo/
 ├─ README.md
 ├─ .gitignore
@@ -23,5 +21,5 @@ repo/
    ├─ references/          # PDFs, citations, literature summaries
    ├─ figures/             # Images, diagrams, exported plots
    └─ assets/              # Misc supporting files (snippets, templates, etc.)
-````
+
 
