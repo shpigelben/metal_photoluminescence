@@ -54,7 +54,7 @@ def show_fermi_product_interactive() -> None:
     y_floor = 1e-20
 
     fig, ax = plt.subplots(figsize=(10, 5.2))
-    fig.subplots_adjust(left=0.10, right=0.97, bottom=0.30, top=0.90)
+    fig.subplots_adjust(left=0.10, right=0.97, bottom=0.32, top=0.90)
 
     mu0 = chemical_potential(E_F0, T0)
     beta0 = 1.0 / (k_B * T0)
@@ -100,7 +100,7 @@ def show_fermi_product_interactive() -> None:
 
     ax.set_xlabel(r"$\mathcal{E}$ [eV]")
     ax.set_ylabel(r"Occupation / product")
-    ax.set_title(r"Thermal factor: $f(\mathcal{E}+\hbar\omega)\,[1-f(\mathcal{E})]$")
+    ax.set_title("Thermal factor: f(E+ħω)[1−f(E)]")
     ax.set_xlim(E_MIN, E_MAX)
     ax.set_ylim(y_floor, 1.0)
     ax.grid(True, which="both", linestyle=":", linewidth=0.6, alpha=0.5)
@@ -108,9 +108,9 @@ def show_fermi_product_interactive() -> None:
 
     info = ax.text(0.02, 0.96, "", transform=ax.transAxes, va="top")
 
-    ax_EF = fig.add_axes([0.10, 0.20, 0.82, 0.03])
-    ax_T = fig.add_axes([0.10, 0.15, 0.82, 0.03])
-    ax_hw = fig.add_axes([0.10, 0.10, 0.82, 0.03])
+    ax_EF = fig.add_axes([0.10, 0.21, 0.82, 0.03])
+    ax_T = fig.add_axes([0.10, 0.16, 0.82, 0.03])
+    ax_hw = fig.add_axes([0.10, 0.11, 0.82, 0.03])
 
     s_EF = Slider(ax_EF, r"$\mathcal{E}_F$ [eV]", 1.0, 7.0, valinit=E_F0, valstep=0.1)
     s_T = Slider(ax_T, r"$T$ [K]", 50.0, 5000.0, valinit=T0, valstep=10.0)

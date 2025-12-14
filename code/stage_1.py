@@ -110,10 +110,10 @@ def rel_error_approx_vs_exact(hw_values: np.ndarray, T: float, E_F: float) -> np
 
 
 REL_ERROR_CASES = [
-    {"T": 300.0, "E_F": 5.0, "title": r"$T=300\,\mathrm{K},\ \mathcal{E}_F=5\,\mathrm{eV}$"},
-    {"T": 300.0, "E_F": 3.0, "title": r"$T=300\,\mathrm{K},\ \mathcal{E}_F=3\,\mathrm{eV}$"},
-    {"T": 700.0, "E_F": 3.0, "title": r"$T=700\,\mathrm{K},\ \mathcal{E}_F=3\,\mathrm{eV}$"},
-    {"T": 1000.0, "E_F": 3.0, "title": r"$T=1000\,\mathrm{K},\ \mathcal{E}_F=3\,\mathrm{eV}$"},
+    {"T": 300.0, "E_F": 5.0, "title": "T = 300 K, E_F = 5 eV"},
+    {"T": 300.0, "E_F": 3.0, "title": "T = 300 K, E_F = 3 eV"},
+    {"T": 700.0, "E_F": 3.0, "title": "T = 700 K, E_F = 3 eV"},
+    {"T": 1000.0, "E_F": 3.0, "title": "T = 1000 K, E_F = 3 eV"},
 ]
 
 def show_rel_error_grid() -> None:
@@ -134,14 +134,7 @@ def show_rel_error_grid() -> None:
     axes[0, 0].set_ylabel(r"$|\delta_{rel}|$")
     axes[1, 0].set_ylabel(r"$|\delta_{rel}|$")
 
-    title = (
-        r"Const eDOS comparison: "
-        r"$I_{\mathrm{num}}(\hbar\omega)=g(\mathcal{E}_F)^2\int d\mathcal{E}\,"
-        r"f(\mathcal{E}+\hbar\omega)\,[1-f(\mathcal{E})]$"
-        "\n"
-        r"$I_{\mathrm{exact}}(\hbar\omega)=g(\mathcal{E}_F)^2\,\frac{k_B T}{e^{\beta\hbar\omega}-1}"
-        r"\left[\beta\hbar\omega+\ln(1+e^{-\beta\mu})-\ln(1+e^{\beta(\hbar\omega-\mu)})\right]$"
-    )
+    title = "Const eDOS: relative error (numeric integral vs analytic exact)"
     set_figure_title(fig, title)
     save_svg(fig, "stage_1_rel_error_grid.svg")
     plt.show()
@@ -152,21 +145,32 @@ def show_rel_error_heatmap_exact_vs_approx(
     E_F: float = E_F_DEFAULT,
     hw_min: float = 0.01,
     hw_max: float = 5.0,
-    n_hw: int = 500,
+    n_hw: int = 2000,
     T_min: float = 0.0,
     T_max: float = 5000.0,
-    n_T: int = 300,
+    n_T: int = 1200,
 ) -> None:
     hw_values = np.linspace(hw_min, hw_max, n_hw)
     T_min_eff = max(float(T_min), 1.0e-6)
     T_values = np.linspace(T_min_eff, T_max, n_T)
     kBT_values = k_B * T_values
 
-    log10_err = np.empty((T_values.size, hw_values.size), dtype=float)
-    for i, T in enumerate(T_values):
-        rel = rel_error_approx_vs_exact(hw_values, float(T), float(E_F))
-        rel = np.nan_to_num(rel, nan=0.0, posinf=1e6, neginf=1e6)
-        log10_err[i, :] = np.log10(np.clip(rel, 1e-20, 1e6))
+    # Vectorized relative error (approx vs exact) without expm1:
+    # I_exact ∝ [hw + kBT*(ln(1+e^{-βμ}) - ln(1+e^{β(hw-μ)}))]
+    # I_approx ∝ hw
+    mu = chemical_potential(float(E_F), T_values)
+    beta = 1.0 / (k_B * T_values)
+
+    term1 = np.logaddexp(0.0, -beta * mu)  # log(1 + e^{-βμ})   shape (n_T,)
+    arg2 = beta[:, None] * (hw_values[None, :] - mu[:, None])
+    log_terms = term1[:, None] - np.logaddexp(0.0, arg2)
+
+    denom = hw_values[None, :] + (k_B * T_values)[:, None] * log_terms
+
+    with np.errstate(divide="ignore", invalid="ignore"):
+        rel = np.abs(1.0 - (hw_values[None, :] / denom))
+    rel = np.nan_to_num(rel, nan=0.0, posinf=1e6, neginf=1e6)
+    log10_err = np.log10(np.clip(rel, 1e-20, 1e6))
 
     fig, ax = plt.subplots(figsize=(11, 6.0))
     y0 = 0.0 if T_min <= 0 else float(k_B * T_min)
@@ -196,14 +200,7 @@ def show_rel_error_heatmap_exact_vs_approx(
     secax.set_yticks(kbt_ticks / k_B)
     secax.yaxis.set_major_formatter(FuncFormatter(lambda t, _pos: f"{t:.0f}"))
 
-    title = (
-        rf"Analytic relative error (exact vs approx), $\mathcal{{E}}_F={E_F:.2f}\,\mathrm{{eV}}$"
-        "\n"
-        r"$I_{\mathrm{exact}}(\hbar\omega)=g(\mathcal{E}_F)^2\,\frac{k_B T}{e^{\beta\hbar\omega}-1}"
-        r"\left[\beta\hbar\omega+\ln(1+e^{-\beta\mu})-\ln(1+e^{\beta(\hbar\omega-\mu)})\right]$"
-        "\n"
-        r"$I_{\mathrm{approx}}(\hbar\omega)=g(\mathcal{E}_F)^2\,\frac{\hbar\omega}{e^{\beta\hbar\omega}-1}$"
-    )
+    title = f"Analytic approximation error map (approx vs exact), E_F = {E_F:.2f} eV"
     ax.set_title(title)
     fig.tight_layout()
     ef_tag = f"{E_F:.2f}".replace(".", "p")

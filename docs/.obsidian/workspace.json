@@ -115,10 +115,10 @@
             "state": {
               "type": "image",
               "state": {
-                "file": "figures/stage_1_rel_error_grid.svg"
+                "file": "figures/stage_1_heatmap_exact_vs_approx_EF3p00eV.svg"
               },
               "icon": "lucide-image",
-              "title": "stage_1_rel_error_grid"
+              "title": "stage_1_heatmap_exact_vs_approx_EF3p00eV"
             }
           },
           {
@@ -305,13 +305,13 @@
   },
   "active": "d677d754426afebb",
   "lastOpenFiles": [
-    "figures/analytic_region_of_relevance.png",
-    "figures/stage_1_heatmap_exact_vs_approx_EF3p00eV.svg",
     "figures/stage_1_rel_error_grid.svg",
+    "figures/stage_1_heatmap_exact_vs_approx_EF3p00eV.svg",
+    "notes/0 - Work Plan.md",
+    "figures/analytic_region_of_relevance.png",
     "notes/2 - Numeric Convergence.md",
     "notes/6 - Delta (4D) Approximation K-Space.md",
     "notes/5 - Delta (2D) Approximation K-Space.md",
-    "notes/0 - Work Plan.md",
     "notes/4 - Delta (2D) Approximation E-Space.md",
     "notes/3 - Constant eDOS Approximation.md",
     "notes/1 - Analytic Approximation.md",
