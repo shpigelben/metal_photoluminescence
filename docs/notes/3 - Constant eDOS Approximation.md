@@ -1,0 +1,1 @@
+- [ ] Show that convergence between $(5)$ and $(4)$ follows machine precision up to the Fermi level

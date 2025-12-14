@@ -7,7 +7,7 @@
 \usepackage{enumitem}
 \usepackage{hyperref}
 \usepackage{graphicx}
-\usepackage{cite}
+\usepackage[super,sort&compress]{natbib}
 
 \graphicspath{{ai - figs/}}
 
@@ -68,7 +68,8 @@ This document consolidates the thesis work completed so far on non-equilibrium p
 \appendix
 \input{ai - section_appendix.tex}
 
-\bibliographystyle{unsrt}
+\nocite{*}
+\bibliographystyle{achemso}
 \bibliography{ai-references}
 
 \end{document}

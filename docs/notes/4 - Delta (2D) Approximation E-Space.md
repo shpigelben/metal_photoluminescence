@@ -1,0 +1,4 @@
+- [ ] POC
+	- [ ] show convergence requirements for a simple 1D integral $$\int\limits_{}^{} x\delta(x-\mu) \, dx =\mu$$where the $\delta$ is approximated by a Gaussian.
+	- [ ] show convergence requirements for a simple 2D integral $$ \int\limits_{-1}^{1} xy \; \delta(x-y-\mu) \, dxdy =\int\limits_{-1}^{1}  (y+\mu)y \;  dy$$ where the $\delta$ is approximated by a Gaussian.
+- [ ] once the necessary parameters for convergence are established assert them in comparing between the resolved $(4)$ and unresolved $(3)$ expressions.

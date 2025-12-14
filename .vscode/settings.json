@@ -6,6 +6,7 @@
     "**/.venv": true,
     "**/.obsidian": true,
     "**/.gitignore": true,
-    "**/README.md": true
+    "**/README.md": true,
+    "**/.cache": true,
   }
 }

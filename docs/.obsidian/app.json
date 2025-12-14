@@ -10,12 +10,14 @@
   "showInlineTitle": true,
   "newLinkFormat": "relative",
   "alwaysUpdateLinks": true,
-  "attachmentFolderPath": "9. Misc/attachments",
+  "attachmentFolderPath": "figures",
   "readableLineLength": true,
   "focusNewTab": false,
   "rightToLeft": false,
   "livePreview": true,
   "uriCallbacks": false,
   "showUnsupportedFiles": false,
-  "showLineNumber": false
+  "showLineNumber": false,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "notes"
 }

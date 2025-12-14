@@ -1,0 +1,5 @@
+- [ ] show that the calculated f*(1-f) is more numerically stable than the explicit form.
+- [ ] show that when using the numerically stable version, the two forms converge to machine precision away from the Fermi energy
+- [ ] using ther trapezoid method, find the integration step necessarty for convergance to avoid overhead unnecessary computation down the road.
+- [ ] try to find and explanation for the devation around the Fermi energy and if possible suggest a solution
+- [ ] show the multiple plots that illustrate how Fermi energy and temperature effect the relative error 

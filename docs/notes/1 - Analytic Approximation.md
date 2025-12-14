@@ -1,0 +1,2 @@
+- [ ] find the region of low $\delta_{rel}$
+	- [ ] define a hard limit (machine accuracy $\mathcal{O}(10^{-16})$ ?)

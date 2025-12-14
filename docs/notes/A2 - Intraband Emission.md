@@ -14,7 +14,7 @@ $$
 $$
 \Gamma_{\text{cc}}(\hbar\omega) = \frac{2\pi}{\hbar}\left( \frac{2\mu_{\text{cc}}V}{(2\pi)^{3}} \right)^{2} \iint\limits_{BZ} f\Big[\mathcal{E_{\text{c}}}(\mathbf{k}_{\text{i}})  \Big]\overline{f\Big[\mathcal{E_{\text{c}}}(\mathbf{k}_{\text{f}})  \Big]} \ \delta \Big( \mathcal{E}_{\text{c}}(\mathbf{k}_{\text{i}}) - \mathcal{E}_{\text{c}}(\mathbf{k}_{\text{f}}) - \hbar\omega \Big) \ d^{3}k_{\text{i}}d^{3}k_{\text{f}} \tag{2}
 $$
-The dispersion relation of the conduction band is isotropic. This allows us to move from the 3-dimensional momentum space to the 1-dimensional energy space using the [A2 - Electronic Density of States](A2%20-%20Electronic%20Density%20of%20States.md), namely
+The dispersion relation of the conduction band is isotropic. This allows us to move from the 3-dimensional momentum space to the 1-dimensional energy space using the [A3 - Electronic Density of States](A3%20-%20Electronic%20Density%20of%20States.md), namely
 $$
 d^{3}k\to \rho(\mathcal{E})d\mathcal{E} = \frac{4\pi \sqrt{2m_{e}^{3}\mathcal{E}}}{\hbar^3} \ d\mathcal{E}
 $$

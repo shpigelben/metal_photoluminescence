@@ -1,48 +1,48 @@
 This is BibTeX, Version 0.99d (TeX Live 2025)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: ai - main.aux
-The style file: unsrt.bst
-I found no \citation commands---while reading file ai - main.aux
+The style file: achemso.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: ai-references.bib
-You've used 0 entries,
-            1791 wiz_defined-function locations,
-            445 strings with 3529 characters,
-and the built_in function-call counts, 18 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 2
-:= -- 7
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
-chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 1
+achemso 2025-01-29 v3.13h
+You've used 14 entries,
+            2538 wiz_defined-function locations,
+            852 strings with 10006 characters,
+and the built_in function-call counts, 4724 in all, are:
+= -- 374
+> -- 288
+< -- 9
++ -- 112
+- -- 99
+* -- 503
+:= -- 654
+add.period$ -- 26
+call.type$ -- 14
+change.case$ -- 1
+chr.to.int$ -- 1
+cite$ -- 14
+duplicate$ -- 264
+empty$ -- 305
+format.name$ -- 122
+if$ -- 900
 int.to.chr$ -- 0
-int.to.str$ -- 0
+int.to.str$ -- 1
 missing$ -- 0
-newline$ -- 3
-num.names$ -- 0
-pop$ -- 0
+newline$ -- 112
+num.names$ -- 42
+pop$ -- 28
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 1
+skip$ -- 10
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
-text.length$ -- 0
+substring$ -- 203
+swap$ -- 271
+text.length$ -- 28
 text.prefix$ -- 0
-top$ -- 0
-type$ -- 0
+top$ -- 1
+type$ -- 95
 warning$ -- 0
-while$ -- 0
+while$ -- 45
 width$ -- 0
-write$ -- 2
-(There was 1 error message)
+write$ -- 201

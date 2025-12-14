@@ -23,22 +23,121 @@
             }
           },
           {
-            "id": "c95f70aea72d29e6",
+            "id": "d1a9c2f83f114da6",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "resources/8 - Novotny (extracted).pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "8 - Novotny (extracted)"
+            }
+          },
+          {
+            "id": "c6dfb78a3737ff25",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/0 - Comparison table.md",
+                "file": "notes/2 - Numeric Convergence.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "0 - Comparison table"
+              "title": "2 - Numeric Convergence"
+            }
+          },
+          {
+            "id": "9b89d931d4b384e1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "notes/3 - Constant eDOS Approximation.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "3 - Constant eDOS Approximation"
+            }
+          },
+          {
+            "id": "95c2fd57d224e079",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "notes/0 - Work Plan.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "0 - Work Plan"
+            }
+          },
+          {
+            "id": "79feabcba0969053",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "notes/0 - Work Plan.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "0 - Work Plan"
+            }
+          },
+          {
+            "id": "75a7eb5fd631d593",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "notes/0 - Work Plan.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "0 - Work Plan"
+            }
+          },
+          {
+            "id": "d677d754426afebb",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "figures/stage_1_rel_error_grid.svg"
+              },
+              "icon": "lucide-image",
+              "title": "stage_1_rel_error_grid"
+            }
+          },
+          {
+            "id": "da0c8cb9bef95518",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "notes/A3 - Electronic Density of States.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "A3 - Electronic Density of States"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -204,25 +303,43 @@
       "obsidian-stille:Toggle Stille": false
     }
   },
-  "active": "c95f70aea72d29e6",
+  "active": "d677d754426afebb",
   "lastOpenFiles": [
-    "notes/A1 - Derivation of the General Emission Integral.md",
-    "notes/0 - Comparison table.md",
-    "notes/Numeric Delta Approximation.md",
+    "figures/analytic_region_of_relevance.png",
+    "figures/stage_1_heatmap_exact_vs_approx_EF3p00eV.svg",
+    "figures/stage_1_rel_error_grid.svg",
+    "notes/2 - Numeric Convergence.md",
+    "notes/6 - Delta (4D) Approximation K-Space.md",
+    "notes/5 - Delta (2D) Approximation K-Space.md",
+    "notes/0 - Work Plan.md",
+    "notes/4 - Delta (2D) Approximation E-Space.md",
+    "notes/3 - Constant eDOS Approximation.md",
+    "notes/1 - Analytic Approximation.md",
+    "notes/A3 - Electronic Density of States.md",
+    "figures",
+    "figures/output.png",
     "resources/8 - Novotny (extracted).pdf",
+    "notes/A2 - Intraband Emission.md",
+    "notes/Introduction.md",
+    "resources/0 - Contribution_of_Interband_Transitions_to_Non_equilibrium_Emission_From_Gold.pdf",
+    "notes/Non-equilibrium Emission in Metals.md",
+    "notes/A1 - Derivation of the General Emission Integral.md",
+    "resources/figures",
+    "notes/Boltzmann Equation.md",
+    "notes/Change of Variables for Emission Integral.md",
+    "notes/Electronic Transitions.md",
+    "notes/Emission Calculations.md",
+    "notes/Numeric Delta Approximation.md",
+    "notes/Photon Absorption by Conduction Electrons.md",
+    "notes/Progress Report + Questions for Yonatan.md",
     "resources/7 - Quantum-mechanical effects in photoluminescence from thin crystalline gold films.pdf",
     "resources/10 - Novotny (extracted).pdf",
     "docs/resources/raman_pl_distinction.pdf",
     "docs/resources/notes (notability).pdf",
     "docs/resources/nielsen-et-al-2022-thermoradiative-power-conversion-from-hgcdte-photodiodes-and-their-current-voltage-characteristics.pdf",
     "docs/resources/lee-et-al-2024-hot-electrons-in-a-steady-state-interband-vs-intraband-excitation-of-plasmonic-gold.pdf",
-    "docs/resources/interband_transitions(cut).pdf",
-    "docs/resources/imon's presentation.pdf",
-    "docs/resources/Novotny (extracted).pdf",
     "new - figs/delta_convergence.png",
     "new - figs/intraband_noneq.png",
-    "new - figs/intraband_equilibrium.png",
-    "notes/2 - Intraband Emission.md",
-    "notes/1 - Introduction.md"
+    "new - figs/intraband_equilibrium.png"
   ]
 }
