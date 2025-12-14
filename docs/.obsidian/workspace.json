@@ -1,71 +1,29 @@
 {
   "main": {
-    "id": "e95b7b95322965cf",
+    "id": "5324373015726ba8",
     "type": "split",
     "children": [
       {
-        "id": "89bc9b3ee03ef4f2",
+        "id": "4509724f8bf84da7",
         "type": "tabs",
         "children": [
           {
-            "id": "e1ad8e7e7bc92408",
+            "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/Numeric Delta Approximation.md",
+                "file": "notes/log.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Numeric Delta Approximation"
+              "title": "log"
             }
           },
           {
-            "id": "d1a9c2f83f114da6",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "resources/8 - Novotny (extracted).pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "8 - Novotny (extracted)"
-            }
-          },
-          {
-            "id": "c6dfb78a3737ff25",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/2 - Numeric Convergence.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "2 - Numeric Convergence"
-            }
-          },
-          {
-            "id": "9b89d931d4b384e1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/3 - Constant eDOS Approximation.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "3 - Constant eDOS Approximation"
-            }
-          },
-          {
-            "id": "95c2fd57d224e079",
+            "id": "e4e8a55e5d6a6d03",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -77,67 +35,10 @@
               },
               "icon": "lucide-file",
               "title": "0 - Work Plan"
-            }
-          },
-          {
-            "id": "79feabcba0969053",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/0 - Work Plan.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "0 - Work Plan"
-            }
-          },
-          {
-            "id": "75a7eb5fd631d593",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/0 - Work Plan.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "0 - Work Plan"
-            }
-          },
-          {
-            "id": "d677d754426afebb",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "figures/stage_1_heatmap_exact_vs_approx_EF3p00eV.svg"
-              },
-              "icon": "lucide-image",
-              "title": "stage_1_heatmap_exact_vs_approx_EF3p00eV"
-            }
-          },
-          {
-            "id": "da0c8cb9bef95518",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/A3 - Electronic Density of States.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "A3 - Electronic Density of States"
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -194,7 +95,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "ff902569427872ea",
@@ -303,10 +205,14 @@
       "obsidian-stille:Toggle Stille": false
     }
   },
-  "active": "d677d754426afebb",
+  "active": "e4e8a55e5d6a6d03",
   "lastOpenFiles": [
-    "figures/stage_1_rel_error_grid.svg",
+    "notes/log.md",
+    "figures/stage_3_rel_error_grid.svg",
+    "figures/stage_2_rel_error_grid.svg",
+    "figures/fermi_product_interactive_default.svg",
     "figures/stage_1_heatmap_exact_vs_approx_EF3p00eV.svg",
+    "figures/stage_1_rel_error_grid.svg",
     "notes/0 - Work Plan.md",
     "figures/analytic_region_of_relevance.png",
     "notes/2 - Numeric Convergence.md",

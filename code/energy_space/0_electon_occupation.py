@@ -8,42 +8,16 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from _preamble_and_funcs import (
+    E_MAX,
+    E_MIN,
+    chemical_potential,
+    fermi_hole_mu_beta,
+    fermi_occupation_mu_beta,
+    fermi_product_mu_beta,
+    k_B,
+)
 from plot_style import apply_style, save_svg
-
-# Constants (energy in eV)
-k_B = 8.617333262145e-5  # eV/K
-
-E_MIN = 0.0
-E_MAX = 10.0
-
-
-def chemical_potential(E_F: float, T: float) -> float:
-    T_F = E_F / k_B
-    return E_F * (1 - (np.pi**2 / 12) * ((T / T_F) ** 2))
-
-
-def fermi_occupation_mu_beta(E: np.ndarray, mu: float, beta: float) -> np.ndarray:
-    """Stable f(E) = 1/(exp(beta(E-mu)) + 1)."""
-
-    a = beta * (np.asarray(E, dtype=float) - mu)
-    return np.exp(-np.logaddexp(0.0, a))
-
-
-def fermi_hole_mu_beta(E: np.ndarray, mu: float, beta: float) -> np.ndarray:
-    """Stable 1 - f(E)."""
-
-    a = beta * (np.asarray(E, dtype=float) - mu)
-    return np.exp(a - np.logaddexp(0.0, a))
-
-
-def fermi_product_mu_beta(E: np.ndarray, hw: float, mu: float, beta: float) -> np.ndarray:
-    """Stable f(E+hw)[1-f(E)] (log-form)."""
-
-    E = np.asarray(E, dtype=float)
-    a = beta * (E - mu)
-    b = a + beta * hw
-    log_val = a - np.logaddexp(0.0, a) - np.logaddexp(0.0, b)
-    return np.exp(log_val)
 
 
 def show_fermi_product_interactive() -> None:
