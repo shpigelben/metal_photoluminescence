@@ -1,29 +1,71 @@
 {
   "main": {
-    "id": "5324373015726ba8",
+    "id": "e95b7b95322965cf",
     "type": "split",
     "children": [
       {
-        "id": "4509724f8bf84da7",
+        "id": "89bc9b3ee03ef4f2",
         "type": "tabs",
         "children": [
           {
-            "id": "e7a7b303c61786dc",
+            "id": "e1ad8e7e7bc92408",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/log.md",
+                "file": "notes/Numeric Delta Approximation.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "log"
+              "title": "Numeric Delta Approximation"
             }
           },
           {
-            "id": "e4e8a55e5d6a6d03",
+            "id": "d1a9c2f83f114da6",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "resources/0 - Contribution_of_Interband_Transitions_to_Non_equilibrium_Emission_From_Gold.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "0 - Contribution_of_Interband_Transitions_to_Non_equilibrium_Emission_From_Gold"
+            }
+          },
+          {
+            "id": "c6dfb78a3737ff25",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "notes/2 - Numeric Convergence.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "2 - Numeric Convergence"
+            }
+          },
+          {
+            "id": "9b89d931d4b384e1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "notes/3 - Constant eDOS Approximation.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "3 - Constant eDOS Approximation"
+            }
+          },
+          {
+            "id": "95c2fd57d224e079",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -36,9 +78,81 @@
               "icon": "lucide-file",
               "title": "0 - Work Plan"
             }
+          },
+          {
+            "id": "79feabcba0969053",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "notes/2 - Numeric Convergence.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "2 - Numeric Convergence"
+            }
+          },
+          {
+            "id": "75a7eb5fd631d593",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "notes/0 - Work Plan.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "0 - Work Plan"
+            }
+          },
+          {
+            "id": "d677d754426afebb",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "figures/stage_1_heatmap_exact_vs_approx_EF3p00eV.svg"
+              },
+              "icon": "lucide-image",
+              "title": "stage_1_heatmap_exact_vs_approx_EF3p00eV"
+            }
+          },
+          {
+            "id": "dff1d9f222709c5d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "notes/Introduction.md",
+                "mode": "preview",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Introduction"
+            }
+          },
+          {
+            "id": "da0c8cb9bef95518",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "notes/A3 - Electronic Density of States.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "A3 - Electronic Density of States"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -95,8 +209,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "ff902569427872ea",
@@ -205,16 +318,32 @@
       "obsidian-stille:Toggle Stille": false
     }
   },
-  "active": "e4e8a55e5d6a6d03",
+  "active": "79feabcba0969053",
   "lastOpenFiles": [
+    "notes/0 - Work Plan.md",
+    "figures/stage_2_convergence_mean_rel_error_vs_dE.svg",
+    "resources/raman_pl_distinction.pdf",
+    "resources/notes (notability).pdf",
+    "resources/nielsen-et-al-2022-thermoradiative-power-conversion-from-hgcdte-photodiodes-and-their-current-voltage-characteristics.pdf",
+    "resources/lee-et-al-2024-hot-electrons-in-a-steady-state-interband-vs-intraband-excitation-of-plasmonic-gold.pdf",
+    "resources/interband_transitions(cut).pdf",
+    "resources/imon's presentation.pdf",
+    "resources/6 - Marini - 2013.pdf",
+    "resources/4 - semiconductor_emission_slides.pdf",
+    "resources/3.1 - Boltzmann Equation.pdf",
+    "figures/stage_1_rel_error_grid.svg",
+    "figures/stage_3_edos_vs_const_edos_heatmap.svg",
+    "figures/stage_3_rel_error_heatmap_hw_L.svg",
+    "figures/stage_3_rel_error_vs_L.svg",
+    "figures/stage_2_convergence_step_sweep.svg",
+    "resources/A3 - raman_pl.pdf",
+    "notes/Introduction.md",
+    "figures/stage_1_heatmap_exact_vs_approx_EF3p00eV.svg",
+    "notes/Idea about integration limits in the energy space.md",
+    "figures/Figure_1.svg",
     "notes/log.md",
     "figures/stage_3_rel_error_grid.svg",
     "figures/stage_2_rel_error_grid.svg",
-    "figures/fermi_product_interactive_default.svg",
-    "figures/stage_1_heatmap_exact_vs_approx_EF3p00eV.svg",
-    "figures/stage_1_rel_error_grid.svg",
-    "notes/0 - Work Plan.md",
-    "figures/analytic_region_of_relevance.png",
     "notes/2 - Numeric Convergence.md",
     "notes/6 - Delta (4D) Approximation K-Space.md",
     "notes/5 - Delta (2D) Approximation K-Space.md",
@@ -222,30 +351,15 @@
     "notes/3 - Constant eDOS Approximation.md",
     "notes/1 - Analytic Approximation.md",
     "notes/A3 - Electronic Density of States.md",
-    "figures",
-    "figures/output.png",
-    "resources/8 - Novotny (extracted).pdf",
     "notes/A2 - Intraband Emission.md",
-    "notes/Introduction.md",
-    "resources/0 - Contribution_of_Interband_Transitions_to_Non_equilibrium_Emission_From_Gold.pdf",
     "notes/Non-equilibrium Emission in Metals.md",
     "notes/A1 - Derivation of the General Emission Integral.md",
-    "resources/figures",
     "notes/Boltzmann Equation.md",
     "notes/Change of Variables for Emission Integral.md",
     "notes/Electronic Transitions.md",
     "notes/Emission Calculations.md",
     "notes/Numeric Delta Approximation.md",
     "notes/Photon Absorption by Conduction Electrons.md",
-    "notes/Progress Report + Questions for Yonatan.md",
-    "resources/7 - Quantum-mechanical effects in photoluminescence from thin crystalline gold films.pdf",
-    "resources/10 - Novotny (extracted).pdf",
-    "docs/resources/raman_pl_distinction.pdf",
-    "docs/resources/notes (notability).pdf",
-    "docs/resources/nielsen-et-al-2022-thermoradiative-power-conversion-from-hgcdte-photodiodes-and-their-current-voltage-characteristics.pdf",
-    "docs/resources/lee-et-al-2024-hot-electrons-in-a-steady-state-interband-vs-intraband-excitation-of-plasmonic-gold.pdf",
-    "new - figs/delta_convergence.png",
-    "new - figs/intraband_noneq.png",
-    "new - figs/intraband_equilibrium.png"
+    "notes/Progress Report + Questions for Yonatan.md"
   ]
 }

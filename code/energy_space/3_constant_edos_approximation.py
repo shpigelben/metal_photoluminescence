@@ -27,6 +27,8 @@ from _preamble_and_funcs import (  # noqa: E402
     E_EM_VALUES,
     E_F_DEFAULT,
     E_GRID,
+    E_MAX,
+    E_MIN,
     chemical_potential,
     density_of_states,
     k_B,
@@ -101,6 +103,39 @@ def rel_error_const_edos_vs_var(hw_values: np.ndarray, T: float, E_F: float) -> 
     return relative_error(I_const, I_var)
 
 
+def rel_error_edos_vs_const_edos(
+    E_values: np.ndarray,
+    hw_values: np.ndarray,
+    *,
+    E_F: float,
+) -> np.ndarray:
+    r"""Pointwise relative error of the eDOS product vs constant-eDOS.
+
+    Computes
+    \[
+      \delta_{\mathrm{rel}}(E,\hbar\omega)
+      =\left|\frac{\rho(E+\hbar\omega)\rho(E)-\rho^2(E_F)}{\rho(E+\hbar\omega)\rho(E)}\right|
+      =\left|1-\frac{\rho^2(E_F)}{\rho(E+\hbar\omega)\rho(E)}\right|
+    \]
+    on a (hw, E) grid. The returned array has shape (len(hw_values), len(E_values)).
+    """
+
+    E_values = np.asarray(E_values, dtype=float)
+    hw_values = np.asarray(hw_values, dtype=float)
+
+    E = E_values[None, :]  # (1, n_E)
+    hw = hw_values[:, None]  # (n_hw, 1)
+
+    rho_E = density_of_states(E)
+    rho_Ep = density_of_states(E + hw)
+    product = rho_E * rho_Ep
+    rho_F2 = float(density_of_states(float(E_F)) ** 2)
+
+    with np.errstate(divide="ignore", invalid="ignore"):
+        delta = np.abs((product - rho_F2) / product)
+    return np.where(product == 0.0, np.nan, delta)
+
+
 REL_ERROR_CASES = [
     {"T": 300.0, "E_F": 5.0, "title": "T = 300 K, E_F = 5 eV"},
     {"T": 300.0, "E_F": 3.0, "title": "T = 300 K, E_F = 3 eV"},
@@ -136,6 +171,84 @@ def show_rel_error_grid(*, hw_values: np.ndarray = E_EM_VALUES) -> None:
     plt.show()
 
 
+def show_edos_vs_const_edos_heatmap(
+    *,
+    E_F: float = E_F_DEFAULT,
+    n_E: int = 500,
+    n_hw: int = 500,
+    E_min: float | None = None,
+    E_max: float | None = None,
+    hw_min: float | None = None,
+    hw_max: float | None = None,
+) -> None:
+    r"""Heatmap of \delta_rel(E, hw) for the eDOS product vs constant-eDOS."""
+
+    E_lo = float(E_MIN) if E_min is None else float(E_min)
+    E_hi = float(E_MAX) if E_max is None else float(E_max)
+    if E_lo < 0.0:
+        raise ValueError(f"E_min must be >= 0, got {E_lo}")
+
+    hw_lo = float(E_EM_VALUES[0]) if hw_min is None else float(hw_min)
+    hw_hi = float(E_EM_VALUES[-1]) if hw_max is None else float(hw_max)
+
+    # Avoid the E=0 singularity (rho(E)=0) by nudging the lower limit.
+    if E_lo == 0.0:
+        E_lo = float(E_GRID[1])
+
+    E_values = np.linspace(E_lo, E_hi, int(n_E))
+    hw_values = np.linspace(hw_lo, hw_hi, int(n_hw))
+
+    delta = rel_error_edos_vs_const_edos(E_values, hw_values, E_F=E_F)
+    delta_masked = np.ma.array(delta, mask=~np.isfinite(delta))
+    log_delta = np.ma.log10(np.ma.clip(delta_masked, 1e-20, None))
+
+    log_vals = log_delta.compressed()
+    if log_vals.size == 0:
+        raise RuntimeError("No finite δ_rel values to plot (all points masked).")
+
+    vmin = float(np.floor(np.min(log_vals)))
+    vmax = float(np.ceil(np.max(log_vals)))
+    if vmin == vmax:
+        vmin -= 1.0
+        vmax += 1.0
+
+    span = vmax - vmin
+    if span <= 6:
+        tick_step = 1.0
+    elif span <= 12:
+        tick_step = 2.0
+    elif span <= 24:
+        tick_step = 4.0
+    else:
+        tick_step = 8.0
+    ticks = np.arange(vmin, vmax + 0.5 * tick_step, tick_step)
+
+    fig, ax = plt.subplots(figsize=(10.8, 5.6))
+    im = ax.imshow(
+        log_delta,
+        origin="lower",
+        aspect="auto",
+        extent=(E_values[0], E_values[-1], hw_values[0], hw_values[-1]),
+        cmap="RdYlGn_r",
+        vmin=vmin,
+        vmax=vmax,
+        interpolation="nearest",
+    )
+    fig.colorbar(im, ax=ax, pad=0.12, ticks=ticks, label=r"$\log_{10}|\delta_{rel}|$")
+
+    ax.set_xlabel(r"$\mathcal{E}$ [eV]")
+    ax.set_ylabel(r"$\hbar\omega$ [eV]")
+    ax.set_xlim(E_values[0], E_values[-1])
+    ax.set_ylim(hw_values[0], hw_values[-1])
+    ax.grid(False)
+
+    title = rf"$|\delta_{{rel}}(\mathcal{{E}},\hbar\omega)|$ for $\rho(\mathcal{{E}})\rho(\mathcal{{E}}+\hbar\omega)$ vs $\rho^2(\mathcal{{E}}_F)$ (E_F={E_F:.2f} eV)"
+    set_figure_title(fig, title)
+    save_svg(fig, "stage_3_edos_vs_const_edos_heatmap.svg")
+    plt.show()
+
+
 if __name__ == "__main__":
     apply_style()
     show_rel_error_grid()
+    show_edos_vs_const_edos_heatmap()
