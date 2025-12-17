@@ -1,12 +1,13 @@
-import numpy as np
+"""
+Stage 0 - Electron Occupation (energy space)
+
+Interactive visualization of the thermal factor f(E+ħω)[1-f(E)] and its
+components, with sliders for E_F, T, and ħω.
+"""
+
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib.widgets import Slider
-
-# Allow importing shared plotting style from ../plot_style.py when run as a script.
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from _preamble_and_funcs import (
     E_MAX,
@@ -70,7 +71,9 @@ def show_fermi_product_interactive() -> None:
     )
 
     v_mu = ax.axvline(mu0, color="k", linestyle="--", alpha=0.7, label=r"$\mu$")
-    v_muhw = ax.axvline(mu0 - hw0, color="k", linestyle=":", alpha=0.5, label=r"$\mu-\hbar\omega$")
+    v_muhw = ax.axvline(
+        mu0 - hw0, color="k", linestyle=":", alpha=0.5, label=r"$\mu-\hbar\omega$"
+    )
 
     ax.set_xlabel(r"$\mathcal{E}$ [eV]")
     ax.set_ylabel(r"Occupation / product")
@@ -100,8 +103,12 @@ def show_fermi_product_interactive() -> None:
 
         y_new = fermi_product_mu_beta(E_plot, hw, mu, beta)
         line_prod.set_ydata(np.clip(y_new, 1e-300, None))
-        line_fplus.set_ydata(np.clip(fermi_occupation_mu_beta(E_plot + hw, mu, beta), 1e-300, None))
-        line_hole.set_ydata(np.clip(fermi_hole_mu_beta(E_plot, mu, beta), 1e-300, None))
+        line_fplus.set_ydata(
+            np.clip(fermi_occupation_mu_beta(E_plot + hw, mu, beta), 1e-300, None)
+        )
+        line_hole.set_ydata(
+            np.clip(fermi_hole_mu_beta(E_plot, mu, beta), 1e-300, None)
+        )
 
         fill[0].remove()
         fill[0] = ax.fill_between(
@@ -116,7 +123,7 @@ def show_fermi_product_interactive() -> None:
         v_mu.set_xdata([mu, mu])
         v_muhw.set_xdata([mu - hw, mu - hw])
 
-        info.set_text(f"mu={mu:.3f} eV, kBT={k_B*T:.4f} eV")
+        info.set_text(f"mu={mu:.3f} eV, kBT={k_B * T:.4f} eV")
         fig.canvas.draw_idle()
 
     s_EF.on_changed(_update)

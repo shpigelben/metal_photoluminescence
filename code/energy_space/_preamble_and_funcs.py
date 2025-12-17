@@ -16,7 +16,7 @@ E_MAX = 10.0
 D_E = 1e-3
 E_GRID = np.arange(E_MIN, E_MAX + D_E, D_E)
 
-EMISSION_ENERGY_MIN = 0.1
+EMISSION_ENERGY_MIN = 0.01
 EMISSION_ENERGY_MAX = 8.0
 N_EMISSION = 2000
 E_EM_VALUES = np.linspace(EMISSION_ENERGY_MIN, EMISSION_ENERGY_MAX, N_EMISSION)
@@ -27,7 +27,7 @@ def chemical_potential(E_F: float, T: float | np.ndarray) -> float | np.ndarray:
     return E_F * (1 - (np.pi**2 / 12) * ((T / T_F) ** 2))
 
 
-def density_of_states(E: float | np.ndarray) -> float | np.ndarray:
+def eDOS(E: float | np.ndarray) -> float | np.ndarray:
     return ((m_e ** 1.5) / (np.pi ** 2 * hbar ** 3)) * np.sqrt(2 * E)
 
 
@@ -39,54 +39,83 @@ def relative_error(candidate: np.ndarray, reference: np.ndarray) -> np.ndarray:
     with np.errstate(divide="ignore", invalid="ignore"):
         rel = np.abs((candidate - reference) / reference)
     return np.where(reference == 0.0, np.where(candidate == 0.0, 0.0, np.inf), rel)
+    rel = np.abs((candidate - reference) / reference)
+    return rel
 
 
-def fermi_occupation_mu_beta(E: np.ndarray, mu: float, beta: float) -> np.ndarray:
-    """Stable f(E) = 1/(exp(beta(E-mu)) + 1)."""
+# def fermi_occupation_mu_beta(E: np.ndarray, mu: float, beta: float) -> np.ndarray:
+#     """Stable f(E) = 1/(exp(beta(E-mu)) + 1)."""
 
-    a = beta * (np.asarray(E, dtype=float) - mu)
-    return np.exp(-np.logaddexp(0.0, a))
-
-
-def fermi_hole_mu_beta(E: np.ndarray, mu: float, beta: float) -> np.ndarray:
-    """Stable 1 - f(E)."""
-
-    a = beta * (np.asarray(E, dtype=float) - mu)
-    return np.exp(a - np.logaddexp(0.0, a))
+#     a = beta * (np.asarray(E, dtype=float) - mu)
+#     return np.exp(-np.logaddexp(0.0, a))
 
 
-def fermi_product_mu_beta(E: np.ndarray, hw: float, mu: float, beta: float) -> np.ndarray:
-    """Stable f(E+hw)[1-f(E)] (log-form)."""
+# def fermi_hole_mu_beta(E: np.ndarray, mu: float, beta: float) -> np.ndarray:
+#     """Stable 1 - f(E)."""
 
-    E = np.asarray(E, dtype=float)
-    a = beta * (E - mu)
-    b = a + beta * hw
-    log_val = a - np.logaddexp(0.0, a) - np.logaddexp(0.0, b)
-    return np.exp(log_val)
+#     a = beta * (np.asarray(E, dtype=float) - mu)
+#     return np.exp(a - np.logaddexp(0.0, a))
 
 
-def make_energy_grid_simpson(
-    dE_max: float,
-    *,
-    E_min: float = E_MIN,
-    E_max: float = E_MAX,
-) -> tuple[np.ndarray, float]:
-    """Return a uniform grid suitable for composite Simpson integration.
+# def fermi_product_mu_beta(E: np.ndarray, hw: float, mu: float, beta: float) -> np.ndarray:
+#     """Stable f(E+hw)[1-f(E)] (log-form)."""
 
-    Picks an even number of intervals (odd number of points) and ensures the
-    resulting effective step size satisfies ΔE_eff <= dE_max.
-    """
+#     E = np.asarray(E, dtype=float)
+#     a = beta * (E - mu)
+#     b = a + beta * hw
+#     log_val = a - np.logaddexp(0.0, a) - np.logaddexp(0.0, b)
+#     return np.exp(log_val)
 
-    if not np.isfinite(dE_max) or dE_max <= 0.0:
-        raise ValueError(f"dE_max must be a positive finite float, got {dE_max!r}")
+# Fermi-Dirac occupation number
+def f_T(E, T):
+    mu = chemical_potential(T)
+    beta = 1.0 / (k_B * T)
+    exp_E = np.exp(beta * (E - mu))
+    return 1.0 / (exp_E + 1)
 
-    n_intervals = int(np.ceil((E_max - E_min) / float(dE_max)))
-    if n_intervals % 2 == 1:
-        n_intervals += 1
+# Bose-Einstein occupation number
+def n_B(hw, T):
+    beta = 1.0 / (k_B * T)
+    with np.errstate(over="ignore"):
+        exp_arg = beta * hw
+        return 1.0 / (np.expm1(exp_arg))
 
-    E_grid = np.linspace(float(E_min), float(E_max), n_intervals + 1, dtype=float)
-    dE_eff = float(E_grid[1] - E_grid[0])
-    return E_grid, dE_eff
+
+def F_T(E, hw, T):
+    # Explicitly compute f(E+hw)[1-f(E)] without subtracting from 1:
+    #   f(E + hw)[1 - f(E)] = exp(beta*(E-mu)) / ((exp(beta*(E-mu)) + 1)(exp(beta*(E+hw-mu)) + 1))
+    mu = chemical_potential(T)
+    beta = 1.0 / (k_B * T)
+    exp_E = np.exp(beta * (E - mu))
+    exp_hw = np.exp(beta * hw)
+    return exp_E / ((exp_E + 1) * (exp_E * exp_hw + 1))
+
+
+
+
+
+# def make_energy_grid_simpson(
+#     dE_max: float,
+#     *,
+#     E_min: float = E_MIN,
+#     E_max: float = E_MAX,
+# ) -> tuple[np.ndarray, float]:
+#     """Return a uniform grid suitable for composite Simpson integration.
+
+#     Picks an even number of intervals (odd number of points) and ensures the
+#     resulting effective step size satisfies ΔE_eff <= dE_max.
+#     """
+
+#     if not np.isfinite(dE_max) or dE_max <= 0.0:
+#         raise ValueError(f"dE_max must be a positive finite float, got {dE_max!r}")
+
+#     n_intervals = int(np.ceil((E_max - E_min) / float(dE_max)))
+#     if n_intervals % 2 == 1:
+#         n_intervals += 1
+
+#     E_grid = np.linspace(float(E_min), float(E_max), n_intervals + 1, dtype=float)
+#     dE_eff = float(E_grid[1] - E_grid[0])
+#     return E_grid, dE_eff
 
 
 def mean_abs_relative_error(
@@ -122,11 +151,14 @@ def integral_const_edos_exact(hw: np.ndarray, T: float, E_F: float) -> np.ndarra
     g_F = float(density_of_states(float(E_F)))
 
     x = beta * hw
-    bracket = x + np.logaddexp(0.0, -beta * mu) - np.logaddexp(0.0, beta * (hw - mu))
-    with np.errstate(over="ignore", divide="ignore", invalid="ignore"):
-        denom = np.expm1(x)
-        f0 = 1.0 / (np.exp(-beta * mu) + 1.0)
-        ratio = np.where(x == 0.0, f0, bracket / denom)
+    beta_mu = beta * mu
+    term_mu = np.logaddexp(0.0, -beta_mu)
+    term_hw_minus_mu = np.logaddexp(beta_mu, x) - beta_mu
+    bracket = x + term_mu - term_hw_minus_mu
+    # with np.errstate(over="ignore", divide="ignore", invalid="ignore"):
+    #     denom = np.expm1(x)
+    #     f0 = 1.0 / (np.exp(-beta * mu) + 1.0)
+    #     ratio = np.where(x == 0.0, f0, bracket / denom)
     return g_F**2 * k_B * float(T) * ratio
 
 

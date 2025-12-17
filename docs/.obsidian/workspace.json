@@ -1,116 +1,14 @@
 {
   "main": {
-    "id": "e95b7b95322965cf",
+    "id": "5324373015726ba8",
     "type": "split",
     "children": [
       {
-        "id": "89bc9b3ee03ef4f2",
+        "id": "4509724f8bf84da7",
         "type": "tabs",
         "children": [
           {
-            "id": "e1ad8e7e7bc92408",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/Numeric Delta Approximation.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Numeric Delta Approximation"
-            }
-          },
-          {
-            "id": "d1a9c2f83f114da6",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "resources/0 - Contribution_of_Interband_Transitions_to_Non_equilibrium_Emission_From_Gold.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "0 - Contribution_of_Interband_Transitions_to_Non_equilibrium_Emission_From_Gold"
-            }
-          },
-          {
-            "id": "c6dfb78a3737ff25",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/2 - Numeric Convergence.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "2 - Numeric Convergence"
-            }
-          },
-          {
-            "id": "9b89d931d4b384e1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/3 - Constant eDOS Approximation.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "3 - Constant eDOS Approximation"
-            }
-          },
-          {
-            "id": "95c2fd57d224e079",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/0 - Work Plan.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "0 - Work Plan"
-            }
-          },
-          {
-            "id": "79feabcba0969053",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/2 - Numeric Convergence.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "2 - Numeric Convergence"
-            }
-          },
-          {
-            "id": "75a7eb5fd631d593",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/0 - Work Plan.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "0 - Work Plan"
-            }
-          },
-          {
-            "id": "d677d754426afebb",
+            "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
               "type": "image",
@@ -120,39 +18,8 @@
               "icon": "lucide-image",
               "title": "stage_1_heatmap_exact_vs_approx_EF3p00eV"
             }
-          },
-          {
-            "id": "dff1d9f222709c5d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/Introduction.md",
-                "mode": "preview",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Introduction"
-            }
-          },
-          {
-            "id": "da0c8cb9bef95518",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/A3 - Electronic Density of States.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "A3 - Electronic Density of States"
-            }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "vertical"
@@ -318,9 +185,19 @@
       "obsidian-stille:Toggle Stille": false
     }
   },
-  "active": "79feabcba0969053",
+  "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "figures/fermi_product_interactive_default.svg",
+    "figures/Figure_1.svg",
+    "notes/3 - Constant eDOS Approximation.md",
+    "notes/2 - Numeric Convergence.md",
     "notes/0 - Work Plan.md",
+    "notes/1 - Analytic Approximation.md",
+    "resources/0 - Contribution_of_Interband_Transitions_to_Non_equilibrium_Emission_From_Gold.pdf",
+    "notes/A4 - thermal factor integration.md",
+    "notes/Introduction.md",
+    "figures/stage_1_heatmap_exact_vs_approx_EF3p00eV.svg",
+    "figures/stage_1_heatmap_exact_vs_approx_EF5p00eV.svg",
     "figures/stage_2_convergence_mean_rel_error_vs_dE.svg",
     "resources/raman_pl_distinction.pdf",
     "resources/notes (notability).pdf",
@@ -336,20 +213,12 @@
     "figures/stage_3_rel_error_heatmap_hw_L.svg",
     "figures/stage_3_rel_error_vs_L.svg",
     "figures/stage_2_convergence_step_sweep.svg",
-    "resources/A3 - raman_pl.pdf",
-    "notes/Introduction.md",
-    "figures/stage_1_heatmap_exact_vs_approx_EF3p00eV.svg",
     "notes/Idea about integration limits in the energy space.md",
-    "figures/Figure_1.svg",
     "notes/log.md",
     "figures/stage_3_rel_error_grid.svg",
-    "figures/stage_2_rel_error_grid.svg",
-    "notes/2 - Numeric Convergence.md",
     "notes/6 - Delta (4D) Approximation K-Space.md",
     "notes/5 - Delta (2D) Approximation K-Space.md",
     "notes/4 - Delta (2D) Approximation E-Space.md",
-    "notes/3 - Constant eDOS Approximation.md",
-    "notes/1 - Analytic Approximation.md",
     "notes/A3 - Electronic Density of States.md",
     "notes/A2 - Intraband Emission.md",
     "notes/Non-equilibrium Emission in Metals.md",

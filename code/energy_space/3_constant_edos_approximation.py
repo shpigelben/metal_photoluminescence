@@ -1,29 +1,14 @@
 """
 Stage 3 - Constant eDOS Approximation (energy space)
 
-Compares Eq. (4) ↔ Eq. (5) from `docs/notes/0 - Work Plan.md`:
-
-  Eq. (4): I_var(hw)   = ∫ f(E+hw)[1-f(E)] g(E+hw) g(E) dE
-  Eq. (5): I_const(hw) = g(E_F)^2 ∫ f(E+hw)[1-f(E)] dE
-
-The constant-eDOS approximation is expected to work when the contributing energies
-stay close to μ (roughly: max(hw, kBT) << E_F), and to degrade as hw approaches μ,
-because the T→0 support expands from [μ-hw, μ] and samples far below E_F.
+Compares the constant-eDOS approximation (Eq. 5) against the varying-eDOS
+reference (Eq. 4) from `docs/notes/0 - Work Plan.md`.
 """
 
-from __future__ import annotations
-
-import sys
-from pathlib import Path
-
-import numpy as np
 import matplotlib.pyplot as plt
-from scipy.integrate import simpson
+import numpy as np
 
-# Allow importing shared plotting style from ../plot_style.py when run as a script.
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-
-from _preamble_and_funcs import (  # noqa: E402
+from _preamble_and_funcs import (
     E_EM_VALUES,
     E_F_DEFAULT,
     E_GRID,
@@ -31,75 +16,18 @@ from _preamble_and_funcs import (  # noqa: E402
     E_MIN,
     chemical_potential,
     density_of_states,
-    k_B,
+    integral_const_edos_numeric,
+    integral_var_edos_numeric,
     relative_error,
 )
-from plot_style import apply_style, save_svg, set_figure_title  # noqa: E402
-
-
-def I_numeric_const_eDOS_sweep(
-    hw_values: np.ndarray,
-    T: float,
-    E_F: float,
-    *,
-    batch_size: int = 256,
-) -> np.ndarray:
-    """Numeric Eq. (5): constant eDOS = g(E_F)^2 using a log-stable integrand."""
-
-    hw_values = np.asarray(hw_values, dtype=float)
-    mu = chemical_potential(E_F, T)
-    beta = 1.0 / (k_B * T)
-    g_F = density_of_states(E_F)
-
-    a = beta * (E_GRID - mu)
-    log_denom_a = np.logaddexp(0.0, a)
-
-    out = np.empty_like(hw_values)
-    for start in range(0, hw_values.size, batch_size):
-        hw = hw_values[start : start + batch_size]
-        b = a[:, None] + beta * hw[None, :]
-        log_val = a[:, None] - log_denom_a[:, None] - np.logaddexp(0.0, b)
-        integrand = np.exp(log_val)
-        out[start : start + hw.size] = g_F**2 * simpson(integrand, x=E_GRID, axis=0)
-
-    return out
-
-
-def I_numeric_var_eDOS_sweep(
-    hw_values: np.ndarray,
-    T: float,
-    E_F: float,
-    *,
-    batch_size: int = 128,
-) -> np.ndarray:
-    """Numeric Eq. (4): varying eDOS g(E) g(E+hw) using a log-stable thermal factor."""
-
-    hw_values = np.asarray(hw_values, dtype=float)
-    mu = chemical_potential(E_F, T)
-    beta = 1.0 / (k_B * T)
-
-    a = beta * (E_GRID - mu)
-    log_denom_a = np.logaddexp(0.0, a)
-    g_E = density_of_states(E_GRID).astype(float, copy=False)
-
-    out = np.empty_like(hw_values)
-    for start in range(0, hw_values.size, batch_size):
-        hw = hw_values[start : start + batch_size]
-        b = a[:, None] + beta * hw[None, :]
-        log_val = a[:, None] - log_denom_a[:, None] - np.logaddexp(0.0, b)
-        thermal = np.exp(log_val)
-        g_Ep = density_of_states(E_GRID[:, None] + hw[None, :])
-        integrand = thermal * g_E[:, None] * g_Ep
-        out[start : start + hw.size] = simpson(integrand, x=E_GRID, axis=0)
-
-    return out
+from plot_style import apply_style, save_svg, set_figure_title
 
 
 def rel_error_const_edos_vs_var(hw_values: np.ndarray, T: float, E_F: float) -> np.ndarray:
     """Relative error of Eq. (5) approximation using Eq. (4) as reference."""
 
-    I_const = I_numeric_const_eDOS_sweep(hw_values, T, E_F)
-    I_var = I_numeric_var_eDOS_sweep(hw_values, T, E_F)
+    I_const = integral_const_edos_numeric(hw_values, T, E_F)
+    I_var = integral_var_edos_numeric(hw_values, T, E_F)
     return relative_error(I_const, I_var)
 
 
@@ -109,15 +37,10 @@ def rel_error_edos_vs_const_edos(
     *,
     E_F: float,
 ) -> np.ndarray:
-    r"""Pointwise relative error of the eDOS product vs constant-eDOS.
+    """Pointwise relative error of the eDOS product vs constant-eDOS.
 
-    Computes
-    \[
-      \delta_{\mathrm{rel}}(E,\hbar\omega)
-      =\left|\frac{\rho(E+\hbar\omega)\rho(E)-\rho^2(E_F)}{\rho(E+\hbar\omega)\rho(E)}\right|
-      =\left|1-\frac{\rho^2(E_F)}{\rho(E+\hbar\omega)\rho(E)}\right|
-    \]
-    on a (hw, E) grid. The returned array has shape (len(hw_values), len(E_values)).
+    Computes |(ρ(E+ħω)ρ(E) - ρ(E_F)^2) / (ρ(E+ħω)ρ(E))| on a (ħω, E) grid.
+    The returned array has shape (len(hw_values), len(E_values)).
     """
 
     E_values = np.asarray(E_values, dtype=float)
@@ -181,7 +104,7 @@ def show_edos_vs_const_edos_heatmap(
     hw_min: float | None = None,
     hw_max: float | None = None,
 ) -> None:
-    r"""Heatmap of \delta_rel(E, hw) for the eDOS product vs constant-eDOS."""
+    """Heatmap of δ_rel(E, ħω) for ρ(E)ρ(E+ħω) vs ρ(E_F)^2."""
 
     E_lo = float(E_MIN) if E_min is None else float(E_min)
     E_hi = float(E_MAX) if E_max is None else float(E_max)

@@ -1,6 +1,15 @@
-# Stage 2 — Numeric convergence: Eq. (5) vs Eq. (6)
 
-Stage 1 established when Eq. (7) is a faithful approximation to Eq. (6). In the remainder of the pipeline we treat Eq. (6) as the constant-eDOS reference and address a numerical question: how fine must the $\mathcal{E}$ grid be to evaluate Eq. (5) accurately?
+$$
+\boxed{\begin{align}
+&\rho^{2}(\mathcal{E}_{F})\int_{0}^{\infty}
+f^{T}(\mathcal{E}+\hbar\omega)\big[1-f^{T}(\mathcal{E})\big]\,
+\,
+d\mathcal{E} \tag{5}\\ \\ 
+\; &\rho^{2}(\mathcal{E}_{F}) \frac{k_BT}{e^{\beta\hbar\omega}-1}\Big[\beta\hbar\omega+\ln\left(1+e^{-\beta\mu}\right)-\ln\left(1+e^{\beta(\hbar\omega-\mu)}\right)\Big] \tag{6}
+\end{align}}
+$$
+
+This comparison is between equivalent (rather than approximate) expressions and it serves as a good testing ground for numerical convergence as we expect to be able to reach near machine accuracy.
 
 The purpose of this stage is therefore to (i) implement a numerically stable evaluation of Eq. (5), (ii) verify convergence with respect to the integration step $\Delta\mathcal{E}$ by comparison to Eq. (6), and (iii) select a practical step size for later stages.
 

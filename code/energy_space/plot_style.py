@@ -1,10 +1,8 @@
-from __future__ import annotations
-
 from pathlib import Path
 
 import matplotlib as mpl
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 FIGURES_DIR = PROJECT_ROOT / "docs" / "figures"
 
 

@@ -1,68 +1,71 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib.ticker import FuncFormatter
-import sys
-from pathlib import Path
 
-# Allow importing shared plotting style from ../plot_style.py when run as a script.
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from _preamble_and_funcs import *
+from plot_style import apply_style, save_svg
 
-from _preamble_and_funcs import (
-    E_F_DEFAULT,
-    chemical_potential,
-    density_of_states,
-    k_B,
-    relative_error,
-)
-from plot_style import apply_style, save_svg, set_figure_title
 
-def I_analytic_const_eDOS_exact(hw: np.ndarray, T: float, E_F: float) -> np.ndarray:
-    """Analytic constant-eDOS result (exact, no k_B T approximation)."""
-
-    hw = np.asarray(hw, dtype=float)
+# exact integtral solution (Eq. 6)
+# def I6(hw, T, E_F):
+#     # mu = chemical_potential(E_F, T)
+#     # beta = 1.0 / (k_B * T)
+#     # g_F = eDOS(E_F)
+#     # a = np.exp(-beta * mu)
+#     # b = np.exp(beta * (hw - mu))
+#     # return (g_F**2) * n_B(hw,T) * (hw + (1/beta) * (np.log(1 + a) - np.log(1 + b)))
+def I6(hw, T, E_F):
     mu = chemical_potential(E_F, T)
     beta = 1.0 / (k_B * T)
-    g_F = density_of_states(E_F)
+    g_F = eDOS(E_F)
 
-    x = beta * hw
-    bracket = x + np.logaddexp(0.0, -beta * mu) - np.logaddexp(0.0, beta * (hw - mu))
-    with np.errstate(over="ignore", divide="ignore", invalid="ignore"):
-        denom = np.expm1(x)
-        f0 = 1.0 / (np.exp(-beta * mu) + 1.0)
-        ratio = np.where(x == 0.0, f0, bracket / denom)
-    return g_F**2 * k_B * T * ratio
+    log1pa = np.logaddexp(0.0, -beta * mu)                 # log(1 + e^{-βμ})
+    log1pb = np.logaddexp(0.0, beta * (hw - mu))           # log(1 + e^{β(hw-μ)})
+    bracket = hw + (1.0 / beta) * (log1pa - log1pb)
+
+    return (g_F**2) * n_B(hw, T) * bracket
 
 
-def I_analytic_const_eDOS_approx(hw: np.ndarray, T: float, E_F: float) -> np.ndarray:
-    """Analytic constant-eDOS result with hbar*omega >> k_B T approximation."""
+# approximate integral solution (Eq. 7)
+def I7(hw, T, E_F):
+    g_F = eDOS(E_F)
+    return (g_F**2) * n_B(hw,T) * hw
 
-    hw = np.asarray(hw, dtype=float)
-    beta = 1.0 / (k_B * T)
-    g_F = density_of_states(E_F)
+# plot heatmap of relative error (Eq. 6 vs Eq. 7)
+def plot_rel():
+    hw_1D = np.linspace(0.01, 8.0, 1000)
+    T_1D = np.linspace(1.0, 5000.0, 1000)
+    hw, T = np.meshgrid(hw_1D, T_1D, indexing="xy")
 
-    x = beta * hw
-    with np.errstate(over="ignore", divide="ignore", invalid="ignore"):
-        denom = np.expm1(x)
-        ratio = np.where(x == 0.0, k_B * T, hw / denom)
-    return g_F**2 * ratio
+    I6_grid = I6(hw, T, E_F_DEFAULT)
+    I7_grid = I7(hw, T, E_F_DEFAULT)
+    rel = relative_error(I7_grid, I6_grid)
+
+    min_clip = 1e-20
+    max_clip = 1
+    log10_err = np.log10(np.clip(rel, min_clip, max_clip))
 
 
-def rel_error_approx_vs_exact(hw_values: np.ndarray, T: float, E_F: float) -> np.ndarray:
-    I_approx = I_analytic_const_eDOS_approx(hw_values, T, E_F)
-    I_exact = I_analytic_const_eDOS_exact(hw_values, T, E_F)
-    return relative_error(I_approx, I_exact)
+    fig, ax = plt.subplots(figsize=(11, 6.0))
 
+    ax.pcolormesh(hw_1D, T_1D, log10_err, vmin = -16, vmax = 0)
+    ax.set_ylabel(r"$T$ [K]")
+    ax.set_xlabel(r"$\hbar\omega$ [eV]")
+    plt.show()
+ 
 
 def show_rel_error_heatmap_exact_vs_approx(
     *,
     E_F: float = E_F_DEFAULT,
     hw_min: float = 0.01,
-    hw_max: float = 5.0,
+    hw_max: float = 8.0,
     n_hw: int = 2000,
     T_min: float = 0.0,
     T_max: float = 5000.0,
     n_T: int = 1200,
 ) -> None:
+    """Show log10|δ_rel| for Eq. (7) vs Eq. (6) over (ħω, kBT)."""
+
     hw_values = np.linspace(hw_min, hw_max, n_hw)
     T_min_eff = max(float(T_min), 1.0e-6)
     T_values = np.linspace(T_min_eff, T_max, n_T)
@@ -97,6 +100,7 @@ def show_rel_error_heatmap_exact_vs_approx(
         vmax=0.0,
         interpolation="nearest",
     )
+
     cbar = fig.colorbar(im, ax=ax, pad=0.14, ticks=np.arange(-16, 0.1, 2.0))
     cbar.set_label(r"$\log_{10}|\delta_{rel}|$")
     cbar.ax.tick_params(length=3)
@@ -123,4 +127,5 @@ def show_rel_error_heatmap_exact_vs_approx(
 
 if __name__ == "__main__":
     apply_style()
-    show_rel_error_heatmap_exact_vs_approx(E_F=E_F_DEFAULT)
+    plot_rel()
+#     show_rel_error_heatmap_exact_vs_approx(E_F=E_F_DEFAULT)
