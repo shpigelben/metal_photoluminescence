@@ -7,13 +7,7 @@ from plot_style import apply_style, save_svg
 
 
 # exact integtral solution (Eq. 6)
-# def I6(hw, T, E_F):
-#     # mu = chemical_potential(E_F, T)
-#     # beta = 1.0 / (k_B * T)
-#     # g_F = eDOS(E_F)
-#     # a = np.exp(-beta * mu)
-#     # b = np.exp(beta * (hw - mu))
-#     # return (g_F**2) * n_B(hw,T) * (hw + (1/beta) * (np.log(1 + a) - np.log(1 + b)))
+
 def I6(hw, T, E_F):
     mu = chemical_potential(E_F, T)
     beta = 1.0 / (k_B * T)
@@ -23,13 +17,13 @@ def I6(hw, T, E_F):
     log1pb = np.logaddexp(0.0, beta * (hw - mu))           # log(1 + e^{β(hw-μ)})
     bracket = hw + (1.0 / beta) * (log1pa - log1pb)
 
-    return (g_F**2) * n_B(hw, T) * bracket
+    return (g_F**2)  * bracket
 
 
 # approximate integral solution (Eq. 7)
 def I7(hw, T, E_F):
     g_F = eDOS(E_F)
-    return (g_F**2) * n_B(hw,T) * hw
+    return (g_F**2)  * hw
 
 # plot heatmap of relative error (Eq. 6 vs Eq. 7)
 def plot_rel():
