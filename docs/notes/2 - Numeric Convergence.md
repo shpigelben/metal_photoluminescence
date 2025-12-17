@@ -1,152 +1,95 @@
-# Stage 2 — Numeric Convergence (energy space)
+# Stage 2 — Numeric convergence: Eq. (5) vs Eq. (6)
 
-This note documents what is implemented in `code/energy_space/2_numeric_convergence.py`.
+Stage 1 established when Eq. (7) is a faithful approximation to Eq. (6). In the remainder of the pipeline we treat Eq. (6) as the constant-eDOS reference and address a numerical question: how fine must the $\mathcal{E}$ grid be to evaluate Eq. (5) accurately?
 
-## Goal
+The purpose of this stage is therefore to (i) implement a numerically stable evaluation of Eq. (5), (ii) verify convergence with respect to the integration step $\Delta\mathcal{E}$ by comparison to Eq. (6), and (iii) select a practical step size for later stages.
 
-Numerically evaluate the constant-eDOS emission integral and verify convergence with respect to the **energy-integration step** $\Delta\mathcal{E}$ by comparing against a closed-form analytic expression.
+## Figures
 
-## Definitions
+![](../figures/stage_2_convergence_mean_rel_error_vs_dE.svg)
 
-- Fermi–Dirac occupation:
-  $$
-  f(\mathcal{E})=\frac{1}{e^{\beta(\mathcal{E}-\mu)}+1},\qquad \beta=\frac{1}{k_B T}.
-  $$
-- Chemical potential approximation (implemented in `_preamble_and_funcs.py`):
-  $$
-  \mu(\mathcal{E}_F,T)\approx \mathcal{E}_F\left(1-\frac{\pi^2}{12}\left(\frac{T}{T_F}\right)^2\right),
-  \qquad T_F=\frac{\mathcal{E}_F}{k_B}.
-  $$
-- Free-electron density of states (implemented in `_preamble_and_funcs.py`):
-  $$
-  \rho(\mathcal{E}) = \frac{m_e^{3/2}}{\pi^2\hbar^3}\sqrt{2\mathcal{E}},
-  \qquad \rho_F=\rho(\mathcal{E}_F).
-  $$
+Figure 2.1: Convergence of the $\hbar\omega$-averaged error $\langle|\delta_{\mathrm{rel}}^{(2)}|\rangle_{\hbar\omega}$ versus the effective integration step $\Delta\mathcal{E}_{\mathrm{eff}}$ for several representative $(T,\mathcal{E}_F)$ cases. The black curve is the envelope (max over cases).
 
-## Numeric integral (constant eDOS)
+![](../figures/stage_2_rel_error_grid.svg)
 
-The script computes, for each emission energy $\hbar\omega$,
+Figure 2.2: Pointwise error $\delta_{\mathrm{rel}}^{(2)}(\hbar\omega)$ evaluated on the default energy grid, for the same set of $(T,\mathcal{E}_F)$ cases used in the convergence scan.
+
+## Numerical formulation
+
+Eq. (5) is defined on $\mathcal{E}\in[0,\infty)$. Numerically we truncate to a finite interval $[\mathcal{E}_{\min},\mathcal{E}_{\max}]$ and discretize it by a uniform grid of step $\Delta\mathcal{E}$. For each emission energy $\hbar\omega$ we compute
 $$
 I_{\mathrm{num}}(\hbar\omega;T,\mathcal{E}_F)
-  = \rho_F^2\int_{\mathcal{E}_{\min}}^{\mathcal{E}_{\max}}
-  f(\mathcal{E}+\hbar\omega)\,[1-f(\mathcal{E})]\;d\mathcal{E}.
-  \tag{S2.1}
+=\rho_F^2\int_{\mathcal{E}_{\min}}^{\mathcal{E}_{\max}}
+f^{T}(\mathcal{E}+\hbar\omega)\,[1-f^{T}(\mathcal{E})]\;d\mathcal{E}.
+\tag{S2.1}
 $$
 
-### Log-stable thermal factor
+## Log-stable thermal factor
 
-To avoid overflow/underflow in the thermal factor, the integrand is built in log form.
-Let
+The factor $f^{T}(\mathcal{E}+\hbar\omega)[1-f^{T}(\mathcal{E})]$ is evaluated in log form to avoid overflow/underflow. Let
 $$
 a=\beta(\mathcal{E}-\mu),\qquad b=a+\beta\hbar\omega.
 $$
 Then
 $$
-f(\mathcal{E}+\hbar\omega)\,[1-f(\mathcal{E})]
-=\frac{e^{a}}{\left(1+e^{a}\right)\left(1+e^{b}\right)}.
+f^{T}(\mathcal{E}+\hbar\omega)\,[1-f^{T}(\mathcal{E})]
+=\frac{e^{a}}{(1+e^{a})(1+e^{b})},
 $$
-Equivalently,
+and therefore
 $$
-\log\!\Big(f(\mathcal{E}+\hbar\omega)\,[1-f(\mathcal{E})]\Big)
-= a-\log(1+e^{a})-\log(1+e^{b}).
+\log\!\Big(f^{T}(\mathcal{E}+\hbar\omega)\,[1-f^{T}(\mathcal{E})]\Big)
+=a-\log(1+e^{a})-\log(1+e^{b}).
 \tag{S2.2}
 $$
-In code this uses $\log(1+e^x)=\mathrm{logaddexp}(0,x)$, and then exponentiates once:
-$$
-\texttt{integrand}=\exp(\texttt{log\_val}).
-$$
+In code, $\log(1+e^x)$ is computed as $\mathrm{logaddexp}(0,x)$, and the exponentiation is performed once at the end.
 
-### Quadrature
+## Quadrature and grid construction
 
-The integral in (S2.1) is evaluated with composite Simpson’s rule:
+The integral in (S2.1) is evaluated with composite Simpson’s rule on a uniform grid. For a requested maximum step $\Delta\mathcal{E}$ we choose an even number of intervals $N$ and set
 $$
-I_{\mathrm{num}}(\hbar\omega) = \rho_F^2\;\mathrm{Simpson}\!\left(\texttt{integrand}(\mathcal{E});\,\mathcal{E}\in \mathcal{E}_{\text{grid}}\right).
-$$
-
-To keep memory bounded, the code batches the $\hbar\omega$ sweep and also caps the effective batch size so that the largest temporary array is $\mathcal{O}(N_\mathcal{E}\times N_{\hbar\omega,\text{batch}})$.
-
-## Analytic reference (exact for constant eDOS)
-
-The script compares against an analytic “exact” constant-eDOS result:
-$$
-I_{\mathrm{exact}}(\hbar\omega;T,\mathcal{E}_F)=\rho_F^2\,k_B T\,R(\hbar\omega),
+\mathcal{E}_{\text{grid}}=\mathrm{linspace}(\mathcal{E}_{\min},\mathcal{E}_{\max},N+1),
+\qquad
+\Delta\mathcal{E}_{\mathrm{eff}}=\frac{\mathcal{E}_{\max}-\mathcal{E}_{\min}}{N}\le \Delta\mathcal{E},
 \tag{S2.3}
 $$
-where $x=\beta\hbar\omega$ and
+so that Simpson’s rule applies directly and the actual step used in the convergence plot is $\Delta\mathcal{E}_{\mathrm{eff}}$.
+
+## Reference evaluation of Eq. (6)
+
+Eq. (6) is evaluated in a numerically stable form by defining $x=\beta\hbar\omega$ and writing
+$$
+I_{\mathrm{exact}}(\hbar\omega;T,\mathcal{E}_F)=\rho_F^2\,k_B T\,R(\hbar\omega),
+$$
+with
 $$
 R(\hbar\omega)=
 \begin{cases}
 \dfrac{x+\ln\!\left(1+e^{-\beta\mu}\right)-\ln\!\left(1+e^{\beta(\hbar\omega-\mu)}\right)}{e^{x}-1}, & x\neq 0,\\
 \dfrac{1}{1+e^{-\beta\mu}}, & x=0.
 \end{cases}
+$$
+The denominator $e^{x}-1$ is computed using $\mathrm{expm1}(x)$.
+
+## Error metrics
+
+The stage-2 pointwise relative error is
+$$
+\delta_{\mathrm{rel}}^{(2)}(\hbar\omega)
+=\left|\frac{I_{\mathrm{num}}(\hbar\omega)-I_{\mathrm{exact}}(\hbar\omega)}{I_{\mathrm{exact}}(\hbar\omega)}\right|.
 \tag{S2.4}
 $$
-Numerically, $e^x-1$ is evaluated using $\mathrm{expm1}(x)$ for stability.
-
-## Relative error definition
-
-For each $\hbar\omega$ point:
+For the convergence scan we summarize the error by averaging over a $\hbar\omega$ window $\mathcal{W}$,
 $$
-\delta_{\mathrm{rel}}(\hbar\omega)=\left|\frac{I_{\mathrm{num}}(\hbar\omega)-I_{\mathrm{exact}}(\hbar\omega)}{I_{\mathrm{exact}}(\hbar\omega)}\right|.
+\left\langle |\delta_{\mathrm{rel}}^{(2)}| \right\rangle_{\hbar\omega}
+=\frac{1}{N}\sum_{\hbar\omega\in\mathcal{W}} |\delta_{\mathrm{rel}}^{(2)}(\hbar\omega)|,
 \tag{S2.5}
 $$
-The helper `relative_error(...)` in `_preamble_and_funcs.py` also enforces $0/0\to 0$ elementwise.
+while masking points where $|I_{\mathrm{exact}}|$ is extremely small, since relative error becomes ill-conditioned in the exponentially suppressed tail.
 
-## What is plotted
+## Results and discussion
 
-### 1) Convergence vs $\Delta\mathcal{E}$ (mean error over $\hbar\omega$)
+Figure 2.1 shows rapid reduction of the mean error with decreasing $\Delta\mathcal{E}$ until an accuracy floor is reached. This floor is not set by the quadrature order, but by conditioning and floating-point effects: refining the grid increases the number of samples in the composite rule, and beyond a point the remaining discretization error is comparable to accumulated roundoff.
 
-The script generates a convergence plot of the **mean** error over a $\hbar\omega$ range:
-$$
-\left\langle |\delta_{\mathrm{rel}}| \right\rangle_{\hbar\omega}
-=\frac{1}{N}\sum_{\hbar\omega\in\mathcal{W}} |\delta_{\mathrm{rel}}(\hbar\omega)|.
-\tag{S2.6}
-$$
+Figure 2.2 highlights why “machine precision” is not a meaningful target for a relative error plotted over a wide $\hbar\omega$ range: at large $\hbar\omega$ the reference signal is exponentially small, so dividing by $I_{\mathrm{exact}}$ amplifies tiny absolute differences (including differences introduced by finite truncation and underflow far from the thermal peak).
 
-- The tested steps are $\Delta\mathcal{E}\in\{10^{-1},10^{-2},10^{-3},10^{-4}\}\,\mathrm{eV}$.
-- For each requested $\Delta\mathcal{E}$, a Simpson-friendly uniform grid is built by choosing an **even** number of intervals $N$ and setting
-  $$
-  \mathcal{E}_{\text{grid}}=\mathrm{linspace}(\mathcal{E}_{\min},\mathcal{E}_{\max},N+1),\qquad
-  \Delta\mathcal{E}_{\mathrm{eff}}=\frac{\mathcal{E}_{\max}-\mathcal{E}_{\min}}{N}\le \Delta\mathcal{E}.
-  \tag{S2.7}
-  $$
-- The averaging set $\mathcal{W}$ is a subsample of the emission-energy axis: `E_EM_VALUES[::5]`.
-- Points where $|I_{\mathrm{exact}}|$ is extremely small are excluded from the mean (to avoid ill-conditioned relative errors). Concretely, the mean uses only $\hbar\omega$ values satisfying
-  $$
-  |I_{\mathrm{exact}}(\hbar\omega)| \ge r\;\max_{\hbar\omega\in\mathcal{W}}|I_{\mathrm{exact}}(\hbar\omega)|,
-  \qquad r=10^{-12}.
-  \tag{S2.8}
-  $$
-
-The figure is saved as `docs/figures/stage_2_convergence_mean_rel_error_vs_dE.svg`.
-
-### 2) $\delta_{\mathrm{rel}}(\hbar\omega)$ curves on the default grid
-
-The script also produces the 2×2 grid plot of $\delta_{\mathrm{rel}}(\hbar\omega)$ for:
-$$
-(T,\mathcal{E}_F)\in\{(300,5),(300,3),(700,3),(1000,3)\}.
-$$
-This plot uses the default `E_GRID` (from `_preamble_and_funcs.py`) rather than the swept grids, and is saved as `docs/figures/stage_2_rel_error_grid.svg`.
-
-## Why we do not reach “machine precision”
-
-Even though Simpson’s quadrature error decreases rapidly for smooth integrands, the plotted relative error is not expected to go all the way to $\sim10^{-16}$ (double precision machine epsilon), because:
-
-1. **Relative error becomes ill-conditioned when the reference is tiny.**  
-   For large $\hbar\omega$, $I_{\mathrm{exact}}(\hbar\omega)$ becomes extremely small, so dividing by it amplifies any floating-point noise; this is why the convergence average masks small-$I_{\mathrm{exact}}$ points via (S2.8).
-2. **Floating-point roundoff/summation noise eventually dominates.**  
-   Making $\Delta\mathcal{E}$ smaller increases the number of samples in the composite rule; beyond a point, the discretization error is below the accumulated rounding error, so refinement no longer improves (and can appear to worsen) $\langle|\delta_{\mathrm{rel}}|\rangle_{\hbar\omega}$.
-3. **The analytic “exact” expression is still evaluated in floating point.**  
-   $I_{\mathrm{exact}}$ uses `\logaddexp` and $\mathrm{expm1}$ for stability, but it is not an exact real-number oracle; it carries its own finite-precision error.
-4. **Finite integration limits and exponent underflow.**  
-   The numeric integral is performed on $[\mathcal{E}_{\min},\mathcal{E}_{\max}]$ and evaluates $\exp(\text{log-integrand})$; far from the thermal peak this can underflow to zero. These effects are typically negligible physically, but they set practical accuracy floors in $\delta_{\mathrm{rel}}$.
-
-As a result, “smaller $\Delta\mathcal{E}$ $\Rightarrow$ smaller plotted error” is not guaranteed to be strictly monotone across all regimes and metrics, especially when the relative error is averaged over a $\hbar\omega$ range that includes very small reference values.
-
-## TODO (from the original work plan)
-
-- [ ] show that the calculated $f(\mathcal{E}+\hbar\omega)\,[1-f(\mathcal{E})]$ is more numerically stable than the explicit form.
-- [ ] show that when using the numerically stable version, the two forms converge to machine precision away from the Fermi energy.
-- [ ] using the trapezoid method, find the integration step necessary for convergence (to avoid unnecessary overhead).
-- [ ] explain the deviation around the Fermi energy and suggest a solution if possible.
-- [ ] show the multiple plots that illustrate how Fermi energy and temperature affect the relative error.
+With a numerically stable and demonstrably converged treatment of Eq. (5) in hand, we now turn to the *physics approximation* itself: replacing $\rho(\mathcal{E}+\hbar\omega)\rho(\mathcal{E})$ by $\rho^2(\mathcal{E}_F)$ in Eq. (4). This is the focus of Stage 3.
