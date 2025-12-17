@@ -23,6 +23,7 @@ Figure 1.1: Heat map of $\log_{10}|\delta_{\mathrm{rel}}^{(1)}|$ for Eq. (7) rel
 ## Results and discussion
 If one is concerned with low electron temperatures and emission energies $\hbar\omega < \mathcal{E}_{F}$ the approximation. Still, it is not clear why on
 
+==perhaps one of the main takeaways is not computing the ratio between two exact expressions, especially when they're nearly vanishing this leads to NaNs==
 ___
 The reduction of Eq. (6) to Eq. (7) corresponds to neglecting the two $\mu$-dependent logarithmic terms in the bracket of Eq. (6). In the degenerate limit $\beta\mu\gg 1$ and for $\mu>\hbar\omega$, these terms scale as
 $$

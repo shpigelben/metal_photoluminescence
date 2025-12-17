@@ -11,12 +11,15 @@
             "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "figures/stage_1_heatmap_exact_vs_approx_EF3p00eV.svg"
+                "file": "notes/1 - Analytic Approximation.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
               },
-              "icon": "lucide-image",
-              "title": "stage_1_heatmap_exact_vs_approx_EF3p00eV"
+              "icon": "lucide-file",
+              "title": "1 - Analytic Approximation"
             }
           }
         ]
@@ -187,6 +190,7 @@
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "figures/stage_1_heatmap_exact_vs_approx_EF3p00eV.svg",
     "figures/fermi_product_interactive_default.svg",
     "figures/Figure_1.svg",
     "notes/3 - Constant eDOS Approximation.md",
@@ -196,7 +200,6 @@
     "resources/0 - Contribution_of_Interband_Transitions_to_Non_equilibrium_Emission_From_Gold.pdf",
     "notes/A4 - thermal factor integration.md",
     "notes/Introduction.md",
-    "figures/stage_1_heatmap_exact_vs_approx_EF3p00eV.svg",
     "figures/stage_1_heatmap_exact_vs_approx_EF5p00eV.svg",
     "figures/stage_2_convergence_mean_rel_error_vs_dE.svg",
     "resources/raman_pl_distinction.pdf",

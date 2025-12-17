@@ -7,7 +7,6 @@ from plot_style import apply_style, save_svg
 
 
 # exact integtral solution (Eq. 6)
-
 def I6(hw, T, E_F):
     mu = chemical_potential(E_F, T)
     beta = 1.0 / (k_B * T)
