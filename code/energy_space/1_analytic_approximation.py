@@ -1,28 +1,22 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.ticker import FuncFormatter
-
 from _preamble_and_funcs import *
 from plot_style import apply_style, save_svg
-
 
 # exact integtral solution (Eq. 6)
 def I6(hw, T, E_F):
     mu = chemical_potential(E_F, T)
     beta = 1.0 / (k_B * T)
-    g_F = eDOS(E_F)
 
     log1pa = np.logaddexp(0.0, -beta * mu)                 # log(1 + e^{-βμ})
     log1pb = np.logaddexp(0.0, beta * (hw - mu))           # log(1 + e^{β(hw-μ)})
     bracket = hw + (1.0 / beta) * (log1pa - log1pb)
 
-    return (g_F**2)  * bracket
-
+    return bracket
 
 # approximate integral solution (Eq. 7)
-def I7(hw, T, E_F):
-    g_F = eDOS(E_F)
-    return (g_F**2)  * hw
+def I7(hw):
+    return hw
 
 # plot heatmap of relative error (Eq. 6 vs Eq. 7)
 def plot_rel():
@@ -31,7 +25,7 @@ def plot_rel():
     hw, T = np.meshgrid(hw_1D, T_1D, indexing="xy")
 
     I6_grid = I6(hw, T, E_F_DEFAULT)
-    I7_grid = I7(hw, T, E_F_DEFAULT)
+    I7_grid = I7(hw)
     rel = relative_error(I7_grid, I6_grid)
 
     min_clip = 1e-20
@@ -45,7 +39,6 @@ def plot_rel():
     ax.set_ylabel(r"$T$ [K]")
     ax.set_xlabel(r"$\hbar\omega$ [eV]")
     plt.show()
- 
 
 def show_rel_error_heatmap_exact_vs_approx(
     *,
