@@ -11,9 +11,8 @@ def I6(hw, T, E_F):
 
     log1pa = np.logaddexp(0.0, -beta * mu)                 # log(1 + e^{-βμ})
     log1pb = np.logaddexp(0.0, beta * (hw - mu))           # log(1 + e^{β(hw-μ)})
-    bracket = hw + (1.0 / beta) * (log1pa - log1pb)
+    return  hw + (1.0 / beta) * (log1pa - log1pb)
 
-    return bracket
 
 # approximate integral solution (Eq. 7)
 def I7(hw):
@@ -42,7 +41,7 @@ def plot_rel():
     secax.set_yticks(kbt_ticks / k_B)
     secax.yaxis.set_major_formatter(FuncFormatter(lambda t, _pos: f"{t:.0f}"))
 
-    cbar = fig.colorbar(pc, ax=ax, pad=0.22)
+    cbar = fig.colorbar(pc, ax=ax, pad=0.13)
     cbar.set_label(r"$\log_{10}|\delta_{rel}|$")
 
     ax.set_title(f"Low Energy Approximation (Eq. 7 vs Eq. 6), E_F = {E_F_DEFAULT:.2f} eV")

@@ -1,13 +1,13 @@
 # Stage 1 — Analytic approximation: Eq. (7) vs Eq. (6)
 
 $$
-\boxed{\begin{align}
-I_{e}^{T}(\hbar\omega) \propto \; & \rho^{2}(\mathcal{E}_{F}) \frac{k_BT}{e^{\beta\hbar\omega}-1}\Big[\beta\hbar\omega+\ln\left(1+e^{-\beta\mu}\right)-\ln\left(1+e^{\beta(\hbar\omega-\mu)}\right)\Big] \tag{6}\\ \\
-\approx\;& \rho^{2}(\mathcal{E}_{F})\,\frac{\hbar\omega}{e^{\beta\hbar\omega}-1}\, \tag{7}
-\end{align}}
+\begin{align}
+I_{(6)}^{T}(\hbar\omega) = \; & \rho^{2}(\mathcal{E}_{F}) \frac{1}{e^{\beta\hbar\omega}-1}\left[\hbar\omega+ \frac{1}{\beta}\ln\left(1+e^{-\beta\mu}\right)-\frac{1}{\beta}\ln\left(1+e^{\beta(\hbar\omega-\mu)}\right)\right] \\ \\
+I_{(7)}^{T}(\hbar\omega)\;=& \; \rho^{2}(\mathcal{E}_{F})\,\frac{\hbar\omega}{e^{\beta\hbar\omega}-1}\, 
+\end{align}
 $$
 
-In Eq. (6) we obtained a closed-form expression for the constant-eDOS integral, and in Eq. (7) we introduced an additional approximation. To assess how agreeable the two functions are we calculate their relative error as a function of emission energy $\hbar\omega$ and temperature $T$
+In Eq. (6) we obtained a closed-form expression for the constant-eDOS integral, and in Eq. (7) we introduced an additional approximation. To assess how agreeable the two functions are we calculate their relative error as a function of emission energy $\hbar\omega$ and temperature $T$.
 
 $$
 \delta_{\mathrm{rel}}(\hbar\omega,T)
@@ -16,7 +16,8 @@ $$
 
 where $I_{(6)}$ and $I_{(7)}$ denote expressions (6) and (7), respectively. Below is the plot of $(8)$ 
 
-![](../figures/stage_1_heatmap_exact_vs_approx_EF5p00eV.svg)
+![center](../figures/stage_1_analytic_approx_rel_error.svg)
+
 
 Figure 1.1: Heat map of $\log_{10}|\delta_{\mathrm{rel}}^{(1)}|$ for Eq. (7) relative to Eq. (6), evaluated at $\mathcal{E}_F=3\,\mathrm{eV}$. The vertical axis is plotted in $k_B T$ (with a secondary axis in $T$) to make the controlling dimensionless ratios explicit.
 

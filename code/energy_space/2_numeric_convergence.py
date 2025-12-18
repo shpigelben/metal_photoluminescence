@@ -1,22 +1,21 @@
-"""
-Stage 2 - Numeric Convergence (energy space)
-Derived from docs/notes/2 - Numeric Convergence.md.
-"""
-
 import matplotlib.pyplot as plt
 import numpy as np
+import plot_style
+import _preamble_and_funcs import chemical_potential, k_B, E_EM_VALUES, E_GRID, F_T, integral_const_edos_exact, make_energy_grid_simpson, mean_abs_relative_error, relative_error
+from scipy.integrate import trapezoid
 
-from _preamble_and_funcs import (
-    E_EM_VALUES,
-    E_GRID,
-    integral_const_edos_exact,
-    integral_const_edos_numeric,
-    make_energy_grid_simpson,
-    mean_abs_relative_error,
-    relative_error,
-)
-from plot_style import apply_style, save_svg, set_figure_title
+def I6(hw, T, E_F):
+    mu = chemical_potential(E_F, T)
+    beta = 1.0 / (k_B * T)
 
+    log1pa = np.logaddexp(0.0, -beta * mu)                 # log(1 + e^{-βμ})
+    log1pb = np.logaddexp(0.0, beta * (hw - mu))           # log(1 + e^{β(hw-μ)})
+    return  hw + (1.0 / beta) * (log1pa - log1pb)
+
+def I5(hw, T, E_F):
+    mu = chemical_potential(E_F, T)
+    F = F_T(hw, mu, T)
+    return trapezoid(F, E_EM_VALUES)
 
 def rel_error_numeric_vs_exact(
     hw_values: np.ndarray, T: float, E_F: float, *, E_grid: np.ndarray | None = None
