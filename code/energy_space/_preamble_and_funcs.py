@@ -13,7 +13,7 @@ m_e = 5.485e-4
 E_F_DEFAULT = 5.0
 E_MIN = 0.0
 E_MAX = 10.0
-D_E = 1e-3
+D_E = 1e-2
 E_GRID = np.arange(E_MIN, E_MAX + D_E, D_E)
 
 EMISSION_ENERGY_MIN = 0.01
@@ -81,10 +81,10 @@ def n_B(hw, T):
         return 1.0 / (np.expm1(exp_arg))
 
 
-def F_T(E, hw, T):
+def F_T(E, hw, T, E_F):
     # Explicitly compute f(E+hw)[1-f(E)] without subtracting from 1:
     #   f(E + hw)[1 - f(E)] = exp(beta*(E-mu)) / ((exp(beta*(E-mu)) + 1)(exp(beta*(E+hw-mu)) + 1))
-    mu = chemical_potential(T)
+    mu = chemical_potential(E_F, T)
     beta = 1.0 / (k_B * T)
     exp_E = np.exp(beta * (E - mu))
     exp_hw = np.exp(beta * hw)
