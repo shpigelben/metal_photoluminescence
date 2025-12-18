@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import plot_style
-from _preamble_and_funcs import chemical_potential, k_B, E_EM_VALUES, E_GRID, F_T,  n_B, relative_error
+from _preamble_and_funcs import *
 from scipy.integrate import trapezoid
 
 E_F = 5.0
@@ -10,22 +10,50 @@ def I6(hw, T, E_F):
     mu = chemical_potential(E_F, T)
     beta = 1.0 / (k_B * T)
 
-    log1pa = np.logaddexp(0.0, -beta * mu)                 # log(1 + e^{-βμ})
-    log1pb = np.logaddexp(0.0, beta * (hw - mu))           # log(1 + e^{β(hw-μ)})
+    log1pa = np.logaddexp(0.0, -beta * mu)
+    log1pb = np.logaddexp(0.0, beta * (hw - mu))
     return n_B(hw, T) * (hw + (1.0 / beta) * (log1pa - log1pb))
 
+
 def I5(hw, T, E_F):
-    mu = chemical_potential(E_F, T)
-    F = F = F_T(E_GRID[:, None], hw[None, :], T, E_F)
-    return trapezoid(F, E_GRID, axis = 0)
+    # 1. Reshapes (...,) into (..., 1)
+    hw = np.asanyarray(hw)[..., None]
+    T  = np.asanyarray(T)[..., None]
+    
+    # 2. Compute F
+    #    NumPy automatically broadcasts: (..., 1) op (N_E,) -> (..., N_E)
+    F = F_T(E_GRID, hw, T, E_F)
+    
+    # 3. Integrate over the last axis (which corresponds to E_GRID)
+    return trapezoid(F, E_GRID, axis=-1)
 
-# print(I5(np.array([1,1.1,2]), 300.0, 5.0))
 
-I5_1d = I5(E_EM_VALUES, 300.0, 5.0)
-I6_1d = I6(E_EM_VALUES, 300.0, 5.0)
-rel = relative_error(I5_1d, I6_1d)
-plt.plot(E_EM_VALUES, rel)
-plt.yscale('log')
+T_use = T_VALUES[T_VALUES > 0.0]
+hw = E_EM_VALUES[None, :]
+T = T_use[:, None]
+I5_2d = I5(hw, T, 5.0)
+I6_2d = I6(hw, T, 5.0)
+rel_2d = relative_error(I5_2d, I6_2d)
+rel_2d = np.log10( np.clip(rel_2d, 1e-16, 1))
+plt.pcolormesh(
+    E_EM_VALUES,
+    T_use,
+    rel_2d,
+    shading="auto",
+    vmin=-16,
+    vmax=0,
+    linewidth=0,
+    antialiased=False,
+    edgecolors="none",
+)
+plt.colorbar(label='Relative error')
+
+# I5_1d = I5(E_EM_VALUES, 300.0, 5.0)
+# I6_1d = I6(E_EM_VALUES, 300.0, 5.0)
+# rel = relative_error(I5_1d, I6_1d)
+# plt.plot(E_EM_VALUES, rel)
+# plt.yscale('log')
+
 
 # plt.plot(E_EM_VALUES, I5(E_EM_VALUES, 300.0, 5.0), label='Numeric I5')
 # plt.plot(E_EM_VALUES, I6(E_EM_VALUES, 300.0, 5.0), label='Analytic I6')

@@ -35,6 +35,7 @@ def plot_rel():
     pc = ax.pcolormesh(hw_1D, kBT_1D, log10_err, cmap="coolwarm", vmin=-16, vmax=0)
     ax.set(xlabel=r"$\hbar\omega$ [eV]", ylabel=r"$k_B T$ [eV]")
 
+    # secondary y-axis for T in K
     secax = ax.secondary_yaxis("right",functions=(lambda y: y / k_B, lambda T: T * k_B))
     secax.set_ylabel(r"$T$ [K]")
     kbt_ticks = ax.get_yticks()
