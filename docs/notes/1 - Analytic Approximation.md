@@ -2,8 +2,8 @@
 
 $$
 \begin{align}
-I_{(6)}^{T}(\hbar\omega) = \; & \rho^{2}(\mathcal{E}_{F}) \frac{1}{e^{\beta\hbar\omega}-1}\left[\hbar\omega+ \frac{1}{\beta}\ln\left(1+e^{-\beta\mu}\right)-\frac{1}{\beta}\ln\left(1+e^{\beta(\hbar\omega-\mu)}\right)\right] \\ \\
-I_{(7)}^{T}(\hbar\omega)\;=& \; \rho^{2}(\mathcal{E}_{F})\,\frac{\hbar\omega}{e^{\beta\hbar\omega}-1}\, 
+I^{T}(\hbar\omega) = \; & \rho^{2}(\mathcal{E}_{F}) \frac{1}{e^{\beta\hbar\omega}-1}\left[\hbar\omega+ \frac{1}{\beta}\ln\left(1+e^{-\beta\mu}\right)-\frac{1}{\beta}\ln\left(1+e^{\beta(\hbar\omega-\mu)}\right)\right] \tag{6}\\ \\
+I^{T}(\hbar\omega)\;=& \; \rho^{2}(\mathcal{E}_{F})\,\frac{\hbar\omega}{e^{\beta\hbar\omega}-1}\, \tag{7}
 \end{align}
 $$
 
@@ -20,6 +20,17 @@ where $I_{(6)}$ and $I_{(7)}$ denote expressions (6) and (7), respectively. Belo
 
 
 Figure 1.1: Heat map of $\log_{10}|\delta_{\mathrm{rel}}^{(1)}|$ for Eq. (7) relative to Eq. (6), evaluated at $\mathcal{E}_F=3\,\mathrm{eV}$. The vertical axis is plotted in $k_B T$ (with a secondary axis in $T$) to make the controlling dimensionless ratios explicit.
+
+$$
+\begin{align}
+&\ln\left(1+e^{\beta(\hbar\omega - \mu)}\right)&\approx 0 \\ &\iff e^{\beta(\hbar\omega - \mu)} &\approx 0  \\
+&\iff \beta(\hbar\omega-\mu)&\ll0 \\
+&\iff \beta(\hbar\omega-\mu)&\ll-1  \\
+&\iff \hbar\omega(T) &\ll \mu-k_{\small B}T \\
+\end{align}
+$$
+
+
 
 ## Results and discussion
 If one is concerned with low electron temperatures and emission energies $\hbar\omega < \mathcal{E}_{F}$ the approximation. Still, it is not clear why on

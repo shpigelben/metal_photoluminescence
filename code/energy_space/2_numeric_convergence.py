@@ -1,188 +1,114 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import plot_style
+from plot_style import apply_style, save_svg
 from _preamble_and_funcs import *
-from scipy.integrate import trapezoid
+from scipy.integrate import quad, simpson, trapezoid
 
-E_F = 5.0
+def I6(hw, T):
+    mu = chemical_potential(T)
+    log1pa = np.logaddexp(0.0, -beta(T) * mu)
+    log1pb = np.logaddexp(0.0, beta(T) * (hw - mu))
+    return n_B(hw, T) * (hw + (1.0 / beta(T)) * (log1pa - log1pb))
 
-def I6(hw, T, E_F):
-    mu = chemical_potential(E_F, T)
-    beta = 1.0 / (k_B * T)
-
-    log1pa = np.logaddexp(0.0, -beta * mu)
-    log1pb = np.logaddexp(0.0, beta * (hw - mu))
-    return n_B(hw, T) * (hw + (1.0 / beta) * (log1pa - log1pb))
-
-
-def I5(hw, T, E_F):
-    # 1. Reshapes (...,) into (..., 1)
+def I5(hw, T, int: "str"):
     hw = np.asanyarray(hw)[..., None]
-    T  = np.asanyarray(T)[..., None]
+    T = np.asanyarray(T)[..., None]
+    if int == "trapz":
+        return trapezoid(F_T(E_GRID, hw, T), E_GRID, axis=-1)
+    elif int == "simpson":
+        return simpson(F_T(E_GRID, hw, T), E_GRID, axis=-1)
+
+############## PLOTS ################
+
+def plot_heatmap():
+    hw = E_EM_VALUES[None, :]
+    T = T_VALUES[:, None]
+
+    I6_2d = I6(hw, T)
+    I5_2d_trap = I5(hw, T, int='trapz')
+    I5_2d_simp = I5(hw, T, int='simpson')
+
+    rel_trap = relative_error(I5_2d_trap, I6_2d)
+    rel_simp = relative_error(I5_2d_simp, I6_2d)
+
+    fig, [ax1, ax2] = plt.subplots(1, 2, figsize=(13.5, 5.0), sharex=True, sharey=True)
     
-    # 2. Compute F
-    #    NumPy automatically broadcasts: (..., 1) op (N_E,) -> (..., N_E)
-    F = F_T(E_GRID, hw, T, E_F)
+    # trapezoid heatmap
+    ax1.set_title("Trapezoid")
+    m1 = ax1.pcolormesh(E_EM_VALUES, T_VALUES, rel_trap,
+        shading="auto",
+        cmap="coolwarm",
+        vmin=-16,
+        vmax=0)
+
+
+    # simpson heatmap
+    ax2.set_title("Simpson")
+    m2 = ax2.pcolormesh(E_EM_VALUES, T_VALUES, rel_simp,
+        shading="auto",
+        cmap="coolwarm",
+        vmin=-16,
+        vmax=0)
+
+    for ax in [ax1, ax2]:
+        ax.set_xlabel(r"$\hbar\omega$ [eV]")
+    ax1.set_ylabel(r"$T$ [K]")
+
+    plt.suptitle(f"Relative Error - Eq. 6 vs Eq. 5", fontsize=16)
+    # secondary y-axis for T in K
+    # for ax in [ax1, ax2]:
+    #     secax = ax.secondary_yaxis("right",functions=(lambda y: y / k_B, lambda T: T * k_B))
+    #     secax.set_ylabel(r"$T$ [K]")
+    #     kbt_ticks = ax.get_yticks()
+    #     secax.set_yticks(kbt_ticks / k_B)
+    #     # secax.yaxis.set_major_formatter(FuncFormatter(lambda t, _pos: f"{t:.0f}"))
+
+    fig.colorbar(m1, ax=[ax1, ax2], label=r"$\log_{10}|\delta_{rel}|$", pad=0.02)
+    # fig, axes = plt.subplots(1, 3, figsize=(13.5, 5.0), sharex=True, sharey=True)
+    # m = _add_heatmap(axes[0], E_EM_VALUES, T_use, log10_rel_trap, "Trapezoid")
+    # _add_heatmap(axes[1], E_EM_VALUES, T_use, log10_rel_simp, "Simpson")
+    # _add_heatmap(axes[2], E_EM_VALUES, T_use, log10_rel_quad, "Quadrature")
+    # fig.colorbar(m1, ax=axes, label=r"$\log_{10}|\delta_{rel}|$", pad=0.02)
+    # plt.tight_layout()
+    plt.show()
+
+def plot_step_convergence(T = 300.0):
+    E_EM_VALUES = np.linspace(3,7,100)
+    I6_simp = I6(E_EM_VALUES, T)
+    for D_E in [1e-3, 4e-4, 1e-4]:
+        global E_GRID
+        E_GRID = np.arange(E_MIN, E_MAX + D_E, D_E)
+        I5_simp = I5(E_EM_VALUES, T, int='simpson')
+        rel = relative_error(I5_simp, I6_simp)
+        plt.plot(E_EM_VALUES, rel, label=f"$\Delta E$={D_E:.0e}")
+
     
-    # 3. Integrate over the last axis (which corresponds to E_GRID)
-    return trapezoid(F, E_GRID, axis=-1)
+    plt.xlabel(r"$\hbar\omega$ [eV]")
+    plt.ylabel(r"$\log_{10}|\delta_{rel}|$")
+    plt.title(f"Relative Error at T={T} K - Eq. 6 vs Eq. 5")
+    plt.ylim(-17, -9)
+    plt.legend()
+    plt.show()
 
+def plot_length_convergence(T = 300.0):
+    E_EM_VALUES = np.linspace(3,7,100)
+    I6_simp = I6(E_EM_VALUES, T)
+    for L in [1,2,3,4,5,6]:
+        global E_GRID
+        E_GRID = np.arange(E_F - L, E_F + L, D_E)
+        I5_simp = I5(E_EM_VALUES, T, int='simpson')
+        rel = relative_error(I5_simp, I6_simp)
+        plt.plot(E_EM_VALUES, rel, label=f"$range = {2*L}")
+    
+    plt.xlabel(r"$\hbar\omega$ [eV]")
+    plt.ylabel(r"$\log_{10}|\delta_{rel}|$")
+    plt.title(f"Relative Error at T={T} K - Eq. 6 vs Eq. 5")
+    plt.ylim(-17, -2)
+    plt.legend()
+    plt.show()
 
-T_use = T_VALUES[T_VALUES > 0.0]
-hw = E_EM_VALUES[None, :]
-T = T_use[:, None]
-I5_2d = I5(hw, T, 5.0)
-I6_2d = I6(hw, T, 5.0)
-rel_2d = relative_error(I5_2d, I6_2d)
-rel_2d = np.log10( np.clip(rel_2d, 1e-16, 1))
-plt.pcolormesh(
-    E_EM_VALUES,
-    T_use,
-    rel_2d,
-    shading="auto",
-    vmin=-16,
-    vmax=0,
-    linewidth=0,
-    antialiased=False,
-    edgecolors="none",
-)
-plt.colorbar(label='Relative error')
-
-# I5_1d = I5(E_EM_VALUES, 300.0, 5.0)
-# I6_1d = I6(E_EM_VALUES, 300.0, 5.0)
-# rel = relative_error(I5_1d, I6_1d)
-# plt.plot(E_EM_VALUES, rel)
-# plt.yscale('log')
-
-
-# plt.plot(E_EM_VALUES, I5(E_EM_VALUES, 300.0, 5.0), label='Numeric I5')
-# plt.plot(E_EM_VALUES, I6(E_EM_VALUES, 300.0, 5.0), label='Analytic I6')
-# plt.legend()
-plt.show()
-
-
-# def rel_error_numeric_vs_exact(
-#     hw_values: np.ndarray, T: float, E_F: float, *, E_grid: np.ndarray | None = None
-# ) -> np.ndarray:
-#     I_num = integral_const_edos_numeric(hw_values, T, E_F, E_grid=E_grid)
-#     I_exact = integral_const_edos_exact(hw_values, T, E_F)
-#     return relative_error(I_num, I_exact)
-
-
-# REL_ERROR_CASES = [
-#     {"T": 300.0, "E_F": 5.0, "title": "T = 300 K, E_F = 5 eV"},
-#     {"T": 300.0, "E_F": 3.0, "title": "T = 300 K, E_F = 3 eV"},
-#     {"T": 700.0, "E_F": 3.0, "title": "T = 700 K, E_F = 3 eV"},
-#     {"T": 1000.0, "E_F": 3.0, "title": "T = 1000 K, E_F = 3 eV"},
-# ]
-
-
-# def mean_abs_rel_error_numeric_vs_exact(
-#     hw_values: np.ndarray,
-#     T: float,
-#     E_F: float,
-#     *,
-#     E_grid: np.ndarray,
-#     reference_floor_ratio: float = 1e-12,
-# ) -> float:
-#     """Mean |δ_rel| over the hw range (ignoring tiny reference values)."""
-
-#     I_num = integral_const_edos_numeric(hw_values, T, E_F, E_grid=E_grid)
-#     I_exact = integral_const_edos_exact(hw_values, T, E_F)
-#     return mean_abs_relative_error(
-#         I_num, I_exact, reference_floor_ratio=reference_floor_ratio
-#     )
-
-
-# def show_convergence_mean_rel_error_vs_dE(
-#     *,
-#     hw_values: np.ndarray | None = None,
-#     candidate_dE: np.ndarray | None = None,
-#     reference_floor_ratio: float = 1e-12,
-# ) -> None:
-#     """Plot ⟨|δ_rel|⟩_{hw} vs integration step ΔE."""
-
-#     if hw_values is None:
-#         # Subsample for speed while still covering the full hw range.
-#         hw_values = E_EM_VALUES[::5]
-#     else:
-#         hw_values = np.asarray(hw_values, dtype=float)
-
-#     if candidate_dE is None:
-#         candidate_dE = np.array([1e-1, 1e-2, 1e-3, 1e-4], dtype=float)
-#     else:
-#         candidate_dE = np.asarray(candidate_dE, dtype=float)
-#     candidate_dE = np.sort(candidate_dE)[::-1]
-
-#     dE_eff_values = np.empty_like(candidate_dE, dtype=float)
-#     mean_err_by_case = np.empty((candidate_dE.size, len(REL_ERROR_CASES)), dtype=float)
-
-#     for i, dE in enumerate(candidate_dE):
-#         E_grid, dE_eff = make_energy_grid_simpson(float(dE))
-#         dE_eff_values[i] = dE_eff
-#         for j, case in enumerate(REL_ERROR_CASES):
-#             T = float(case["T"])
-#             E_F = float(case["E_F"])
-#             mean_err_by_case[i, j] = mean_abs_rel_error_numeric_vs_exact(
-#                 hw_values,
-#                 T,
-#                 E_F,
-#                 E_grid=E_grid,
-#                 reference_floor_ratio=reference_floor_ratio,
-#             )
-
-#     fig, ax = plt.subplots(figsize=(9.2, 5.2))
-#     for j, case in enumerate(REL_ERROR_CASES):
-#         ax.loglog(
-#             dE_eff_values,
-#             mean_err_by_case[:, j],
-#             marker="o",
-#             markersize=4,
-#             label=str(case["title"]),
-#         )
-
-#     worst = np.nanmax(mean_err_by_case, axis=1)
-#     ax.loglog(dE_eff_values, worst, color="k", linewidth=2.0, label="max over cases")
-
-#     ax.set_xlabel(r"$\Delta \mathcal{E}$ [eV]")
-#     ax.set_ylabel(r"$\langle |\delta_{rel}| \rangle_{\hbar\omega}$")
-#     ax.grid(True, which="both", linestyle=":", linewidth=0.6, alpha=0.5)
-#     ax.set_xlim(float(np.max(dE_eff_values)), float(np.min(dE_eff_values)))
-#     ax.set_ylim(1e-20, 1.0)
-#     ax.legend()
-
-#     title = r"Integration-step convergence: $\langle |\delta_{rel}| \rangle_{\hbar\omega}$ vs $\Delta\mathcal{E}$"
-#     set_figure_title(fig, title)
-#     save_svg(fig, "stage_2_convergence_mean_rel_error_vs_dE.svg")
-#     plt.show()
-
-
-# def show_rel_error_grid() -> None:
-#     dE_used = float(E_GRID[1] - E_GRID[0])
-#     fig, axes = plt.subplots(2, 2, figsize=(11, 5), sharex=True, sharey=True)
-#     for ax, case in zip(axes.flat, REL_ERROR_CASES):
-#         T = float(case["T"])
-#         E_F = float(case["E_F"])
-#         rel = rel_error_numeric_vs_exact(E_EM_VALUES, T, E_F)
-
-#         ax.semilogy(E_EM_VALUES, np.clip(rel, 1e-20, None), color="C0")
-#         ax.set_title(str(case["title"]))
-#         ax.set_xlim(float(E_EM_VALUES[0]), float(E_EM_VALUES[-1]))
-#         ax.set_ylim(1e-16, 1e-10)
-#         ax.grid(True, which="both", linestyle=":", linewidth=0.6, alpha=0.5)
-
-#     axes[1, 0].set_xlabel(r"$\hbar\omega$ [eV]")
-#     axes[1, 1].set_xlabel(r"$\hbar\omega$ [eV]")
-#     axes[0, 0].set_ylabel(r"$|\delta_{rel}|$")
-#     axes[1, 0].set_ylabel(r"$|\delta_{rel}|$")
-
-#     title = f"Const eDOS: relative error (numeric integral vs analytic exact), ΔE≈{dE_used:.2e} eV"
-#     set_figure_title(fig, title)
-#     save_svg(fig, "stage_2_rel_error_grid.svg")
-#     plt.show()
-
-
-# if __name__ == "__main__":
-#     apply_style()
-#     show_convergence_mean_rel_error_vs_dE()
-#     show_rel_error_grid()
+if __name__ == "__main__":
+    apply_style()
+    plot_heatmap()
+    # plot_int_convergence(300.0)
+    # plot_length_convergence(300.0)

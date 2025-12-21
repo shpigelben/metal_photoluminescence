@@ -5,14 +5,11 @@ from _preamble_and_funcs import *
 from plot_style import apply_style, save_svg
 
 # exact integtral solution (Eq. 6)
-def I6(hw, T, E_F):
-    mu = chemical_potential(E_F, T)
-    beta = 1.0 / (k_B * T)
-
-    log1pa = np.logaddexp(0.0, -beta * mu)                 # log(1 + e^{-βμ})
-    log1pb = np.logaddexp(0.0, beta * (hw - mu))           # log(1 + e^{β(hw-μ)})
-    return  hw + (1.0 / beta) * (log1pa - log1pb)
-
+def I6(hw, T):
+    mu = chemical_potential(T)
+    log1pa = np.logaddexp(0.0, -beta(T) * mu)                 # log(1 + e^{-βμ})
+    log1pb = np.logaddexp(0.0, beta(T) * (hw - mu))            # log(1 + e^{β(hw-μ)})
+    return  hw + (1.0 / beta(T)) * (log1pa - log1pb)
 
 # approximate integral solution (Eq. 7)
 def I7(hw):
@@ -25,14 +22,13 @@ def plot_rel():
     kBT_1D = k_B * T_1D
     hw, T = np.meshgrid(hw_1D, T_1D, indexing="xy")
 
-    I6_grid = I6(hw, T, E_F_DEFAULT)
+    I6_grid = I6(hw, T)
     I7_grid = I7(hw)
     
     rel = relative_error(I7_grid, I6_grid)
-    log10_err = np.log10(np.clip(rel, 1e-20, 1))
 
     fig, ax = plt.subplots(figsize=(11, 6.0))
-    pc = ax.pcolormesh(hw_1D, kBT_1D, log10_err, cmap="coolwarm", vmin=-16, vmax=0)
+    pc = ax.pcolormesh(hw_1D, kBT_1D, rel, cmap="coolwarm", vmin=-16, vmax=0)
     ax.set(xlabel=r"$\hbar\omega$ [eV]", ylabel=r"$k_B T$ [eV]")
 
     # secondary y-axis for T in K
@@ -45,7 +41,7 @@ def plot_rel():
     cbar = fig.colorbar(pc, ax=ax, pad=0.13)
     cbar.set_label(r"$\log_{10}|\delta_{rel}|$")
 
-    ax.set_title(f"Low Energy Approximation (Eq. 7 vs Eq. 6), E_F = {E_F_DEFAULT:.2f} eV")
+    ax.set_title(f"Low Energy Approximation (Eq. 7 vs Eq. 6), E_F = {E_F:.2f} eV")
     save_svg(fig, f"stage_1_analytic_approx_rel_error.svg")
     plt.show()
 
