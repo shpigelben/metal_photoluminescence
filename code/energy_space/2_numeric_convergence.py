@@ -64,12 +64,6 @@ def plot_heatmap():
     #     # secax.yaxis.set_major_formatter(FuncFormatter(lambda t, _pos: f"{t:.0f}"))
 
     fig.colorbar(m1, ax=[ax1, ax2], label=r"$\log_{10}|\delta_{rel}|$", pad=0.02)
-    # fig, axes = plt.subplots(1, 3, figsize=(13.5, 5.0), sharex=True, sharey=True)
-    # m = _add_heatmap(axes[0], E_EM_VALUES, T_use, log10_rel_trap, "Trapezoid")
-    # _add_heatmap(axes[1], E_EM_VALUES, T_use, log10_rel_simp, "Simpson")
-    # _add_heatmap(axes[2], E_EM_VALUES, T_use, log10_rel_quad, "Quadrature")
-    # fig.colorbar(m1, ax=axes, label=r"$\log_{10}|\delta_{rel}|$", pad=0.02)
-    # plt.tight_layout()
     plt.show()
 
 def plot_step_convergence(T = 300.0):
@@ -110,5 +104,5 @@ def plot_length_convergence(T = 300.0):
 if __name__ == "__main__":
     apply_style()
     plot_heatmap()
-    # plot_int_convergence(300.0)
-    # plot_length_convergence(300.0)
+    plot_step_convergence(300.0)
+    plot_length_convergence(300.0)

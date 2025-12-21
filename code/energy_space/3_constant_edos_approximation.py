@@ -31,7 +31,16 @@ def heatmap():
     set_figure_title(fig, "Heatmap: $\\log_{10}(|\\delta_{rel}(\\hbar\\omega, k_B T)|)$ (const eDOS)")
     plt.show()
 
+def rel_T(T:float) -> None:
+    rel = relative_error(I4(E_EM_VALUES, T), I5(E_EM_VALUES, T))
+    plt.plot(E_EM_VALUES, rel)
+    plt.xlabel(r"$\hbar\omega$ [eV]")
+    plt.ylabel(r"$\log_{10}|\delta_{rel}|$")
+    plt.xlim(E_EM_VALUES[0], E_EM_VALUES[-1])
+    plt.title(f"Relative error at T = {T} K")
+    plt.show()
 
 if __name__ == "__main__":
     apply_style()
     heatmap()
+    rel_T(300.0)
