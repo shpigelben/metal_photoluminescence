@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
-from plot_style import save_svg
+from plot_style import apply_style, save_svg
 
 ############### PREAMBLE ###############
 
@@ -71,17 +71,9 @@ def F_T(E, hw, T):
 def relative_error(candidate: np.ndarray, reference: np.ndarray) -> np.ndarray:
     """Elementwise |(candidate-reference)/reference|, with 0/0 -> 0."""
 
-    # candidate = np.asarray(candidate, dtype=float)
-    # reference = np.asarray(reference, dtype=float)
-    # with np.errstate(divide="ignore", invalid="ignore"):
     rel = np.abs(candidate - reference) / np.abs(reference)
-
-    # rel = np.where(reference == 0.0, np.where(candidate == 0.0, 0.0, np.inf), rel)
     rel = np.clip(rel, 1e-16, 1.0)
     return np.log10(rel)
-    # rel = np.abs((candidate - reference) / reference)
-    # rel = np.log10(np.clip(rel, 1e-16, 1.0))
-    # return rel
 
 
 def plot_distributions(hw, T, *, save_name: str | None = None):
@@ -168,7 +160,7 @@ def plot_edos_relative_error(
         raise ValueError("hw_values must be a 1D array")
 
     if E_values is None:
-        E_values = np.linspace(E_MIN, E_MAX, 800)
+        E_values = np.linspace(E_MIN, E_MAX, 100)
     E_values = np.asanyarray(E_values, dtype=float)
     if E_values.ndim != 1:
         raise ValueError("E_values must be a 1D array")
@@ -178,7 +170,7 @@ def plot_edos_relative_error(
     g_E_plus_hw = eDOS(E_values[None, :] + hw_values[:, None])
     rel = relative_error(g_E[None, :] * g_E_plus_hw, g_ref)
 
-    fig, ax = plt.subplots(figsize=(10.5, 6.0))
+    fig, ax = plt.subplots(figsize=(8.5, 6.0))
     m = ax.pcolormesh(
         E_values,
         hw_values,
@@ -194,12 +186,13 @@ def plot_edos_relative_error(
     if hw is not None:
         ax.axhline(float(hw), color="k", linestyle=":", alpha=0.25)
 
-    fig.colorbar(m, ax=ax, pad=0.13, label=r"$\log_{10}|\delta_{rel}|$")
+    fig.colorbar(m, ax=ax, pad=0.10, label=r"$\log_{10}|\delta_{rel}|$")
 
     if save_name is not None:
         save_svg(fig, save_name)
     plt.show()
 
 if __name__ == "__main__":
-    plot_distributions(2.0, 300.0, save_name="thermal_factor_distributions_default.svg")
-    plot_edos_relative_error(save_name="edos_relative_error_default.svg")
+    apply_style()
+    plot_distributions(2.0, 300.0, save_name="thermal_factor_distributions_default.png")
+    plot_edos_relative_error(save_name="edos_relative_error_default.png")

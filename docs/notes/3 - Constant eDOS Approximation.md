@@ -13,11 +13,7 @@ $$
 $$
 where $I_{(4)}$ and $I_{(5)}$ denote the $\mathcal{E}$ integrals in Eq. (4) and Eq. (5), evaluated on the same numerical grid.
 
-## Figure: integral-level error
 
-
-
-Figure 3.1: Relative error $\delta_{\mathrm{rel}}^{(3)}(\hbar\omega)$ of the constant-eDOS approximation, shown for several representative $(T,\mathcal{E}_F)$ cases. The dashed vertical line marks the chemical potential $\mu(\mathcal{E}_F,T)$.
 
 ## Diagnosing the approximation: pointwise DOS-product mismatch
 
@@ -37,6 +33,7 @@ so the locus of minimal DOS mismatch satisfies
 $$
 \mathcal{E}(\mathcal{E}+\hbar\omega)=\mathcal{E}_F^2.
 $$
+![edos_relative_error_default](../figures/edos_relative_error_default.svg)
 
 ## Figure: pointwise DOS mismatch
 

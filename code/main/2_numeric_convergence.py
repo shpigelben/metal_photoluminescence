@@ -35,7 +35,7 @@ def plot_heatmap(*, save_name: str | None = "auto"):
     rel_simp = relative_error(I5_2d_simp, I6_2d)
 
     fig, [ax1, ax2] = plt.subplots(
-        1, 2, figsize=(13.5, 5.0), sharex=True, sharey=True, layout="constrained"
+        1, 2, figsize=(13.5, 6.0), sharex=True, sharey=True, layout="constrained"
     )
 
     # trapezoid heatmap
@@ -65,6 +65,8 @@ def plot_heatmap(*, save_name: str | None = "auto"):
     for ax in [ax1, ax2]:
         ax.set_xlabel(r"$\hbar\omega$ [eV]")
     ax1.set_ylabel(r"$T$ [K]")
+    secax = ax2.secondary_yaxis("right", functions=(lambda t: k_B * t, lambda e: e / k_B))
+    secax.set_ylabel(r"$k_B T$ [eV]")
 
     dE = float(E_GRID[1] - E_GRID[0]) if E_GRID.size > 1 else float("nan")
     title = (
@@ -82,10 +84,10 @@ def plot_heatmap(*, save_name: str | None = "auto"):
     #     secax.set_yticks(kbt_ticks / k_B)
     #     # secax.yaxis.set_major_formatter(FuncFormatter(lambda t, _pos: f"{t:.0f}"))
 
-    fig.colorbar(m1, ax=[ax1, ax2], label=r"$\log_{10}|\delta_{rel}|$", pad=0.02)
+    fig.colorbar(m1, ax=[ax1, ax2], label=r"$\log_{10}|\delta_{rel}|$", pad=0.10)
     fig.suptitle(title, y=1.02)
     if save_name is not None:
-        filename = "stage_2_rel_error_grid.svg" if save_name == "auto" else save_name
+        filename = "stage_2_rel_error_grid.png" if save_name == "auto" else save_name
         save_svg(fig, filename)
     plt.show()
 
@@ -121,7 +123,9 @@ def plot_heatmap_50x50(
         vmax=0,
     )
     ax.set(xlabel=r"$\hbar\omega$ [eV]", ylabel=r"$T$ [K]")
-    fig.colorbar(m, ax=ax, pad=0.05, label=r"$\log_{10}|\delta_{rel}|$")
+    secax = ax.secondary_yaxis("right", functions=(lambda t: k_B * t, lambda e: e / k_B))
+    secax.set_ylabel(r"$k_B T$ [eV]")
+    fig.colorbar(m, ax=ax, pad=0.10, label=r"$\log_{10}|\delta_{rel}|$")
 
     title = (
         "Relative error heatmap (Simpson, Eq. 5 vs Eq. 6)\n"
@@ -131,7 +135,7 @@ def plot_heatmap_50x50(
 
     if save_name is not None:
         filename = (
-            "stage_2_rel_error_grid_50x50.svg" if save_name == "auto" else save_name
+            "stage_2_rel_error_grid_50x50.png" if save_name == "auto" else save_name
         )
         save_svg(fig, filename)
     plt.show()
@@ -165,7 +169,7 @@ def plot_step_convergence(T: float = 300.0, *, save_name: str | None = "auto"):
     ax.set_title(title)
     if save_name is not None:
         filename = (
-            f"stage_2_step_convergence_T{int(round(T))}K.svg"
+            f"stage_2_step_convergence_T{int(round(T))}K.png"
             if save_name == "auto"
             else save_name
         )
@@ -200,7 +204,7 @@ def plot_length_convergence(T: float = 300.0, *, save_name: str | None = "auto")
     ax.set_title(title)
     if save_name is not None:
         filename = (
-            f"stage_2_length_convergence_T{int(round(T))}K.svg"
+            f"stage_2_length_convergence_T{int(round(T))}K.png"
             if save_name == "auto"
             else save_name
         )

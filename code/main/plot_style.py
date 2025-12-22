@@ -1,5 +1,4 @@
 from pathlib import Path
-
 import matplotlib as mpl
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -9,9 +8,9 @@ FIGURES_DIR = PROJECT_ROOT / "docs" / "figures"
 def apply_style() -> None:
     mpl.rcParams.update(
         {
-            "figure.dpi": 160,
-            "savefig.dpi": 300,
-            "savefig.format": "svg",
+            "figure.dpi": 200,
+            "savefig.dpi": 200,
+            "savefig.format": "png",
             "savefig.bbox": "tight",
             "savefig.pad_inches": 0.02,
             "savefig.transparent": True,
@@ -54,7 +53,8 @@ def apply_style() -> None:
 def save_svg(fig, filename: str, *, figures_dir: Path = FIGURES_DIR) -> Path:
     figures_dir.mkdir(parents=True, exist_ok=True)
     path = figures_dir / filename
-    fig.savefig(path, format="svg", transparent=True)
+    fmt = path.suffix.lstrip(".") or "png"
+    fig.savefig(path, format=fmt, dpi=200, transparent=True)
     return path
 
 
