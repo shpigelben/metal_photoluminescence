@@ -4,7 +4,7 @@
     "type": "split",
     "children": [
       {
-        "id": "5a1bdf0a26c586ad",
+        "id": "4509724f8bf84da7",
         "type": "tabs",
         "children": [
           {
@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/MASTER_GUIDE.md",
+                "file": "notes/3 - Constant eDOS Approximation.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "MASTER_GUIDE"
+              "title": "3 - Constant eDOS Approximation"
             }
           }
         ]
@@ -190,12 +190,12 @@
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "notes/2 - Numeric Convergence.md",
+    "notes/1 - Analytic Approximation.md",
+    "notes/3 - Constant eDOS Approximation.md",
     "notes/4 - Delta (2D) Approximation E-Space.md",
     "notes/MASTER_GUIDE.md",
-    "notes/3 - Constant eDOS Approximation.md",
-    "notes/2 - Numeric Convergence.md",
     "figures/stage_2_rel_error_grid_50x50.svg",
-    "notes/1 - Analytic Approximation.md",
     "figures/stage_2_step_convergence_T300K.svg",
     "figures/Figure_1_trapz_simps.svg",
     "notes/A1 - Derivation of the General Emission Integral.md",

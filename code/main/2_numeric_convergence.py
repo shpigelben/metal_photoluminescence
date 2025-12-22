@@ -23,7 +23,6 @@ def I5(hw, T, int: "str"):
 
 ############## PLOTS ################
 
-
 def plot_heatmap(*, save_name: str | None = "auto"):
     hw = E_EM_VALUES[None, :]
     T = T_VALUES[:, None]

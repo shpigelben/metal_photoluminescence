@@ -15,7 +15,7 @@ where $I_{(4)}$ and $I_{(5)}$ denote the $\mathcal{E}$ integrals in Eq. (4) and 
 
 ## Figure: integral-level error
 
-![](../figures/stage_3_rel_error_grid.svg)
+
 
 Figure 3.1: Relative error $\delta_{\mathrm{rel}}^{(3)}(\hbar\omega)$ of the constant-eDOS approximation, shown for several representative $(T,\mathcal{E}_F)$ cases. The dashed vertical line marks the chemical potential $\mu(\mathcal{E}_F,T)$.
 

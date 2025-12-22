@@ -33,18 +33,8 @@ relative error settles immediately after around 5.8 eV as an upper integration l
 ![center](../figures/stage_2_rel_error_grid_50x50.svg)
 
 Ultimately we manage to converge to the analytic solution, and establish an integration scheme.
-## Numerical formulation
-
-Eq. (5) is defined on $\mathcal{E}\in[0,\infty)$. Numerically we truncate to a finite interval $[\mathcal{E}_{\min},\mathcal{E}_{\max}]$ and discretize it by a uniform grid of step $\Delta\mathcal{E}$. For each emission energy $\hbar\omega$ we compute
-$$
-I_{\mathrm{num}}(\hbar\omega;T,\mathcal{E}_F)
-=\rho_F^2\int_{\mathcal{E}_{\min}}^{\mathcal{E}_{\max}}
-f^{T}(\mathcal{E}+\hbar\omega)\,[1-f^{T}(\mathcal{E})]\;d\mathcal{E}.
-\tag{S2.1}
-$$
 
 ## Log-stable thermal factor
-
 The factor $f^{T}(\mathcal{E}+\hbar\omega)[1-f^{T}(\mathcal{E})]$ is evaluated in log form to avoid overflow/underflow. Let
 $$
 a=\beta(\mathcal{E}-\mu),\qquad b=a+\beta\hbar\omega.
@@ -61,50 +51,6 @@ $$
 \tag{S2.2}
 $$
 In code, $\log(1+e^x)$ is computed as $\mathrm{logaddexp}(0,x)$, and the exponentiation is performed once at the end.
-
-## Quadrature and grid construction
-
-The integral in (S2.1) is evaluated with composite Simpson’s rule on a uniform grid. For a requested maximum step $\Delta\mathcal{E}$ we choose an even number of intervals $N$ and set
-$$
-\mathcal{E}_{\text{grid}}=\mathrm{linspace}(\mathcal{E}_{\min},\mathcal{E}_{\max},N+1),
-\qquad
-\Delta\mathcal{E}_{\mathrm{eff}}=\frac{\mathcal{E}_{\max}-\mathcal{E}_{\min}}{N}\le \Delta\mathcal{E},
-\tag{S2.3}
-$$
-so that Simpson’s rule applies directly and the actual step used in the convergence plot is $\Delta\mathcal{E}_{\mathrm{eff}}$.
-
-## Reference evaluation of Eq. (6)
-
-Eq. (6) is evaluated in a numerically stable form by defining $x=\beta\hbar\omega$ and writing
-$$
-I_{\mathrm{exact}}(\hbar\omega;T,\mathcal{E}_F)=\rho_F^2\,k_B T\,R(\hbar\omega),
-$$
-with
-$$
-R(\hbar\omega)=
-\begin{cases}
-\dfrac{x+\ln\!\left(1+e^{-\beta\mu}\right)-\ln\!\left(1+e^{\beta(\hbar\omega-\mu)}\right)}{e^{x}-1}, & x\neq 0,\\
-\dfrac{1}{1+e^{-\beta\mu}}, & x=0.
-\end{cases}
-$$
-The denominator $e^{x}-1$ is computed using $\mathrm{expm1}(x)$.
-
-## Error metrics
-
-The stage-2 pointwise relative error is
-$$
-\delta_{\mathrm{rel}}^{(2)}(\hbar\omega)
-=\left|\frac{I_{\mathrm{num}}(\hbar\omega)-I_{\mathrm{exact}}(\hbar\omega)}{I_{\mathrm{exact}}(\hbar\omega)}\right|.
-\tag{S2.4}
-$$
-For the convergence scan we summarize the error by averaging over a $\hbar\omega$ window $\mathcal{W}$,
-$$
-\left\langle |\delta_{\mathrm{rel}}^{(2)}| \right\rangle_{\hbar\omega}
-=\frac{1}{N}\sum_{\hbar\omega\in\mathcal{W}} |\delta_{\mathrm{rel}}^{(2)}(\hbar\omega)|,
-\tag{S2.5}
-$$
-while masking points where $|I_{\mathrm{exact}}|$ is extremely small, since relative error becomes ill-conditioned in the exponentially suppressed tail.
-
 ## Results and discussion
 
 Figure 2.1 shows rapid reduction of the mean error with decreasing $\Delta\mathcal{E}$ until an accuracy floor is reached. This floor is not set by the quadrature order, but by conditioning and floating-point effects: refining the grid increases the number of samples in the composite rule, and beyond a point the remaining discretization error is comparable to accumulated roundoff.
