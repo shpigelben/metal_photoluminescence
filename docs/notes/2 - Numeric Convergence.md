@@ -11,18 +11,28 @@ $$
 
 This comparison is between equivalent (rather than approximate) expressions and it serves as a good testing ground for numerical convergence as we expect to be able to reach near machine accuracy.
 
-The purpose of this stage is therefore to (i) implement a numerically stable evaluation of Eq. (5), (ii) verify convergence with respect to the integration step $\Delta\mathcal{E}$ by comparison to Eq. (6), and (iii) select a practical step size for later stages.
+# Integration Scheme
+Unsurprisingly, for the same integration interval and step size, Simpson integration is much more reliable. I have also tested a quadrature which resulted in a very unstable result.
 
-## Figures
-
-![](../figures/stage_2_convergence_mean_rel_error_vs_dE.svg)
-
-Figure 2.1: Convergence of the $\hbar\omega$-averaged error $\langle|\delta_{\mathrm{rel}}^{(2)}|\rangle_{\hbar\omega}$ versus the effective integration step $\Delta\mathcal{E}_{\mathrm{eff}}$ for several representative $(T,\mathcal{E}_F)$ cases. The black curve is the envelope (max over cases).
-
-![](../figures/stage_2_rel_error_grid.svg)
+![center](../figures/stage_2_rel_error_grid.svg)
 
 Figure 2.2: Pointwise error $\delta_{\mathrm{rel}}^{(2)}(\hbar\omega)$ evaluated on the default energy grid, for the same set of $(T,\mathcal{E}_F)$ cases used in the convergence scan.
 
+Two things are equivalent between the two integration schemes
+- a cone of higher relative error emerges from the Fermi energy and spreads with the increase of temperature.
+- There is a triangular region which is consistently 
+
+![center](../figures/stage_2_step_convergence_T300K.svg)
+
+Step size for machine accuracy is 1e-4
+
+![center](../figures/stage_2_length_convergence_T300K.svg)
+
+relative error settles immediately after around 5.8 eV as an upper integration limit for some reason. 
+
+![center](../figures/stage_2_rel_error_grid_50x50.svg)
+
+Ultimately we manage to converge to the analytic solution, and establish an integration scheme.
 ## Numerical formulation
 
 Eq. (5) is defined on $\mathcal{E}\in[0,\infty)$. Numerically we truncate to a finite interval $[\mathcal{E}_{\min},\mathcal{E}_{\max}]$ and discretize it by a uniform grid of step $\Delta\mathcal{E}$. For each emission energy $\hbar\omega$ we compute

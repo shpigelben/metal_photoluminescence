@@ -152,49 +152,54 @@ def plot_distributions(hw, T, *, save_name: str | None = None):
     plt.show()
 
 
-def plot_edos_relative_error(hw, *, save_name: str | None = None):
-    """Plot log10 relative error of g(E)g(E+hw) vs g(E_F)^2 with a hw slider."""
+def plot_edos_relative_error(
+    hw: float | None = None,
+    *,
+    hw_values: np.ndarray | None = None,
+    E_values: np.ndarray | None = None,
+    save_name: str | None = None,
+):
+    """Plot heatmap of log10 relative error of g(E)g(E+hw) vs g(E_F)^2 over (E, hw)."""
 
-    fig, ax = plt.subplots(figsize=(10, 4.8))
-    fig.subplots_adjust(bottom=0.18)
+    if hw_values is None:
+        hw_values = E_EM_VALUES
+    hw_values = np.asanyarray(hw_values, dtype=float)
+    if hw_values.ndim != 1:
+        raise ValueError("hw_values must be a 1D array")
 
-    def _relerr(hw_val):
-        g_ref = eDOS(E_F) ** 2
-        g_var = eDOS(E_GRID) * eDOS(E_GRID + hw_val)
-        return relative_error(g_var, g_ref)
+    if E_values is None:
+        E_values = np.linspace(E_MIN, E_MAX, 800)
+    E_values = np.asanyarray(E_values, dtype=float)
+    if E_values.ndim != 1:
+        raise ValueError("E_values must be a 1D array")
 
-    y0 = _relerr(hw)
-    (line,) = ax.plot(E_GRID, y0, linewidth=2.0, label=r"$g(E)g(E+\hbar\omega)$ vs $g(E_F)^2$")
-    ax.set_xlabel("E [eV]")
-    ax.set_ylabel(r"$\log_{10}|\delta_{rel}|$")
-    ax.set(xlim=(E_MIN, E_MAX), ylim=(-16, 0.5))
-    ax.legend(loc="best")
+    g_ref = eDOS(E_F) ** 2
+    g_E = eDOS(E_values)
+    g_E_plus_hw = eDOS(E_values[None, :] + hw_values[:, None])
+    rel = relative_error(g_E[None, :] * g_E_plus_hw, g_ref)
 
-    ax_hw = fig.add_axes([0.12, 0.05, 0.78, 0.03])
-    s_hw = Slider(ax_hw, "ℏω [eV]", EMISSION_ENERGY_MIN, EMISSION_ENERGY_MAX, valinit=float(hw), valstep=0.01)
+    fig, ax = plt.subplots(figsize=(10.5, 6.0))
+    m = ax.pcolormesh(
+        E_values,
+        hw_values,
+        rel,
+        shading="auto",
+        cmap="coolwarm",
+        vmin=-16,
+        vmax=0,
+    )
 
-    def _update(_val):
-        y = _relerr(float(s_hw.val))
-        line.set_ydata(y)
-        fig.canvas.draw_idle()
+    ax.set(xlabel="E [eV]", ylabel=r"$\hbar\omega$ [eV]", xlim=(E_values[0], E_values[-1]))
+    ax.axvline(E_F, color="k", linestyle="--", alpha=0.25)
+    if hw is not None:
+        ax.axhline(float(hw), color="k", linestyle=":", alpha=0.25)
 
-    s_hw.on_changed(_update)
-
-    def _save_without_sliders(filename: str) -> None:
-        slider_axes = [ax_hw]
-        vis = [ax.get_visible() for ax in slider_axes]
-        for ax in slider_axes:
-            ax.set_visible(False)
-        fig.canvas.draw_idle()
-        save_svg(fig, filename)
-        for ax, v in zip(slider_axes, vis):
-            ax.set_visible(v)
-        fig.canvas.draw_idle()
+    fig.colorbar(m, ax=ax, pad=0.13, label=r"$\log_{10}|\delta_{rel}|$")
 
     if save_name is not None:
-        _save_without_sliders(save_name)
+        save_svg(fig, save_name)
     plt.show()
 
 if __name__ == "__main__":
     plot_distributions(2.0, 300.0, save_name="thermal_factor_distributions_default.svg")
-    plot_edos_relative_error(2.0, save_name="edos_relative_error_default.svg")
+    plot_edos_relative_error(save_name="edos_relative_error_default.svg")

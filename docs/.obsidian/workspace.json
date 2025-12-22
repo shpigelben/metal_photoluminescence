@@ -13,32 +13,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/A1 - Derivation of the General Emission Integral.md",
+                "file": "notes/MASTER_GUIDE.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "A1 - Derivation of the General Emission Integral"
-            }
-          },
-          {
-            "id": "8157d2b95331722a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/1 - Analytic Approximation.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "1 - Analytic Approximation"
+              "title": "MASTER_GUIDE"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -204,21 +188,29 @@
       "obsidian-stille:Toggle Stille": false
     }
   },
-  "active": "8157d2b95331722a",
+  "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "notes/4 - Delta (2D) Approximation E-Space.md",
+    "notes/MASTER_GUIDE.md",
+    "notes/3 - Constant eDOS Approximation.md",
     "notes/2 - Numeric Convergence.md",
-    "figures/thermal_factor_distributions_default.svg",
-    "figures/Figure_1.svg",
-    "notes/0 - Work Plan.md",
-    "figures/fermi_product_interactive_default.svg",
+    "figures/stage_2_rel_error_grid_50x50.svg",
     "notes/1 - Analytic Approximation.md",
-    "notes/Non-equilibrium Emission in Metals.md",
+    "figures/stage_2_step_convergence_T300K.svg",
+    "figures/Figure_1_trapz_simps.svg",
     "notes/A1 - Derivation of the General Emission Integral.md",
+    "figures/stage_3_edos_vs_const_edos_heatmap.svg",
+    "figures/stage_3_rel_error_grid.svg",
+    "figures/thermal_factor_distributions_default.svg",
+    "figures/stage_3_rel_error_T300K.svg",
+    "figures/stage_2_rel_error_grid.svg",
+    "figures/stage_2_length_convergence_T300K.svg",
+    "figures/stage_2_convergence_mean_rel_error_vs_dE.svg",
+    "notes/0 - Work Plan.md",
+    "notes/Non-equilibrium Emission in Metals.md",
     "notes/A2 - Intraband Emission.md",
     "notes/6 - Delta (4D) Approximation K-Space.md",
     "notes/5 - Delta (2D) Approximation K-Space.md",
-    "notes/4 - Delta (2D) Approximation E-Space.md",
-    "notes/3 - Constant eDOS Approximation.md",
     "notes/A4 - Thermal Factor Energy Space.md",
     "notes/Boltzmann Equation.md",
     "notes/Change of Variables for Emission Integral.md",
@@ -229,12 +221,7 @@
     "notes/log.md",
     "notes/Numeric Delta Approximation.md",
     "figures/stage_1_rel_error_heatmap_EF5p00eV.svgz",
-    "figures/stage_1_analytic_approx_rel_error.svg",
-    "figures/stage_1_rel_error_heatmap_EF5p00eV.svg",
-    "figures/stage_1_heatmap_exact_vs_approx_EF3p00eV.svg",
     "resources/0 - Contribution_of_Interband_Transitions_to_Non_equilibrium_Emission_From_Gold.pdf",
-    "figures/stage_1_heatmap_exact_vs_approx_EF5p00eV.svg",
-    "figures/stage_2_convergence_mean_rel_error_vs_dE.svg",
     "resources/raman_pl_distinction.pdf",
     "resources/notes (notability).pdf",
     "resources/nielsen-et-al-2022-thermoradiative-power-conversion-from-hgcdte-photodiodes-and-their-current-voltage-characteristics.pdf",
@@ -243,8 +230,6 @@
     "resources/imon's presentation.pdf",
     "resources/6 - Marini - 2013.pdf",
     "resources/4 - semiconductor_emission_slides.pdf",
-    "figures/stage_1_rel_error_grid.svg",
-    "figures/stage_3_edos_vs_const_edos_heatmap.svg",
     "notes/A3 - Electronic Density of States.md",
     "notes/Photon Absorption by Conduction Electrons.md",
     "notes/Progress Report + Questions for Yonatan.md"
