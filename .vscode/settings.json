@@ -8,5 +8,7 @@
     "**/.gitignore": true,
     "**/README.md": true,
     "**/.cache": true,
+    "**/__pycache__": true,
+    "**/requirements.txt": true,
   }
 }

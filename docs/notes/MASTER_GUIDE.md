@@ -15,12 +15,14 @@
 
 ### Phase 2: Intraband Transitions (Non-Equilibrium) 🚧
 *Focus: Implementing the "hot" electron distribution.*
-- [ ] **Distribution Implementation:** Code the corrected non-equilibrium distribution $f(\mathcal{E}; \omega_L)$ (ref: *Assistance of metal nanoparticles...*).
+- [x] **Distribution Implementation:** Coded the non-equilibrium distribution $f(\mathcal{E}; \omega_L)$ in `_preamble_and_funcs.py`.
+- [ ] **Theory Note:** Written [A6](A6%20-%20Non-Equilibrium%20Electron%20Distribution.md) detailing the perturbation model.
 - [ ] **Integration:** Adapt energy-space and momentum-space integrators to accept arbitrary $f(\mathbf{k})$.
 - [ ] **Validation:** Reproduce literature results (or demonstrate corrections) for intraband non-eq PL.
 
 ### Phase 3: Interband Transitions (Equilibrium) 🚧
 *Focus: Adding the band structure of Gold.*
+- [ ] **Theory Note:** Written [A2](A2%20-%20Interband%20Transitions%20and%20Joint%20Density%20of%20States.md) for JDOS and k-selection.
 - [ ] **Isotropic Model:** Implement interband transitions assuming isotropic parabolic bands (Conduction $\leftrightarrow$ Valence).
 - [ ] **Anisotropic Model:** Implement X and L symmetry point transitions for Au.
 - [ ] **Integration:** Numerical integration over the Brillouin Zone (BZ) for interband terms.

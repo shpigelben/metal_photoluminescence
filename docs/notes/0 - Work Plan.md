@@ -4,16 +4,16 @@ $$
 \boxed{\begin{align}
 I_{e}^{T}(\hbar\omega) \propto\;& \iint_{\text{BZ}} 
 f^{T}(\mathbf{k}_{1})\big[1-f^{T}(\mathbf{k}_{2})\big]\,
-\delta\!\left(\mathcal{E}(\mathbf{k}_{1})-\mathcal{E}(\mathbf{k}_{2})+\hbar\omega\right)\,
+\delta\!\left(\mathcal{E}(\mathbf{k}_{1})-\mathcal{E}(\mathbf{k}_{2})-\hbar\omega\right)\,
 d^{3}k_{1}\, d^{3}k_{2} \tag{1}\\ \\
 \approx\;& \iint_{0}^{\infty} \,
 f^{T}(\mathcal{E}(k_{1}))\big[1-f^{T}(\mathcal{E}(k_{2}))\big]\,
-\delta\!\left(\mathcal{E}(k_{1})-\mathcal{E}(k_{2})+\hbar\omega\right)(4\pi k_{1}^{2})(4\pi k_{2}^{2}) \ \,
+\delta\!\left(\mathcal{E}(k_{1})-\mathcal{E}(k_{2})-\hbar\omega\right)(4\pi k_{1}^{2})(4\pi k_{2}^{2}) \ \,
 dk_{1}\, dk_{2} \tag{2}\\ \\ 
 =\;& \iint_{0}^{\infty}
 f^{T}(\mathcal{E}_{1})\big[1-f^{T}(\mathcal{E}_{2})\big]\,
 \rho(\mathcal{E}_{1})\, \rho(\mathcal{E}_{2})\,
-\delta\!\left(\mathcal{E}_{1}-\mathcal{E}_{2}+\hbar\omega\right)\,
+\delta\!\left(\mathcal{E}_{1}-\mathcal{E}_{2}-\hbar\omega\right)\,
 d\mathcal{E}_{1}\, d\mathcal{E}_{2} \tag{3}\\ \\ 
 =\;& \int_{0}^{\infty}
 f^{T}(\mathcal{E}+\hbar\omega)\big[1-f^{T}(\mathcal{E})\big]\,
@@ -34,7 +34,7 @@ $$
 After we assume that the transition dipole matrix is a constant of $k$, we're left with $(1)$. From there the transition into Yonatan's analytic expression is outlined below
 
 - $(1)\to(2)$ parabolic band **approximation**
-- $(2)\to(3)$ k-$\mathcal{E}$ basis transfer
+- $(2)\to(3)$ $k\to\mathcal{E}$ basis transfer
 - $(3)\to(4)$ delta resolution
 - $(4)\to(5)$ constant eDOS **approximation**
 - $(5)\to(6)$ analytic integration

@@ -16,8 +16,8 @@ $$
 
 where $I_{(6)}$ and $I_{(7)}$ denote expressions (6) and (7), respectively. Below is the plot of $(8)$ 
 
-![center](../figures/stage_1_analytic_approx_rel_error.svg)
 
+![center](../figures/stage_1_analytic_approx_rel_error.png)
 
 Figure 1.1: Heat map of $\log_{10}|\delta_{\mathrm{rel}}^{(1)}|$ for Eq. (7) relative to Eq. (6), evaluated at $\mathcal{E}_F=3\,\mathrm{eV}$. The vertical axis is plotted in $k_B T$ (with a secondary axis in $T$) to make the controlling dimensionless ratios explicit.
 

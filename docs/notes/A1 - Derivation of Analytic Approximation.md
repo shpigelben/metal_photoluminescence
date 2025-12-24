@@ -1,4 +1,5 @@
 
+# Intraband Emission
 $$\small
 \Gamma_{\alpha\beta}(\hbar\omega) = \frac{2\pi}{\hbar}\left( \frac{2V}{(2\pi)^{3}} \right)^{2} \iint\limits_{BZ} |\mu(\mathbf{k}_{\text{i}},\mathbf{k}_{\text{f}})|^{2} \  f\Big[\mathcal{E_{\alpha}}(\mathbf{k}_{\text{i}})  \Big]\overline{f\Big[\mathcal{E_{\beta}}(\mathbf{k}_{\text{f}})  \Big]}\  \delta\Big(\mathcal{E}_{\alpha}(\mathbf{k}_{\text{i}}) - \mathcal{E}_{\beta}(\mathbf{k}_{\text{f}}) - \hbar\omega   \Big) \  dk_{\text{i}}^{3} \ dk_{\text{f}}^{3} \tag{1}
 $$

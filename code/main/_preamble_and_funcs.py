@@ -14,19 +14,19 @@ m_e = 5.485e-4
 E_F = 5.0
 E_MIN = 0.0
 E_MAX = 10.0
-D_E = 5e-4
+D_E = 1e-4
 E_GRID = np.arange(E_MIN, E_MAX + D_E, D_E)
 
 # EMISSION ENERGY VALUES
 EMISSION_ENERGY_MIN = 0.01
 EMISSION_ENERGY_MAX = 8.0
-N_EMISSION = 100
+N_EMISSION = 50
 E_EM_VALUES = np.linspace(EMISSION_ENERGY_MIN, EMISSION_ENERGY_MAX, N_EMISSION)
 
 # TEMPERATURE VALUES
 T_MIN = 1.0
 T_MAX = 2000.0
-N_T = 100
+N_T = 50
 T_VALUES = np.linspace(T_MIN, T_MAX, N_T)
 
 ############### FUNCTIONS ###############
@@ -36,14 +36,17 @@ T_VALUES = np.linspace(T_MIN, T_MAX, N_T)
 def beta(T):
     return 1.0 / (k_B * T)
 
+
 # CHEMICAL POTENTIAL
 def chemical_potential(T: float | np.ndarray) -> float | np.ndarray:
     T_F = E_F / k_B
     return E_F * (1 - (np.pi**2 / 12) * ((T / T_F) ** 2))
 
+
 # ELECTRON DENSITY OF STATES
 def eDOS(E: float | np.ndarray) -> float | np.ndarray:
     return ((m_e**1.5) / (np.pi**2 * hbar**3)) * np.sqrt(2 * E)
+
 
 # FERMI-DIRAC DISTRIBUTION
 def f_T(E, T):
@@ -52,6 +55,20 @@ def f_T(E, T):
     exp_E = np.exp(beta_T * (E - mu))
     return 1.0 / (exp_E + 1)
 
+
+# NON-EQUILIBRIUM ("HOT") DISTRIBUTION
+def f_neq(E, T, hw_L, delta_E):
+    """
+    Non-equilibrium distribution perturbed by laser hw_L.
+    f = f_T + delta_E * [f_T(E-hw_L)(1-f_T(E)) - f_T(E)(1-f_T(E+hw_L))]
+    """
+    ft = f_T(E, T)
+    ft_minus = f_T(E - hw_L, T)
+    ft_plus = f_T(E + hw_L, T)
+    B = ft_minus * (1 - ft) - ft * (1 - ft_plus)
+    return ft + delta_E * B
+
+
 # BOSE-EINSTEIN DISTRIBUTION
 def n_B(hw, T):
     beta_T = beta(T)
@@ -59,13 +76,16 @@ def n_B(hw, T):
         exp_arg = beta_T * hw
         return 1.0 / (np.expm1(exp_arg))
 
+
 # (STABLE) THERMAL FACTOR
-def F_T(E, hw, T):
-    mu = chemical_potential(T)
+def F_T(E1, E2, T):
+    """Stable thermal factor f(E1)[1-f(E2)]"""
     beta_T = beta(T)
-    a = beta_T * (E - mu)
-    b = a + beta_T * hw
-    return np.exp(a - np.logaddexp(0.0, a) - np.logaddexp(0.0, b))
+    mu = chemical_potential(T)
+    a1 = beta_T * (E1 - mu)
+    a2 = beta_T * (E2 - mu)
+    return np.exp(a2 - np.logaddexp(0.0, a2) - np.logaddexp(0.0, a1))
+
 
 # (CLIPPED) LOGARITHMIC RELATIVE ERROR
 def relative_error(candidate: np.ndarray, reference: np.ndarray) -> np.ndarray:
@@ -81,15 +101,35 @@ def plot_distributions(hw, T, *, save_name: str | None = None):
     fig.subplots_adjust(bottom=0.18, hspace=0.08)
 
     x_offset = 0.02 * (E_MAX - E_MIN)
-    logF = lambda hw_val, T_val: np.log10(np.clip(F_T(E_GRID, hw_val, T_val), 1e-300, None))
+    logF = lambda hw_val, T_val: np.log10(
+        np.clip(F_T(E_GRID + hw_val, E_GRID, T_val), 1e-300, None)
+    )
 
     # Occupation panel
-    (line_e,) = ax1.plot(E_GRID, f_T(E_GRID + hw, T=T), label="f(E + ℏω)", linewidth=2.2)
+    (line_e,) = ax1.plot(
+        E_GRID, f_T(E_GRID + hw, T=T), label="f(E + ℏω)", linewidth=2.2
+    )
     (line_h,) = ax1.plot(E_GRID, 1 - f_T(E_GRID, T=T), label="1 - f(E)", linewidth=2.2)
     v_EF = ax1.axvline(E_F, color="k", linestyle="--", alpha=0.25)
     v_EF_hw = ax1.axvline(E_F - hw, color="k", linestyle=":", alpha=0.25)
-    label_EF = ax1.text(E_F + x_offset, 0.95, r"$E_F$", transform=ax1.get_xaxis_transform(), va="top", ha="left", alpha=0.55)
-    label_EF_hw = ax1.text((E_F - hw) + x_offset, 0.95, r"$E_F-\hbar\omega$", transform=ax1.get_xaxis_transform(), va="top", ha="left", alpha=0.55)
+    label_EF = ax1.text(
+        E_F + x_offset,
+        0.95,
+        r"$E_F$",
+        transform=ax1.get_xaxis_transform(),
+        va="top",
+        ha="left",
+        alpha=0.55,
+    )
+    label_EF_hw = ax1.text(
+        (E_F - hw) + x_offset,
+        0.95,
+        r"$E_F-\hbar\omega$",
+        transform=ax1.get_xaxis_transform(),
+        va="top",
+        ha="left",
+        alpha=0.55,
+    )
     ax1.set_ylabel("Occupation")
     ax1.set_xlim(E_MIN, E_MAX)
     ax1.legend(loc="best")
@@ -105,7 +145,14 @@ def plot_distributions(hw, T, *, save_name: str | None = None):
     ax_T = fig.add_axes([0.12, 0.10, 0.78, 0.03])
     ax_hw = fig.add_axes([0.12, 0.05, 0.78, 0.03])
     s_T = Slider(ax_T, "T [K]", T_MIN, T_MAX, valinit=float(T), valstep=1.0)
-    s_hw = Slider(ax_hw, "ℏω [eV]", EMISSION_ENERGY_MIN, EMISSION_ENERGY_MAX, valinit=float(hw), valstep=0.01)
+    s_hw = Slider(
+        ax_hw,
+        "ℏω [eV]",
+        EMISSION_ENERGY_MIN,
+        EMISSION_ENERGY_MAX,
+        valinit=float(hw),
+        valstep=0.01,
+    )
 
     def _update(_val):
         nonlocal fill_F
@@ -181,7 +228,9 @@ def plot_edos_relative_error(
         vmax=0,
     )
 
-    ax.set(xlabel="E [eV]", ylabel=r"$\hbar\omega$ [eV]", xlim=(E_values[0], E_values[-1]))
+    ax.set(
+        xlabel="E [eV]", ylabel=r"$\hbar\omega$ [eV]", xlim=(E_values[0], E_values[-1])
+    )
     ax.axvline(E_F, color="k", linestyle="--", alpha=0.25)
     if hw is not None:
         ax.axhline(float(hw), color="k", linestyle=":", alpha=0.25)
@@ -191,6 +240,7 @@ def plot_edos_relative_error(
     if save_name is not None:
         save_svg(fig, save_name)
     plt.show()
+
 
 if __name__ == "__main__":
     apply_style()

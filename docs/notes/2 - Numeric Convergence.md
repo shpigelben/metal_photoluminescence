@@ -14,7 +14,7 @@ This comparison is between equivalent (rather than approximate) expressions and 
 # Integration Scheme
 Unsurprisingly, for the same integration interval and step size, Simpson integration is much more reliable. I have also tested a quadrature which resulted in a very unstable result.
 
-![center](../figures/stage_2_rel_error_grid.svg)
+![stage_2_rel_error_grid](../figures/stage_2_rel_error_grid.png)
 
 Figure 2.2: Pointwise error $\delta_{\mathrm{rel}}^{(2)}(\hbar\omega)$ evaluated on the default energy grid, for the same set of $(T,\mathcal{E}_F)$ cases used in the convergence scan.
 
@@ -22,15 +22,15 @@ Two things are equivalent between the two integration schemes
 - a cone of higher relative error emerges from the Fermi energy and spreads with the increase of temperature.
 - There is a triangular region which is consistently 
 
-![center](../figures/stage_2_step_convergence_T300K.svg)
+![center](../figures/stage_2_step_convergence_T300K.png)
 
 Step size for machine accuracy is 1e-4
 
-![center](../figures/stage_2_length_convergence_T300K.svg)
+![center](../figures/stage_2_length_convergence_T300K.png)
 
 relative error settles immediately after around 5.8 eV as an upper integration limit for some reason. 
 
-![center](../figures/stage_2_rel_error_grid_50x50.svg)
+![center](../figures/stage_2_rel_error_grid_50x50.png)
 
 Ultimately we manage to converge to the analytic solution, and establish an integration scheme.
 
