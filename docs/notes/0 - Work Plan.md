@@ -42,14 +42,14 @@ After we assume that the transition dipole matrix is a constant of $k$, we're le
 
 To assess the regimes of validity of this approximation we proceed from the bottom up
 
-| stage                                                                                     | comparison                | purpose                                                  |
-| ----------------------------------------------------------------------------------------- | ------------------------- | -------------------------------------------------------- |
-| [1 - Analytic Approximation](1%20-%20Analytic%20Approximation.md)                         | $$(6)\leftrightarrow(7)$$ | establish validity regime of analytic approx             |
-| [2 - Numeric Convergence](2%20-%20Numeric%20Convergence.md)                               | $$(5)\leftrightarrow(6)$$ | establish numeric convergence under constant eDOS approx |
-| [3 - Constant eDOS Approximation](3%20-%20Constant%20eDOS%20Approximation.md)             | $$(4)\leftrightarrow(5)$$ | establish validity of constant eDOS approx               |
-| [4 - Delta (2D) Approximation E-Space](4%20-%20Delta%20(2D)%20Approximation%20E-Space.md) | $$(4)\leftrightarrow(3)$$ | establish validity of delta approx in e-space            |
-| [5 - Delta (2D) Approximation K-Space](5%20-%20Delta%20(2D)%20Approximation%20K-Space.md) | $$(4)\leftrightarrow(2)$$ | establish validity of delta approx in k-space 2D         |
-| [6 - Delta (4D) Approximation K-Space](6%20-%20Delta%20(4D)%20Approximation%20K-Space.md) | $$(4)\leftrightarrow(1)$$ | establish validity of delta approx in k-space 4D         |
+| stage                                                                                     | comparison                | purpose                                                                                                                                                                  |
+| ----------------------------------------------------------------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [1 - Analytic Approximation](1%20-%20Analytic%20Approximation.md)                         | $$(6)\leftrightarrow(7)$$ | establish validity regime of analytic approx                                                                                                                             |
+| [2 - Numeric Convergence](2%20-%20Numeric%20Convergence.md)                               | $$(5)\leftrightarrow(6)$$ | establish numeric convergence under constant eDOS approx                                                                                                                 |
+| [3 - Constant eDOS Approximation](3%20-%20Constant%20eDOS%20Approximation.md)             | $$(4)\leftrightarrow(5)$$ | establish validity of constant eDOS approx                                                                                                                               |
+| [4 - Delta (2D) Approximation E-Space](4%20-%20Delta%20(2D)%20Approximation%20E-Space.md) | $$(4)\leftrightarrow(3)$$ | establish validity of delta approximation by a gaussian in e-space 2D                                                                                                    |
+| [5 - Delta (2D) Approximation K-Space](5%20-%20Delta%20(2D)%20Approximation%20K-Space.md) | $$(4)\leftrightarrow(2)$$ | establish validity of delta approximation by a gaussian in k-space 2D                                                                                                    |
+| [6 - Delta (4D) Approximation K-Space](6%20-%20Delta%20(4D)%20Approximation%20K-Space.md) | $$(4)\leftrightarrow(1)$$ | establish validity of delta approximation by a gaussian in k-space 4D (instead of 6D due to symmetry considerations which make it possible to reduce the dimensionality) |
 
 Under the parabolic band approximation, and due to it's central role in our [main reference material](../resources/1%20-%20theory-of-hot-photoluminescence-from-drude-metals.pdf), equation $(4)$ serves as our point of reference during all comparisons. Since in equations $(3)$ and $(4)$ the delta function has to be approximated, its validity must be ascertained in both energy and momentum space. Only then can we use it in equation $(1)$ to calculate the non-parabolic (and more accurate) case and, finally, the interband transition.
 
@@ -72,9 +72,7 @@ f^{T}(\mathcal{E}+\hbar\omega)\,[1-f^{T}(\mathcal{E})]
 $$
 appears in every stage through Eq. (4)–(7). Before quantifying approximation error, it is useful to visualize its support and characteristic energy scale as a function of $(\mathcal{E}_F,T,\hbar\omega)$.
 
-Figure:
-
-![](../figures/fermi_product_interactive_default.svg)
+![center|700](../figures/thermal_factor_distributions_default.png)
 
 Figure 0.1: Default visualization of $f(\mathcal{E}+\hbar\omega)[1-f(\mathcal{E})]$ and its factors for a representative $(\mathcal{E}_F,T,\hbar\omega)$ setting.
 
