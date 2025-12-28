@@ -8,7 +8,37 @@
         "type": "tabs",
         "children": [
           {
+            "id": "f369ac098ee46b0f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "notes/Non-equilibrium Emission in Metals.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Non-equilibrium Emission in Metals"
+            }
+          },
+          {
             "id": "e7a7b303c61786dc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "notes/A0 - Derivation of the General Emission Integral.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "A0 - Derivation of the General Emission Integral"
+            }
+          },
+          {
+            "id": "65e1fe750cd7132f",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -20,6 +50,21 @@
               },
               "icon": "lucide-file",
               "title": "0 - Work Plan"
+            }
+          },
+          {
+            "id": "cd35e79a81f01803",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "notes/Interband Transition in Energy Space.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Interband Transition in Energy Space"
             }
           },
           {
@@ -38,7 +83,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -204,45 +249,44 @@
       "obsidian-stille:Toggle Stille": false
     }
   },
-  "active": "059e30e5f8f291ef",
+  "active": "cd35e79a81f01803",
   "lastOpenFiles": [
-    "notes/2 - Numeric Convergence.md",
-    "notes/1 - Analytic Approximation.md",
-    "notes/0 - Work Plan.md",
-    "notes/Idea about integration limits in the energy space.md",
-    "notes/Introduction.md",
     "notes/Non-equilibrium Emission in Metals.md",
+    "notes/Interband Transition in Energy Space.md",
+    "notes/0 - Work Plan.md",
+    "notes/5 - Delta (2D) Approximation K-Space.md",
+    "notes/4 - Delta (2D) Approximation E-Space.md",
+    "figures/delta_convergence_cos_L10_fine.png",
+    "figures/delta_convergence_cos.png",
+    "notes/Electronic Transitions.md",
+    "notes/Emission Calculations.md",
+    "notes/A0 - Derivation of the General Emission Integral.md",
+    "notes/1 - Analytic Approximation.md",
+    "notes/2 - Numeric Convergence.md",
+    "notes/3 - Constant eDOS Approximation.md",
+    "notes/A5 - Numeric Delta Approximation.md",
+    "notes/Idea about integration limits in the energy space.md",
+    "notes/Change of Variables for Emission Integral.md",
+    "notes/Boltzmann Equation.md",
+    "notes/A4 - Thermal Factor Energy Space.md",
+    "notes/A3 - Electronic Density of States.md",
+    "notes/A2 - Interband Transitions and Joint Density of States.md",
+    "notes/A1 - Derivation of Analytic Approximation.md",
+    "notes/6 - Delta (4D) Approximation K-Space.md",
+    "figures/notebook_lm_infographic2.png",
+    "figures/notebook_lm_infographic.png",
+    "notes/Introduction.md",
     "notes/log.md",
     "notes/MASTER_GUIDE.md",
     "notes/Photon Absorption by Conduction Electrons.md",
-    "notes/Untitled.md",
-    "notes/3 - Constant eDOS Approximation.md",
-    "notes/4 - Delta (2D) Approximation E-Space.md",
     "figures/stage_2_rel_error_grid.png",
     "figures/stage_4_spectral_profile.png",
     "figures/stage_4_sigma_convergence.png",
-    "notes/5 - Delta (2D) Approximation K-Space.md",
-    "notes/6 - Delta (4D) Approximation K-Space.md",
     "resources/A1 - semiconductor_emission_slides.pdf",
-    "notes/A5 - Numeric Delta Approximation.md",
     "notes/A6 - Non-Equilibrium Electron Distribution.md",
-    "notes/A0 - Derivation of the General Emission Integral.md",
-    "notes/A1 - Derivation of Analytic Approximation.md",
-    "notes/A2 - Interband Transitions and Joint Density of States.md",
-    "notes/A3 - Electronic Density of States.md",
-    "notes/A4 - Thermal Factor Energy Space.md",
-    "notes/A2 - Intraband Emission.md",
     "figures/thermal_factor_distributions_default.png",
     "figures/stage_3_rel_error_T300K.png",
     "figures/stage_3_edos_vs_const_edos_heatmap.png",
-    "figures/stage_2_step_convergence_T300K.png",
-    "figures/stage_2_rel_error_grid_50x50.png",
-    "figures/stage_2_length_convergence_T300K.png",
-    "figures/stage_1_analytic_approx_rel_error.png",
-    "notes/Boltzmann Equation.md",
-    "notes/Change of Variables for Emission Integral.md",
-    "notes/Electronic Transitions.md",
-    "notes/Emission Calculations.md",
     "figures/stage_1_rel_error_heatmap_EF5p00eV.svgz",
     "resources/0 - Contribution_of_Interband_Transitions_to_Non_equilibrium_Emission_From_Gold.pdf",
     "resources/raman_pl_distinction.pdf",
