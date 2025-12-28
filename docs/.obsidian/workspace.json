@@ -28,13 +28,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/Intraband Transition in Energy Space.md",
+                "file": "notes/Progress Report + Questions for Yonatan.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Intraband Transition in Energy Space"
+              "title": "Progress Report + Questions for Yonatan"
             }
           }
         ],
@@ -111,7 +111,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/Intraband Transition in Energy Space.md",
+                "file": "notes/Progress Report + Questions for Yonatan.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +121,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Intraband Transition in Energy Space"
+              "title": "Backlinks for Progress Report + Questions for Yonatan"
             }
           },
           {
@@ -206,14 +206,15 @@
   },
   "active": "ca8cc0eedbaaf13a",
   "lastOpenFiles": [
+    "notes/Photon Absorption by Conduction Electrons.md",
+    "notes/Non-equilibrium Emission in Metals.md",
     "notes/Interband Transition in Energy Space.md",
+    "notes/Idea about integration limits in the energy space.md",
     "notes/Intraband Transition in Energy Space.md",
     "notes/A5 - Numeric Delta Approximation.md",
     "notes/Boltzmann Equation.md",
     "notes/Change of Variables for Emission Integral.md",
-    "notes/Idea about integration limits in the energy space.md",
     "notes/Emission Calculations.md",
-    "notes/Non-equilibrium Emission in Metals.md",
     "notes/0 - Work Plan.md",
     "notes/5 - Delta (2D) Approximation K-Space.md",
     "notes/4 - Delta (2D) Approximation E-Space.md",
@@ -234,7 +235,6 @@
     "notes/Introduction.md",
     "notes/log.md",
     "notes/MASTER_GUIDE.md",
-    "notes/Photon Absorption by Conduction Electrons.md",
     "figures/stage_2_rel_error_grid.png",
     "figures/stage_4_spectral_profile.png",
     "figures/stage_4_sigma_convergence.png",

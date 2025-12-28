@@ -11,7 +11,6 @@ $$
 \delta(\mathcal{E}_{1}-\mathcal{E}_{2}-\hbar\omega) = \int\limits \delta(\mathcal{E}-\mathcal{E}_{2}-\hbar\omega)\delta(\mathcal{E}-\mathcal{E}_{1}) d\mathcal{E}
 $$
 We can separate the integral into two distinct parts in $\mathbf{k}_{1}$ and $\mathbf{k}_{2}$.
-
 $$
-\int d\mathcal{E} \left( \int_{\text{BZ}} f(\mathcal{E}_1) \delta(\mathcal{E}_1 - \mathcal{E}) d^3k_1 \right) \left( \int_{\text{BZ}} [1-f(\mathcal{E}_2)] \delta(\mathcal{E}_2 - (\mathcal{E}-\hbar\omega)) d^3k_2 \right)
+\int d\mathcal{E} \left( \int_{\text{BZ}} f(\mathcal{E}_1) \delta(\mathcal{E}_1 - \mathcal{E}) d^3k_1 \right) \left( \int_{\text{BZ}} \Big[1-f(\mathcal{E}_2)\Big] \delta(\mathcal{E} - \mathcal{E}_{2}-\hbar\omega) d^3k_2 \right)
 $$
