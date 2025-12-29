@@ -26,15 +26,17 @@
             "id": "cd35e79a81f01803",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "notes/7 - Intraband Transition in Energy Space.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
+                "file": "emission integral tree.canvas",
+                "viewState": {
+                  "x": -222.45000000000044,
+                  "y": 188.80000000000058,
+                  "zoom": 0
+                }
               },
-              "icon": "lucide-file",
-              "title": "7 - Intraband Transition in Energy Space"
+              "icon": "lucide-layout-dashboard",
+              "title": "emission integral tree"
             }
           },
           {
@@ -150,7 +152,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/7 - Intraband Transition in Energy Space.md",
+                "file": "emission integral tree.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -160,7 +162,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 7 - Intraband Transition in Energy Space"
+              "title": "Backlinks for emission integral tree"
             }
           },
           {
@@ -245,13 +247,13 @@
   },
   "active": "cd35e79a81f01803",
   "lastOpenFiles": [
+    "notes/7 - Intraband Transition in Energy Space.md",
     "emission integral tree.canvas",
     "notes/9 - Interband Transition in Energy Space.md",
     "notes/0 - Work Plan.md",
     "9. Misc/Excalidraw/Drawing 2025-12-29 07.36.19.excalidraw.md",
     "figures/Pasted Image 20251229073635_980.png",
     "notes/Untitled.md",
-    "notes/7 - Intraband Transition in Energy Space.md",
     "9. Misc/Excalidraw/Drawing 2025-12-29 07.27.44.excalidraw.md",
     "9. Misc/Excalidraw",
     "9. Misc",
