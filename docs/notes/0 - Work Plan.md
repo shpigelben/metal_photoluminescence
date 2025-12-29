@@ -1,3 +1,4 @@
+![](../figures/Pasted%20image%2020251229105823.png)
 # Intraband transitions
 - [ ] change this into a tree 
 $$

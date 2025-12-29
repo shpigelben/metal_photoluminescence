@@ -1,29 +1,27 @@
 {
 	"nodes":[
-		{"id":"d8fcfe739557b691","type":"text","text":"general emission integral\n","x":-220,"y":-200,"width":260,"height":50},
-		{"id":"44f60da9618c95cf","type":"text","text":"intraband","x":-280,"y":-65,"width":120,"height":60},
-		{"id":"532ffaf1e4acfa89","type":"text","text":"parabolic","x":-397,"y":80,"width":117,"height":60},
-		{"id":"c38c4ec82f55e5f2","type":"text","text":"non-parabolic","x":-160,"y":80,"width":158,"height":60},
-		{"id":"67634e4e18255659","type":"text","text":"numeric","x":-504,"y":220,"width":107,"height":60},
-		{"id":"d4a0ff81c2f99517","type":"text","text":"analytic\n(only for thermal case)","x":-362,"y":220,"width":162,"height":140},
-		{"id":"5226b7820cfd36d8","type":"text","text":"interband","x":60,"y":-65,"width":120,"height":60},
-		{"id":"68aafd13fcaab926","type":"text","text":"L","x":130,"y":80,"width":50,"height":58},
-		{"id":"ec8f48fdc0388be0","type":"text","text":"X","x":60,"y":80,"width":50,"height":58},
-		{"id":"b0e7d847e9cf67d0","type":"text","text":"L","x":-52,"y":222,"width":50,"height":58},
-		{"id":"639d6bbc52496967","type":"text","text":"X","x":-160,"y":222,"width":50,"height":58},
-		{"id":"315f3b0fcb70427b","x":-377,"y":400,"width":165,"height":60,"type":"text","text":"approximation"}
+		{"id":"d8fcfe739557b691","type":"text","text":"# $$\\text{General Emission Integral}$$\n$$\n\\Gamma(\\hbar\\omega) = \\frac{2\\pi}{\\hbar} \\left( \\frac{2V}{(2\\pi)^{3}} \\right)^{2} \\sum_{\\alpha, \\beta} \\iint\\limits_{\\text{BZ}} |\\mu^{\\alpha\\beta}(\\mathbf{k_{1}},\\mathbf{k_{2}})|^{2} \\ f_{\\alpha}(\\mathbf{k}_{1})\\overline{f_{\\beta}(\\mathbf{k}_{2})} \\ \\delta\\big(\\mathcal{E}_{\\beta}(\\mathbf{k}_{2}) - \\mathcal{E}_{\\alpha}(\\mathbf{k}_{1}) + \\hbar\\omega \\big) \\ d^{3}k_{1} \\ d^{3}k_{2} \n$$","x":-572,"y":-320,"width":875,"height":200},
+		{"id":"44f60da9618c95cf","type":"text","text":"# $$\\text{intraband}$$\n\n$$\n\\int_{0}^{\\infty}\nf^{T}(\\mathcal{E}+\\hbar\\omega)\\big[1-f^{T}(\\mathcal{E})\\big]\\,\n\\rho(\\mathcal{E}+\\hbar\\omega)\\, \\rho(\\mathcal{E})\\,\nd\\mathcal{E} \n$$","x":-704,"y":85,"width":487,"height":210},
+		{"id":"c38c4ec82f55e5f2","type":"text","text":"# $$\\text{non-parabolic}$$\n\n$$\n\\mathcal{E}_{c}(\\mathbf{k}) = \\mathcal{E}_{0c} + \\frac{\\hbar^2 k_{\\perp}^2}{2m_{c\\perp}} - \\frac{\\hbar^2 k_{\\parallel}^2}{2m_{c\\parallel}} \n$$","x":-420,"y":421,"width":333,"height":290},
+		{"id":"532ffaf1e4acfa89","type":"text","text":"# $$\\text{Parabolic}$$\n\n$$\n\\mathcal{E}{(\\mathbf{k})}=\\frac{\\hbar^{2}}{2m}\\Big( k_{x}^{2}+k_{y}^{2}+k_{z}^{2} \\Big)\n$$\n\n$$\n\\rho(\\mathcal{E}) = \\frac{4\\pi {m_e}^{3/2}}{\\hbar^3}\\sqrt{2\\mathcal{E}}\n$$","x":-834,"y":421,"width":314,"height":290},
+		{"id":"5226b7820cfd36d8","type":"text","text":"# $$\\text{Interband}$$\n$$\nI(\\hbar\\omega)= \\frac{\\pi^{2}|\\mu|^{2}}{\\hbar \\sqrt{ \\overline{A}D }}\n\\int\\limits_{\\mathcal{E_{min}(\\hbar \\omega)}}^{\\mathcal{E_{max}(\\hbar \\omega)}} \\frac{{f(\\mathcal{E})f(\\hbar\\omega-\\mathcal{E})}}{\\sqrt{ \\mathcal{E_{max}(\\hbar\\omega)}-\\mathcal{E} }} \\; d\\mathcal{E}\n$$","x":303,"y":70,"width":434,"height":240},
+		{"id":"07d3b2954850545a","x":-134,"y":85,"width":365,"height":210,"type":"text","text":"Delta approximation and directly calculating in k-space proved computationally expensive and ultimately unwarranted given that a proper path into a 1D E-space integration is available"},
+		{"id":"d4a0ff81c2f99517","type":"text","text":"# $$\\text{Analytic (Const eDOS Thermal Distribution)}$$\n$$\n\\rho^{2}(\\mathcal{E}_{F}) \\frac{k_BT}{e^{\\beta\\hbar\\omega}-1}\\Big[\\beta\\hbar\\omega+\\ln\\left(1+e^{-\\beta\\mu}\\right)-\\ln\\left(1+e^{\\beta(\\hbar\\omega-\\mu)}\\right)\\Big]\n$$","x":-810,"y":840,"width":700,"height":200},
+		{"id":"315f3b0fcb70427b","type":"text","text":"# $$\\text{Low Energy Approximation}$$\n$$\n\\rho^{2}(\\mathcal{E}_{F})\\,\\frac{\\hbar\\omega}{e^{\\beta\\hbar\\omega}-1}\n$$","x":-724,"y":1180,"width":527,"height":180},
+		{"id":"8437171c621730ad","type":"text","text":"here the band is a saddle and no global minimum can be set, so integration limits should be determined both from above and below","x":-4,"y":476,"width":307,"height":180},
+		{"id":"5a729c7e3f3a9f85","type":"text","text":"$$\n\\mathcal{E}\\in(0,\\mathcal{E}_{\\text{max}})\n$$\nThe bottom of the parabolic band is set as 0","x":-1220,"y":474,"width":280,"height":184}
 	],
 	"edges":[
-		{"id":"6676381a4ca1ab7f","fromNode":"d8fcfe739557b691","fromSide":"bottom","toNode":"44f60da9618c95cf","toSide":"top"},
-		{"id":"194eae978d7403c1","fromNode":"d8fcfe739557b691","fromSide":"bottom","toNode":"5226b7820cfd36d8","toSide":"top"},
+		{"id":"6676381a4ca1ab7f","fromNode":"d8fcfe739557b691","fromSide":"bottom","toNode":"44f60da9618c95cf","toSide":"top","label":"Constant TDM"},
+		{"id":"194eae978d7403c1","fromNode":"d8fcfe739557b691","fromSide":"bottom","toNode":"5226b7820cfd36d8","toSide":"top","label":"Constant TDM"},
 		{"id":"390323b8132fb6d5","fromNode":"44f60da9618c95cf","fromSide":"bottom","toNode":"532ffaf1e4acfa89","toSide":"top"},
 		{"id":"2edd5ac68eda8c37","fromNode":"44f60da9618c95cf","fromSide":"bottom","toNode":"c38c4ec82f55e5f2","toSide":"top"},
-		{"id":"0d14a1df24e4b807","fromNode":"532ffaf1e4acfa89","fromSide":"bottom","toNode":"67634e4e18255659","toSide":"top"},
 		{"id":"76532776f9a8c103","fromNode":"532ffaf1e4acfa89","fromSide":"bottom","toNode":"d4a0ff81c2f99517","toSide":"top"},
-		{"id":"00c53b3078b5cf5b","fromNode":"c38c4ec82f55e5f2","fromSide":"bottom","toNode":"639d6bbc52496967","toSide":"top"},
-		{"id":"237d9fc7f5b9b3d2","fromNode":"c38c4ec82f55e5f2","fromSide":"bottom","toNode":"b0e7d847e9cf67d0","toSide":"top"},
-		{"id":"35eac170417c19b6","fromNode":"5226b7820cfd36d8","fromSide":"bottom","toNode":"ec8f48fdc0388be0","toSide":"top"},
-		{"id":"cb1cdf10cb28f854","fromNode":"5226b7820cfd36d8","fromSide":"bottom","toNode":"68aafd13fcaab926","toSide":"top"},
-		{"id":"36775e10ee67aa2d","fromNode":"d4a0ff81c2f99517","fromSide":"bottom","toNode":"315f3b0fcb70427b","toSide":"top"}
+		{"id":"36775e10ee67aa2d","fromNode":"d4a0ff81c2f99517","fromSide":"bottom","toNode":"315f3b0fcb70427b","toSide":"top"},
+		{"id":"67e8dda519678235","fromNode":"532ffaf1e4acfa89","fromSide":"left","toNode":"5a729c7e3f3a9f85","toSide":"right"},
+		{"id":"50e42c8082e01d01","fromNode":"c38c4ec82f55e5f2","fromSide":"right","toNode":"8437171c621730ad","toSide":"left"},
+		{"id":"27a14077bca09851","fromNode":"c38c4ec82f55e5f2","fromSide":"bottom","toNode":"d4a0ff81c2f99517","toSide":"top"},
+		{"id":"faac2a44ecee19e3","fromNode":"44f60da9618c95cf","fromSide":"right","toNode":"07d3b2954850545a","toSide":"left"},
+		{"id":"f38ba6220ec59554","fromNode":"5226b7820cfd36d8","fromSide":"left","toNode":"07d3b2954850545a","toSide":"right"}
 	]
 }

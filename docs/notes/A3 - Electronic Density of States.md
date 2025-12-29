@@ -12,3 +12,4 @@ plugging the relevant expressions in $(A2.2)$ into $(A 2.1)$ results in
 $$
 \rho(\mathcal{E}) = \frac{4\pi {m_e}^{3/2}}{\hbar^3}\sqrt{2\mathcal{E}}
 $$
+

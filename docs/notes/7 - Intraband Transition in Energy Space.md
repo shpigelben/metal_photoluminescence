@@ -43,3 +43,10 @@ $$d^3k = 2\pi k_{\perp} dk_{\perp} (2 dk_{\parallel}) = \underbrace{ \frac{2\pi 
 
 
 $$\mathcal{E}_{c}(x,y) = \mathcal{E}_{0c} + x - y$$
+
+
+# eDOS
+
+$$
+\rho(\mathcal{E}_{j}) = \int\limits_{\text{BZ}} \, \delta \Big[ \mathcal{E}_{j}-(\mathcal{E}_{0}+Ax-By) \Big] \; \frac{dxdy}{\sqrt{ y }}
+$$
