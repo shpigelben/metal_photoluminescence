@@ -1,5 +1,5 @@
 # Intraband transitions
-
+- [ ] change this into a tree 
 $$
 \boxed{\begin{align}
 I_{e}^{T}(\hbar\omega) \propto\;& \iint_{\text{BZ}} 
@@ -62,6 +62,14 @@ To assess the regimes of validity of this approximation we proceed from the bott
 Creating a fine enough grid for a shrinking Gaussian is computationally intensive as it is for 2D integrals. It seems unfeasible as of now for 4D integrals
 # Phase 2 (Option II - Change of Variables Approach)
 
+| stage                                                                                               | comparison | purpose                                                                                                        |
+| --------------------------------------------------------------------------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------- |
+| [7 - Intraband Transition in Energy Space](7%20-%20Intraband%20Transition%20in%20Energy%20Space.md) |            | Find the energy-space integral for the intraband transition of a non-parabolic band as given by the Rose paper |
+| 8 - Parabolic vs Non-parabolic                                                                      |            |                                                                                                                |
+| [9 - Interband Transition in Energy Space](9%20-%20Interband%20Transition%20in%20Energy%20Space.md) |            |                                                                                                                |
+
+
+- [ ] Since Rosei's band approximations hold only for a fraction of k-space, if we wish to quantify the parabolic vs saddle conduction band contribution, we have to be able to find the integration limits for the parabolic case that integrate of the exact same region in k-space
 
 
 Under the parabolic band approximation, and due to it's central role in our [main reference material](../resources/1%20-%20theory-of-hot-photoluminescence-from-drude-metals.pdf), equation $(4)$ serves as our point of reference during all comparisons. Since in equations $(3)$ and $(4)$ the delta function has to be approximated, its validity must be ascertained in both energy and momentum space. Only then can we use it in equation $(1)$ to calculate the non-parabolic (and more accurate) case and, finally, the interband transition.
