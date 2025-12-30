@@ -4,7 +4,7 @@ $$\mathcal{E}_{c}(\mathbf{k}) = \mathcal{E}_{0c} + \frac{\hbar^2 k_{\perp}^2}{2m
 ## General Derivation
 
 $$I(\hbar\omega) \propto \iint_{\text{BZ}} d^{3}k_{1} d^{3}k_{2} \; f(\mathcal{E}_{c}(\mathbf{k}_{1})) \Big[1-f(\mathcal{E}_{c}(\mathbf{k}_{2}))\Big] \; \delta\Big(\mathcal{E}_{c}(\mathbf{k}_{1}) - \mathcal{E}_{c}(\mathbf{k}_{2}) - \hbar\omega \Big)$$
-Unlike the inter-band case, this process is phonon-assisted (or defect-assisted), meaning momentum is **not conserved** ($\mathbf{k}_1 \neq \mathbf{k}_2$). The initial and final states are independent vectors in the Brillouin Zone. This allows us to decouple the six-dimensional integral into a product of two independent densities of states.
+Unlike the inter-band case, this process is phonon-assisted (or defect-assisted), meaning momentum is **not conserved** ($\mathbf{k}_1 \neq \mathbf{k}_2$) even approximately. We assume that whatever momentum is missing for an energetic transition to occur is readily available through various mediators (as mentioned above). The initial and final states are independent vectors in the Brillouin Zone. This allows us to decouple the six-dimensional integral into a product of two independent densities of states.
 
 By using the following
 $$
@@ -12,11 +12,11 @@ $$
 $$
 We can write
 $$\begin{align} I(\hbar\omega) \propto \int\limits_{-\infty}^{\infty} d\mathcal{E}_1 d\mathcal{E}_2 \;& f(\mathcal{E}_1) \Big[1-f(\mathcal{E}_2)\Big] \; \delta(\mathcal{E}_1 - \mathcal{E}_2 - \hbar\omega) \\ &\times \underbrace{\left( \int\limits_{\text{BZ}} d^3k_1 \; \delta(\mathcal{E}_1 - \mathcal{E}_c(\mathbf{k}_1)) \right)}_{\rho_c(\mathcal{E}_1)} \underbrace{\left( \int\limits_{\text{BZ}} d^3k_2 \; \delta(\mathcal{E}_2 - \mathcal{E}_c(\mathbf{k}_2)) \right)}_{\rho_c(\mathcal{E}_2)} \end{align}$$
-
+and we retrieve the familiar 1D expression for emission
 $$
 I(\hbar\omega)\propto \int\limits_{-\infty}^{\infty} f(\mathcal{E})\Big[ 1-f(\mathcal{E-\hbar\omega}) \Big] \rho_{c}(\mathcal{E})\rho_{c}(\mathcal{E}-\hbar\omega)\,\, d\mathcal{E}
 $$
-
+The challenge here is to properly find a closed expression for the electronic density of states (eDOS).
 # Finding the Conduction Band eDOS
 First COV (Cylindrical Symmetry) - Using the rotational symmetry of the saddle point near X
 $$d^3k \to 2\pi k_{\perp} dk_{\perp} dk_{\parallel}$$

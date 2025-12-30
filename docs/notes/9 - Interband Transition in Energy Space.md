@@ -81,7 +81,6 @@ $$
 D = A_{c}B_{v}-A_{v}B_{c} = \frac{m_{c \perp}}{m_{v \perp}} + \frac{m_{c \parallel}}{m_{v \parallel}}
 $$
 from the inverse transformation we extract the definitions $x(\mathcal{E},\Delta)$ and $y(\mathcal{E},\Delta)$. With those definitions we can impose the known integration limits previously discussed to find the integration limits of the new integration variables
-
 $$
 \begin{align}
 &x(\mathcal{E}, \Delta)>0  &&\implies  \quad \frac{1}{D} \left[ \bar{B}(\mathcal{E} - \mathcal{E}_{c0}) + B_c(\Delta - \mathcal{E}_g) \right] >0
@@ -98,7 +97,6 @@ $$
 \end{align}
 $$
 It is also useful explicitly write $y(\mathcal{E}, \Delta)$ since it appears in the Jacobian of the $(k_{\perp},k_{\parallel})\to(x,y)$ transformation. It can be shown that it is simply
-
 $$
 y(\mathcal{E}, \Delta) = \frac{\bar{A}}{D}\Big(\mathcal{E}_{max}(\Delta)-\mathcal{E}\Big)
 $$
