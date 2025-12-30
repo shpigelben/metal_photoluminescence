@@ -1,8 +1,8 @@
 
 $$
 \mathcal{E}_{b}(\mathbf{k})  = \begin{cases}
--\mathcal{E}_{0v} - \frac{{\hbar ^{2}k_{\perp}^{2}}}{2m_{V \perp}} - \frac{{\hbar ^{2}k_{\parallel}^{2}}}{2m_{V \parallel}} &&\implies\mathcal{E}_{0 v}-\alpha_{v}k_{\perp}^{2}-\beta_{v}k_{\parallel}^{2}  &&&(\mathcal{E<\mathcal{E_{0v}}})\\ \\
- \ \ \ \mathcal{E}_{0 c} + \frac{{\hbar ^{2}k_{\perp}^{2}}}{2m_{C \perp}} - \frac{{\hbar ^{2}k_{\parallel}^{2}}}{2m_{C \parallel}} && \implies\mathcal{E}_{0 c}+\alpha_{c}k_{\perp}^{2}-\beta_{c}k_{\parallel}^{2} &&&(\mathcal{E>\mathcal{E_{0c}}})
+-\mathcal{E}_{0v} - \frac{{\hbar ^{2}k_{\perp}^{2}}}{2m_{V \perp}} - \frac{{\hbar ^{2}k_{\parallel}^{2}}}{2m_{V \parallel}} &&\implies-\mathcal{E}_{0 v}-A_{v}k_{\perp}^{2}-B_{v}k_{\parallel}^{2}  &&&(\mathcal{E<\mathcal{E_{0v}}})\\ \\
+ \ \ \ \mathcal{E}_{0 c} + \frac{{\hbar ^{2}k_{\perp}^{2}}}{2m_{C \perp}} - \frac{{\hbar ^{2}k_{\parallel}^{2}}}{2m_{C \parallel}} && \implies\mathcal{E}_{0 c}+A_{c}k_{\perp}^{2}-B_{c}k_{\parallel}^{2} &&&(\mathcal{E>\mathcal{E_{0c}}})
 \end{cases} 
  $$
 

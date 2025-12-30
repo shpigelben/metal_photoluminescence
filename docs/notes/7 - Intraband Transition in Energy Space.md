@@ -6,47 +6,59 @@ $$\mathcal{E}_{c}(\mathbf{k}) = \mathcal{E}_{0c} + \frac{\hbar^2 k_{\perp}^2}{2m
 $$I(\hbar\omega) \propto \iint_{\text{BZ}} d^{3}k_{1} d^{3}k_{2} \; f(\mathcal{E}_{c}(\mathbf{k}_{1})) \Big[1-f(\mathcal{E}_{c}(\mathbf{k}_{2}))\Big] \; \delta\Big(\mathcal{E}_{c}(\mathbf{k}_{1}) - \mathcal{E}_{c}(\mathbf{k}_{2}) - \hbar\omega \Big)$$
 Unlike the inter-band case, this process is phonon-assisted (or defect-assisted), meaning momentum is **not conserved** ($\mathbf{k}_1 \neq \mathbf{k}_2$). The initial and final states are independent vectors in the Brillouin Zone. This allows us to decouple the six-dimensional integral into a product of two independent densities of states.
 
-Using the following identity
+By using the following
 $$
-\delta(\mathcal{E}_{1}-\mathcal{E}_{2}-\hbar\omega) = \int\limits \delta(\mathcal{E}-\mathcal{E}_{2}-\hbar\omega)\delta(\mathcal{E}-\mathcal{E}_{1}) d\mathcal{E}
+\delta\Big(\mathcal{E}_{c}(\mathbf{k}_{1}) - \mathcal{E}_{c}(\mathbf{k}_{2}) - \hbar\omega \Big) = \iint\limits \delta(\mathcal{E}_1 - \mathcal{E}_c(\mathbf{k}_1)) \times \delta(\mathcal{E}_2 - \mathcal{E}_c(\mathbf{k}_2))  \times \delta(\mathcal{E}_1 - \mathcal{E}_2 - \hbar\omega) \; d\mathcal{E}_{1}d\mathcal{E}_{2}
 $$
-this enables us to separate the integral into two distinct parts in $\mathbf{k}_{1}$ and $\mathbf{k}_{2}$.
-$$
-\int d\mathcal{E} \left( \int_{\text{BZ}} f(\mathcal{E}_1) \delta(\mathcal{E}_1 - \mathcal{E}) d^3k_1 \right) \left( \int_{\text{BZ}} \Big[1-f(\mathcal{E}_2)\Big] \delta(\mathcal{E} - \mathcal{E}_{2}-\hbar\omega) d^3k_2 \right)
-$$
+We can write
+$$\begin{align} I(\hbar\omega) \propto \int\limits_{-\infty}^{\infty} d\mathcal{E}_1 d\mathcal{E}_2 \;& f(\mathcal{E}_1) \Big[1-f(\mathcal{E}_2)\Big] \; \delta(\mathcal{E}_1 - \mathcal{E}_2 - \hbar\omega) \\ &\times \underbrace{\left( \int\limits_{\text{BZ}} d^3k_1 \; \delta(\mathcal{E}_1 - \mathcal{E}_c(\mathbf{k}_1)) \right)}_{\rho_c(\mathcal{E}_1)} \underbrace{\left( \int\limits_{\text{BZ}} d^3k_2 \; \delta(\mathcal{E}_2 - \mathcal{E}_c(\mathbf{k}_2)) \right)}_{\rho_c(\mathcal{E}_2)} \end{align}$$
 
 $$
-d^{3}k_{1}\to d\mathcal{E}_{1}d\mathcal{E} \quad\quad d^{3}k_{1}\to d\mathcal{E}_{2}d\Delta
+I(\hbar\omega)\propto \int\limits_{-\infty}^{\infty} f(\mathcal{E})\Big[ 1-f(\mathcal{E-\hbar\omega}) \Big] \rho_{c}(\mathcal{E})\rho_{c}(\mathcal{E}-\hbar\omega)\,\, d\mathcal{E}
 $$
 
-now the electronic occupation factors can be taken out of the integral
+# Finding the Conduction Band eDOS
+First COV (Cylindrical Symmetry) - Using the rotational symmetry of the saddle point near X
+$$d^3k \to 2\pi k_{\perp} dk_{\perp} dk_{\parallel}$$
+Second COV (Linearization) - We introduce variables $x$ and $y$ to linearize the energy expression
 
+$$\begin{align} x &= k_{\perp}^{2} &&\implies dx = 2k_{\perp}dk_{\perp} \\ y &= k_{\parallel}^{2} &&\implies \frac{1}{2}\frac{dy}{\sqrt{ y }} = dk_{\parallel} \end{align}$$
+
+Accounting for the symmetry of $k_{\parallel}$ (integrating from $-\infty$ to $\infty$ is equivalent to $2 \times$ integrating $0$ to $\infty$), the volume element becomes
+$$d^3k \to \pi \frac{dx dy}{\sqrt{y}}$$
+> [!NOTE]- (b)->(c) transition
+> The delta function forces its argument to vanish$$
+\begin{align}
+\mathcal{E}_{j}-\mathcal{E}_{c}(x,y) &\stackrel{!}{=} 0 \\
+\mathcal{E}_{j} - \mathcal{E}_{0}-Ax + By&\stackrel{!}{=} 0 \\
+y - \frac{Ax-\Delta}{B}&\stackrel{!}{=} 0
+\end{align}
+$$ where $\Delta\equiv \mathcal{E}_{j}-\mathcal{E}_{0}$. All three lines are equivalent arguments for the delta function and for the sake of reducing the $y$ component we chose the last.
+
+Let us apply the COV to the density of states
+$$
+\begin{align}
+\rho(\mathcal{E}_{j}) &= \int\limits_{\text{BZ}}  \; \delta \Big( \mathcal{E}_{j}-\mathcal{E}_{c}(\mathbf{k}) \Big)\, d^{3}k \tag{a}\\
+&= \pi\iint \, \delta \Big[ \mathcal{E}_{j}-\mathcal{E}_{c}(x,y) \Big] \; \frac{dxdy}{\sqrt{ y }} \tag{b}\\
+&=\frac{\pi}{B} \iint\limits \delta \left[ y - \frac{Ax -\Delta}{B}\right] \; \frac{dxdy}{\sqrt{ y }} \tag{c} \\
+&= \frac{\pi}{\sqrt{ B }}\int \frac{dx}{\sqrt{ Ax - \Delta }} \tag{d}
+\end{align}
+$$
+
+Next, we find the proper integration limits on $x$
+> [!NOTE]- Integration Limits
+> 
+First, lets us express $y$ in terms of $x$ $$y(x) = \frac{1}{B}\Big[ Ax - \Delta \Big]$$we apply both integration limits brought from $k_{\perp}$ and $k_{\parallel}$ $$
+\begin{align} 
+k_{\perp}^{2}\geq0 &\implies x\geq 0  \\ k_{\parallel}^{2}\geq0 &\implies y(x)\geq 0 
+\end{align}$$ we apply both conditions to $x(y)$ $$x\geq \frac{\Delta}{A} \quad x\geq 0$$ This provides a lower limit on the $x$ integration, and we choose the the upper lower bound, namely $$x_{min}(\Delta) = \max \left[ 0, \frac{\Delta}{A} \right]$$
 
 $$
-\int d\mathcal{E}  \;  f(\mathcal{E}) \Big[1-f(\mathcal{E}-\hbar \omega)\Big] \left( \int_{\text{BZ}}\delta\big(\mathcal{E}_1(\mathbf{k}_{1}) - \mathcal{E}\big) d^3k_1 \right) \left( \int_{\text{BZ}} \delta(\mathcal{E}_{2}(\mathbf{k}) - \mathcal{E} +\hbar\omega) d^3k_2 \right)
+\rho(\mathcal{E}_{j})=\frac{\pi}{\sqrt{ B }}\int \limits_{x_{min}(\Delta)}^{x_{max}}\frac{dx}{\sqrt{ Ax - \Delta }} 
 $$
-
-
-## 2. Detailed Derivation of Saddle Point DOS
-
-We now calculate $\rho(\mathcal{E})$ for a single saddle-point valley, incorporating the **finite validity range** of the approximation.
-
-### A. Coordinate Transformation
-
-We define the energy-unit variables to normalize the effective masses
-$$\begin{align} x &= \frac{\hbar^2 k_{\perp}^2}{2m_{c\perp}} &&\implies dx = \frac{\hbar^2}{m_{c\perp}} k_{\perp} dk_{\perp} \\ y &= \frac{\hbar^2 k_{\parallel}^2}{2m_{c\parallel}} &&\implies \frac{dy}{\sqrt{y}} = \sqrt{\frac{2\hbar^2}{m_{c\parallel}}} dk_{\parallel} \end{align}$$
-
-Using cylindrical symmetry ($2\pi k_{\perp} dk_{\perp}$) and summing $\pm k_{\parallel}$ (factor of 2)
-
-$$d^3k = 2\pi k_{\perp} dk_{\perp} (2 dk_{\parallel}) = \underbrace{ \frac{2\pi  m_{c\perp} \sqrt{2m_{c\parallel}}}{\hbar^3} }_{\mathcal{C}_{geo}} \frac{dx dy}{\sqrt{y}}$$
-
-
-
-$$\mathcal{E}_{c}(x,y) = \mathcal{E}_{0c} + x - y$$
-
-
-# eDOS
+where $x_{max}$ is determined by the range of validity of the quadratic band approximation.
 
 $$
-\rho(\mathcal{E}_{j}) = \int\limits_{\text{BZ}} \, \delta \Big[ \mathcal{E}_{j}-(\mathcal{E}_{0}+Ax-By) \Big] \; \frac{dxdy}{\sqrt{ y }}
+\rho(\mathcal{E}_{j}) = \frac{\pi A}{2\sqrt{ B }}\Bigg[ \sqrt{ Ax_{max}-\Delta_{j} } - \sqrt{ Ax_{min}(\Delta_{j})-\Delta_{j} } \Bigg]
 $$
+
