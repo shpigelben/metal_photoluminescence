@@ -21,7 +21,6 @@ The challenge here is to properly find a closed expression for the electronic de
 First COV (Cylindrical Symmetry) - Using the rotational symmetry of the saddle point near X
 $$d^3k \to 2\pi k_{\perp} dk_{\perp} dk_{\parallel}$$
 Second COV (Linearization) - We introduce variables $x$ and $y$ to linearize the energy expression
-
 $$\begin{align} x &= k_{\perp}^{2} &&\implies dx = 2k_{\perp}dk_{\perp} \\ y &= k_{\parallel}^{2} &&\implies \frac{1}{2}\frac{dy}{\sqrt{ y }} = dk_{\parallel} \end{align}$$
 
 Accounting for the symmetry of $k_{\parallel}$ (integrating from $-\infty$ to $\infty$ is equivalent to $2 \times$ integrating $0$ to $\infty$), the volume element becomes
