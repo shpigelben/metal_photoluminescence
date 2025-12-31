@@ -56,7 +56,6 @@ $$
 \rho(\mathcal{E}_{j})=\frac{\pi}{\sqrt{ B }}\int \limits_{x_{min}(\Delta)}^{x_{max}}\frac{dx}{\sqrt{ Ax - \Delta }} 
 $$
 where $x_{max}$ is determined by the range of validity of the quadratic band approximation.
-
 $$
 \rho(\mathcal{E}_{j}) = \frac{\pi A}{2\sqrt{ B }}\Bigg[ \sqrt{ Ax_{max}-\Delta_{j} } - \sqrt{ Ax_{min}(\Delta_{j})-\Delta_{j} } \Bigg]
 $$
