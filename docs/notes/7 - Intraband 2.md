@@ -18,3 +18,19 @@ $$
 \mathcal{E}_{1}(x,y)-\mathcal{E}_{2}(x,y)&= A(x_{1}-x_{2})+B(y_{2}-y_{1})&&\equiv\Delta
 \end{align}
 $$
+
+$$
+|\mathcal{J}|= \left|\frac{\partial(x_1, y_1, x_2, y_2)}{\partial(E, \Delta, y_1, y_2)}\right| =  \left| \left(\frac{1}{A}\right) \left(-\frac{1}{A}\right) \right| = \frac{1}{A^2}
+$$
+
+$$
+d^{3}k_{1}d^{3}k_{2}\to \pi^{2} \frac{dx_{1}dy_{1}}{\sqrt{ y_{1} }}\frac{dx_{2}dy_{2}}{\sqrt{ y_{2} }} \to \frac{\pi^{2}}{A^{2}}d\mathcal{E}d\Delta  \frac{dy_{1}dy_{2}}{\sqrt{ y_{1}y_{2} }}
+$$
+### Putting it All Together
+
+$$\begin{align}
+I(\hbar\omega) &\propto \iint\limits_{\text{BZ}} d^{3}k_{1} d^{3}k_{2} \; f(\mathcal{E}) \Big[1-f(\mathcal{E}-\Delta)\Big] \; \delta\Big(\Delta - \hbar\omega \Big) \\
+&= \iint\limits_{}^{}  \, \frac{\pi^{2}}{A^{2}}d\mathcal{E}d\Delta   f(\mathcal{E}) \Big[1-f(\mathcal{E}-\Delta)\Big] \; \delta\Big(\Delta - \hbar\omega \Big) \iint\limits_{y_{min}(\Delta)}^{y_{max}}    \frac{dy_{1}dy_{2}}{\sqrt{ y_{1}y_{2} }}  \\
+&=\left( \frac{2\pi}{A} \right) \iint\limits_{-\infty}^{\infty}d\mathcal{E}d\Delta   f(\mathcal{E}) \Big[1-f(\mathcal{E}-\Delta)\Big] \; \delta\Big(\Delta - \hbar\omega \Big)\times \\
+&\times \Big[ \sqrt{ y_{max}}-\sqrt{ y_{min} } \Big]
+\end{align}$$

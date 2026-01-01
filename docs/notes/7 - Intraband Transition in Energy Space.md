@@ -25,7 +25,7 @@ $$\begin{align} x &= k_{\perp}^{2} &&\implies dx = 2k_{\perp}dk_{\perp} \\ y &= 
 
 Accounting for the symmetry of $k_{\parallel}$ (integrating from $-\infty$ to $\infty$ is equivalent to $2 \times$ integrating $0$ to $\infty$), the volume element becomes
 $$d^3k \to \pi \frac{dx dy}{\sqrt{y}}$$
-> [!NOTE]- (b)->(c) transition
+> [!NOTE]- $\mathbf{(b)\to(c)}$ transition
 > The delta function forces its argument to vanish$$
 \begin{align}
 \mathcal{E}_{j}-\mathcal{E}_{c}(x,y) &\stackrel{!}{=} 0 \\
@@ -50,13 +50,33 @@ Next, we find the proper integration limits on $x$
 First, lets us express $y$ in terms of $x$ $$y(x) = \frac{1}{B}\Big[ Ax - \Delta \Big]$$we apply both integration limits brought from $k_{\perp}$ and $k_{\parallel}$ $$
 \begin{align} 
 k_{\perp}^{2}\geq0 &\implies x\geq 0  \\ k_{\parallel}^{2}\geq0 &\implies y(x)\geq 0 
-\end{align}$$ we apply both conditions to $x(y)$ $$x\geq \frac{\Delta}{A} \quad x\geq 0$$ This provides a lower limit on the $x$ integration, and we choose the the upper lower bound, namely $$x_{min}(\Delta) = \max \left[ 0, \frac{\Delta}{A} \right]$$
+\end{align}$$ we apply both conditions to $x(y)$ $$x\geq \frac{\Delta}{A} \quad x\geq 0$$ This provides a lower limit on the $x$ integration, and we choose the the upper lower bound, namely $$x_{min}(\Delta) = \max \left[ 0, \frac{\Delta}{A} \right] = \frac{1}{A}\max[0,\Delta]$$
 
 $$
 \rho(\mathcal{E}_{j})=\frac{\pi}{\sqrt{ B }}\int \limits_{x_{min}(\Delta)}^{x_{max}}\frac{dx}{\sqrt{ Ax - \Delta }} 
 $$
 where $x_{max}$ is determined by the range of validity of the quadratic band approximation.
-$$
-\rho(\mathcal{E}_{j}) = \frac{\pi A}{2\sqrt{ B }}\Bigg[ \sqrt{ Ax_{max}-\Delta_{j} } - \sqrt{ Ax_{min}(\Delta_{j})-\Delta_{j} } \Bigg]
-$$
 
+$$
+\begin{align}
+\rho(\mathcal{E}_{j}) &= \frac{\pi A}{2\sqrt{ B }}\Bigg[ \sqrt{ Ax_{max}-\Delta_{j} } - \sqrt{ Ax_{min}(\Delta_{j})-\Delta_{j} } \Bigg] \\
+&= \frac{\pi A}{2\sqrt{ B }}\Bigg[ \sqrt{ Ax_{max}-\Delta_{j} } - \sqrt{ \max\big[0,\Delta_{j}\big]-\Delta_{j} } \Bigg]
+\end{align}
+$$
+### Offset COV
+This change of variables is merely for the sake of convenience
+
+$$
+\begin{cases}
+\Delta_{1}&=\mathcal{E}_{1}-\mathcal{E}_{0}  &&d\Delta_{1}=d\mathcal{E}_{1}\\
+\Delta_{2}&=\mathcal{E}_{2}-\mathcal{E}_{0} && d\Delta_{2}=d\mathcal{E}_{2}
+\end{cases}
+$$
+This makes the integral a little simpler
+
+$$\begin{align} I(\hbar\omega) \propto \iint\limits_{-\infty}^{\infty} d\Delta_1 d\Delta_2 \;& f(\Delta_1) \Big[1-f(\Delta_2)\Big] \; \delta(\Delta_1 - \Delta_2 - \hbar\omega) \times \\ &\times \frac{\pi A}{2\sqrt{ B }}\Bigg[ \sqrt{ Ax_{max}-\Delta_{1} } - \sqrt{ \max\big[0,\Delta_{1}\big]-\Delta_{1} } \Bigg] \\
+&\times \frac{\pi A}{2\sqrt{ B }}\Bigg[ \sqrt{ Ax_{max}-\Delta_{2} } - \sqrt{ \max\big[0,\Delta_{2}\big]-\Delta_{2} } \Bigg]\end{align}$$
+After resolving the delta function for $\Delta_{2}$, and setting $\Delta_{1}\equiv\Delta$, we're left with
+
+$$\boxed{\begin{align} \\  \quad  I(\hbar\omega) \propto \left( \frac{\pi A}{2\sqrt{ B }} \right)^{2} \int\limits_{-\infty}^{\infty} d\Delta \;& f(\Delta) \Big[1-f(\Delta- \hbar\omega)\Big] \; \times \\ &\times \Bigg[ \sqrt{ Ax_{max}-\Delta } - \sqrt{ \max\big[0,\Delta\big]-\Delta } \Bigg] \\
+&\times \Bigg[ \sqrt{ Ax_{max}-\Delta +\hbar\omega } - \sqrt{ \max\big[0,\Delta+\hbar\omega\big]-\Delta +\hbar\omega } \Bigg] \quad\\  \\ \end{align}}$$
