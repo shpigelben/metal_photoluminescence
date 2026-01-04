@@ -1,4 +1,11 @@
-# Stage 3 — Constant-eDOS approximation: Eq. (4) vs Eq. (5)
+
+$$
+\boxed{\begin{align}
+\;& \int_{0}^{\infty} f^{T}(\mathcal{E}+\hbar\omega)\big[1-f^{T}(\mathcal{E})\big]\,
+\rho(\mathcal{E}+\hbar\omega)\, \rho(\mathcal{E})\, d\mathcal{E} \tag{4} \\ \\ \; &\int_{0}^{\infty}
+f^{T}(\mathcal{E}+\hbar\omega)\big[1-f^{T}(\mathcal{E})\big]\,\rho^{2}(\mathcal{E}_{F}) \;  d\mathcal{E} \tag{5}
+\end{align}}
+$$
 
 Stage 2 established that Eq. (5) can be evaluated numerically to high accuracy on a practical $\mathcal{E}$ grid. We now address the dominant approximation in the analytic pipeline: the replacement
 $$
@@ -12,7 +19,6 @@ $$
 =\left|\frac{I_{(5)}(\hbar\omega)-I_{(4)}(\hbar\omega)}{I_{(4)}(\hbar\omega)}\right|,
 $$
 where $I_{(4)}$ and $I_{(5)}$ denote the $\mathcal{E}$ integrals in Eq. (4) and Eq. (5), evaluated on the same numerical grid.
-
 
 
 ## Diagnosing the approximation: pointwise DOS-product mismatch
@@ -42,7 +48,6 @@ $$
 Figure 3.2: Heat map of $\log_{10}\delta_{\text{DOS}}(\mathcal{E},\hbar\omega)$ for $\rho(\mathcal{E})\rho(\mathcal{E}+\hbar\omega)$ relative to $\rho^2(\mathcal{E}_F)$, evaluated at $\mathcal{E}_F=3\,\mathrm{eV}$.
 
 ## Results and discussion
-
 Figure 3.2 shows that the constant-DOS-product assumption is only plausible in regions where the geometric mean $\sqrt{\mathcal{E}(\mathcal{E}+\hbar\omega)}$ remains close to $\mathcal{E}_F$. For fixed $\mathcal{E}_F$, large $\hbar\omega$ forces one of the two energies to be far from the other, and for small $\mathcal{E}$ the free-electron DOS varies rapidly and the mismatch necessarily grows.
 
 The physically relevant quantity, however, is the $\mathcal{E}$-integrated error (Figure 3.1), where $\delta_{\text{DOS}}(\mathcal{E},\hbar\omega)$ is weighted by the thermal factor $f^{T}(\mathcal{E}+\hbar\omega)[1-f^{T}(\mathcal{E})]$. Since this thermal factor localizes the integral to an energy window of width $\mathcal{O}(k_B T)$ (Stage 0), the approximation quality depends on whether that window samples energies for which $\rho(\mathcal{E})$ is approximately constant on the relevant scale.

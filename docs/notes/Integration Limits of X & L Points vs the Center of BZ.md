@@ -37,6 +37,4 @@ They don't treat the boundary limits because the **Energy Limits ($E_{min}, E_{m
 - **Intraband:** This is where the approximation is most dangerous. The "Saddle" surface is open (hyperbolic). It _never_ closes. This is why we **must** introduce the manual bandwidth cutoff ($R$ or $y_{cut}$) in our derivation. If we didn't, the integral would diverge, exposing the failure to treat the BZ boundary.
     
 
-Conclusion:
-
 There is no "treatment" in the text because they are effectively replacing the BZ crystal with a "model solid" composed of infinite parabolic valleys, calculating the result, and then saying "this is valid only where the valleys are deep." The error introduced by this geometry mismatch is considered part of the "constant matrix element" approximation error, which is often much larger than the boundary error.

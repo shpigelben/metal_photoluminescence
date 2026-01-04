@@ -17,8 +17,6 @@ w
 - A3 - derivation of the non-equilibrium distribution
 - A4 - Analytic approximation
 
-![800](../../../9.%20Misc/Excalidraw/EMISSION%20TYPE%20COMPARISON.md)
-
 ****
 $$
 \begin{align} \frac{4\pi V^{2}}{\epsilon_{0}} \ \omega\rho _{\scriptsize \gamma}{\small (\omega) }

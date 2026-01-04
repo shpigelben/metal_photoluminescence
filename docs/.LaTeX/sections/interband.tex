@@ -1,0 +1,53 @@
+\section{Interband Emission}
+
+\subsection{Theoretical Formalism}
+The treatment of interband transitions introduces a fundamental distinction from the intraband case: the role of momentum conservation. In a direct optical transition between a filled valence band ($v$) and an empty conduction band ($c$), the momentum carried by the photon $\mathbf{q}$ is negligible compared to the electron crystal momentum $\mathbf{k}$. Consequently, the transition is "vertical" in the Brillouin zone, enforcing the selection rule $\mathbf{k}_c = \mathbf{k}_v \equiv \mathbf{k}$.
+
+This strict $\mathbf{k}$-selection simplifies the general double integral over initial and final states into a single integral over the Brillouin zone. The transition dipole moment matrix element becomes diagonal in momentum space, represented by $\delta(\mathbf{k}_1 - \mathbf{k}_2)$. The resulting emission rate is thus governed by the Joint Density of States (JDOS), $\rho_J(\mathcal{E})$, which enumerates the number of available vertical transitions at a given photon energy $\hbar\omega$. For standard isotropic parabolic bands, the JDOS exhibits a square-root dependence $\sqrt{\hbar\omega - \mathcal{E}_g}$ above the bandgap $\mathcal{E}_g$.
+
+\subsection{Application to Gold: Valley-specific Model}
+For gold, the relevant interband transitions—specifically those from the $5d$ bands to the $6sp$ conduction band—do not occur isotropically. Instead, they are localized around specific high-symmetry points in the Brillouin zone, primarily the L and X points. To capture the physics of gold accurately, we move beyond the isotropic approximation and model these regions as distinct anisotropic valleys.
+
+We treat each valley $\nu \in \{L, X\}$ separately. The total emission rate is the weighted sum of contributions from all equivalent valleys (8 for L, 6 for X). Within each valley, the dispersion relations are approximated as ellipsoidal, reflecting the longitudinal and transverse effective masses. The integration over the valley volume takes advantage of cylindrical symmetry around the valley axis, allowing us to reduce the dimensionality of the problem to four dimensions ($k_{\perp}, k_{\parallel}$ for both initial and final states) while maintaining the Gaussian delta approximation for energy conservation.
+
+\subsection{Isotropization and Numerical Strategy}
+Direct numeric integration over anisotropic valleys can be computationally expensive due to the need for fine grids to resolve the constant-energy surfaces. To mitigate this, we employ a coordinate scaling transformation (Eq.~\ref{eq:anisotropic_cov}) that maps the ellipsoidal iso-energy surfaces in the anisotropic space to spherical surfaces in a transformed isotropic space $(q_{\perp}, q_{\parallel})$. This "isotropization" allows us to reuse the optimized 1D integral algorithms developed for the intraband case, significantly accelerating logical convergence and stability.
+
+\subsection{Non-equilibrium Extension}
+Under non-equilibrium conditions, such as those induced by ultrafast laser excitation, the electron distribution functions $f_c$ and $f_v$ deviate from Fermi-Dirac statistics. We model this by calculating the non-thermal population using the Drude-Lorentz excitation model. A key physical consideration is the threshold for hole generation: in our model, holes in the $d$-bands are only generated when the pump photon energy $\hbar\omega_L$ exceeds the interband threshold ($\sim 1.8$ eV for Au). Below this threshold, the valence band remains fully occupied, suppressing interband emission. Above it, the computed non-equilibrium distributions are fed directly into the emission integral.
+
+\section{Numerical Implementation and Reproducibility}
+\begin{itemize}
+  \item \texttt{intra\_energy.ipynb}: numeric and analytic intraband in energy space, with and without eDOS.
+  \item \texttt{intra\_momentum.ipynb}: momentum-space intraband with Gaussian delta; convergence tests on $\sigma$ and grid size.
+  \item \texttt{inter\_momentum (anisotropic).ipynb} and \texttt{interband\_emission\_momentum\_space.ipynb}: working notebooks to implement Eq.~\eqref{eq:inter_valley} and the anisotropic change of variables.
+  \item \texttt{delta\_gaussian\_approx.ipynb}: convergence study of Gaussian delta approximations in 1D and 2D.
+  \item \texttt{symbolic\_integration\_thermal\_intraband\_emission.nb}: Mathematica check of equilibrium analytic expression.
+  \item Python/NumPy/Matplotlib stack; LaTeX-ready plots can be exported once interband runs complete.
+\end{itemize}
+
+\section{Corrections and Insights}
+\begin{itemize}
+  \item The non-thermal distribution in ``Theory of Hot Photoluminescence from Drude Metals'' overpopulates states; replaced with Eq.~\eqref{eq:nonthermal_dist} following photocatalysis literature.
+  \item Explicitly retain both initial and final eDOS factors in $\rho_{J}$ to avoid the typo in the same references.
+  \item Constant-eDOS approximations are reliable only near $\EF$; departures at high $\hbarw$ call for the full $\E$-dependent $\Edos$.
+  \item Intraband momentum conservation must involve phonons; otherwise emission vanishes. The present numerics effectively assume assistance.
+\end{itemize}
+
+\section{Open Questions for Advisor}
+\begin{enumerate}
+  \item For interband recombination, should we enforce strict crystal momentum conservation (direct transitions only), or include phonon-assisted terms? How to parameterize the latter without overcounting?
+  \item Preferred treatment of $\epsilon_{m}''$ for interband frequencies in $\delta_{E}$: pure Lorentz contribution or full Drude-Lorentz sum?
+  \item Are valley-specific dipole moments $|\mu^{X}_{cv}|$, $|\mu^{L}_{cv}|$ available or should they be fitted to experimental spectra?
+  \item Tolerance for Gaussian delta width in final plots (balance between smoothness and conservation accuracy).
+\end{enumerate}
+
+\section{Roadmap to Completion}
+\begin{enumerate}
+  \item \textbf{Convergence criteria.} Finalize $\sigma$ and grid-size rules for 4D interband integrals; document error bars versus $\sigma$.
+  \item \textbf{Anisotropy reduction.} Implement Eq.~\eqref{eq:anisotropic_cov} in the interband notebooks and benchmark against isotropic test cases.
+  \item \textbf{Distribution consistency.} Apply Eqs.~\eqref{eq:nonthermal_dist}--\eqref{eq:deltaE} to both bands with Lorentz $\epsilon_{m}''$; verify occupations stay $\leq 1$.
+  \item \textbf{Spectral assembly.} Combine $\Gamma_{cc}$, $6\Gamma^{X}_{cv}$, $8\Gamma^{L}_{cv}$, and the photonic prefactor to produce full spectra across pump intensities.
+  \item \textbf{Comparison.} Where possible, overlay with available experimental PL spectra of Au nanoparticles; otherwise provide parameter sweeps to illustrate scaling.
+  \item \textbf{Write-up.} Expand interband sections with results, plots, and sensitivity analysis; consolidate into thesis main chapters.
+\end{enumerate}

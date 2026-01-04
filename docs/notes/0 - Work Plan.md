@@ -28,8 +28,7 @@ d\mathcal{E} \tag{5}\\ \\
 \end{align}}
 $$
 
-
-- [ ] add an explanation appendix (in a new A2_derivation_of_analytic_expression.md note in this folder) that details all the steps and assumptions required to reach from $(1)\to(7)$
+- [ ] add an explanation appendix (in a new `A2_derivation_of_analytic_expression.md` note in this folder) that details all the steps and assumptions required to reach from $(1)\to(7)$
 
 After we assume that the transition dipole matrix is a constant of $k$, we're left with $(1)$. From there the transition into Yonatan's analytic expression is outlined below
 

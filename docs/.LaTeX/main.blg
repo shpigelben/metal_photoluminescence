@@ -1,13 +1,13 @@
 This is BibTeX, Version 0.99d (TeX Live 2025)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: ai - main.aux
+The top-level auxiliary file: main.aux
 The style file: achemso.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Database file #1: ai-references.bib
+Database file #1: references.bib
 achemso 2025-01-29 v3.13h
 You've used 14 entries,
             2538 wiz_defined-function locations,
-            852 strings with 10006 characters,
+            852 strings with 9993 characters,
 and the built_in function-call counts, 4724 in all, are:
 = -- 374
 > -- 288

@@ -1,0 +1,36 @@
+\section{Intraband Emission}
+
+\subsection{Approximation Hierarchy}
+The derivation of the analytic expression for intraband emission is established through a sequence of approximations that bridge the gap between Fermi's Golden Rule and a closed-form solution. This hierarchy allows us to systematically identify the regimes of validity for each simplification.
+
+We begin with the general rate equation for intraband transitions ($\alpha=\beta=c$), proceeding under the assumption that the transition dipole moment $|\mu_{cc}|^2$ remains constant across the Brillouin zone. This yields the base integral formulation (Eq.~\ref{eq:intra_1}), which accounts for all momentum-conserving transitions allowed by the dispersion relation.
+
+The first major simplification is the **Parabolic Band Approximation**. By assuming the conduction band is isotropic and parabolic, we can perform a change of variables from wave-vector space to energy space. The density of states $\rho(\mathcal{E})$ then naturally emerges as the Jacobian of this transformation (Eq.~\ref{eq:intra_3}), reducing the six-dimensional integral over $\mathbf{k}_1$ and $\mathbf{k}_2$ to a two-dimensional integral over energies $\mathcal{E}_1$ and $\mathcal{E}_2$.
+
+Next, we resolve the energy conservation imposed by the Dirac delta function. Integrating over $\mathcal{E}_2$ fixes the final energy to $\mathcal{E}_1 - \hbar\omega$, leaving a single integral over the initial energy $\mathcal{E}$ (Eq.~\ref{eq:intra_4}). This form is particularly physically intuitive: it represents the emission as a convolution of the initial state occupancy, the final state vacancy, and the density of states at both energies.
+
+To obtain an analytic result, we employ the **Constant eDOS Approximation**. For transitions involving states near the Fermi level $\mathcal{E}_F$, the density of states varies slowly on the scale of the photon energy $\hbar\omega$. Approximating $\rho(\mathcal{E}) \approx \rho(\mathcal{E}_F)$ allows us to factor the density of states out of the integral (Eq.~\ref{eq:intra_5}). This step is critical for analytic tractability but represents the limiting factor for high-energy emission where the $\sqrt{\mathcal{E}}$ dependence becomes significant.
+
+Finally, the remaining integral over the thermal factors determined by the Fermi-Dirac distributions can be solved analytically for equilibrium conditions. In the limit where the chemical potential $\mu$ is significantly larger than both the thermal energy $k_B T$ and the photon energy $\hbar\omega$, the expression simplifies to the Bose-Einstein-like form derived in Eq.~\ref{eq:intra_7}. This result, $\Gamma \propto \hbar\omega / [\exp(\hbar\omega/k_B T) - 1]$, provides a robust baseline for verifying numerical implementations.
+
+\subsection{Numerical Benchmarks}
+To validate our numerical solver, we compared its output against the analytic limit derived above. We observe that:
+\begin{enumerate}
+    \item The full numeric integration of Eq.~\ref{eq:energy_rate} utilizing the exact $\rho(\mathcal{E}) \propto \sqrt{\mathcal{E}}$ matches the analytic approximation in the limit of small photon energies ($\hbar\omega \ll \mathcal{E}_F$).
+    \item At higher photon energies, deviations arise precisely as expected from the breakdown of the constant eDOS assumption.
+    \item Independent validation provided by a Mathematica symbolic integration confirms that the Bose factor scaling is exact for the constant eDOS case.
+\end{enumerate}
+This benchmarking confirms that our discrete energy grid and integration quadratures are sufficiently accurate to capture the thermal physics of the problem.
+
+\subsection{Non-equilibrium intraband spectra}
+Substituting Eq.~\eqref{eq:nonthermal_dist} into Eq.~\eqref{eq:energy_rate} produces
+\begin{equation}
+  \Gamma_{cc}(\hbarw;\omega_{\mathrm{L}})\approx \Gamma^{\mathrm{eq}}_{cc}(\hbarw)+A(\hbarw)\,\delta_{E}+B(\hbarw)\,\delta_{E}^{2},
+  \label{eq:nonthermal_series}
+\end{equation}
+mirroring literature forms.
+\begin{itemize}
+  \item No-eDOS case: average relative deviation $\sim 0.22$ versus numeric integration.
+  \item With $\E$-dependent eDOS: deviation $\sim 0.35$, driven by breakdown of constant-eDOS and series truncation when $\hbarw\sim\EF$.
+  \item Momentum-space evaluation shows the same trends, validating the Gaussian delta and $\mu_{cc}\approx\mathrm{const}$ assumptions.
+\end{itemize}

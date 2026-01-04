@@ -21,9 +21,9 @@ $$
 $$
 
 The absorption/emission of a photon is most generally given in the context of semi-conductor optics by the following equation
-
 $$
-I = \iint\limits f(\mathcal{E}{\small (\mathbf{k}_{1}) })\Big[ 1- f(\mathcal{E}{\small (\mathbf{k}_{2}) })\Big] \delta \Big( \mathcal{E}\small (\mathbf{k}_{1}) - \mathcal{E}\small (\mathbf{k}_{2}) - \hbar\omega\ \Big) \ d\mathbf{k}_{1} d\mathbf{k}_{2} $$
+I = \iint\limits f(\mathcal{E}{\small (\mathbf{k}_{1}) })\Big[ 1- f(\mathcal{E}{\small (\mathbf{k}_{2}) })\Big] \delta \Big( \mathcal{E}\small (\mathbf{k}_{1}) - \mathcal{E}\small (\mathbf{k}_{2}) - \hbar\omega\ \Big) \ d\mathbf{k}_{1} d\mathbf{k}_{2}
+$$
 
 # Stack-exchange Question
 
@@ -33,6 +33,7 @@ I've been taught that the reflection of light from metals, in the classical view
 If I misrepresent this classical view of the phenomenon I would gladly hear it.
 
 On a quantum mechanical level, we describe the interaction of electrons (now described by wave functions) with photons (modes of the quantized electromagnetic field). These electrons sit in allowed energy states known as energy bands.
+
 ==Because of statistical mechanics electrons settle at lower energy bands, and because of the Pauli exclusion principle more electrons settle "on top of each other" filling higher and higher energy states. The surface in energy-momentum space that represents the highest occupied states is known as the Fermi surface. The extent of the Fermi surface depends on the number of constituent electrons and its shape depends on the underlying atomic structure of the lattice. Intersection of the Fermi surface with an energy band results in a band that is half full. Such solids are known as metals and they are unique in the sense that their electrons are free. Fermi surface in between bands, results in a lower band that is full and an upper band that is empty.== 
 ___
 ## My Understanding
