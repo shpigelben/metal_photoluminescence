@@ -46,19 +46,19 @@ Next, we define new variables based on the individual dispersion relations
 
 $$
 \begin{align}
-x &= k_{\perp}^{2} &&\implies dx = 2k_{\perp}dk_{\perp} &&& k_{\perp}\in[0,\infty)\to x\in[0,\infty)\\
-y &= k_{\parallel}^{2} &&\implies \frac{1}{2}\frac{dy}{\pm\sqrt{ y }} = dk_{\parallel} &&& k_{\parallel}\in(-\infty,\infty)\to y\in[0,\infty)
+u &= k_{\perp}^{2} &&\implies du = 2k_{\perp}dk_{\perp} &&& k_{\perp}\in[0,\infty)\to u\in[0,\infty)\\
+v &= k_{\parallel}^{2} &&\implies \frac{1}{2}\frac{dv}{\pm\sqrt{ v }} = dk_{\parallel} &&& k_{\parallel}\in(-\infty,\infty)\to v\in[0,\infty)
 \end{align}
 $$
-To account for $\pm\sqrt{ y }$ we can use the fact that the bands are even, and therefore symmetric relative to $k_{\parallel}$. We can simply multiply the Jacobian by a factor of $2$ to account for the two contributions
+To account for $\pm\sqrt{ v }$ we can use the fact that the bands are even, and therefore symmetric relative to $k_{\parallel}$. We can simply multiply the Jacobian by a factor of $2$ to account for the two contributions
 $$
-2\pi k_{\perp} dk_{\perp} dk_{\parallel} \to \pi \frac{dxdy}{\sqrt{ y }}
+2\pi k_{\perp} dk_{\perp} dk_{\parallel} \to \pi \frac{dudv}{\sqrt{ v }}
 $$
 Finally, we define two new variables
 $$
 \begin{align}
-\mathcal{E} &\equiv \mathcal{E}_{c}(x,y)  &&\implies\quad \mathcal{E}-\mathcal{E}_{0c} = A_{c}x - B_{c}y\\
-\Delta &\equiv \mathcal{E}_{c}(x,y) - \mathcal{E}_{v}(x,y) &&\implies\quad\Delta - \mathcal{E}_{g} = \overline{A}x - \overline{B}y
+\mathcal{E} &\equiv \mathcal{E}_{c}(u,v)  &&\implies\quad \mathcal{E}-\mathcal{E}_{0c} = A_{c}u - B_{c}v\\
+\Delta &\equiv \mathcal{E}_{c}(u,v) - \mathcal{E}_{v}(u,v) &&\implies\quad\Delta - \mathcal{E}_{g} = \overline{A}u - \overline{B}v
 \end{align}
 $$
 where the following are defined for the sake of brevity
@@ -70,22 +70,22 @@ $$
 \end{cases}
 $$
 The transformation can be written in terms of matrices
-$$\begin{pmatrix} \mathcal{E} - \mathcal{E}_{c0} \\ \Delta - \mathcal{E}_g \end{pmatrix} = \begin{pmatrix} A_c & -B_c \\ \bar{A} & \bar{B} \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}$$
+$$\begin{pmatrix} \mathcal{E} - \mathcal{E}_{c0} \\ \Delta - \mathcal{E}_g \end{pmatrix} = \begin{pmatrix} A_c & -B_c \\ \bar{A} & \bar{B} \end{pmatrix} \begin{pmatrix} u \\ v \end{pmatrix}$$
 from which the inverse transformation is easily calculable
 $$
-\begin{pmatrix} x \\ y \end{pmatrix} = \frac{1}{D}\begin{pmatrix}
+\begin{pmatrix} u \\ v \end{pmatrix} = \frac{1}{D}\begin{pmatrix}
 \bar{B} & B_{c} \\ -\bar{A} & A_{c}\end{pmatrix}\begin{pmatrix} \mathcal{E} - \mathcal{E}_{c0} \\ \Delta - \mathcal{E}_g \end{pmatrix}
 $$
 where $D$ is the determinant of the original transformation. It is positive since it consists of the values of the effective masses which are themselves positive.
 $$
 D = A_{c}B_{v}-A_{v}B_{c} = \frac{m_{c \perp}}{m_{v \perp}} + \frac{m_{c \parallel}}{m_{v \parallel}}
 $$
-from the inverse transformation we extract the definitions $x(\mathcal{E},\Delta)$ and $y(\mathcal{E},\Delta)$. With those definitions we can impose the known integration limits previously discussed to find the integration limits of the new integration variables
+from the inverse transformation we extract the definitions $u(\mathcal{E},\Delta)$ and $v(\mathcal{E},\Delta)$. With those definitions we can impose the known integration limits previously discussed to find the integration limits of the new integration variables
 $$
 \begin{align}
-&x(\mathcal{E}, \Delta)>0  &&\implies  \quad \frac{1}{D} \left[ \bar{B}(\mathcal{E} - \mathcal{E}_{c0}) + B_c(\Delta - \mathcal{E}_g) \right] >0
+&u(\mathcal{E}, \Delta)>0  &&\implies  \quad \frac{1}{D} \left[ \bar{B}(\mathcal{E} - \mathcal{E}_{c0}) + B_c(\Delta - \mathcal{E}_g) \right] >0
 \\  
-&y(\mathcal{E}, \Delta)>0 &&\implies  \quad \frac{1}{D} \left[ -\bar{A}(\mathcal{E} - \mathcal{E}_{c0}) + A_c(\Delta - \mathcal{E}_g) \right] >0
+&v(\mathcal{E}, \Delta)>0 &&\implies  \quad \frac{1}{D} \left[ -\bar{A}(\mathcal{E} - \mathcal{E}_{c0}) + A_c(\Delta - \mathcal{E}_g) \right] >0
 \end{align}
 $$
 
@@ -96,24 +96,22 @@ $$
 \mathcal{E}_{min}(\Delta) &= \mathcal{E}_{c 0 } - \frac{B_{c}}{B_{v} + B_{c}}(\Delta - \mathcal{E}_{g})
 \end{align}
 $$
-It is also useful explicitly write $y(\mathcal{E}, \Delta)$ since it appears in the Jacobian of the $(k_{\perp},k_{\parallel})\to(x,y)$ transformation. It can be shown that it is simply
+It is also useful explicitly write $v(\mathcal{E}, \Delta)$ since it appears in the Jacobian of the $(k_{\perp},k_{\parallel})\to(u,v)$ transformation. It can be shown that it is simply
 $$
-y(\mathcal{E}, \Delta) = \frac{\bar{A}}{D}\Big(\mathcal{E}_{max}(\Delta)-\mathcal{E}\Big)
+v(\mathcal{E}, \Delta) = \frac{\bar{A}}{D}\Big(\mathcal{E}_{max}(\Delta)-\mathcal{E}\Big)
 $$
 
-with those definitions we can now show that 
+with those definitions we can now show that
 
 $$
-\pi \frac{dxdy}{\sqrt{ y }} \to \frac{\pi}{D} \sqrt{ \frac{D}{\bar{A}} }\; \frac{d\Delta d\mathcal{E}}{\sqrt{ \mathcal{E}_{max}(\Delta)-\mathcal{E} }}
+\pi \frac{dudv}{\sqrt{ v }} \to \frac{\pi}{D} \sqrt{ \frac{D}{\bar{A}} }\; \frac{d\Delta d\mathcal{E}}{\sqrt{ \mathcal{E}_{max}(\Delta)-\mathcal{E} }}
 $$
 Finally we can present the initial integral in terms of variables that are explicit in the delta function
 $$
 \int\limits_{\text{BZ}}  \; f(\overbrace{ \mathcal{E}_{c}(\mathbf{k}) }^{ \mathcal{E} }) \Big[1-f(\overbrace{ \mathcal{E}_{v}(\mathbf{k}) }^{\mathcal{E-\Delta}})\Big] \; \delta\Big(\overbrace{ \mathcal{E}_{c}(\mathbf{k}) - \mathcal{E}_{v}(\mathbf{k}) }^{ \Delta } - \hbar\omega  \Big) \; \underbrace{ \quad\quad d^{3}k \quad\quad }_{\Large \frac{\pi}{\sqrt{ D \bar{A} }}  \frac{d\Delta d\mathcal{E}}{ \sqrt{ \mathcal{E}_{max}(\Delta)-\mathcal{E} }} }
 $$
 This allows us to eliminate the delta for the $\Delta$ variable, leaving us with
-
 $$
 \boxed{I(\hbar\omega)\propto \frac{\pi}{ \sqrt{ \overline{A}D }}
 \int\limits_{\mathcal{E_{min}(\hbar \omega)}}^{\mathcal{E_{max}(\hbar \omega)}} \frac{{f(\mathcal{E})f(\hbar\omega-\mathcal{E})}}{\sqrt{ \mathcal{E_{max}(\hbar\omega)}-\mathcal{E} }} \; d\mathcal{E}}
 $$
-

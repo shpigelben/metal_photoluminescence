@@ -4,135 +4,43 @@
     "type": "split",
     "children": [
       {
-        "id": "5a1bdf0a26c586ad",
+        "id": "4509724f8bf84da7",
         "type": "tabs",
-        "dimension": 75.37037037037037,
         "children": [
           {
-            "id": "19715b8408b09530",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "emission integral tree.canvas",
-                "viewState": {
-                  "x": -383,
-                  "y": 417.76820515361743,
-                  "zoom": -0.7670478866214867
-                }
-              },
-              "icon": "lucide-layout-dashboard",
-              "title": "emission integral tree"
-            }
-          },
-          {
-            "id": "cd35e79a81f01803",
+            "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/3 - Constant eDOS Approximation.md",
+                "file": "notes/8 - Isotropic Anisotropic Band Comparison.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "3 - Constant eDOS Approximation"
-            }
-          },
-          {
-            "id": "b4f2bbfb09560a91",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/7 - Intraband Transition in Energy Space.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "7 - Intraband Transition in Energy Space"
-            }
-          },
-          {
-            "id": "20eb324cce3f9e8c",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "resources/6 - Marini.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "6 - Marini"
-            }
-          },
-          {
-            "id": "34817a16755a6807",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/7 - Intraband no offset.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "7 - Intraband no offset"
-            }
-          },
-          {
-            "id": "b3c15f814bec1c7a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/4 - Delta (2D) Approximation E-Space.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "4 - Delta (2D) Approximation E-Space"
-            }
-          },
-          {
-            "id": "c9c672b199e400a0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/0 - Work Plan.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "0 - Work Plan"
+              "title": "8 - Isotropic Anisotropic Band Comparison"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       },
       {
-        "id": "e76679c30eb31273",
+        "id": "b13321e7e78f639c",
         "type": "tabs",
-        "dimension": 24.62962962962963,
         "children": [
           {
-            "id": "65e1fe750cd7132f",
+            "id": "cf42cb36142e9dfb",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/0 - Work Plan.md",
+                "file": "notes/9 - Interband Transition in Energy Space.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "0 - Work Plan"
+              "title": "9 - Interband Transition in Energy Space"
             }
           }
         ]
@@ -208,7 +116,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/7 - Intraband Transition in Energy Space.md",
+                "file": "notes/A0 - Derivation of the General Emission Integral.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -218,7 +126,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 7 - Intraband Transition in Energy Space"
+              "title": "Backlinks for A0 - Derivation of the General Emission Integral"
             }
           },
           {
@@ -301,46 +209,41 @@
       "obsidian-stille:Toggle Stille": false
     }
   },
-  "active": "b4f2bbfb09560a91",
+  "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
-    "resources/6 - Marini.pdf",
-    "resources/5 - Rosei.pdf",
+    "notes/9 - Interband Transition in Energy Space.md",
+    "notes/9 - Interband Transition in Energy Space (Updated Notation).md",
+    "notes/8 - Isotropic Anisotropic Band Comparison.md",
     "notes/7 - Intraband Transition in Energy Space.md",
     "notes/7 - Intraband no offset.md",
-    "notes/0 - Work Plan.md",
-    "notes/1 - Analytic Approximation.md",
-    "notes/6 - Delta (4D) Approximation K-Space.md",
-    "notes/5 - Delta (2D) Approximation K-Space.md",
-    "notes/4 - Delta (2D) Approximation E-Space.md",
-    "notes/3 - Constant eDOS Approximation.md",
-    "notes/2 - Numeric Convergence.md",
-    "notes/9 - Interband Transition in Energy Space.md",
-    "emission integral tree.canvas",
-    "notes/A5 - Numeric Delta Approximation.md",
-    "notes/Progress Report + Questions for Yonatan.md",
-    "notes/Non-equilibrium Emission in Metals.md",
-    "notes/Introduction.md",
-    "notes/Photon Absorption by Conduction Electrons.md",
-    "resources/lee-et-al-2024-hot-electrons-in-a-steady-state-interband-vs-intraband-excitation-of-plasmonic-gold.pdf",
-    "resources/4 - Boltzmann Equation.pdf",
     "notes/7 - Intraband 2.md",
-    "resources/nielsen-et-al-2022-thermoradiative-power-conversion-from-hgcdte-photodiodes-and-their-current-voltage-characteristics.pdf",
-    "resources/raman_pl_distinction.pdf",
-    "resources/A3 - raman_pl.pdf",
+    "notes/6 - Delta (4D) Approximation K-Space.md",
+    "notes/Untitled.md",
+    "notes/1 - Analytic Approximation.md",
+    "notes/A0 - Derivation of the General Emission Integral.md",
     "notes/Integration Limits of X & L Points vs the Center of BZ.md",
-    "notes/Untitled 1.md",
-    "notes/8 - Isotropic Anisotropic Band Comparison.md",
+    "notes/3 - Constant eDOS Approximation.md",
+    "emission integral tree.canvas",
+    "notes/A3 - Electronic Density of States.md",
+    "notes/A5 - Numeric Delta Approximation.md",
+    "figures/Pasted image 20251229105823.png",
+    "notes/0 - Work Plan.md",
+    "notes/Non-equilibrium Emission in Metals.md",
+    "notes/Progress Report + Questions for Yonatan.md",
     "figures/Pasted Image 20251229073635_980.png",
     "9. Misc/Excalidraw/Drawing 2025-12-29 07.36.19.excalidraw.md",
-    "9. Misc/Excalidraw/Drawing 2025-12-29 07.27.44.excalidraw.md",
     "9. Misc/Excalidraw",
     "9. Misc",
+    "notes/Photon Absorption by Conduction Electrons.md",
+    "notes/Interband Transition in Energy Space.md",
+    "notes/Idea about integration limits in the energy space.md",
+    "notes/Intraband Transition in Energy Space.md",
+    "notes/Boltzmann Equation.md",
+    "notes/Change of Variables for Emission Integral.md",
+    "notes/Emission Calculations.md",
+    "notes/5 - Delta (2D) Approximation K-Space.md",
     "figures/delta_convergence_cos_L10_fine.png",
     "figures/delta_convergence_cos.png",
-    "notes/Electronic Transitions.md",
-    "notes/Emission Calculations.md",
-    "notes/A0 - Derivation of the General Emission Integral.md",
-    "notes/Idea about integration limits in the energy space.md",
     "figures/notebook_lm_infographic2.png",
     "figures/notebook_lm_infographic.png",
     "figures/stage_2_rel_error_grid.png",
@@ -348,7 +251,12 @@
     "figures/stage_4_sigma_convergence.png",
     "resources/A1 - semiconductor_emission_slides.pdf",
     "figures/thermal_factor_distributions_default.png",
-    "figures/stage_3_rel_error_T300K.png",
-    "figures/stage_1_rel_error_heatmap_EF5p00eV.svgz"
+    "figures/stage_1_rel_error_heatmap_EF5p00eV.svgz",
+    "resources/0 - Contribution_of_Interband_Transitions_to_Non_equilibrium_Emission_From_Gold.pdf",
+    "resources/raman_pl_distinction.pdf",
+    "resources/notes (notability).pdf",
+    "resources/nielsen-et-al-2022-thermoradiative-power-conversion-from-hgcdte-photodiodes-and-their-current-voltage-characteristics.pdf",
+    "resources/lee-et-al-2024-hot-electrons-in-a-steady-state-interband-vs-intraband-excitation-of-plasmonic-gold.pdf",
+    "resources/interband_transitions(cut).pdf"
   ]
 }
