@@ -29,7 +29,7 @@ f^{T}(\mathcal{E}+\hbar\omega)\big[1-f^{T}(\mathcal{E})\big]\,
 \end{align}
 $$
 
-![delta_convergence_cos](../figures/delta_convergence_cos.png)
+![delta_convergence_cos](../../figures/delta_convergence_cos.png)
 
 - [ ] POC
 	- [ ] show convergence requirements for a simple 1D integral $$\int\limits_{}^{} x\delta(x-\mu) \, dx =\mu$$where the $\delta$ is approximated by a Gaussian.

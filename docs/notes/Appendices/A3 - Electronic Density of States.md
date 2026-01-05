@@ -13,3 +13,11 @@ $$
 \rho(\mathcal{E}) = \frac{4\pi {m_e}^{3/2}}{\hbar^3}\sqrt{2\mathcal{E}}
 $$
 
+# A general Form of DOS
+$$
+\begin{align}
+\rho(\mathcal{E}) &= \int\limits_{\text{BZ}} \, d^{3}k \; \delta\Big(\mathcal{E}-\mathcal{E}(\mathbf{k})\Big)  \\
+&= \int\limits_{\Omega}  \, d^{3}k' \; \frac{\delta(\mathbf{k}-\mathbf{k}')}{|\nabla_{\mathbf{k}} \mathcal{E}|}
+\end{align}
+$$
+Where $\Omega$ is the surface on which $\mathcal{E}(\mathbf{k})=\mathcal{E}$

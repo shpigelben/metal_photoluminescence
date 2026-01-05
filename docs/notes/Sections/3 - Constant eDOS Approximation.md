@@ -39,11 +39,11 @@ so the locus of minimal DOS mismatch satisfies
 $$
 \mathcal{E}(\mathcal{E}+\hbar\omega)=\mathcal{E}_F^2.
 $$
-![edos_relative_error_default](../figures/edos_relative_error_default.png)
+![edos_relative_error_default](../../figures/edos_relative_error_default.png)
 
 ## Figure: pointwise DOS mismatch
 
-![stage_3_edos_vs_const_edos_heatmap](../figures/stage_3_edos_vs_const_edos_heatmap.png)
+![stage_3_edos_vs_const_edos_heatmap](../../figures/stage_3_edos_vs_const_edos_heatmap.png)
 
 Figure 3.2: Heat map of $\log_{10}\delta_{\text{DOS}}(\mathcal{E},\hbar\omega)$ for $\rho(\mathcal{E})\rho(\mathcal{E}+\hbar\omega)$ relative to $\rho^2(\mathcal{E}_F)$, evaluated at $\mathcal{E}_F=3\,\mathrm{eV}$.
 

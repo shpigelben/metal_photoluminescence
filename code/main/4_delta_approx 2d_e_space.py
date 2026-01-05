@@ -65,6 +65,12 @@ def I3(E_input, hw, T, sigma, points_per_sigma=5.0, max_memory_mb=500):
     Computes I3 using a fine grid for accuracy, but processes in chunks
     to prevent memory crashes.
     """
+    hw = np.asarray(hw)
+    T = np.asarray(T)
+    if hw.size != 1 or T.size != 1:
+        raise ValueError("I3 expects scalar hw and T; loop externally for arrays.")
+    hw = float(hw)
+    T = float(T)
     # 1. UPSAMPLING (Essential for convergence)
     dE_input = E_input[1] - E_input[0]
     target_dE = sigma / points_per_sigma
@@ -136,11 +142,10 @@ def I3(E_input, hw, T, sigma, points_per_sigma=5.0, max_memory_mb=500):
 
 
 def rel_err_plot(sigma, s):
-    hw = np.linspace(0.01, 8.0, 30)
+    hw = np.linspace(0.01, 8.0, 20)
     E = np.arange(0.0, 10.0, 1e-4)
     I_4 = I4(E, hw, 300)
-    # I_3 = np.array([I3(E, h, 300, sigma, s) for h in hw])
-    I_3 = I3(E, hw, 300, sigma, s)
+    I_3 = np.array([I3(E, h, 300, sigma, s) for h in hw])
     rel = relative_error(I_3, I_4)
     # return rel
     fig, ax = plt.subplots(figsize=(8.5, 6.0))

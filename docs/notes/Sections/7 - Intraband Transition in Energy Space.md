@@ -1,5 +1,5 @@
 # Conduction Band
-The conduction band as given by [5 - Rosei](../resources/5%20-%20Rosei.pdf) is as follows
+The conduction band as given by [5 - Rosei](../../resources/5%20-%20Rosei.pdf) is as follows
 
 $$
 \mathcal{E}_{c}(\mathbf{k}) = \mathcal{E}_{0c} + \frac{\hbar^2 k_{\perp}^2}{2m_{c\perp}} - \frac{\hbar^2 k_{\parallel}^2}{2m_{c\parallel}} 
