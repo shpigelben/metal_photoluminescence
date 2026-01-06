@@ -1,8 +1,8 @@
 # Intraband transitions
-- [ ] change this into a tree 
+- [ ] change this into a tree
 $$
 \boxed{\begin{align}
-I_{e}^{T}(\hbar\omega) \propto\;& \iint_{\text{BZ}} 
+I_{e}^{T}(\hbar\omega) \propto\;& \iint\limits_{\text{BZ}} 
 f^{T}(\mathbf{k}_{1})\big[1-f^{T}(\mathbf{k}_{2})\big]\,
 \delta\!\left(\mathcal{E}(\mathbf{k}_{1})-\mathcal{E}(\mathbf{k}_{2})-\hbar\omega\right)\,
 d^{3}k_{1}\, d^{3}k_{2} \tag{1}\\ \\
@@ -72,24 +72,24 @@ Creating a fine enough grid for a shrinking Gaussian is computationally intensiv
 
 
 Under the parabolic band approximation, and due to it's central role in our [main reference material](../../resources/1%20-%20theory-of-hot-photoluminescence-from-drude-metals.pdf), equation $(4)$ serves as our point of reference during all comparisons. Since in equations $(3)$ and $(4)$ the delta function has to be approximated, its validity must be ascertained in both energy and momentum space. Only then can we use it in equation $(1)$ to calculate the non-parabolic (and more accurate) case and, finally, the interband transition.
-
-## Stage 0 — Thermal factor visualization
-
-## Notation
-
+## Stage 0 — Thermal factor visualization Notation
 We use the Fermi–Dirac distribution
+
 $$
 f^{T}(\mathcal{E})=\frac{1}{e^{\beta(\mathcal{E}-\mu)}+1},
 \qquad
 \beta=\frac{1}{k_B T},
 $$
+
 with chemical potential $\mu=\mu(\mathcal{E}_F,T)$ and Fermi energy $\mathcal{E}_F$. The density of states $\rho(\mathcal{E})$ is taken to be the free-electron DOS (see `docs/notes/A3 - Electronic Density of States.md`), for which $\rho(\mathcal{E})\propto\sqrt{\mathcal{E}}$.
 
 
 The thermal factor
+
 $$
 f^{T}(\mathcal{E}+\hbar\omega)\,[1-f^{T}(\mathcal{E})]
 $$
+
 appears in every stage through Eq. (4)–(7). Before quantifying approximation error, it is useful to visualize its support and characteristic energy scale as a function of $(\mathcal{E}_F,T,\hbar\omega)$.
 
 ![center|700](../../figures/thermal_factor_distributions_default.png)
@@ -97,7 +97,6 @@ appears in every stage through Eq. (4)–(7). Before quantifying approximation e
 Figure 0.1: Default visualization of $f(\mathcal{E}+\hbar\omega)[1-f(\mathcal{E})]$ and its factors for a representative $(\mathcal{E}_F,T,\hbar\omega)$ setting.
 
 Discussion:
-
 - The product $f(\mathcal{E}+\hbar\omega)[1-f(\mathcal{E})]$ makes explicit that intraband emission requires both thermally excited electrons above $\mu$ and thermally generated holes below $\mu$. At $T\to 0$ this phase-space vanishes.
 - For fixed $\hbar\omega>0$, the product is localized in an energy window of width $\mathcal{O}(k_B T)$ and is maximized when the initial and final energies are approximately symmetric about $\mu$, i.e. when $\mathcal{E}\approx\mu-\hbar\omega/2$.
 - This localization justifies later stages that focus numerical effort on resolving a narrow energy region, rather than uniformly resolving the entire $[0,\infty)$ domain.

@@ -6,7 +6,7 @@
       {
         "id": "5a1bdf0a26c586ad",
         "type": "tabs",
-        "dimension": 75.37037037037037,
+        "dimension": 54.85621269669018,
         "children": [
           {
             "id": "19715b8408b09530",
@@ -95,12 +95,12 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 5
       },
       {
         "id": "e76679c30eb31273",
         "type": "tabs",
-        "dimension": 24.62962962962963,
+        "dimension": 45.14378730330982,
         "children": [
           {
             "id": "65e1fe750cd7132f",
@@ -191,7 +191,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "resources/1 - theory-of-hot-photoluminescence-from-drude-metals.pdf",
+                "file": "notes/Outline & Questions/0 - Work Plan.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -201,7 +201,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 1 - theory-of-hot-photoluminescence-from-drude-metals"
+              "title": "Backlinks for 0 - Work Plan"
             }
           },
           {
@@ -284,8 +284,10 @@
       "obsidian-stille:Toggle Stille": false
     }
   },
-  "active": "b4f2bbfb09560a91",
+  "active": "c9c672b199e400a0",
   "lastOpenFiles": [
+    "resources/1 - theory-of-hot-photoluminescence-from-drude-metals.pdf",
+    "notes/Outline & Questions/0 - Work Plan.md",
     "resources/0 - Mooridan.pdf",
     "resources/0 - Contribution_of_Interband_Transitions_to_Non_equilibrium_Emission_From_Gold.pdf",
     "notes/Appendices/Photon Absorption by Conduction Electrons.md",
@@ -302,7 +304,6 @@
     "notes/Appendices/A3 - Electronic Density of States.md",
     "notes/Appendices/A0 - Derivation of the General Emission Integral.md",
     "notes/Sections/9 - Interband Transition in Energy Space.md",
-    "notes/Outline & Questions/0 - Work Plan.md",
     "notes/Outline & Questions/Introduction.md",
     "notes/Sections/1 - Analytic Approximation.md",
     "notes/Appendices",
@@ -321,8 +322,6 @@
     "emission integral tree.canvas",
     "notes/Outline & Questions/Progress Report + Questions for Yonatan.md",
     "resources/lee-et-al-2024-hot-electrons-in-a-steady-state-interband-vs-intraband-excitation-of-plasmonic-gold.pdf",
-    "resources/4 - Boltzmann Equation.pdf",
-    "resources/nielsen-et-al-2022-thermoradiative-power-conversion-from-hgcdte-photodiodes-and-their-current-voltage-characteristics.pdf",
     "figures/Pasted Image 20251229073635_980.png",
     "figures/delta_convergence_cos_L10_fine.png",
     "figures/delta_convergence_cos.png",
