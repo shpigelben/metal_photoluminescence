@@ -1,4 +1,8 @@
 # Intraband transitions
+- discuss constant eDOS approximation (which appears to be a very bad approximation)
+- discuss why the full calculation deviated from that of BB radiation (perhaps because it is a black-body)?
+
+
 - [ ] change this into a tree
 $$
 \boxed{\begin{align}

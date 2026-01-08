@@ -15,6 +15,6 @@
   "nativeMenus": false,
   "translucency": false,
   "baseFontSizeAction": true,
-  "showRibbon": false,
+  "showRibbon": true,
   "monospaceFontFamily": "FiraCode Nerd Font"
 }
