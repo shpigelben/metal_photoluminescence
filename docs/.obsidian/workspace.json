@@ -40,61 +40,34 @@
             }
           },
           {
-            "id": "b4f2bbfb09560a91",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "resources/1 - theory-of-hot-photoluminescence-from-drude-metals.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "1 - theory-of-hot-photoluminescence-from-drude-metals"
-            }
-          },
-          {
-            "id": "20eb324cce3f9e8c",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "resources/6 - Marini.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "6 - Marini"
-            }
-          },
-          {
             "id": "b3c15f814bec1c7a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/Sections/4 - Delta (2D) Approximation E-Space.md",
+                "file": "notes/Appendices/Non-equilibrium Emission in Metals.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "4 - Delta (2D) Approximation E-Space"
+              "title": "Non-equilibrium Emission in Metals"
             }
           },
           {
-            "id": "c9c672b199e400a0",
+            "id": "cc8c40a02938455e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "notes/Outline & Questions/0 - Work Plan.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
+                "file": "resources/A1 - semiconductor_emission_slides.pdf"
               },
-              "icon": "lucide-file",
-              "title": "0 - Work Plan"
+              "icon": "lucide-file-text",
+              "title": "A1 - semiconductor_emission_slides"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -151,7 +124,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "ff902569427872ea",
@@ -167,7 +141,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/Outline & Questions/0 - Work Plan.md",
+                "file": "notes/Appendices/A0 - Derivation of the General Emission Integral.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -177,7 +151,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 0 - Work Plan"
+              "title": "Backlinks for A0 - Derivation of the General Emission Integral"
             }
           },
           {
@@ -260,44 +234,84 @@
       "obsidian-stille:Toggle Stille": false
     }
   },
+  "floating": {
+    "id": "ef3a348a4390d74f",
+    "type": "floating",
+    "children": [
+      {
+        "id": "f69c896774769506",
+        "type": "window",
+        "children": [
+          {
+            "id": "f9d4423be8a4ce9e",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "c9c672b199e400a0",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "notes/Appendices/A0 - Derivation of the General Emission Integral.md",
+                    "mode": "source",
+                    "source": false,
+                    "backlinks": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "A0 - Derivation of the General Emission Integral"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 761,
+        "y": 34,
+        "width": 751,
+        "height": 948,
+        "maximize": false,
+        "zoom": 0
+      }
+    ]
+  },
   "active": "c9c672b199e400a0",
   "lastOpenFiles": [
+    "resources/A1 - semiconductor_emission_slides.pdf",
+    "notes/Appendices/A0 - Derivation of the General Emission Integral.md",
+    "notes/Appendices/A5 - Numeric Delta Approximation.md",
+    "notes/Appendices/A4 - Thermal Factor Energy Space.md",
+    "notes/Appendices/A3 - Electronic Density of States.md",
+    "notes/Appendices/A2 - Interband Transitions and Joint Density of States.md",
+    "notes/Outline & Questions/0 - Work Plan.md",
+    "notes/Untitled.md",
+    "resources/8 - Novotny.pdf",
+    "resources/2 - Hot Photoluminescence Supplamentary.pdf",
+    "resources/“Hot” electrons in metallic nanostructures—nonthermal carriers or heating?.pdf",
+    "resources/uTorrent.dmg",
+    "resources/notes (notability).pdf",
+    "resources/lee-et-al-2024-hot-electrons-in-a-steady-state-interband-vs-intraband-excitation-of-plasmonic-gold.pdf",
+    "resources/interband_transitions(cut).pdf",
+    "resources/nielsen-et-al-2022-thermoradiative-power-conversion-from-hgcdte-photodiodes-and-their-current-voltage-characteristics.pdf",
+    "resources/Photoluminescence from metal nanostructures - dependence on size.pdf",
+    "notes/Appendices/Non-equilibrium Emission in Metals.md",
+    "notes/Sections/4 - Delta (2D) Approximation E-Space.md",
     "notes/Appendices/Boltzmann Equation.md",
     "notes/Appendices/Emission Calculations.md",
-    "notes/Appendices/Non-equilibrium Emission in Metals.md",
-    "notes/Outline & Questions/0 - Work Plan.md",
-    "resources/1 - theory-of-hot-photoluminescence-from-drude-metals.pdf",
-    "resources/0 - Mooridan.pdf",
-    "resources/0 - Contribution_of_Interband_Transitions_to_Non_equilibrium_Emission_From_Gold.pdf",
     "notes/Appendices/Photon Absorption by Conduction Electrons.md",
     "notes/Appendices/Integration Limits of X & L Points vs the Center of BZ.md",
     "notes/Appendices/Electronic Transitions.md",
     "notes/Appendices/Change of Variables for Emission Integral.md",
-    "notes/Appendices/A5 - Numeric Delta Approximation.md",
-    "notes/Appendices/A4 - Thermal Factor Energy Space.md",
-    "notes/Appendices/A2 - Interband Transitions and Joint Density of States.md",
     "notes/Appendices/A1 - Derivation of Analytic Approximation.md",
-    "notes/Appendices/A3 - Electronic Density of States.md",
-    "notes/Appendices/A0 - Derivation of the General Emission Integral.md",
     "notes/Sections/9 - Interband Transition in Energy Space.md",
     "notes/Outline & Questions/Introduction.md",
     "notes/Sections/1 - Analytic Approximation.md",
-    "notes/Appendices",
-    "notes/Sections/4 - Delta (2D) Approximation E-Space.md",
-    "notes/Sections",
-    "notes/Outline & Questions/Untitled",
-    "notes/Outline & Questions",
     "notes/Sections/3 - Constant eDOS Approximation.md",
     "notes/Sections/7 - Intraband Transition in Energy Space.md",
-    "resources/6 - Marini.pdf",
-    "resources/5 - Rosei.pdf",
     "notes/7 - Intraband no offset.md",
     "notes/Sections/6 - Delta (4D) Approximation K-Space.md",
     "notes/Sections/5 - Delta (2D) Approximation K-Space.md",
     "notes/Sections/2 - Numeric Convergence.md",
     "emission integral tree.canvas",
-    "notes/Outline & Questions/Progress Report + Questions for Yonatan.md",
-    "resources/lee-et-al-2024-hot-electrons-in-a-steady-state-interband-vs-intraband-excitation-of-plasmonic-gold.pdf",
     "figures/Pasted Image 20251229073635_980.png",
     "figures/delta_convergence_cos_L10_fine.png",
     "figures/delta_convergence_cos.png",
