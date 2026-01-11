@@ -1,14 +1,16 @@
 # Radiative Transitions in Solids
-Consider electrons in a solid. It's Hamiltonian consists of the kinetic energy term and the lattice term which embodies the periodic nature of the material. In the presence of an E&M field the hamiltonian is
+Consider electrons in a solid. It's Hamiltonian consists of the kinetic energy term and the lattice term which embodies the periodic nature of the material. In the presence of an E&M field the Hamiltonian is
 $$
 \begin{align}
 \hat{H} &= \frac{\big[\hat{\mathbf{p}}+e\mathbf{A}(\hat{\mathbf{r}},t)\big]^{2}}{2m_{e}} + V_{\text{lattice}}(\hat{\mathbf{r}}) \\
 &\approx  \underbrace{ \frac{\hat{\mathbf{p}}\cdot\hat{\mathbf{p}}}{2m_{e}} + V_{\text{lattice}}(\hat{\mathbf{r}}) }_{ \hat{H}_{0} } + \underbrace{ \frac{e}{2m_{e}}\Big[\mathbf{A}(\hat{\mathbf{r}},t)\cdot \hat{\mathbf{p}}  +\hat{\mathbf{p}}\cdot\mathbf{A}(\hat{\mathbf{r}},t)\Big] }_{ \hat{H}_{\text{int}} }
 \end{align}
 $$
-where the $|\mathbf{A}(\hat{\mathbf{r}},t)|^{2}$ term has been neglected 
+The diamagnetic terms, $|\mathbf{A}(\hat{\mathbf{r}},t)|^{2}$, term relates to a two-photon process which is negligible in the case of spontaneous emission and we take the common course of neglecting it.
+
 - [ ] ==nonlinear effects for strong laser pumps \ pulsed dynamics? Well, for pulsed radiation $\mathbf{A}(\hat{\mathbf{r}},t)$ would be different).==
-- [ ] culoumb gague - always have this freedom?
+- [ ] Coulomb gauge - always have this freedom?
+- [ ] Need to also account for phonon part in Hamiltonian for intraband transitions?
 
 Under the Coulomb gauge $\nabla\cdot\mathbf{A}(\hat{\mathbf{r}},t)=0$ the interaction term can be written as follows
 $$
