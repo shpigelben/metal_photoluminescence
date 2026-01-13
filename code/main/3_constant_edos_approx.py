@@ -5,6 +5,19 @@ from scipy.integrate import simpson
 from plot_style import apply_style, save_svg, set_figure_title
 
 
+CONVERGED_D_E = 1e-4
+CONVERGED_E_MAX = 5.8
+
+
+def converged_energy_grid(
+    *, E_min: float = E_MIN, E_max: float = CONVERGED_E_MAX, dE: float = CONVERGED_D_E
+) -> np.ndarray:
+    E_grid = np.arange(E_min, E_max + dE, dE)
+    if E_grid.size < 2:
+        raise ValueError("E_min/E_max/dE must define at least two grid points.")
+    return E_grid
+
+
 def I5(hw, T):
     hw = np.asanyarray(hw)[..., None]
     T = np.asanyarray(T)[..., None]
@@ -18,6 +31,43 @@ def I4(hw, T):
     T = np.asanyarray(T)[..., None]
     integrand = eDOS(E_GRID) * eDOS(E_GRID + hw) * F_T(E_GRID + hw, E_GRID, T)
     return simpson(integrand, E_GRID, axis=-1)
+
+
+def I5_nonthermal(
+    hw,
+    T,
+    *,
+    hw_L: float,
+    delta_E: float,
+    E_grid: np.ndarray | None = None,
+):
+    if E_grid is None:
+        E_grid = converged_energy_grid()
+    hw = np.asanyarray(hw)[..., None]
+    T = np.asanyarray(T)[..., None]
+    g_F = eDOS(E_F)
+    f1 = f_neq(E_grid + hw, T, hw_L=hw_L, delta_E=delta_E)
+    f2 = f_neq(E_grid, T, hw_L=hw_L, delta_E=delta_E)
+    integrand = (g_F**2) * f1 * (1 - f2)
+    return simpson(integrand, E_grid, axis=-1)
+
+
+def I4_nonthermal(
+    hw,
+    T,
+    *,
+    hw_L: float,
+    delta_E: float,
+    E_grid: np.ndarray | None = None,
+):
+    if E_grid is None:
+        E_grid = converged_energy_grid()
+    hw = np.asanyarray(hw)[..., None]
+    T = np.asanyarray(T)[..., None]
+    f1 = f_neq(E_grid + hw, T, hw_L=hw_L, delta_E=delta_E)
+    f2 = f_neq(E_grid, T, hw_L=hw_L, delta_E=delta_E)
+    integrand = eDOS(E_grid) * eDOS(E_grid + hw) * f1 * (1 - f2)
+    return simpson(integrand, E_grid, axis=-1)
 
 
 def heatmap(*, save_name: str | None = "auto") -> None:

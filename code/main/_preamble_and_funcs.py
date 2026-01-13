@@ -63,9 +63,9 @@ def f_neq(E, T, hw_L, delta_E):
     f = f_T + delta_E * [f_T(E-hw_L)(1-f_T(E)) - f_T(E)(1-f_T(E+hw_L))]
     """
     ft = f_T(E, T)
-    ft_minus = f_T(E - hw_L, T)
-    ft_plus = f_T(E + hw_L, T)
-    B = ft_minus * (1 - ft) - ft * (1 - ft_plus)
+    fm = f_T(E - hw_L, T)
+    fp = f_T(E + hw_L, T)
+    B = fm * (1 - ft) - ft * (1 - fp)
     return ft + delta_E * B
 
 
@@ -76,7 +76,6 @@ def n_B(hw, T):
         exp_arg = beta_T * hw
         return 1.0 / (np.expm1(exp_arg))
 
-
 # (STABLE) THERMAL FACTOR
 def F_T(E1, E2, T):
     """Stable thermal factor f(E1)[1-f(E2)]"""
@@ -86,7 +85,6 @@ def F_T(E1, E2, T):
     a2 = beta_T * (E2 - mu)
     return np.exp(a2 - np.logaddexp(0.0, a2) - np.logaddexp(0.0, a1))
 
-
 # (CLIPPED) LOGARITHMIC RELATIVE ERROR
 def relative_error(candidate: np.ndarray, reference: np.ndarray) -> np.ndarray:
     """Elementwise |(candidate-reference)/reference|, with 0/0 -> 0."""
@@ -94,7 +92,6 @@ def relative_error(candidate: np.ndarray, reference: np.ndarray) -> np.ndarray:
     rel = np.abs(candidate - reference) / np.abs(reference)
     rel = np.clip(rel, 1e-16, 1.0)
     return np.log10(rel)
-
 
 def plot_distributions(hw, T, *, save_name: str | None = None):
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 7.5), sharex=True)
@@ -189,7 +186,6 @@ def plot_distributions(hw, T, *, save_name: str | None = None):
     if save_name is not None:
         _save_without_sliders(save_name)
     plt.show()
-
 
 def plot_edos_relative_error(
     hw: float | None = None,
