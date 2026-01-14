@@ -9,8 +9,9 @@
 		{"id":"5a729c7e3f3a9f85","type":"text","text":"$$\n\\mathcal{E}\\in(0,\\mathcal{E}_{\\text{max}})\n$$\nThe bottom of the parabolic band is set as 0","x":-1360,"y":413,"width":280,"height":184},
 		{"id":"315f3b0fcb70427b","type":"text","text":"# $$\\text{Low Energy Approximation}$$\n$$\n\\rho^{2}(\\mathcal{E}_{F})\\,\\frac{\\hbar\\omega}{e^{\\beta\\hbar\\omega}-1}\n$$","x":-847,"y":1061,"width":527,"height":180},
 		{"id":"d4a0ff81c2f99517","type":"text","text":"# $$\\text{Analytic (Const eDOS Thermal Distribution)}$$\n$$\n\\rho^{2}(\\mathcal{E}_{F}) \\frac{k_BT}{e^{\\beta\\hbar\\omega}-1}\\Big[\\beta\\hbar\\omega+\\ln\\left(1+e^{-\\beta\\mu}\\right)-\\ln\\left(1+e^{\\beta(\\hbar\\omega-\\mu)}\\right)\\Big]\n$$","x":-933,"y":800,"width":700,"height":200},
-		{"id":"212330fac0498327","x":-1300,"y":805,"width":286,"height":190,"type":"text","text":"Measuring this against the integral on the thermal factor is a good way of understanding numeric convergence."},
-		{"id":"8437171c621730ad","type":"text","text":"here the band is a saddle and no global minimum can be set, so integration limits should be determined both from above and below","x":160,"y":415,"width":307,"height":180}
+		{"id":"8437171c621730ad","type":"text","text":"here the band is a saddle and no global minimum can be set, so integration limits should be determined both from above and below","x":160,"y":415,"width":307,"height":180},
+		{"id":"212330fac0498327","type":"text","text":"Measuring this against the integral on the thermal factor is a good way of understanding numeric convergence.","x":-198,"y":805,"width":286,"height":190},
+		{"id":"da6c4b5aa48107f9","x":-1707,"y":800,"width":693,"height":200,"type":"text","text":"# Analytic (Const eDOS Non-Equilibrium)"}
 	],
 	"edges":[
 		{"id":"6676381a4ca1ab7f","fromNode":"d8fcfe739557b691","fromSide":"bottom","toNode":"44f60da9618c95cf","toSide":"top","label":"Constant TDM"},
@@ -24,6 +25,7 @@
 		{"id":"27a14077bca09851","fromNode":"c38c4ec82f55e5f2","fromSide":"bottom","toNode":"d4a0ff81c2f99517","toSide":"top"},
 		{"id":"faac2a44ecee19e3","fromNode":"44f60da9618c95cf","fromSide":"right","toNode":"07d3b2954850545a","toSide":"left"},
 		{"id":"f38ba6220ec59554","fromNode":"5226b7820cfd36d8","fromSide":"left","toNode":"07d3b2954850545a","toSide":"right"},
-		{"id":"f1be57624ef7b724","fromNode":"d4a0ff81c2f99517","fromSide":"left","toNode":"212330fac0498327","toSide":"right"}
+		{"id":"95f4b2f1ad8ee61d","fromNode":"d4a0ff81c2f99517","fromSide":"right","toNode":"212330fac0498327","toSide":"left"},
+		{"id":"20bd86ccb8412fff","fromNode":"532ffaf1e4acfa89","fromSide":"bottom","toNode":"da6c4b5aa48107f9","toSide":"top"}
 	]
 }
