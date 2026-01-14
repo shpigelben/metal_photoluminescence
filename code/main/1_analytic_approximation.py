@@ -3,7 +3,7 @@ import numpy as np
 from _preamble_and_funcs import *
 from plot_style import apply_style, save_svg, set_figure_title
 
-
+# TODO: need to insert nonthermal integral
 # exact integtral solution (Eq. 6)
 def I6(hw, T):
     mu = chemical_potential(T)

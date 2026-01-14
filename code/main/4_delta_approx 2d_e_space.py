@@ -5,7 +5,6 @@ from plot_style import apply_style, save_svg, set_figure_title
 from _preamble_and_funcs import *
 
 # --- Definitions ---
-
 def gaussian_delta(x, sigma):
     """Normalized Gaussian approximation of Dirac Delta."""
     return (1.0 / (np.sqrt(2 * np.pi) * sigma)) * np.exp(-0.5 * (x / sigma) ** 2)
