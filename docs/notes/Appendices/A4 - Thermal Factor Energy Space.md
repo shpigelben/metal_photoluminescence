@@ -13,8 +13,6 @@ I & = \; \int\limits_{0}^{\infty} f(\mathcal{E}+\hbar\omega)[1-f(\mathcal{E})]d\
 \end{align}
 $$
 
-
-
 The transition $(1)\to(2)$ is a known identity
 $$
 f(\mathcal{E}+\hbar\omega) [1-f(\mathcal{E})] = n_{B}(\hbar\omega) \left[f(\mathcal{E})-f(\mathcal{E+\hbar \omega})\right]

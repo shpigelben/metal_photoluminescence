@@ -25,19 +25,5 @@ $$
 
 Here A-analytic, N-numeric, T-thermal, S-steady-state (and later P-pulsed).
 
-$$
-\begin{align}
-I^{\mathrm{eq}}_{6}(\hbar\omega,T) &= \rho^2(\mathcal{E}_F)\frac{k_BT}{e^{\beta\hbar\omega}-1}\Big[\beta\hbar\omega+\ln(1+e^{-\beta\mu})-\ln(1+e^{\beta(\hbar\omega-\mu)})\Big] \\
-I^{\mathrm{eq}}_{7}(\hbar\omega,T) &= \rho^2(\mathcal{E}_F)\frac{\hbar\omega}{e^{\beta\hbar\omega}-1} \\
-I^{\mathrm{eq}}_{5}(\hbar\omega,T) &= \rho^2(\mathcal{E}_F)\int_0^\infty f^{\mathrm{eq}}(\mathcal{E}+\hbar\omega)\big[1-f^{\mathrm{eq}}(\mathcal{E})\big]\,d\mathcal{E} \\
-I^{\mathrm{neq}}_{5}(\hbar\omega,T) &= \rho^2(\mathcal{E}_F)\int_0^\infty f^{\mathrm{neq}}(\mathcal{E}+\hbar\omega)\big[1-f^{\mathrm{neq}}(\mathcal{E})\big]\,d\mathcal{E} \\
-I^{\mathrm{eq}}_{4}(\hbar\omega,T) &= \int_0^\infty f^{\mathrm{eq}}(\mathcal{E}+\hbar\omega)\big[1-f^{\mathrm{eq}}(\mathcal{E})\big]\rho(\mathcal{E}+\hbar\omega)\rho(\mathcal{E})\,d\mathcal{E} \\
-I^{\mathrm{neq}}_{4}(\hbar\omega,T) &= \int_0^\infty f^{\mathrm{neq}}(\mathcal{E}+\hbar\omega)\big[1-f^{\mathrm{neq}}(\mathcal{E})\big]\rho(\mathcal{E}+\hbar\omega)\rho(\mathcal{E})\,d\mathcal{E}
-\end{align}
-
-$$
-
-
-
-
-
+# Phase 2 - Quadratic Bands & Interband Transitions
+After having established the 

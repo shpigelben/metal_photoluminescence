@@ -1,9 +1,5 @@
 # Intraband transitions
 - discuss constant eDOS approximation (which appears to be a very bad approximation)
-- discuss why the full calculation deviated from that of BB radiation (perhaps because it is a black-body)?
-
-
-- [ ] change this into a tree
 $$
 \boxed{\begin{align}
 I_{e}^{T}(\hbar\omega) \propto\;& \iint\limits_{\text{BZ}} 
@@ -32,6 +28,7 @@ d\mathcal{E} \tag{5}\\ \\
 \end{align}}
 $$
 
+[A4 - Thermal Factor Energy Space](../Appendices/A4%20-%20Thermal%20Factor%20Energy%20Space.md)
 - [ ] add an explanation appendix (in a new `A2_derivation_of_analytic_expression.md` note in this folder) that details all the steps and assumptions required to reach from $(1)\to(7)$
 
 After we assume that the transition dipole matrix is a constant of $k$, we're left with $(1)$. From there the transition into Yonatan's analytic expression is outlined below
@@ -46,20 +43,19 @@ After we assume that the transition dipole matrix is a constant of $k$, we're le
 To assess the regimes of validity of this approximation we proceed from the bottom up
 
 # Phase 1 (Assessing Approximations)
-- [x] equilibrium case
-- [ ] non-equilibrium
+Both for equilibrium an non-equilibrium case
 
 | stage                                                                         | comparison                | purpose                                              |
 | ----------------------------------------------------------------------------- | ------------------------- | ---------------------------------------------------- |
-| [1 - Analytic Approximation](../Sections/1%20-%20Analytic%20Approximation.md)             | $$(6)\leftrightarrow(7)$$ | establish validity regime of analytic approx         |
-| [2 - Numeric Convergence](../Sections/2%20-%20Numeric%20Convergence.md)                   | $$(5)\leftrightarrow(6)$$ | establish numeric convergence under constant eDOS approx |
-| [3 - Constant eDOS Approximation](../Sections/3%20-%20Constant%20eDOS%20Approximation.md) | $$(4)\leftrightarrow(5)$$ | establish validity of constant eDOS approx           |
+| [3.2 - Analytic Approximations](../Sections/3.2%20-%20Analytic%20Approximations.md)             | $$(6)\leftrightarrow(7)$$ | establish validity regime of analytic approx         |
+| [3.1 - Numeric Convergence](../Sections/3.1%20-%20Numeric%20Convergence.md)                   | $$(5)\leftrightarrow(6)$$ | establish numeric convergence under constant eDOS approx |
+| [3.3 - Constant eDOS Approximation](../Sections/3.3%20-%20Constant%20eDOS%20Approximation.md) | $$(4)\leftrightarrow(5)$$ | establish validity of constant eDOS approx           |
 
 # Phase 2 (Option I - Dealing with Delta Directly)
 
 | stage                                                                                     | comparison                | purpose                                                                                                                                                                  |
 | ----------------------------------------------------------------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [4 - Delta (2D) Approximation E-Space](../Sections/4%20-%20Delta%20(2D)%20Approximation%20E-Space.md) | $$(4)\leftrightarrow(3)$$ | establish validity of delta approximation by a gaussian in e-space 2D                                                                                                    |
+| [3.4 - Delta Approximation](../Sections/3.4%20-%20Delta%20Approximation.md) | $$(4)\leftrightarrow(3)$$ | establish validity of delta approximation by a gaussian in e-space 2D                                                                                                    |
 | [5 - Delta (2D) Approximation K-Space](../Sections/5%20-%20Delta%20(2D)%20Approximation%20K-Space.md) | $$(4)\leftrightarrow(2)$$ | establish validity of delta approximation by a gaussian in k-space 2D                                                                                                    |
 | [6 - Delta (4D) Approximation K-Space](../Sections/6%20-%20Delta%20(4D)%20Approximation%20K-Space.md) | $$(4)\leftrightarrow(1)$$ | establish validity of delta approximation by a gaussian in k-space 4D (instead of 6D due to symmetry considerations which make it possible to reduce the dimensionality) |
 Creating a fine enough grid for a shrinking Gaussian is computationally intensive as it is for 2D integrals. It seems unfeasible as of now for 4D integrals
@@ -67,9 +63,9 @@ Creating a fine enough grid for a shrinking Gaussian is computationally intensiv
 
 | stage                                                                                               | comparison | purpose                                                                                                        |
 | --------------------------------------------------------------------------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------- |
-| [7 - Intraband Transition in Energy Space](../Sections/7%20-%20Intraband%20Transition%20in%20Energy%20Space.md) |            | Find the energy-space integral for the intraband transition of a non-parabolic band as given by the Rose paper |
+| [3.5 - Quadratic Band](../Sections/3.5%20-%20Quadratic%20Band.md) |            | Find the energy-space integral for the intraband transition of a non-parabolic band as given by the Rose paper |
 | 8 - Parabolic vs Non-parabolic                                                                      |            |                                                                                                                |
-| [9 - Interband Transition in Energy Space](../Sections/9%20-%20Interband%20Transition%20in%20Energy%20Space.md) |            |                                                                                                                |
+| [4 - Interband Transitions](../Sections/4%20-%20Interband%20Transitions.md) |            |                                                                                                                |
 
 
 - [ ] Since Rosei's band approximations hold only for a fraction of k-space, if we wish to quantify the parabolic vs saddle conduction band contribution, we have to be able to find the integration limits for the parabolic case that integrate of the exact same region in k-space
@@ -89,7 +85,6 @@ with chemical potential $\mu=\mu(\mathcal{E}_F,T)$ and Fermi energy $\mathcal{E}
 
 
 The thermal factor
-
 $$
 f^{T}(\mathcal{E}+\hbar\omega)\,[1-f^{T}(\mathcal{E})]
 $$

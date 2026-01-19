@@ -205,7 +205,7 @@ def plot_length_convergence(T: float = 300.0, *, save_name: str | None = "auto")
 
 if __name__ == "__main__":
     apply_style()
-    # plot_heatmap()
+    plot_heatmap()
     plot_heatmap_50x50()
-    # plot_step_convergence(300.0)
-    # plot_length_convergence(300.0)
+    plot_step_convergence(300.0)
+    plot_length_convergence(300.0)

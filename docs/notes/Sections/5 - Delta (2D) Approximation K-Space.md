@@ -1,3 +1,0 @@
-- [ ] Now the function inside the delta is no longer a simple linear curve in k-space, but a hyperbola. Find the convergence conditions necessary for convergence now (the must have changed). Do this for a simple 1D function.
-- [ ] Now for a simple 2D function.
-- [ ] When 

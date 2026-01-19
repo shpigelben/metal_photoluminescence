@@ -1,4 +1,4 @@
-The emission of EM radiation from a body can be (in which cases?) attributed to photonic and electronic contributions separately [Novotny]. In this study we focus on the latter.
+The emission of EM radiation from a body can be (in which cases?) attributed to photonic and electronic contributions separately [Novotny], namely
 
 $$
 \begin{align}
@@ -6,7 +6,7 @@ I(\hbar\omega) &= I_{\text{ph}}(\hbar\omega)\cdot I_{\text{e}}(\hbar\omega)
 \end{align}
 $$
 
-Electronic transitions which begin at a high energy state and end up in a lower energy state result in the spontaneous emission of photons with ==appropriate energy==. Transitions such as these can occur either inside the conduction band (assisted by phonons) or between bands - intraband and interband transitions respectively[^1].
+In this study we focus on the latter. Electronic transitions which begin at a high energy state and end up in a lower energy state result in the spontaneous emission of photons with ==appropriate energy==. Transitions such as these can occur either inside the conduction band (assisted by phonons) or between bands - intraband and interband transitions respectively[^1].
 
 $$
 I_{\text{e}} = I_{\text{cc}} + I_{\text{cv}}

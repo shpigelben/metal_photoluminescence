@@ -1,6 +1,6 @@
 {
   "accentColor": "#ffbd2e",
-  "theme": "obsidian",
+  "theme": "moonstone",
   "cssTheme": "AnuPpuccin",
   "baseFontSize": 22,
   "textFontFamily": "ITC Garamond Std,Palatino,FiraCode Nerd Font,Palatino Linotype",
@@ -9,7 +9,8 @@
     "pictureCenter",
     "hide_properties",
     "Annupucin-extended-colorschemes",
-    "inlineTitle"
+    "inlineTitle",
+    "alignImage"
   ],
   "showViewHeader": false,
   "nativeMenus": false,
