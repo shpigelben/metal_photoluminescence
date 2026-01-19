@@ -4,53 +4,25 @@
     "type": "split",
     "children": [
       {
-        "id": "4509724f8bf84da7",
+        "id": "cc9b6409a2efeb73",
         "type": "tabs",
         "children": [
           {
-            "id": "e7a7b303c61786dc",
+            "id": "2f56031a57b7cd8d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/Sections/3 - Intraband Transitions.md",
+                "file": "notes/Sections/3.5 - Quadratic Band.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "3 - Intraband Transitions"
-            }
-          },
-          {
-            "id": "2b825ca61fce4bdb",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/Sections/3.2 - Analytic Approximations.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "3.2 - Analytic Approximations"
-            }
-          },
-          {
-            "id": "b5cf5084c64f7f85",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "resources/1 - theory-of-hot-photoluminescence-from-drude-metals.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "1 - theory-of-hot-photoluminescence-from-drude-metals"
+              "title": "3.5 - Quadratic Band"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -217,13 +189,17 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "2b825ca61fce4bdb",
+  "active": "2f56031a57b7cd8d",
   "lastOpenFiles": [
+    "notes/Sections/3.4 - Delta Approximation.md",
     "notes/Sections/3.3 - Constant eDOS Approximation.md",
     "notes/Sections/3.2 - Analytic Approximations.md",
-    "notes/Sections/3 - Intraband Transitions.md",
-    "resources/1 - theory-of-hot-photoluminescence-from-drude-metals.pdf",
     "notes/Sections/3.1 - Numeric Convergence.md",
+    "notes/Sections/3 - Intraband Transitions.md",
+    "notes/Sections/4 - Interband Transitions.md",
+    "notes/Sections/3.5 - Quadratic Band.md",
+    "figures/consteDOS_error_heatmaps.png",
+    "resources/1 - theory-of-hot-photoluminescence-from-drude-metals.pdf",
     "figures/Pasted image 20260118074501.png",
     "figures/Pasted image 20260118074430.png",
     "notes/Appendices/Non-equilibrium Emission in Metals.md",
@@ -231,13 +207,10 @@
     "figures/notebook_lm_infographic2.png",
     "notes/Outline & Questions/Comparisons New.md",
     "notes/Appendices/1st order TDM.md",
-    "notes/Sections/4 - Interband Transitions.md",
-    "notes/Sections/3.5 - Quadratic Band.md",
     "notes/Sections/8 - Isotropic Anisotropic Band Comparison.md",
     "notes/Thesis Outline.md",
     "notes/Sections/6 - Delta (4D) Approximation K-Space.md",
     "notes/Sections/5 - Delta (2D) Approximation K-Space.md",
-    "notes/Sections/3.4 - Delta Approximation.md",
     "figures/constant_eDOS_approximation.png",
     "figures/analytic_approximations.png",
     "figures/Pasted image 20260117210344.png",
@@ -245,7 +218,6 @@
     "figures/step_size_convergence.png",
     "figures/Pasted image 20260117205538.png",
     "resources/0 - Contribution_of_Interband_Transitions_to_Non_equilibrium_Emission_From_Gold.pdf",
-    "figures/numeric_convergence.png",
     "Thesis/2.1 Fermi Golden Rule.md",
     "Thesis/1.3 Research Objective.md",
     "Thesis/1.2 Problem Statement.md",

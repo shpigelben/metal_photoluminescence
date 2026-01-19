@@ -1,5 +1,6 @@
-We now consider intraband transitions, namely $\mathcal{E}_{n}=\mathcal{E}_{m}$.
-We also assume a constant transition dipole matrix $\mu_{cc}(\mathbf{k}_{1},\mathbf{k}_{2})\to\mu_{cc}$.
+- We now consider intraband transitions namely $\mathcal{E}_{n}=\mathcal{E}_{m}$.
+- We also assume a constant transition dipole matrix $\mu_{cc}(\mathbf{k}_{1},\mathbf{k}_{2})\to\mu_{cc}$.
+
 These two allow us to write the general emission integral (omitting the photonic contribution and TDM for brevity) as follows
 $$
 \begin{align}
