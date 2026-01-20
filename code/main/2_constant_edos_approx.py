@@ -124,7 +124,7 @@ def heatmap(*, save_name: str | None = "auto") -> None:
     m = ax.pcolormesh(
         E_EM_VALUES, T_VALUES, rel, shading="auto", cmap="coolwarm", vmin=-8, vmax=0
     )
-    ax.set(xlabel=r"$\hbar\omega$ [eV]", ylabel=r"$T$ [K]")
+    ax.set(xlabel=r"$\hbar\omega$ [eV]", ylabel=r"$T_e$ [K]")
     _add_kbt_axis(ax)
     fig.colorbar(m, ax=ax, pad=0.12, label=r"$\log_{10}|\delta_{rel}|$")
 
@@ -179,7 +179,7 @@ def heatmap_nonthermal(
     m = ax.pcolormesh(
         E_EM_VALUES, T_VALUES, rel, shading="auto", cmap="coolwarm", vmin=-8, vmax=0
     )
-    ax.set(xlabel=r"$\hbar\omega$ [eV]", ylabel=r"$T$ [K]")
+    ax.set(xlabel=r"$\hbar\omega$ [eV]", ylabel=r"$T_e$ [K]")
     _add_kbt_axis(ax)
     fig.colorbar(m, ax=ax, pad=0.12, label=r"$\log_{10}|\delta_{rel}|$")
 

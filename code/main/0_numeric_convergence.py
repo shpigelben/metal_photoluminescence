@@ -115,7 +115,7 @@ def plot_heatmap_50x50(
         vmin=-16,
         vmax=0,
     )
-    ax.set(xlabel=r"$\hbar\omega$ [eV]", ylabel=r"$T$ [K]")
+    ax.set(xlabel=r"$\hbar\omega$ [eV]", ylabel=r"$T_e$ [K]")
     _add_kbt_axis(ax)
     fig.colorbar(m, ax=ax, pad=0.10, label=r"$\log_{10}|\delta_{rel}|$")
 

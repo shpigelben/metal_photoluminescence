@@ -32,7 +32,7 @@ def plot_rel(*, save_name: str | None = "auto"):
     pc = ax.pcolormesh(
         hw_1D, T_1D, rel, shading="auto", cmap="coolwarm", vmin=-16, vmax=0
     )
-    ax.set(xlabel=r"$\hbar\omega$ [eV]", ylabel=r"$T$ [K]")
+    ax.set(xlabel=r"$\hbar\omega$ [eV]", ylabel=r"$T_e$ [K]")
     secax = ax.secondary_yaxis(
         "right", functions=(lambda t: k_B * t, lambda e: e / k_B)
     )
