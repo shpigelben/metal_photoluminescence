@@ -1,0 +1,66 @@
+\section{Derivation of Analytic Approximation}
+\label{app:derivation_analytic_approximation}
+
+\subsection{Intraband Emission}
+\begin{equation}
+\small
+\Gamma_{\alpha\beta}(\hbar\omega) = \frac{2\pi}{\hbar}\left( \frac{2V}{(2\pi)^{3}} \right)^{2} \iint\limits_{BZ} |\mu(\mathbf{k}_{\text{i}},\mathbf{k}_{\text{f}})|^{2} \  f\Big[\mathcal{E_{\alpha}}(\mathbf{k}_{\text{i}})  \Big]\overline{f\Big[\mathcal{E_{\beta}}(\mathbf{k}_{\text{f}})  \Big]}\  \delta\Big(\mathcal{E}_{\alpha}(\mathbf{k}_{\text{i}}) - \mathcal{E}_{\beta}(\mathbf{k}_{\text{f}}) - \hbar\omega   \Big) \  dk_{\text{i}}^{3} \ dk_{\text{f}}^{3}
+\label{eq:gamma_ab_general}
+\end{equation}
+\normalsize
+
+\begin{tcolorbox}[title={Note: Impossibility of a one step intraband transition}]
+The transition dipole moment $\mu(\mathbf{k}_{\text{i}},\mathbf{k}_{\text{f}})$ implicitly contains a statement about the conservation of momentum, namely that
+\begin{equation}
+\mathbf{k}_{i} = \mathbf{k}_{\text{i}} = \mathbf{k}_{\text{f}}+\mathbf{q} = \mathbf{k}_{f}
+\label{eq:momentum_conservation_statement}
+\end{equation}
+Where $\mathbf{q}$ is the momentum of the emitted photon. Since photons have negligible momenta relative to electrons' $(\mathbf{q}\ll \mathbf{k})$, the electron momentum should virtually remain unchanged
+\begin{equation}
+\delta(\mathbf{k}_{\text{i}} - \mathbf{k}_{\text{f}}-\mathbf{q}) \to \delta(\mathbf{k}_{\text{i}} - \mathbf{k}_{\text{f}})
+\label{eq:momentum_conservation_delta}
+\end{equation}
+This result renders single process intraband transitions moot. These have zero probability of occurring. In Yonatan's calculations in energy space momentum is not conserved. The only reason why this would be ok (as I understand it) is if a two-step process is implicitly assumed in which for every energetic transition there exists a phonon which provides the exact amount of the missing momentum. This raises a couple of questions:
+\begin{enumerate}
+  \item Is this even physically accurate assumption to make?
+  \item Even if it is, would every energetic transition have a proper phonon with the same probability? The current calculation would treat it as such.
+\end{enumerate}
+
+Bottom line is that, in my opinion, intraband transitions should be treated as two-step processes, and the interband calculations - under the assumption of direct transition - would become simpler.
+\end{tcolorbox}
+
+\begin{itemize}
+  \item For intraband transition $\alpha=\beta=\text{c}$ where $\text{c}$ stands for conduction band.
+  \item Constant transition dipole moment approximation $|\mu(\mathbf{k}_{\text{i}},\mathbf{k}_{\text{f}})|^{2}\to|\mu_{\text{cc}}|^{2}$ (for the conduction band).
+\end{itemize}
+\begin{equation}
+\Gamma_{\text{cc}}(\hbar\omega) = \frac{2\pi}{\hbar}\left( \frac{2\mu_{\text{cc}}V}{(2\pi)^{3}} \right)^{2} \iint\limits_{BZ} f\Big[\mathcal{E_{\text{c}}}(\mathbf{k}_{\text{i}})  \Big]\overline{f\Big[\mathcal{E_{\text{c}}}(\mathbf{k}_{\text{f}})  \Big]} \ \delta \Big( \mathcal{E}_{\text{c}}(\mathbf{k}_{\text{i}}) - \mathcal{E}_{\text{c}}(\mathbf{k}_{\text{f}}) - \hbar\omega \Big) \ d^{3}k_{\text{i}}d^{3}k_{\text{f}}
+\label{eq:gamma_cc_momentum_space}
+\end{equation}
+The dispersion relation of the conduction band is isotropic. This allows us to move from the 3-dimensional momentum space to the 1-dimensional energy space using the Appendix~\ref{app:electronic_density_of_states}, namely
+\begin{equation}
+d^{3}k\to \rho(\mathcal{E})d\mathcal{E} = \frac{4\pi \sqrt{2m_{e}^{3}\mathcal{E}}}{\hbar^3} \ d\mathcal{E}
+\label{eq:dos_measure_free_electron}
+\end{equation}
+\begin{equation}
+\Gamma_{\text{cc}}(\hbar\omega) = \frac{2\pi}{\hbar}\left( \frac{2\mu_{\text{cc}}V}{(2\pi)^{3}} \right)^{2} \iint\limits_{\text{BZ}} f(\mathcal{E}_{c\text{i}})\overline{f(\mathcal{E_{\text{cf}}})}  \ \delta(\mathcal{E}_{\text{ci}}-\mathcal{E}_{\text{cf}}-\hbar\omega) \ \rho(\mathcal{E}_{\text{ci}}) \rho(\mathcal{E}_{\text{cf}})d\mathcal{E}_{\text{ci}}d\mathcal{E}_{\text{cf}}
+\label{eq:gamma_cc_energy_double}
+\end{equation}
+In energy space, the delta can be easily resolved
+
+\begin{equation}
+\Gamma_{\text{cc}}(\hbar\omega) = \frac{2\pi}{\hbar}\left( \frac{2\mu_{\text{cc}}V}{(2\pi)^{3}} \right)^{2} \int\limits_{\text{BZ}} f(\mathcal{E}_{c\text{i}})\overline{f(\mathcal{E_{\text{ci}}}-\hbar\omega)} \ \ \rho(\mathcal{E}_{\text{ci}}) \rho(\mathcal{E}_{\text{ci}}-\hbar\omega)d\mathcal{E}_{\text{ci}}
+\label{eq:gamma_cc_energy_resolved}
+\end{equation}
+Equation~\eqref{eq:gamma_cc_energy_resolved} serves as our reference, since it is calculated in Yonatan's paper and is assumed to be correct due to its alignment with experimental evidence. Since we're later going approximate the delta function by a Gaussian, this is the place to establish the validity of such approximation
+\begin{equation}
+\Gamma_{\text{cc}}(\hbar\omega) = \frac{2\pi}{\hbar}\left( \frac{2\mu_{\text{cc}}V}{(2\pi)^{3}} \right)^{2} \iint\limits_{\text{BZ}} f(\mathcal{E}_{c\text{i}})\overline{f(\mathcal{E_{\text{cf}}})} \ \lim\limits_{\sigma_{\mathcal{E}}\to 0} G\Big(\mathcal{E}_{\text{ci}}-\mathcal{E}_{\text{cf}}-\hbar\omega \ ; \ \sigma_{\mathcal{E}}\Big) \ \rho(\mathcal{E}_{\text{ci}}) \rho(\mathcal{E}_{\text{cf}})d\mathcal{E}_{\text{ci}}d\mathcal{E}_{\text{cf}}
+\label{eq:gamma_cc_gaussian_limit}
+\end{equation}
+
+\begin{equation}
+G\Big(\mathcal{E}_{\text{ci}}-\mathcal{E}_{\text{cf}}-\hbar\omega \ ; \ \sigma_{\mathcal{E}}\Big) = \text{TODO: add expression.}
+\label{eq:gaussian_definition_placeholder}
+\end{equation}
+
+\textbf{Under the assumption that the integral converges, the limit can be taken out of the integral}

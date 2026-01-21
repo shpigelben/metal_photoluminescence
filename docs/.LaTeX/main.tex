@@ -2,12 +2,15 @@
 
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb,bm}
+\usepackage{cancel}
 \usepackage{siunitx}
 \usepackage{physics}
 \usepackage{enumitem}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage[super,sort&compress]{natbib}
+\usepackage[most]{tcolorbox}
 
 \graphicspath{{figures/}}
 
@@ -21,6 +24,18 @@
 \setlist[itemize]{topsep=3pt,itemsep=3pt,leftmargin=14pt}
 \setlist[enumerate]{topsep=3pt,itemsep=3pt,leftmargin=16pt}
 
+\tcbset{
+  enhanced,
+  colback=blue!2,
+  colframe=blue!50!black,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt,
+}
+
 \newcommand{\E}{\mathcal{E}}
 \newcommand{\feq}{f^{\mathrm{T}}}
 \newcommand{\fne}{f}
@@ -31,6 +46,10 @@
 \newcommand{\EF}{\mathcal{E}_{\mathrm{F}}}
 \newcommand{\BE}{f_{\mathrm{BE}}}
 \newcommand{\FD}{f_{\mathrm{FD}}}
+\numberwithin{equation}{section}
+
+\let\oldsection\section
+\renewcommand{\section}{\clearpage\oldsection}
 
 \title{Contribution of Interband Transitions to Non-equilibrium Emission from Gold\\[0.5em]Thesis Progress Document}
 \author{}
@@ -40,34 +59,25 @@
 
 \maketitle
 
-\begin{center}
-  \includegraphics[width=0.25\textwidth]{bgu_logo.png}
-\end{center}
-
-\begin{abstract}
-This document consolidates the thesis work completed so far on non-equilibrium photoluminescence from gold. It follows the structure and notation used in the working summary \textit{Contribution of Interband Transitions to Non-equilibrium Emission From Gold}, expanding each element into a thesis-length narrative. The report reviews the physical background, lays out the emission formalism in both momentum and energy space, records the derivations and numerical benchmarks achieved, documents corrections to prior literature, and sets a clear path to finalize the interband calculations in anisotropic bands. All content is self-contained for Overleaf compilation.
-\end{abstract}
+\input{sections/abstract/abstract.tex}
 
 \tableofcontents
 \newpage
 
-\input{sections/overview.tex}
-\input{sections/literature.tex}
-\input{sections/background.tex}
-\input{sections/formalism.tex}
-\input{sections/supporting.tex}
-\input{sections/numerical.tex}
-\input{sections/intraband.tex}
-\input{sections/results.tex}
-\input{sections/detailed_intra.tex}
-\input{sections/sensitivity.tex}
-\input{sections/experimental.tex}
-\input{sections/thesis_outline.tex}
-\input{sections/interband.tex}
+\input{sections/1_introduction/1_introduction.tex}
+\input{sections/2_theoretical_framework/2_theoretical_framework.tex}
+\input{sections/3_intraband_transitions/3_intraband_transitions.tex}
+\input{sections/4_interband_transitions/4_interband_transitions.tex}
 
 \appendix
-\input{sections/appendix.tex}
-
+\input{sections/appendices/appendix_a1_derivation_of_the_general_emission_integral.tex}
+\input{sections/appendices/appendix_a2_derivation_of_analytic_approximation.tex}
+\input{sections/appendices/appendix_a3_thermal_factor_energy_space.tex}
+\input{sections/appendices/appendix_a4_electronic_density_of_states.tex}
+\input{sections/appendices/appendix_a5_numeric_delta_approximation.tex}
+\input{sections/appendices/appendix_a6_boltzmann_equation.tex}
+\input{sections/appendices/appendix_a7_quadratic_intraband_transitions.tex}
+\input{sections/appendices/appendix_a8_quadratic_interband_transitions.tex}
 \nocite{*}
 \bibliographystyle{achemso}
 \bibliography{references}

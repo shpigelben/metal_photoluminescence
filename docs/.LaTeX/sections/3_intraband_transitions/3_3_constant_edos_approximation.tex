@@ -1,0 +1,86 @@
+\subsection{Constant eDOS Approximation}
+\label{sec:constant_edos_approximation}
+
+\begin{align}
+\boxed{\; \int_{0}^{\infty} f^{T / S}(\mathcal{E}+\hbar\omega)\big[1-f^{T/S}(\mathcal{E})\big]\,
+\rho(\mathcal{E}+\hbar\omega)\, \rho(\mathcal{E})\, d\mathcal{E}}
+\label{eq:edos_integral_full}\\
+\boxed{\; \int_{0}^{\infty}
+ f^{T/S}(\mathcal{E}+\hbar\omega)\big[1-f^{T/S}(\mathcal{E})\big]\,\rho^{2}(\mathcal{E}_{F}) \, d\mathcal{E}}
+\label{eq:edos_integral_const}
+\end{align}
+
+Stage 2 established that Eq.~\eqref{eq:edos_integral_const} can be evaluated numerically to high accuracy on a practical $\mathcal{E}$ grid. We now address the dominant approximation in the analytic pipeline: the replacement
+\begin{equation}
+\rho(\mathcal{E}+\hbar\omega)\rho(\mathcal{E})\;\approx\;\rho^2(\mathcal{E}_F),
+\label{eq:edos_replacement}
+\end{equation}
+which turns Eq.~\eqref{eq:edos_integral_full} into Eq.~\eqref{eq:edos_integral_const}.
+\begin{equation}
+\delta_{\mathrm{rel}}^{(3)}(\hbar\omega)
+=\left|\frac{I_{(5)}(\hbar\omega)-I_{(4)}(\hbar\omega)}{I_{(4)}(\hbar\omega)}\right|,
+\label{eq:edos_relative_error}
+\end{equation}
+where $I_{(4)}$ and $I_{(5)}$ denote the $\mathcal{E}$ integrals in Eq.~\eqref{eq:edos_integral_full} and Eq.~\eqref{eq:edos_integral_const}, evaluated on the same numerical grid, and the T/S represent thermal and steady-state cases.
+
+\subsubsection{Direct Relative Error of the Constant eDOS Approximation}
+To separate the eDOS effect from the \emph{thermal} weighting, we also examine the point-wise mismatch
+\begin{equation}
+\delta_{\text{DOS}}(\mathcal{E},\hbar\omega)
+=\left|\frac{\rho(\mathcal{E}+\hbar\omega)\rho(\mathcal{E})-\rho^{2}(\mathcal{E}_{F})}{\rho(\mathcal{E}+\hbar\omega)\rho(\mathcal{E})}\right|
+=\left|1-\frac{\rho^{2}(\mathcal{E}_F)}{\rho(\mathcal{E}+\hbar\omega)\rho(\mathcal{E})}\right|.
+\label{eq:edos_pointwise_mismatch}
+\end{equation}
+
+For the free-electron DOS $\rho(\mathcal{E})\propto\sqrt{\mathcal{E}}$ this reduces to
+\begin{equation}
+\delta_{\text{DOS}}(\mathcal{E},\hbar\omega)
+=\left|1-\frac{\mathcal{E}_F}{\sqrt{\mathcal{E}(\mathcal{E}+\hbar\omega)}}\right|,
+\label{eq:edos_pointwise_mismatch_reduced}
+\end{equation}
+so the locus of minimal DOS mismatch satisfies
+\begin{equation}
+\mathcal{E}(\mathcal{E}+\hbar\omega)=\mathcal{E}_F^2.
+\label{eq:edos_minimum_locus}
+\end{equation}
+Which can be seen in the figure below
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{edos_relative_error_default.png}
+  \caption{Figure 3.1: Heat map of $\log_{10}\delta_{\text{DOS}}(\mathcal{E},\hbar\omega)$ for $\rho(\mathcal{E})\rho(\mathcal{E}+\hbar\omega)$ relative to $\rho^2(\mathcal{E}_F)$, evaluated for $\mathcal{E}_F=5\,\mathrm{eV}$.}
+  \label{fig:edos_relative_error_default}
+\end{figure}
+
+\subsubsection{Emission Relative Error Due to Constant eDOS Approximation}
+
+Relative error in log-scale over the emission spectrum for several temperatures
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{constant_eDOS_approximation.png}
+  \caption{Figure 3.2 - Relative error in log-scale over the emission spectrum for several temperatures (thermal on the top steady-state in the bottom)}
+  \label{fig:constant_edos_approximation}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{consteDOS_error_heatmaps.png}
+  \caption{consteDOS\_error\_heatmaps.}
+  \label{fig:constedos_error_heatmaps}
+\end{figure}
+
+\subsubsection{Results and discussion}
+Figure 3.2 shows that the constant-DOS-product assumption is only plausible in regions where the geometric mean $\sqrt{\mathcal{E}(\mathcal{E}+\hbar\omega)}$ remains close to $\mathcal{E}_F$. For fixed $\mathcal{E}_F$, large $\hbar\omega$ forces one of the two energies to be far from the other, and for small $\mathcal{E}$ the free-electron DOS varies rapidly and the mismatch necessarily grows.
+
+The physically relevant quantity, however, is the $\mathcal{E}$-integrated error (Figure 3.1), where $\delta_{\text{DOS}}(\mathcal{E},\hbar\omega)$ is weighted by the thermal factor $f^{T}(\mathcal{E}+\hbar\omega)[1-f^{T}(\mathcal{E})]$. Since this thermal factor localizes the integral to an energy window of width $\mathcal{O}(k_B T)$ (Stage 0), the approximation quality depends on whether that window samples energies for which $\rho(\mathcal{E})$ is approximately constant on the relevant scale.
+
+The trends in Figure 3.1 are consistent with this picture:
+
+\begin{itemize}
+  \item Increasing $T$ broadens the contributing energy range, sampling regions where $\rho(\mathcal{E})$ varies more strongly; this generally increases $\delta_{\mathrm{rel}}^{(3)}$.
+  \item Increasing $\mathcal{E}_F$ (at fixed $T$) reduces the relative variation of $\rho(\mathcal{E})$ over a fixed absolute energy window and improves the approximation.
+  \item The pronounced structure near $\hbar\omega\sim\mu$ reflects the fact that the $T\to 0$ support of the thermal factor expands to an interval of length $\hbar\omega$; as $\hbar\omega$ grows, the integral probes further away from $\mathcal{E}_F$ where $\rho(\mathcal{E})$ is not well approximated by a constant.
+\end{itemize}
+
+Having quantified the constant-eDOS approximation, the remaining stages address the earlier steps in the derivation---most notably the delta-function resolution that connects Eq.~\eqref{eq:intraband_energy_double} to Eq.~\eqref{eq:intraband_energy_single}.

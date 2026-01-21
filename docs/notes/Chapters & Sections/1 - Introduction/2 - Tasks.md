@@ -1,0 +1,5 @@
+- [ ] Need to evaluate the analytic E-space integrals for intra and inter transitions based on Rossei's quadratic band approximation near the L and X points.
+- [ ] Need to decide whether we're going for a full numeric k-space integration or not. Might be based on the results of previous task or not.
+- [ ] Need to calculate the electronic distribution for transient perturbation
+	- [ ] Need to calculate all previous steps given this new distribution
+- [ ] Need to match results against experimental findings

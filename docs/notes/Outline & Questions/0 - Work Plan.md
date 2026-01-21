@@ -28,7 +28,7 @@ d\mathcal{E} \tag{5}\\ \\
 \end{align}}
 $$
 
-[A4 - Thermal Factor Energy Space](../Appendices/A4%20-%20Thermal%20Factor%20Energy%20Space.md)
+[A3 - Thermal Factor Energy Space](../Chapters%20&%20Sections/A%20-%20Appendices/A3%20-%20Thermal%20Factor%20Energy%20Space.md)
 - [ ] add an explanation appendix (in a new `A2_derivation_of_analytic_expression.md` note in this folder) that details all the steps and assumptions required to reach from $(1)\to(7)$
 
 After we assume that the transition dipole matrix is a constant of $k$, we're left with $(1)$. From there the transition into Yonatan's analytic expression is outlined below
@@ -47,15 +47,15 @@ Both for equilibrium an non-equilibrium case
 
 | stage                                                                         | comparison                | purpose                                              |
 | ----------------------------------------------------------------------------- | ------------------------- | ---------------------------------------------------- |
-| [3.2 - Analytic Approximations](../Sections/3.2%20-%20Analytic%20Approximations.md)             | $$(6)\leftrightarrow(7)$$ | establish validity regime of analytic approx         |
-| [3.1 - Numeric Convergence](../Sections/3.1%20-%20Numeric%20Convergence.md)                   | $$(5)\leftrightarrow(6)$$ | establish numeric convergence under constant eDOS approx |
-| [3.3 - Constant eDOS Approximation](../Sections/3.3%20-%20Constant%20eDOS%20Approximation.md) | $$(4)\leftrightarrow(5)$$ | establish validity of constant eDOS approx           |
+| [3.2 - Analytic Approximations](../Chapters%20&%20Sections/3%20-%20Intraband%20Transitions/3.2%20-%20Analytic%20Approximations.md)             | $$(6)\leftrightarrow(7)$$ | establish validity regime of analytic approx         |
+| [3.1 - Numeric Convergence](../Chapters%20&%20Sections/3%20-%20Intraband%20Transitions/3.1%20-%20Numeric%20Convergence.md)                   | $$(5)\leftrightarrow(6)$$ | establish numeric convergence under constant eDOS approx |
+| [3.3 - Constant eDOS Approximation](../Chapters%20&%20Sections/3%20-%20Intraband%20Transitions/3.3%20-%20Constant%20eDOS%20Approximation.md) | $$(4)\leftrightarrow(5)$$ | establish validity of constant eDOS approx           |
 
 # Phase 2 (Option I - Dealing with Delta Directly)
 
 | stage                                                                                     | comparison                | purpose                                                                                                                                                                  |
 | ----------------------------------------------------------------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [3.4 - Delta Approximation](../Sections/3.4%20-%20Delta%20Approximation.md) | $$(4)\leftrightarrow(3)$$ | establish validity of delta approximation by a gaussian in e-space 2D                                                                                                    |
+| [3.4 - Delta Approximation](../Chapters%20&%20Sections/3%20-%20Intraband%20Transitions/3.4%20-%20Delta%20Approximation.md) | $$(4)\leftrightarrow(3)$$ | establish validity of delta approximation by a gaussian in e-space 2D                                                                                                    |
 | [5 - Delta (2D) Approximation K-Space](../Sections/5%20-%20Delta%20(2D)%20Approximation%20K-Space.md) | $$(4)\leftrightarrow(2)$$ | establish validity of delta approximation by a gaussian in k-space 2D                                                                                                    |
 | [6 - Delta (4D) Approximation K-Space](../Sections/6%20-%20Delta%20(4D)%20Approximation%20K-Space.md) | $$(4)\leftrightarrow(1)$$ | establish validity of delta approximation by a gaussian in k-space 4D (instead of 6D due to symmetry considerations which make it possible to reduce the dimensionality) |
 Creating a fine enough grid for a shrinking Gaussian is computationally intensive as it is for 2D integrals. It seems unfeasible as of now for 4D integrals
@@ -63,9 +63,9 @@ Creating a fine enough grid for a shrinking Gaussian is computationally intensiv
 
 | stage                                                                                               | comparison | purpose                                                                                                        |
 | --------------------------------------------------------------------------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------- |
-| [3.5 - Quadratic Band](../Sections/3.5%20-%20Quadratic%20Band.md) |            | Find the energy-space integral for the intraband transition of a non-parabolic band as given by the Rose paper |
+| [3.5 - Quadratic Band](../Chapters%20&%20Sections/3%20-%20Intraband%20Transitions/3.5%20-%20Quadratic%20Band.md) |            | Find the energy-space integral for the intraband transition of a non-parabolic band as given by the Rose paper |
 | 8 - Parabolic vs Non-parabolic                                                                      |            |                                                                                                                |
-| [4 - Interband Transitions](../Sections/4%20-%20Interband%20Transitions.md) |            |                                                                                                                |
+| [4 - Interband Transitions](../Chapters%20&%20Sections/4%20-%20Interband%20Transitions/4%20-%20Interband%20Transitions.md) |            |                                                                                                                |
 
 
 - [ ] Since Rosei's band approximations hold only for a fraction of k-space, if we wish to quantify the parabolic vs saddle conduction band contribution, we have to be able to find the integration limits for the parabolic case that integrate of the exact same region in k-space

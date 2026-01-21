@@ -1,0 +1,1 @@
+$$\boxed{ \rho_q(\mathcal{E}) = \left( \frac{4\pi m_{c\perp} \sqrt{2m_{c\parallel}}}{\hbar^3} \right) \Bigg[ \sqrt{\mathcal{E}_{\perp}^{max} - \mathcal{E}} \; - \; \sqrt{\max(0, \mathcal{E}) - \mathcal{E}} \Bigg] }$$

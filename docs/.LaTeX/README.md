@@ -1,8 +1,18 @@
-# LaTeX build notes
+# LaTeX project (Overleaf-ready)
 
-- Entry point: `ai - main.tex` (loads all `ai - section_*.tex` and figures from `ai - figs/`).
-- Figures: `ai - figs/` (logo + comparison plots). `\graphicspath` is set, so relative includes work.
-- Quick build: run `make pdf` in this directory (runs `pdflatex`, `bibtex`, then `pdflatex` twice). Or manually: `pdflatex -interaction=nonstopmode -halt-on-error "ai - main.tex"`, `bibtex "ai - main"`, then `pdflatex` twice.
-- Cleanup: `make clean` removes auxiliary files.
+- Entry point: `main.tex`
+- Sections: `sections/` (each section in its own folder)
+- Figures: `figures/` (`\graphicspath{{figures/}}` is set)
+- Bibliography: `references.bib` (BibTeX)
 
-If the folder is hidden (e.g., `.LaTeX`), open it by path in VS Code or enable hidden folders. The Makefile and paths work regardless of visibility.*** End Patch**"}github/actions-temporary-commentary id="note-readme"/>
+## Local build
+
+- `make pdf`
+
+## Clean
+
+- `make clean`
+
+## Minimal Overleaf ZIP
+
+- `make overleaf` (creates/overwrites `overleaf_upload.zip` with only the source + figures)
