@@ -2,6 +2,8 @@
 	- usage of FGR and the valid field strengths.
 	- photonic & electronic parts (when are they separable?).
 	- ==focusing on bulk metals (photonic DOS is that of free space WHY? maybe electrons are free, photons inside metals will immediately get absorbed and reemitted)==
+		- photonic modes propagate outside the metal, so the approximation holds but this leads to a different issue - absorption and emission happen only in skin-depth. When counting states in the transition from a single localized emitter to a bulk continuous metal we are summing over all of the metal's size. This shouldn't be the case. Instead we should compute an intrinsic specific emission (per unit volume).
+		- Does the fact this happen only near the metal surface somehow modify the Bloch states due to surface effects?
 
 
 The emission of EM radiation from a body can be (in which cases?) attributed to photonic and electronic contributions separately [Novotny], namely
