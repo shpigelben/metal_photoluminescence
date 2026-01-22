@@ -13,6 +13,6 @@
 
 - `make clean`
 
-## Minimal Overleaf ZIP
+## Minimal Overleaf Upload Folder
 
-- `make overleaf` (creates/overwrites `overleaf_upload.zip` with only the source + figures)
+- `make overleaf` (creates/overwrites `overleaf_upload/` with only the source + figures)

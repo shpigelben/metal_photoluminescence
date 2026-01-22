@@ -1,14 +1,13 @@
 # Assembled Questions (for supervisor meeting)
 
 **Goal:** walk out with clear, defensible modeling assumptions + the next concrete steps for the thesis.
-
 ## 1) Terminology + “what exactly are we calculating?”
 - [ ] **[PL vs thermal radiation](<Non-equilibrium Emission in Metals.md>)**: should I call the equilibrium (Planck-like) emission from metals “photoluminescence”, or reserve “PL” for optically excited (non-equilibrium) emission? What phrasing do you prefer for the thesis/abstract?
 - [ ] **[Photonic vs electronic factorization](<Introduction.md>)**: in which regimes is it legitimate to separate the spectrum into a “photonic” factor and an “electronic” factor (e.g., something like `I(ω) = I_ph(ω) · I_e(ω)`)? Is it actually multiplicative or should it be presented differently?
 - [ ] **[Spontaneous vs stimulated](<../Chapters & Sections/A - Appendices/A1 - Derivation of the General Emission Integral.md>)**: in the FGR-based derivation, are we computing spontaneous emission, stimulated emission, or both? Where should the `(n_B(ω)+1)` factor enter so that the equilibrium limit is consistent?
 
 ## 2) Momentum conservation / selection rules (my biggest confusion)
-- [ ] **[Intraband emission](<Progress Report + Questions for Yonatan.md>)**: my current intraband integral effectively allows any `k_i → k_f` transition as long as energy is conserved (no explicit momentum delta). What is the clean physical justification you’re comfortable with (phonons, impurities, surfaces/finite size, Umklapp)?
+- [ ] **[Intraband emission](<Progress Report + Questions for Yonatan.md>)**: the current **intraband** integral effectively allows any `k_i → k_f` transition as long as energy is conserved (no explicit momentum delta). What is the clean physical justification you’re comfortable with (phonons, impurities, surfaces/finite size, Umklapp)?
 - [ ] **[Photon momentum “paradox”](<Electronic Transitions.md>)**: for a parabolic band, a photon has negligible momentum (`q≈0`)—so can an intraband transition conserve energy *and* crystal momentum without scattering assistance? If not, what is the most correct way to describe the process we’re modeling (and what quantity is conserved)?
 - [ ] **[“Two-step” nature](<../Chapters & Sections/A - Appendices/A1 - Derivation of the General Emission Integral.md>)**: if intraband emission in a perfect crystal requires scattering assistance (phonons/defects), do we need to explicitly treat a phonon Hamiltonian / second-order perturbation, or is an effective momentum-relaxing matrix element the standard/acceptable approach here?
 - [ ] **[Weighting by phonons](<../Chapters & Sections/A - Appendices/A2 - Derivation of Analytic Approximation.md>)**: even if phonons enable momentum relaxation, is it reasonable to treat all energy-conserving transitions as equally probable, or should the rate be weighted by phonon DOS/coupling? What is the minimal correction that matters for this project?

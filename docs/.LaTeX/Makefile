@@ -11,8 +11,11 @@ pdf:
 	pdflatex -interaction=nonstopmode -halt-on-error "$(TEX)"
 
 overleaf: clean
+	rm -rf overleaf_upload
+	mkdir -p overleaf_upload
+	cp -p main.tex references.bib overleaf_upload/
+	cp -R sections figures overleaf_upload/
 	rm -f overleaf_upload.zip
-	zip -r overleaf_upload.zip main.tex references.bib sections figures
 
 clean:
 	rm -f *.aux *.fdb_latexmk *.fls *.log *.out *.synctex.gz *.toc

@@ -1,6 +1,18 @@
+Make sure the Author is Ben Shpigel
+
+# Commands
+
+- **"update latex"** - whenever I write update latex you should:
+	1. go over the the entire Chapters & Sections and check what's been changed.
+	2. implement the changes
+		- keep the same content
+		- update equation numbering and referencing
+		- make the minimal changes necessary for the latex-overleaf transition to occur
+		- make sure that any new generation of overleaf-upload-relevant file is reflected in the overleaf folder
+- **"style changes**" - whenever I call for style changes I want you to focus on improving style, layout, references, links, geometry etc and not on content. These changes should be in the latex files only and should be implemented in the main latex folder and in the overleaf-upload folder.
+
 
 # Markdown → LaTeX Conversion Spec (Overleaf-ready)
-
 This is the “meta prompt” for converting the markdown notes in `docs/notes/Chapters & Sections/` into a clean LaTeX project that compiles on Overleaf.
 
 ## Goal
@@ -113,21 +125,4 @@ Goal: at any time, `docs/.LaTeX/` contains **only the current, necessary** sourc
 - Overwrite in place: when a section is regenerated, it **replaces** its prior `.tex` file (no `*_v2.tex`, no “copy of …” files).
 - If a section is removed/renamed in the markdown sources, delete the old `sections/<old>.tex` and remove its `\\input{...}` from `main.tex`.
 - Keep figures deduplicated: if the same image appears in multiple places, store a single copy in `figures/` and reference it consistently.
-
-### Minimal Overleaf ZIP (create inside `docs/.LaTeX/`)
-Create a ZIP that includes **only what Overleaf needs**, not the local build outputs.
-
-1) Clean the folder (recommended):
-- Run `make clean` in `docs/.LaTeX/` (or delete the artifact patterns listed above).
-
-2) Create the upload ZIP (allowlist approach):
-- From inside `docs/.LaTeX/`, run:
-  - `zip -r overleaf_upload.zip main.tex references.bib sections figures`
-- If you use any custom `.sty/.cls/.bst` files in `docs/.LaTeX/`, include them too:
-  - `zip -r overleaf_upload.zip main.tex references.bib sections figures *.sty *.cls *.bst`
-
-This produces a clean archive with the entry point + bibliography + all included section files and figure assets.
-Overwrite `overleaf_upload.zip` each time (or delete it after uploading) to keep the folder minimal.
-
-3) Sanity check:
-- `unzip -l overleaf_upload.zip` should show `main.tex`, `references.bib`, `sections/`, and `figures/` at the ZIP root.
+≈

@@ -1,3 +1,4 @@
+\newpage
 \section{Numeric Delta Approximation}
 \label{app:numeric_delta_approximation}
 
@@ -17,7 +18,7 @@ f^{\text{numeric}}_{\sigma,N}(x_{0}) &= \sum\limits_{n=0}^{N} f(x_{n})\cdot G_{\
 Where $x_{n}= -L+n\Delta x$ and $\Delta x= \frac{{2L}}{N}$. Below is the order of convergence
 
 \begin{equation}
-f(x_{0}) = \lim\limits_{\sigma\to 0} \  f^{\text{approx}}_{\sigma}(x_{0}) =  \lim\limits_{\begin{aligned}
+f(x_{0}) = \lim\limits_{\sigma\to_{0}} \  f^{\text{approx}}_{\sigma}(x_{0}) =  \lim\limits_{\begin{aligned}
 \sigma&\to0 \\ {\small N}&\to \infty
 \end{aligned}}  f^{\text{numeric}}_{\sigma, N}(x_{0})
 \label{eq:delta_convergence_limits}
@@ -26,7 +27,7 @@ f(x_{0}) = \lim\limits_{\sigma\to 0} \  f^{\text{approx}}_{\sigma}(x_{0}) =  \li
 
 \begin{align}
 E^{\text{total}}_{N,\sigma} &= f-f^{\text{numeric}}_{\sigma,N} \\
-&= \underbrace{ f-I^{\text{approx}}_{\sigma} }_{ E_{\sigma}^{\text{approx}} }+\underbrace{ I^{\text{approx}}_{\sigma}-f^{\text{numeric}}_{\sigma,N} }_{ E_{N,\sigma}^{\text{numeric}} }
+&= \underbrace{ f-I^{\text{approx}}_{\sigma} }_{ E_{\sigma}^{\text{approx}} }+\underbrace{ I^{\text{approx}}_{\sigma}-f^{\text{numeric}}_{\sigma,N} }_{ E_{N,\sigma}^{\text{numeric}} } 
 \label{eq:delta_total_error}
 \end{align}
 The general deviation of the calculation from the desired result has two contributions, one 
@@ -50,6 +51,7 @@ So for a given $\sigma$, as $N$ increases, $\delta_{N,\sigma}^{\text{total}}$ sh
 
 On the one hand, smaller $\sigma$ corresponds to smaller $\delta^{\text{approx}}_{\sigma}$ value. On the other hand, since $F''$ contains a $G''$ component (which scales with $\sigma^{-4}$) we expect the numeric convergence to become more gradual as $\sigma$ shrinks - namely, to require larger values of $N$ to reach numeric accuracy. This interplay between the approximation error and the numerical error requires us to simultaneously decrease $\sigma$ while increasing $N$ for the total error to negligible (?) values.
 
+\newpage
 \subsection{2D delta}
 
 \begin{align}
@@ -60,10 +62,11 @@ On the one hand, smaller $\sigma$ corresponds to smaller $\delta^{\text{approx}}
 
 \begin{align}
 I&=\iint\limits \underbrace{ \underbrace{ f(k_{1},k_{2}) }_{ \text{includes Jacobian} } G_{\sigma}(k_{1}, k_{2})  }_{ F_{\sigma}(k_{1},k_{2}) }\  dk_{1} \ dk_{2} \\
-&\sum\limits_{\substack{n\in [1,N]  \\ m \in [1,M]}}\left( \sum\limits_{m=1}^{M} \frac{F_{\sigma}(k_{n-1},k_{m-1})+F_{\sigma}(k_{n-1},k_{m})+F_{\sigma}(k_{\text{TODO}},k_{m-1})+F_{\sigma}(k_{n},k_{m})}{4} \right) 
+&\sum\limits_{\substack{n\in [1,N]  \\ m \in [1,M]}}\left( \sum\limits_{m=1}^{M} \frac{F_{\sigma}(k_{n-1},k_{m-1})+F_{\sigma}(k_{n-1},k_{m})+F_{\sigma}(k_{},k_{m-1})+F_{\sigma}(k_{n},k_{m})}{4} \right) 
 \label{eq:delta_2d_integral}
 \end{align}
 
+\newpage
 \subsection{Nondimensionality}
 
 \begin{equation}
@@ -71,7 +74,7 @@ I&=\iint\limits \underbrace{ \underbrace{ f(k_{1},k_{2}) }_{ \text{includes Jaco
 \label{eq:delta_nondimensionality_start}
 \end{equation}
 \begin{equation}
-\chi \to \frac{x}{\sqrt{ 2 }\sigma} \quad \tilde{\mu}\to \frac{\mu}{\sqrt{ 2 }\sigma}
+\chi \to \frac{x}{\sqrt{ 2 }\sigma} \quad \tilde{\mu}\to \frac{\mu}{\sqrt{ 2 }\sigma} 
 \label{eq:delta_nondimensionality_change}
 \end{equation}
 \begin{equation}

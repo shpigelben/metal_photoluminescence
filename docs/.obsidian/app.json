@@ -10,7 +10,7 @@
   "showInlineTitle": true,
   "newLinkFormat": "relative",
   "alwaysUpdateLinks": true,
-  "attachmentFolderPath": "figures",
+  "attachmentFolderPath": "attachments",
   "readableLineLength": true,
   "focusNewTab": false,
   "rightToLeft": false,

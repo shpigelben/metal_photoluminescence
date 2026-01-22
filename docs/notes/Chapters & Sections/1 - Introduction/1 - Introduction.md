@@ -1,3 +1,9 @@
+- Total emission
+	- usage of FGR and the valid field strengths.
+	- photonic & electronic parts (when are they separable?).
+	- ==focusing on bulk metals (photonic DOS is that of free space WHY? maybe electrons are free, photons inside metals will immediately get absorbed and reemitted)==
+
+
 The emission of EM radiation from a body can be (in which cases?) attributed to photonic and electronic contributions separately [Novotny], namely
 
 $$

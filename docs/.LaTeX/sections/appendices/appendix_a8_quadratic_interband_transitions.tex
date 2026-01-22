@@ -1,14 +1,16 @@
+\newpage
 \section{Quadratic Interband Transitions}
 \label{app:quadratic_interband_transitions}
 
 \begin{equation}
 \mathcal{E}_{b}(\mathbf{k})  = \begin{cases}
--\mathcal{E}_{0v} - \frac{{\hbar ^{2}k_{\perp}^{2}}}{2m_{V \perp}} - \frac{{\hbar ^{2}k_{\parallel}^{2}}}{2m_{V \parallel}} \implies-\mathcal{E}_{0 v}-A_{v}k_{\perp}^{2}-B_{v}k_{\parallel}^{2}  &(\mathcal{E}<\mathcal{E}_{0v})\\
-\mathcal{E}_{0 c} + \frac{{\hbar ^{2}k_{\perp}^{2}}}{2m_{C \perp}} - \frac{{\hbar ^{2}k_{\parallel}^{2}}}{2m_{C \parallel}} \implies\mathcal{E}_{0 c}+A_{c}k_{\perp}^{2}-B_{c}k_{\parallel}^{2} &(\mathcal{E}>\mathcal{E}_{0c})
-\end{cases}
+-\mathcal{E}_{0v} - \frac{{\hbar ^{2}k_{\perp}^{2}}}{2m_{V \perp}} - \frac{{\hbar ^{2}k_{\parallel}^{2}}}{2m_{V \parallel}} \implies-\mathcal{E}_{0 v}-A_{v}k_{\perp}^{2}-B_{v}k_{\parallel}^{2}  &(\mathcal{E}<\mathcal{E}_{0v})\\ \\ 
+\ \ \ \mathcal{E}_{0 c} + \frac{{\hbar ^{2}k_{\perp}^{2}}}{2m_{C \perp}} - \frac{{\hbar ^{2}k_{\parallel}^{2}}}{2m_{C \parallel}} \implies\mathcal{E}_{0 c}+A_{c}k_{\perp}^{2}-B_{c}k_{\parallel}^{2} &(\mathcal{E}>\mathcal{E}_{0c})
+\end{cases} 
 \label{eq:quadratic_interband_bands}
 \end{equation}
 
+\newpage
 \subsection{General Derivation}
 
 \begin{equation}
@@ -26,19 +28,20 @@ The proper change of variables
 $d^{3}k  \to 2\pi dk_{\perp}dk_{\parallel} \to  \mathcal{D}(\mathcal{E;\hbar\omega})d\Delta d\mathcal{E}$ will allow us to transition into the following form
 
 \begin{equation}
-\frac{\pi^{2}|\mu|^{2}}{\hbar \sqrt{ \overline{A}D }}\int\limits_{\mathcal{E}_{min}(\hbar \omega)}^{\mathcal{E}_{max}(\hbar \omega)}  \, \frac{f(\mathcal{E})\Big[ 1-f(\mathcal{E}-\Delta) \Big]}{\sqrt{ \mathcal{E}_{max}(\hbar\omega) -\mathcal{E}}} \; \delta \big( \Delta - \hbar\omega \big) \; d\Delta d\mathcal{E}
+\frac{\pi^{2}|\mu|^{2}}{\hbar \sqrt{ \overline{A}D }}\int\limits_{\mathcal{E_{min}(\hbar \omega)}}^{\mathcal{E_{max}(\hbar \omega)}}  \, \frac{f(\mathcal{E})\Big[ 1-f(\mathcal{E}-\Delta) \Big]}{\sqrt{ \mathcal{E}_{max}(\hbar\omega) -\mathcal{E}}} \; \delta \big( \Delta - \hbar\omega \big) \; d\Delta d\mathcal{E}
 \label{eq:quadratic_interband_reduced_integral}
 \end{equation}
 
 this consequently allows us to directly resolve the delta reaching the "final" form
 \begin{equation}
 I(\hbar\omega)= \frac{\pi^{2}|\mu|^{2}}{\hbar \sqrt{ \overline{A}D }}
-\int\limits_{\mathcal{E}_{min}(\hbar \omega)}^{\mathcal{E}_{max}(\hbar \omega)} \frac{{f(\mathcal{E})f(\hbar\omega-\mathcal{E})}}{\sqrt{ \mathcal{E}_{max}(\hbar\omega)-\\mathcal{E} }} \; d\mathcal{E}
+\int\limits_{\mathcal{E_{min}(\hbar \omega)}}^{\mathcal{E_{max}(\hbar \omega)}} \frac{{f(\mathcal{E})f(\hbar\omega-\mathcal{E})}}{\sqrt{ \mathcal{E_{max}(\hbar\omega)}-\mathcal{E} }} \; d\mathcal{E}
 \label{eq:quadratic_interband_final_form}
 \end{equation}
 which still has to be solved numerically, but is a one-dimensional rather than a three-dimensional integral. And it totally avoids the problematic delta function.
 
 \textbf{All models are wrong, but some are useful}
+\newpage
 \subsection{Detailed Derivation}
 
 \subsubsection{First COV}
@@ -47,14 +50,14 @@ Using the cylindrical symmetry in k-space near the X and L points the first tran
 dk_{x}dk_{y} dk_{z}\to k_{\perp}dk_{\perp}dk_{\parallel}dk_{\phi}\to 2\pi k_{\perp} dk_{\perp} dk_{\parallel}
 \label{eq:quadratic_interband_cov1}
 \end{equation}
-where the $2\pi$ factor arrives from azimuthal symmetry.
+where the $2\pi$ factor arrives from azimuthal symmetry. 
 
 \subsubsection{Second COV}
 Next, we define new variables based on the individual dispersion relations
 
 \begin{align}
-u &= k_{\perp}^{2} &&\implies du = 2k_{\perp}dk_{\perp} &&& k_{\perp}\in[0,\infty)\to u\in[0,\infty)\\
-v &= k_{\parallel}^{2} &&\implies \frac{1}{2}\frac{dv}{\pm\sqrt{ v }} = dk_{\parallel} &&& k_{\parallel}\in(-\infty,\infty)\to v\in[0,\infty)
+ u &= k_{\perp}^{2} &&\implies du = 2k_{\perp}dk_{\perp} &&& k_{\perp}\in[0,\infty)\to u\in[0,\infty)\\
+ v &= k_{\parallel}^{2} &&\implies \frac{1}{2}\frac{dv}{\pm\sqrt{ v }} = dk_{\parallel} &&& k_{\parallel}\in(-\infty,\infty)\to v\in[0,\infty)
 \label{eq:quadratic_interband_cov2}
 \end{align}
 To account for $\pm\sqrt{ v }$ we can use the fact that the bands are even, and therefore symmetric relative to $k_{\parallel}$. We can simply multiply the Jacobian by a factor of $2$ to account for the two contributions
@@ -96,7 +99,7 @@ D = A_{c}B_{v}-A_{v}B_{c} = \frac{m_{c \perp}}{m_{v \perp}} + \frac{m_{c \parall
 from the inverse transformation we extract the definitions $u(\mathcal{E},\Delta)$ and $v(\mathcal{E},\Delta)$. With those definitions we can impose the known integration limits previously discussed to find the integration limits of the new integration variables
 \begin{align}
 &u(\mathcal{E}, \Delta)>0  &&\implies  \quad \frac{1}{D} \left[ \bar{B}(\mathcal{E} - \mathcal{E}_{c0}) + B_c(\Delta - \mathcal{E}_g) \right] >0
-\\
+\\  
 &v(\mathcal{E}, \Delta)>0 &&\implies  \quad \frac{1}{D} \left[ -\bar{A}(\mathcal{E} - \mathcal{E}_{c0}) + A_c(\Delta - \mathcal{E}_g) \right] >0
 \label{eq:quadratic_interband_integration_limits}
 \end{align}
@@ -127,6 +130,6 @@ Finally we can present the initial integral in terms of variables that are expli
 This allows us to eliminate the delta for the $\Delta$ variable, leaving us with
 \begin{equation}
 \boxed{I(\hbar\omega)\propto \frac{\pi}{ \sqrt{ \overline{A}D }}
-\int\limits_{\mathcal{E}_{min}(\hbar \omega)}^{\mathcal{E}_{max}(\hbar \omega)} \frac{{f(\mathcal{E})f(\hbar\omega-\mathcal{E})}}{\sqrt{ \mathcal{E}_{max}(\hbar\omega)-\\mathcal{E} }} \; d\mathcal{E}}
+\int\limits_{\mathcal{E_{min}(\hbar \omega)}}^{\mathcal{E_{max}(\hbar \omega)}} \frac{{f(\mathcal{E})f(\hbar\omega-\mathcal{E})}}{\sqrt{ \mathcal{E_{max}(\hbar\omega)}-\mathcal{E} }} \; d\mathcal{E}}
 \label{eq:quadratic_interband_final_boxed}
 \end{equation}

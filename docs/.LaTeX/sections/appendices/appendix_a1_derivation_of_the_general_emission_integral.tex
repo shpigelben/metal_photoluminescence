@@ -1,6 +1,8 @@
+\newpage
 \section{Derivation of the General Emission Integral}
 \label{app:derivation_general_emission_integral}
 
+\newpage
 \subsection{First Order Radiative Transitions in Solids}
 Consider electrons in a solid. It's Hamiltonian consists of the kinetic energy term and the lattice term which embodies the periodic nature of the material. In the presence of an E\&M field the Hamiltonian is
 \begin{align}
@@ -11,9 +13,9 @@ Consider electrons in a solid. It's Hamiltonian consists of the kinetic energy t
 The diamagnetic terms, $|\mathbf{A}(\hat{\mathbf{r}},t)|^{2}$, term relates to a two-photon process which is negligible in the case of spontaneous emission and we take the common course of neglecting it.
 
 \begin{itemize}
-  \item TODO: \textbf{nonlinear effects for strong laser pumps \ pulsed dynamics? Well, for pulsed radiation $\mathbf{A}(\hat{\mathbf{r}},t)$ would be different).}
-  \item TODO: Coulomb gauge - always have this freedom?
-  \item TODO: Need to also account for phonon part in Hamiltonian for intraband transitions?
+  \item \textbf{nonlinear effects for strong laser pumps \ pulsed dynamics? Well, for pulsed radiation $\mathbf{A}(\hat{\mathbf{r}},t)$ would be different).}
+  \item Coulomb gauge - always have this freedom?
+  \item Need to also account for phonon part in Hamiltonian for intraband transitions?
 \end{itemize}
 
 Under the Coulomb gauge $\nabla\cdot\mathbf{A}(\hat{\mathbf{r}},t)=0$ the interaction term can be written as follows
@@ -21,7 +23,7 @@ Under the Coulomb gauge $\nabla\cdot\mathbf{A}(\hat{\mathbf{r}},t)=0$ the intera
  \hat{H}_{\text{int}} &= \frac{e}{m_{e}}\mathbf{A}(\hat{\mathbf{r}},t)\cdot\hat{\mathbf{p}} \\
 &= \frac{eA_{0}}{2m_{e}}\Big[{\large e^{ i(\mathbf{q}\cdot \mathbf{r} -\omega t)}+\large e^{ -i(\mathbf{q}\cdot \mathbf{r} -\omega t)}}  \Big] \hat{\mathbf{n}}\cdot  \hat{\mathbf{p}} \\
 &\equiv  \hat{V}_{\uparrow}e^{-i\omega t} + \hat{V}_{\downarrow}e^{i\omega t}
-\label{eq:first_order_interaction_hamiltonian}
+\label{eq:first_order_interaction}
 \end{align}
 
 where the vector potential is that of a plane wave
@@ -35,12 +37,13 @@ The eigenstates of $\hat{H}_{0}$ are famously Bloch states $\ket{\psi_{n\mathbf{
 
 \begin{align}
 \Gamma_{\uparrow / \downarrow} &= \frac{2\pi}{\hbar} \left|\left\langle \psi_{m\mathbf{k}_{2}} \left| \hat{V}_{\uparrow / \downarrow} \right| \psi_{n\mathbf{k}_{1}} \right\rangle\right|^{2}\delta\Big(  \mathcal{E}_{m}(\mathbf{k}_{2}) - (\mathcal{E}_n(\mathbf{k}_{1})\pm\hbar\omega)\Big) \\
-&= \frac{2\pi}{\hbar} \left|\mathbf{P}_{mn}\cdot  \hat{\mathbf{n}}\right|^{2} \; \;  \delta \Big( \mathbf{k}_{2} - (\mathbf{k}_{1}\pm\mathbf{q}) \Big)\; \delta\Big(  \mathcal{E}_{m}(\mathbf{k}_{2}) - (\mathcal{E}_n(\mathbf{k}_{1})\pm\hbar\omega)\Big)
+&= \frac{2\pi}{\hbar} \left|\mathbf{P}_{mn}\cdot  \hat{\mathbf{n}}\right|^{2} \; \;  \delta \Big( \mathbf{k}_{2} - (\mathbf{k}_{1}\pm\mathbf{q}) \Big)\; \delta\Big(  \mathcal{E}_{m}(\mathbf{k}_{2}) - (\mathcal{E}_n(\mathbf{k}_{1})\pm\hbar\omega)\Big) 
 \label{eq:first_order_transition_rates}
 \end{align}
 
 Where $\uparrow$ stands for absorption and $\downarrow$ for emission\footnote{But shouldn't emission here be mostly spontaneous emission? The way it is presented here, stimulated absorption and emission are the opposites. It is really stimulated emission? Or are we actually calculating spontaneous emission without understanding it?}.
 
+\newpage
 \subsection{Second Order Radiative Transitions in Solids}
 
 \begin{tcolorbox}[title={Note: Transition Dipole Matrix (TDM)}]
@@ -65,12 +68,13 @@ where $u_{n\mathbf{k}}(\mathbf{r})$ has the periodicity of the lattice. The TDM 
 Photons carry minuscule momentum $(\mathbf{q}\approx 0)$ so it is very common and a good approximation to assume that $\mathbf{k}_{1}\approx \mathbf{k}_{2}$ to simplify calculation while preserving meaningful and qualitatively accurate results. The transition rate then simplifies to the following
 
 \begin{equation}
-\Gamma_{\uparrow / \downarrow} = \frac{2\pi}{\hbar} \mathbf{P}_{mn}\cdot  \hat{\mathbf{n}} \;\; \delta\Big(  \mathcal{E}_{m}(\mathbf{k}) - (\mathcal{E}_n(\mathbf{k})\pm\hbar\omega)\Big)
-\label{eq:single_step_transition_rate}
+\Gamma_{\uparrow / \downarrow} = \frac{2\pi}{\hbar} \mathbf{P}_{mn}\cdot  \hat{\mathbf{n}} \;\; \delta\Big(  \mathcal{E}_{m}(\mathbf{k}) - (\mathcal{E}_n(\mathbf{k})\pm\hbar\omega)\Big) 
+\label{eq:second_order_transition_rate}
 \end{equation}
 
 Looking at this equation, it is clear that such a single-process transition is possible only when $n\neq m$, namely when the energy states (bands) are different - an interband transition. It has been known for several decades that absorption and emission of photons by conduction electrons is impossible via a single-step process. It is possible however, via a two-step process in which the interaction is mediated by a phonon which provides the missing momentum.
 
+\newpage
 \subsection{From a Single Transition to the Continuum}
 Consider an electronic transition between an initial state $\ket{\mathbf{k}_{1}, \alpha}$ and a final state $\ket{\mathbf{k}_{2}, \beta}$, mediated by an energy transfer $\hbar \omega$. The subscripts $\alpha$ and $\beta$represent specific energy bands (valence or conduction), allowing transitions between different branches of the dispersion relation. According to Fermi's Golden Rule, the microscopic transition rate is
 
@@ -85,15 +89,15 @@ For clarity, we temporarily suppress the band indices to derive the rate for a g
 
 \begin{align}
 \Gamma_{1}(\hbar\omega) &= 2 \cdot \sum_{\mathbf{k}_{2}} \ \Gamma_{1\to 2}(\hbar\omega) \Big[1-f(\mathbf{k}_{2})\Big] \\
-&= 2V \int\limits_{\text{BZ}} \frac{d^{3}k_{2}}{(2\pi)^{3}} \ \Gamma_{1\to 2}(\hbar\omega) \Big[1-f(\mathbf{k}_{2})\Big]
-\label{eq:continuum_single_state_rate}
+&= 2V \int\limits_{\text{BZ}} \frac{d^{3}k_{2}}{(2\pi)^{3}} \ \Gamma_{1\to 2}(\hbar\omega) \Big[1-f(\mathbf{k}_{2})\Big] 
+\label{eq:continuum_single_rate}
 \end{align}
 
 Similarly, to obtain the total rate for this band pair, we sum the single-state rates over all possible initial states $\ket{\mathbf{k}_{1}}$, weighted by the occupation probability $f(\mathbf{k}_{1})$
 
 \begin{align}
 \Gamma (\hbar\omega) &= 2\cdot \sum_{\mathbf{k}_{1}} \ \Gamma_{1}(\hbar\omega) f(\mathbf{k}_{1}) \\
-&= 2V \int\limits_{\text{BZ}} \frac{d^{3}k_{1}}{(2\pi)^{3}} \ \Gamma_{1}(\hbar\omega) \ f(\mathbf{k}_{1})
+&= 2V \int\limits_{\text{BZ}} \frac{d^{3}k_{1}}{(2\pi)^{3}} \ \Gamma_{1}(\hbar\omega) \ f(\mathbf{k}_{1}) 
 \label{eq:continuum_total_rate}
 \end{align}
 
