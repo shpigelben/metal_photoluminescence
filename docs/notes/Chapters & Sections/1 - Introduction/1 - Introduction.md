@@ -4,42 +4,49 @@
 	- ==focusing on bulk metals (photonic DOS is that of free space WHY? maybe electrons are free, photons inside metals will immediately get absorbed and reemitted)==
 		- photonic modes propagate outside the metal, so the approximation holds but this leads to a different issue - absorption and emission happen only in skin-depth. When counting states in the transition from a single localized emitter to a bulk continuous metal we are summing over all of the metal's size. This shouldn't be the case. Instead we should compute an intrinsic specific emission (per unit volume).
 		- Does the fact this happen only near the metal surface somehow modify the Bloch states due to surface effects?
+___
+### Introduction
+The emission of electromagnetic radiation from a material body is governed by the intricate coupling between the body's optical environment and its intrinsic material properties. 
 
 
-The emission of EM radiation from a body can be (in which cases?) attributed to photonic and electronic contributions separately [Novotny], namely
+As described by Novotny, this interaction allows us to conceptually and mathematically decouple the emission spectrum into separate photonic and electronic contributions:
 
-$$
-\begin{align}
-I(\hbar\omega) &= I_{\text{ph}}(\hbar\omega)\cdot I_{\text{e}}(\hbar\omega)
-\end{align}
-$$
+$$\begin{align} I(\hbar\omega) &= I_{\text{ph}}(\hbar\omega)\cdot I_{\text{e}}(\hbar\omega) \end{align}$$
 
-In this study we focus on the latter. Electronic transitions which begin at a high energy state and end up in a lower energy state result in the spontaneous emission of photons with ==appropriate energy==. Transitions such as these can occur either inside the conduction band (assisted by phonons) or between bands - intraband and interband transitions respectively[^1].
+The photonic part is characterized by the Local Density of States (LDOS), which encapsulates the geometry and antenna properties of the structure. The electronic contribution, which is the focus of this study, describes the intrinsic response of the material itself. This separability is rigorously justified in the weak coupling regime by Fermi's Golden Rule, which treats the electronic transition probability and the photonic mode density as independent factors. Consequently, the spectral intensity of emission $I(\hbar\omega)$—physically representing the power radiated per unit energy interval (typically measured in $\text{W}\cdot\text{eV}^{-1}$)—is directly proportional to the product of the photon energy $\hbar\omega$ and the total electronic transition rate $\Gamma(\hbar\omega)$.
 
-$$
-I_{\text{e}} = I_{\text{cc}} + I_{\text{cv}}
-$$
+**Electronic Transitions in Metals**
 
-Out materials of interest are metals (specifically gold) in which the predominant electronic contribution to emission comes from intraband transitions[^2]. Therefore, in a state of thermal equilibrium we also don't expect measurable interband presence in emission spectrum from metals [Marini?].
+The electronic rate $\Gamma(\hbar\omega)$, measured in transitions per second ($s^{-1}$), arises from spontaneous decay processes where an electron transitions from a high-energy state to a lower one. In metals like gold, these transitions are categorized into two distinct types:
+
+1. **Intraband transitions ($\Gamma_{\text{cc}}$):** Occurring within the conduction band, necessarily assisted by phonons or defects.
+    
+2. **Interband transitions ($\Gamma_{\text{cv}}$):** Occurring between distinct bands, typically from the conduction band down to the valence band.
+    
+
+Thus, the total electronic rate is:
+
+$$\Gamma_{\text{e}} = \Gamma_{\text{cc}} + \Gamma_{\text{cv}}$$
+
+In a state of thermal equilibrium, the emission spectrum of gold is overwhelmingly dominated by intraband transitions. This is because the valence band is fully occupied, effectively blocking interband decay paths and rendering their contribution negligible.
+
+**The Non-Equilibrium Hypothesis**
+This equilibrium assumption, however, breaks down under external illumination. In non-equilibrium scenarios—such as a metal driven to a steady state by monochromatic radiation—incoming photons can excite electrons out of the valence band. We posit that this process generates a significant population of holes in the valence band, opening new channels for radiative decay. This non-equilibrium hole population allows interband transitions ($\Gamma_{\text{cv}}$) to become a prominent feature of the emission spectrum, potentially rivaling or exceeding the thermal intraband background.
+
+### Methodology: The Rotational Saddle-Point Approximation
+Modeling this contribution presents a specific methodological challenge regarding the band structure. Previous derivations of non-equilibrium electronic distributions [Sivan & Dubi](../../../resources/1%20-%20theory-of-hot-photoluminescence-from-drude-metals.pdf) focused on intraband transitions, exploiting the approximate isotropy of the conduction band to simplify calculations in energy space. The valence band, in contrast, is highly anisotropic, meaning simple isotropic approximations fail to capture the physics of interband transitions.
+
+To address this without resorting to computationally prohibitive full-band integration, we adopt the **Rotational Saddle-Point Approximation**, based on the model developed by Guerrisi, Rosei, and Winsemius. We focus on the high-symmetry **X** and **L** points in the Brillouin zone, which account for the majority of the interband density of states.
+
+For transitions near the X point (specifically band 5 to band 6), we model the dispersion relations not as simple parabolas, but as rotational quadratic surfaces. The upper band is treated geometrically as a hyperbolic paraboloid (a saddle shape) while the lower band is modeled as an elliptic paraboloid . This specific topology is critical because it yields a step-like singularity in the Joint Density of States (JDOS), a physical feature distinct from the inverse square-root singularity predicted by isotropic models. This approach allows us to accurately calculate the spectral transition rate $\Gamma(\hbar\omega)$ in energy space while retaining the necessary rigor regarding the band structure's anisotropy.
+
+**Research Objectives**
+
+Our goal is to provide a comprehensive emission spectrum that accounts for these previously neglected contributions. We approximate the total interband contribution by summing the transitions from these high-symmetry valleys, weighted by their multiplicity in the first Brillouin zone (6 for X, 8 for L).
+
+The overall electronic contribution to the emission is therefore modeled as:
+
+$$\Gamma = \Gamma_{\text{cc}} + 6\Gamma_{\text{cv}}^{\text{X}} + 8\Gamma_{\text{cv}}^{\text{L}}$$
 
 
-> [!NOTE] Main Thesis
-> In non-equilibrium scenarios, however, such as in the steady-state case of a metal illuminated by monochromatic radiation, incoming photons of sufficient energy might be able to generate a significant hole population in the valence band which would allow for interband transitions to be more prominent in the emission spectrum of the metal.
 
-
-Non-equilibrium electronic distribution for the above scenario has been derived and applied to the case of intraband transitions [Sivan & Dubi]. These calculations, however, enjoyed the approximate isotropy of the conduction band which allows one to transition to the more lenient energy space.
-
-The valence band is generally anisotropic and when performing interband calculations one has to remain in k-space, which is what we are going to do. 
-
-Once we have established that our calculations in momentum space align with those performed in energy space - both in equilibrium and non-equilibrium settings - we proceed to perform the interband scenario. In the end, hopefully, we will be able to provide a more complete emission spectrum to both cases.
-
-# Gold Nanoparticles
-We focus on interband transitions from the X and L points in k-space whose approximate symmetry can be used to simplify calculations. They also account for lion-share of the interband transitions, but not all of them. ![right|300](../../../figures/Pasted%20image%2020260121090737.png)
-
-The overall electronic contribution to emission is therefore given by
-
-$$
-\Gamma = \Gamma_{\text{cc}} + 6\Gamma_{\text{cv}}^{\text{X}} + 8\Gamma_{\text{cv}}^{\text{L}}
-$$
-
-[^1]: Technically transitions can occur inside the valence band, but these are very unlikely and their contribution at standard cases is negligible.

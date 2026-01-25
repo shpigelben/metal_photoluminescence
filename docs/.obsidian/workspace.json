@@ -21,8 +21,36 @@
               "icon": "lucide-file",
               "title": "1 - Introduction"
             }
+          },
+          {
+            "id": "b3cb621b3c2e2602",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "resources/A1 - semiconductor_emission_slides.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "A1 - semiconductor_emission_slides"
+            }
+          },
+          {
+            "id": "79abd6d7d6eb455c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "notes/Chapters & Sections/1 - Introduction/2 - Tasks.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "2 - Tasks"
+            }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -79,7 +107,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 259.5
+    "width": 245.5
   },
   "right": {
     "id": "ff902569427872ea",
@@ -189,39 +217,42 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "27a0132d2cd61901",
+  "active": "79abd6d7d6eb455c",
   "lastOpenFiles": [
-    "notes/Chapters & Sections/1 - Introduction/2 - Tasks.md",
-    "notes/Outline & Questions/Photon Absorption by Conduction Electrons.md",
-    "notes/Dedications.md",
-    "notes/Chapters & Sections/1 - Introduction/Abstract.md",
+    "notes/Chapters & Sections/A - Appendices/A9 - Kirchhoff's Law Of Radiation.md",
+    "notes/Chapters & Sections/A - Appendices/A3 - Thermal Factor Energy Space.md",
+    "notes/Chapters & Sections/A - Appendices/A2 - Derivation of Analytic Approximation.md",
+    "notes/Chapters & Sections/A - Appendices/A1 - Derivation of the General Emission Integral.md",
+    "resources/Theory of photoluminescence by metallic structures.pdf",
+    "resources/0 - Mooridan.pdf",
     "notes/Chapters & Sections/1 - Introduction/1 - Introduction.md",
-    "notes/Chapters & Sections/Markdown to Latex Instructions.md",
-    "notes/Chapters & Sections/3 - Intraband Transitions/3.4 - Delta Approximation.md",
+    "resources/A1 - semiconductor_emission_slides.pdf",
+    "notes/Outline & Questions/Non-equilibrium Emission in Metals.md",
+    "notes/Outline & Questions/Electronic Transitions.md",
+    "notes/Outline & Questions/Photon Absorption by Conduction Electrons.md",
+    "notes/Outline & Questions/emission integral tree.canvas",
+    "notes/Outline & Questions/Integration Limits of X & L Points vs the Center of BZ.md",
+    "notes/Outline & Questions/Comparisons New.md",
     "notes/Outline & Questions/Assembled_Questions.md",
+    "notes/Outline & Questions/1st order TDM.md",
+    "notes/Outline & Questions/0 - Work Plan.md",
+    "notes/Chapters & Sections/1 - Introduction/2 - Tasks.md",
+    "notes/Chapters & Sections/Abstract.md",
+    "notes/Chapters & Sections/A - Appendices/A4 - Electronic Density of States.md",
+    "notes/Chapters & Sections/A - Appendices/A5 - Numeric Delta Approximation.md",
+    "notes/Chapters & Sections/3 - Intraband Transitions/3.4 - Delta Approximation.md",
+    "notes/Chapters & Sections/A - Appendices/A6 - Boltzmann Equation.md",
+    "notes/Chapters & Sections/A - Appendices/A7 - Quadratic Intraband Transitions.md",
+    "notes/Chapters & Sections/A - Appendices/A8 - Quadratic Interband Transitions.md",
+    "notes/Dedications.md",
+    "notes/Chapters & Sections/Markdown to Latex Instructions.md",
     "notes/Chapters & Sections/3 - Intraband Transitions/3.3 - Constant eDOS Approximation.md",
     "figures/Pasted image 20260121090737.png",
     "notes/Chapters & Sections/3 - Intraband Transitions/3.1 - Numeric Convergence.md",
     "figures/Pasted image 20260121090715.png",
     "figures/Pasted image 20260121090651.png",
-    "notes/Chapters & Sections/A - Appendices/A6 - Boltzmann Equation.md",
-    "notes/Chapters & Sections/A - Appendices/A2 - Derivation of Analytic Approximation.md",
     "notes/Chapters & Sections/3 - Intraband Transitions/3 - Intraband Transitions.md",
-    "notes/Chapters & Sections/3 - Intraband Transitions/3.2 - Analytic Approximations.md",
     "figures/gaussian_delta_double_integral.png",
-    "notes/Outline & Questions/1st order TDM.md",
-    "notes/Chapters & Sections/A - Appendices/A8 - Quadratic Interband Transitions.md",
-    "notes/Chapters & Sections/A - Appendices/A7 - Quadratic Intraband Transitions.md",
-    "notes/Chapters & Sections/A - Appendices/A4 - Electronic Density of States.md",
-    "notes/Chapters & Sections/A - Appendices/A3 - Thermal Factor Energy Space.md",
-    "notes/Chapters & Sections/A - Appendices/A1 - Derivation of the General Emission Integral.md",
-    "notes/Outline & Questions/emission integral tree.canvas",
-    "notes/Outline & Questions/Non-equilibrium Emission in Metals.md",
-    "notes/Outline & Questions/Introduction.md",
-    "notes/Chapters & Sections/2 - Theoretical Framework/2 - Theoretical Framework.md",
-    "notes/Outline & Questions/Thesis Outline.md",
-    "notes/Chapters & Sections/4 - Interband Transitions/4 - Interband Transitions.md",
-    "notes/Chapters & Sections/3 - Intraband Transitions/3.5 - Quadratic Band.md",
     "notes/Chapters & Sections/A - Appendices",
     "notes/Chapters & Sections/1 - Introduction",
     "notes/Sections/5 - Results & Discussion",
@@ -229,9 +260,6 @@
     "notes/Chapters & Sections/2 - Theoretical Framework",
     "notes/Chapters & Sections/3 - Intraband Transitions",
     "docs/update_notebook_v5.py",
-    "docs/update_notebook_v4.py",
-    "docs/update_notebook_v3.py",
-    "docs/update_notebook_v2.py",
     "figures/consteDOS_error_heatmaps.png",
     "figures/analytic_error_heatmaps.png",
     "figures/Pasted image 20260118074501.png",

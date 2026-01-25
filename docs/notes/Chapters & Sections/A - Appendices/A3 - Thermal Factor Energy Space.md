@@ -14,26 +14,18 @@ I & = \; \int\limits_{0}^{\infty} f(\mathcal{E}+\hbar\omega)[1-f(\mathcal{E})]d\
 $$
 
 The transition $(1)\to(2)$ is a known identity
+
 $$
 f(\mathcal{E}+\hbar\omega) [1-f(\mathcal{E})] = n_{B}(\hbar\omega) \left[f(\mathcal{E})-f(\mathcal{E+\hbar \omega})\right]
 $$
+
 where $n_{B}(\hbar\omega)$ is the Bose-Einstein distribution
 
 $$
 n_{B}(\hbar\omega) = \frac{1}{e^{\beta \hbar\omega}-1}
 $$
 The $(8)\to(9)$ approximation is valid when the following conditions are met
+
 $$
 \mu \gg k_{\small B}T \quad\text{and}\quad \mu\gg \hbar\omega
 $$
-
-# Non-equilibrium
-
-$$
-f\big( { \mathcal{E} \ | \ \omega _{\scriptsize L} }\big) = f^{T}({ \mathcal{E}}) + \delta E(\omega _{\scriptsize L})\cdot B({ \mathcal{E}\ | \ \omega _{\scriptsize L}}) 
-$$
-$$
-B({ \mathcal{E} \ |\ \omega _{\scriptsize L}}) = f^{T}({\mathcal{E} - \hbar\omega _{\scriptsize L}})\Big[ 1-f^{T}({\mathcal{E}}) \Big] - f^{T}(\mathcal{E})\Big[ 1- f^{T}(\mathcal{E}+\hbar\omega _{\scriptsize L}) \Big] 
-$$
-
-$$I(\hbar\omega_{E}|\hbar\omega_{L}) \propto \int\limits_{0}^{\infty} f(\mathcal{E}+\hbar\omega)[1-f(\mathcal{E})]d\mathcal{E}$$

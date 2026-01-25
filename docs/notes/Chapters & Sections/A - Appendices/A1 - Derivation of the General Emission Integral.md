@@ -1,3 +1,4 @@
+Show FGR, explain why we use it (weak perturbation) and how it relates to emission.
 # First Order Radiative Transitions in Solids
 Consider electrons in a solid. It's Hamiltonian consists of the kinetic energy term and the lattice term which embodies the periodic nature of the material. In the presence of an E&M field the Hamiltonian is
 $$
@@ -6,7 +7,7 @@ $$
 &\approx  \underbrace{ \frac{\hat{\mathbf{p}}\cdot\hat{\mathbf{p}}}{2m_{e}} + V_{\text{lattice}}(\hat{\mathbf{r}}) }_{ \hat{H}_{0} } + \underbrace{ \frac{e}{m_{e}}\Big[\mathbf{A}(\hat{\mathbf{r}},t)\cdot \hat{\mathbf{p}}  +\hat{\mathbf{p}}\cdot\mathbf{A}(\hat{\mathbf{r}},t)\Big] }_{ \hat{H}_{\text{int}} }
 \end{align}
 $$
-The diamagnetic terms, $|\mathbf{A}(\hat{\mathbf{r}},t)|^{2}$, term relates to a two-photon process which is negligible in the case of spontaneous emission and we take the common course of neglecting it.
+The diamagnetic term, $|\mathbf{A}(\hat{\mathbf{r}},t)|^{2}$, term relates to a two-photon process which is negligible in the case of spontaneous emission and we take the common course of neglecting it.
 
 - [ ] ==nonlinear effects for strong laser pumps \ pulsed dynamics? Well, for pulsed radiation $\mathbf{A}(\hat{\mathbf{r}},t)$ would be different).==
 - [ ] Coulomb gauge - always have this freedom?
@@ -27,7 +28,7 @@ $$
 \mathbf{A}(\hat{\mathbf{r}},t) = \hat{\mathbf{n}}A_{0}\cos(\mathbf{q}\cdot \mathbf{r}-\omega t)
 $$
 
-The eigenstates of $\hat{H}_{0}$ are famously Bloch states $\ket{\psi_{n\mathbf{k}}}$. We treat the interaction term as a perturbation and, using Fermi Golden Rule (FGR), calculate the transition rates between energy states, namely
+In the conduction band the eigenstates of $\hat{H}_{0}$ are famously Bloch states $\ket{\psi_{n\mathbf{k}}}$. We treat the interaction term as a perturbation and, using Fermi Golden Rule (FGR), calculate the transition rates between energy states, namely
 
 $$
 \begin{align}
@@ -52,16 +53,16 @@ $$
 \Gamma_{\uparrow / \downarrow} = \frac{2\pi}{\hbar} \mathbf{P}_{mn}\cdot  \hat{\mathbf{n}} \;\; \delta\Big(  \mathcal{E}_{m}(\mathbf{k}) - (\mathcal{E}_n(\mathbf{k})\pm\hbar\omega)\Big) 
 $$
 
-Looking at this equation, it is clear that such a single-process transition is possible only when $n\neq m$, namely when the energy states (bands) are different - an interband transition. It has been known for several decades that absorption and emission of photons by conduction electrons is impossible via a single-step process. It is possible however, via a two-step process in which the interaction is mediated by a phonon which provides the missing momentum.
+Looking at this equation, it is clear that such a first-order transition is possible only when $n\neq m$, namely when the energy states (bands) are different - an interband transition. It has been known for several decades that absorption and emission of photons by conduction electrons is impossible via a single-step process (Yonatan says it is possible for a nano-particle due to the wavefunctions no longer being Bloch). A second-order transitions in which the interaction is mediated by a phonon/impurity is however possible.
 
 # From a Single Transition to the Continuum
-Consider an electronic transition between an initial state $\ket{\mathbf{k}_{1}, \alpha}$ and a final state $\ket{\mathbf{k}_{2}, \beta}$, mediated by an energy transfer $\hbar \omega$. The subscripts $\alpha$ and $\beta$represent specific energy bands (valence or conduction), allowing transitions between different branches of the dispersion relation. According to Fermi's Golden Rule, the microscopic transition rate is
+Consider an electronic transition between an initial state $\ket{\mathbf{k}_{1}, n}$ and a final state $\ket{\mathbf{k}_{2}, m}$, mediated by an energy transfer $\hbar \omega$. The subscripts $n$ and $m$ represent specific energy bands (valence or conduction), allowing transitions between different branches of the dispersion relation. According to Fermi's Golden Rule, the microscopic transition rate is
 
 $$
-\Gamma_{1\to 2}(\hbar\omega) = \frac{2\pi}{\hbar} \left|\mu_{12}^{\alpha\beta}\right|^{2} \ \delta\left(\mathcal{E}_{\beta}(\mathbf{k}_{2}) - \mathcal{E}_{\alpha}(\mathbf{k}_{1}) + \hbar\omega \right)
+\Gamma_{1\to 2}(\hbar\omega) = \frac{2\pi}{\hbar} \left|\mu_{12}^{nm}\right|^{2} \ \delta\left(\mathcal{E}_{m}(\mathbf{k}_{2}) - \mathcal{E}_{n}(\mathbf{k}_{1}) + \hbar\omega \right)
 $$
 
-where $\mu_{12}^{\alpha\beta}$ is the transition dipole moment governing momentum conservation, and the Dirac delta function enforces energy conservation based on the band-specific dispersion relations $\mathcal{E}_{\alpha}$and $\mathcal{E}_{\beta}$.
+where $\mu_{12}^{nm}$ is the transition dipole moment governing momentum conservation, and the Dirac delta function enforces energy conservation based on the band-specific dispersion relations $\mathcal{E}_{n}$ and $\mathcal{E}_{m}$.
 
 For clarity, we temporarily suppress the band indices to derive the rate for a generic pair of bands. To determine the rate $\Gamma_{1}$ from a specific initial state $\ket{\mathbf{k}_{1}}$, we sum over all available final states $\ket{\mathbf{k}_{2}}$. This summation is weighted by the probability of the final state being vacant, $[1-f(\mathbf{k}_{2})]$, and accounts for spin degeneracy. In the continuum limit, the discrete summation over wave-vectors transforms into an integral over the Brillouin Zone (BZ) with a density of states factor $V/(2\pi)^{3}$:
 
@@ -71,9 +72,9 @@ Similarly, to obtain the total rate for this band pair, we sum the single-state 
 
 $$\begin{align} \Gamma (\hbar\omega) &= 2\cdot \sum_{\mathbf{k}_{1}} \ \Gamma_{1}(\hbar\omega) f(\mathbf{k}_{1}) \\ &= 2V \int\limits_{\text{BZ}} \frac{d^{3}k_{1}}{(2\pi)^{3}} \ \Gamma_{1}(\hbar\omega) \ f(\mathbf{k}_{1}) \end{align}$$
 
-Finally, to account for all possible emission channels, we reintroduce the band indices and perform a general summation over all bands $\alpha$ and $\beta$. This covers all permutations, including interband (conduction-valence $\alpha\beta = cv$) and intraband (conduction-conduction $\alpha\beta =cc$) transitions. Defining $\overline{f_{\beta}(\mathbf{k})} \equiv 1 - f_{\beta}(\mathbf{k})$, the general expression is
+Finally, to account for all possible emission channels, we reintroduce the band indices and perform a general summation over all bands $n$ and $m$. This covers all permutations, including interband (conduction-valence $nm = cv$) and intraband (conduction-conduction $nm = cc$) transitions. Defining $\overline{f_{m}(\mathbf{k})} \equiv 1 - f_{m}(\mathbf{k})$, the general expression is
 
-$$\boxed{ \Gamma(\hbar\omega) = \frac{2\pi}{\hbar} \left( \frac{2V}{(2\pi)^{3}} \right)^{2} \sum_{\alpha, \beta} \iint\limits_{\text{BZ}} |\mu^{\alpha\beta}(\mathbf{k_{1}},\mathbf{k_{2}})|^{2} \ f_{\alpha}(\mathbf{k}_{1})\overline{f_{\beta}(\mathbf{k}_{2})} \ \delta\big(\mathcal{E}_{\beta}(\mathbf{k}_{2}) - \mathcal{E}_{\alpha}(\mathbf{k}_{1}) + \hbar\omega \big) \ d^{3}k_{1} \ d^{3}k_{2} }$$
+$$\boxed{ \Gamma(\hbar\omega) = \frac{2\pi}{\hbar} \left( \frac{2V}{(2\pi)^{3}} \right)^{2} \sum_{n, m} \iint\limits_{\text{BZ}} |\mu^{nm}(\mathbf{k_{1}},\mathbf{k_{2}})|^{2} \ f_{n}(\mathbf{k}_{1})\overline{f_{m}(\mathbf{k}_{2})} \ \delta\big(\mathcal{E}_{m}(\mathbf{k}_{2}) - \mathcal{E}_{n}(\mathbf{k}_{1}) + \hbar\omega \big) \ d^{3}k_{1} \ d^{3}k_{2} }$$
 
 [^1]: But shouldn't emission here be mostly spontaneous emission?
 	The way it is presented here, stimulated absorption and emission are the opposites. It is really stimulated emission? Or are we actually calculating spontaneous emission without understanding it?

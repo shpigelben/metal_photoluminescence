@@ -39,6 +39,6 @@
 - [ ] **[Strong pump / pulsed](<../Chapters & Sections/A - Appendices/A1 - Derivation of the General Emission Integral.md>)**: at what point do we need to worry about nonlinear response or time dependence (pulsed illumination), versus a simple steady-state Boltzmann picture?
 
 ## 8) Thesis-facing: references + “canonical” derivations
-- [ ] **[Key citations needed](<../Chapters & Sections/1 - Introduction/Abstract.md>)**: what are the best references for (a) intraband equilibrium emission giving Planck-like behavior, (b) interband emission being negligible in thermal equilibrium for Au, and (c) the standard hot-PL non-equilibrium distribution under CW/pulsed excitation?
+- [ ] **[Key citations needed](<../Chapters & Sections/Abstract.md>)**: what are the best references for (a) intraband equilibrium emission giving Planck-like behavior, (b) interband emission being negligible in thermal equilibrium for Au, and (c) the standard hot-PL non-equilibrium distribution under CW/pulsed excitation?
 - [ ] **[Which derivation to follow](<Progress Report + Questions for Yonatan.md>)**: between Novotny-style quantized-field derivations and metal/Bloch-electron treatments (e.g., Farhan-style), which route do you recommend as the most defensible backbone for my thesis?
 - [ ] **[Gauge choice](<../Chapters & Sections/A - Appendices/A1 - Derivation of the General Emission Integral.md>)**: in the derivation of light–matter interaction, is it safe to assume Coulomb gauge throughout, and what do I need to state to make that assumption legitimate?
