@@ -55,13 +55,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/Chapters & Sections/2 - Theoretical Framework/2 - Theoretical Framework.md",
+                "file": "notes/Outline & Questions/thoughts with Gemini/Bulk vs NP.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "2 - Theoretical Framework"
+              "title": "Bulk vs NP"
             }
           },
           {
@@ -104,6 +104,21 @@
             }
           },
           {
+            "id": "204ae1a142ffae3d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "notes/Outline & Questions/thoughts with Gemini/Bulk vs NP.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Bulk vs NP"
+            }
+          },
+          {
             "id": "aa18c8c5fae80cfc",
             "type": "leaf",
             "state": {
@@ -119,22 +134,12 @@
               "icon": "lucide-search",
               "title": "Search"
             }
-          },
-          {
-            "id": "3af7055af56e713c",
-            "type": "leaf",
-            "state": {
-              "type": "bookmarks",
-              "state": {},
-              "icon": "lucide-bookmark",
-              "title": "Bookmarks"
-            }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 245.5
+    "width": 238.5
   },
   "right": {
     "id": "ff902569427872ea",
@@ -150,7 +155,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/Chapters & Sections/1 - Introduction/2 - Tasks.md",
+                "file": "notes/Outline & Questions/thoughts with Gemini/Bulk vs NP.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -160,7 +165,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 2 - Tasks"
+              "title": "Backlinks for Bulk vs NP"
             }
           },
           {
@@ -205,21 +210,6 @@
               "icon": "lucide-archive",
               "title": "All properties"
             }
-          },
-          {
-            "id": "204ae1a142ffae3d",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "notes/1 - Introduction.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "Outline of 1 - Introduction"
-            }
           }
         ]
       }
@@ -246,9 +236,17 @@
   },
   "active": "3dbac0fc29cf5a95",
   "lastOpenFiles": [
-    "notes/Chapters & Sections/1 - Introduction/1 - Introduction.md",
+    "notes/Outline & Questions/thoughts with Gemini/FDT & Kirchhoff.md",
+    "notes/Outline & Questions/thoughts with Gemini/Fermi Golden Rule Deep Dive.md",
+    "notes/Outline & Questions/thoughts with Gemini/Selective emission.md",
+    "notes/Outline & Questions/thoughts with Gemini/Bulk vs NP.md",
+    "notes/Dedications.md",
+    "notes/Outline & Questions/thoughts with Gemini",
+    "notes/Chapters & Sections/2 - Theoretical Framework/2.1 - General Emission Integral.md",
+    "notes/Chapters & Sections/2 - Theoretical Framework/2.2 - Intraband Transitions.md",
     "notes/Chapters & Sections/2 - Theoretical Framework/2 - Theoretical Framework.md",
     "notes/Chapters & Sections/A - Appendices/A1 - Derivation of the General Emission Integral.md",
+    "notes/Chapters & Sections/1 - Introduction/1 - Introduction.md",
     "resources/2 - Hot Photoluminescence Supplamentary.pdf",
     "resources/1 - theory-of-hot-photoluminescence-from-drude-metals.pdf",
     "resources/0 - Contribution_of_Interband_Transitions_to_Non_equilibrium_Emission_From_Gold.pdf",
@@ -274,19 +272,11 @@
     "notes/Chapters & Sections/Abstract.md",
     "notes/Chapters & Sections/A - Appendices/A4 - Electronic Density of States.md",
     "notes/Chapters & Sections/A - Appendices/A5 - Numeric Delta Approximation.md",
-    "notes/Chapters & Sections/3 - Intraband Transitions/3.4 - Delta Approximation.md",
-    "notes/Chapters & Sections/A - Appendices/A6 - Boltzmann Equation.md",
-    "notes/Chapters & Sections/A - Appendices/A8 - Quadratic Interband Transitions.md",
-    "notes/Dedications.md",
-    "notes/Chapters & Sections/Markdown to Latex Instructions.md",
-    "notes/Chapters & Sections/3 - Intraband Transitions/3.3 - Constant eDOS Approximation.md",
     "figures/Pasted image 20260121090737.png",
-    "notes/Chapters & Sections/3 - Intraband Transitions/3.1 - Numeric Convergence.md",
     "figures/Pasted image 20260121090715.png",
     "figures/Pasted image 20260121090651.png",
     "figures/gaussian_delta_double_integral.png",
     "notes/Chapters & Sections/A - Appendices",
-    "notes/Chapters & Sections/1 - Introduction",
     "figures/consteDOS_error_heatmaps.png",
     "figures/analytic_error_heatmaps.png",
     "figures/Pasted image 20260118074501.png",
