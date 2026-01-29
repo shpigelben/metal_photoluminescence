@@ -33,6 +33,7 @@ $$
 $$
 
 Technically, there should also be a term for the recombination (and emission) of electrons, but it is very negligible in metals (according to Yonatan - need to check why).
+
 An involved calculation leads to the excitation (absorption) term
 
 $$

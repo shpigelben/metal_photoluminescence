@@ -8,7 +8,7 @@ ___
 # Introduction
 Luminescence generally refers to the spontaneous emission of light (generally incoherent and omnidirectional) due to the decay of an electron which had been perturbed into an exited state. Photoluminescence, which is the focus of this work, is one of many such phenomena where the perturbation is done by en electromagnetic radiation. Namely, an electron is excited by an one photon and then reemits another by radiatively recombining.
 
-==A short passage on why this is even interesting to research in detail== Apart from fundamental science, a deeper grasp of the phenomenon is necessary for better understanding things like plasmon assisted photo-catalysis, the so-called hot photoluminescence, can find root in applications such as nano-thermometry and more.
+==Apart from fundamental scientific inquiry, a deeper understanding of this phenomenon is requisite for interpreting **plasmon-assisted photocatalysis** and **hot photoluminescence**, ultimately finding utility in applications such as **nano-thermometry**.
 
 Photoluminescence (PL) in metals, which is the focus of our work, predominantly takes place in the conduction band, in the so called intraband transitions. Previous work by [Sivan & Dubi] calculated the steady-state distribution of electronic states in gold under continuous wave (CW) illumination, and consequently the intraband contribution to PL.
 
