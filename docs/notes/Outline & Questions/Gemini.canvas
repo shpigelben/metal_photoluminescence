@@ -1,0 +1,15 @@
+{
+	"nodes":[
+		{"id":"instructions","type":"text","text":"**Start Here:**\n1. Drag an arrow from the Abstract (or any future answer) to a new card.\n2. Write your question.\n3. Tell the CLI: \"canvas reply\"\n\nI will trace the path backwards to maintain non-linear context!","x":160,"y":-200,"width":400,"height":200,"color":"1"},
+		{"id":"6c2b4dbc047e3ada","type":"text","text":"# Question 1\nWhat is a modern approach to calculating intraband and interband transitions properly?","x":-355,"y":200,"width":335,"height":220},
+		{"id":"e6e0806b6d20c06e","type":"text","text":"Question 2\n\nWhy are you do uselesS?","x":-312,"y":560,"width":250,"height":60},
+		{"id":"context_abstract","type":"text","text":"# Context: Metal Photoluminescence\n\n**Summary:**\nThis work quantifies the contribution of **interband transitions** (conduction to valence band) to the photoluminescence of Gold under external illumination. We extend previous theoretical frameworks—originally limited to intraband transitions—to include interband channels under both continuous-wave and transient excitation. Our approach combines rigorous numerical simulations with analytical validations.","x":-642,"y":-200,"width":660,"height":280},
+		{"id":"b7f1c2d3e4f50617","type":"text","text":"# Answer 1b\nAnother modern route is to compute the frequency-dependent conductivity/dielectric response and then separate channels by physics: treat intraband with a Boltzmann/Drude term (including realistic scattering time and temperature-dependent occupations) and treat interband with a Kubo-Greenwood sum over bands using dipole/velocity matrix elements. Enforce sum rules and use physically motivated broadening so interband features are not washed out while intraband remains causal.","x":160,"y":680,"width":420,"height":360},
+		{"id":"a2f6bbd7e9c546bf","type":"text","text":"# Answer 1\nA modern strategy couples precise band structure inputs with many-body perturbation theory. Compute intraband contributions via finite-difference velocity matrix elements across a dense k-grid, then add interband terms evaluated from optical transition dipoles between valence and conduction states. Reference your existing notes on numeric convergence when deciding grid spacing and broadening so the simulation stays stable and consistent with Golden-rule expectations.","x":220,"y":200,"width":360,"height":220}
+	],
+	"edges":[
+		{"id":"f22c06b873773a78","fromNode":"context_abstract","fromSide":"bottom","toNode":"6c2b4dbc047e3ada","toSide":"top"},
+		{"id":"edge_answer1","fromNode":"6c2b4dbc047e3ada","fromSide":"right","toNode":"a2f6bbd7e9c546bf","toSide":"left"},
+		{"id":"edge_answer1b","fromNode":"6c2b4dbc047e3ada","fromSide":"bottom","toNode":"b7f1c2d3e4f50617","toSide":"top"}
+	]
+}

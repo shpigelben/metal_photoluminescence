@@ -4,95 +4,110 @@
     "type": "split",
     "children": [
       {
-        "id": "850b69765fa00dd8",
-        "type": "tabs",
+        "id": "6e6ad24b410c0f2e",
+        "type": "split",
         "children": [
           {
-            "id": "27a0132d2cd61901",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/Chapters & Sections/1 - Introduction/1 - Introduction.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
+            "id": "850b69765fa00dd8",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "27a0132d2cd61901",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "notes/Chapters & Sections/1 - Introduction/1 - Introduction.md",
+                    "mode": "source",
+                    "source": false,
+                    "backlinks": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "1 - Introduction"
+                }
               },
-              "icon": "lucide-file",
-              "title": "1 - Introduction"
-            }
+              {
+                "id": "b3cb621b3c2e2602",
+                "type": "leaf",
+                "state": {
+                  "type": "pdf",
+                  "state": {
+                    "file": "resources/A1 - semiconductor_emission_slides.pdf"
+                  },
+                  "icon": "lucide-file-text",
+                  "title": "A1 - semiconductor_emission_slides"
+                }
+              },
+              {
+                "id": "79abd6d7d6eb455c",
+                "type": "leaf",
+                "state": {
+                  "type": "canvas",
+                  "state": {
+                    "file": "notes/Outline & Questions/Gemini.canvas",
+                    "viewState": {
+                      "x": 21.818229865957548,
+                      "y": 772.1273986350088,
+                      "zoom": -2.424067873815264
+                    }
+                  },
+                  "icon": "lucide-layout-dashboard",
+                  "title": "Gemini"
+                }
+              }
+            ],
+            "currentTab": 2
           },
           {
-            "id": "b3cb621b3c2e2602",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "resources/A1 - semiconductor_emission_slides.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "A1 - semiconductor_emission_slides"
-            }
-          },
-          {
-            "id": "79abd6d7d6eb455c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/Chapters & Sections/1 - Introduction/1 - Introduction.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "1 - Introduction"
-            }
-          },
-          {
-            "id": "3dbac0fc29cf5a95",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/Outline & Questions/thoughts with Gemini/Reflection Vs Photoluminescence.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Reflection Vs Photoluminescence"
-            }
-          },
-          {
-            "id": "6522efd8d1594fae",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/Chapters & Sections/A - Appendices/A9 - Kirchhoff's Law Of Radiation.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "A9 - Kirchhoff's Law Of Radiation"
-            }
-          },
-          {
-            "id": "c93cb820ddf010b3",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "resources/2 - Hot Photoluminescence Supplamentary.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "2 - Hot Photoluminescence Supplamentary"
-            }
+            "id": "f054bd72d6210be7",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "2679bc3bbf580df7",
+                "type": "leaf",
+                "pinned": true,
+                "state": {
+                  "type": "terminal:terminal",
+                  "state": {
+                    "terminal:terminal": {
+                      "cwd": "/Users/ben/Projects/metal_photoluminescence/docs",
+                      "focus": false,
+                      "profile": {
+                        "args": [
+                          "--login"
+                        ],
+                        "executable": "/bin/zsh",
+                        "followTheme": true,
+                        "name": "",
+                        "platforms": {
+                          "darwin": true
+                        },
+                        "pythonExecutable": "python3",
+                        "restoreHistory": false,
+                        "rightClickAction": "copyPaste",
+                        "successExitCodes": [
+                          "0",
+                          "SIGINT",
+                          "SIGTERM"
+                        ],
+                        "terminalOptions": {
+                          "documentOverride": null
+                        },
+                        "type": "integrated",
+                        "useWin32Conhost": true
+                      },
+                      "serial": null
+                    }
+                  },
+                  "pinned": true,
+                  "icon": "terminal",
+                  "title": "Terminal: ✦  Working… (metal_photoluminescence)"
+                }
+              }
+            ]
           }
         ],
-        "currentTab": 4
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -124,13 +139,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "notes/Chapters & Sections/A - Appendices/A9 - Kirchhoff's Law Of Radiation.md",
+                "file": "notes/Outline & Questions/Gemini.canvas",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of A9 - Kirchhoff's Law Of Radiation"
+              "title": "Outline of Gemini"
             }
           },
           {
@@ -170,7 +185,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/Chapters & Sections/A - Appendices/A9 - Kirchhoff's Law Of Radiation.md",
+                "file": "notes/Outline & Questions/Gemini.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -180,7 +195,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for A9 - Kirchhoff's Law Of Radiation"
+              "title": "Backlinks for Gemini"
             }
           },
           {
@@ -249,49 +264,53 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "6522efd8d1594fae",
+  "active": "79abd6d7d6eb455c",
   "lastOpenFiles": [
+    "notes/Outline & Questions/Gemini_QA.md",
+    "notes/Outline & Questions/Gemini_canvas_fuckup.md",
+    "notes/Outline & Questions/Gemini.canvas",
+    "notes/Chapters & Sections/1 - Introduction/1 - Introduction.md",
+    "resources/A1 - semiconductor_emission_slides.pdf",
+    "notes/Outline & Questions/emission integral tree.canvas",
+    "notes/Dedications.md",
+    "resources/2 - Hot Photoluminescence Supplamentary.pdf",
+    "notes/Outline & Questions/Integration Limits of X & L Points vs the Center of BZ.md",
+    "notes/Outline & Questions/Non-equilibrium Emission in Metals.md",
+    "notes/Outline & Questions/Progress Report + Questions for Yonatan.md",
+    "notes/Outline & Questions/Thesis Outline.md",
+    "notes/Outline & Questions/Untitled.md",
+    "notes/Outline & Questions/Electronic Transitions.md",
+    "notes/Outline & Questions/1st order TDM.md",
+    "notes/Outline & Questions/Comparisons New.md",
+    "notes/Outline & Questions/Assembled_Questions.md",
+    "notes/Outline & Questions/thoughts with Gemini/Gemini.canvas",
+    "notes/Gemini.canvas/Gemini.canvas",
+    "notes/Outline & Questions/thoughts with Gemini",
+    "notes/Gemini.canvas/Answers",
+    "notes/Gemini.canvas/Questions",
+    "notes/Gemini.canvas/Bulk vs NP.md",
+    "notes/Gemini.canvas/FDT & Kirchhoff.md",
+    "notes/Chapters & Sections/A - Appendices/A9 - Kirchhoff's Law Of Radiation.md",
+    "notes/Gemini.canvas",
     "notes/Chapters & Sections/2 - Theoretical Framework/2 - Theoretical Framework.md",
     "notes/Chapters & Sections/2 - Theoretical Framework/2.1 - General Emission Integral.md",
     "notes/Chapters & Sections/2 - Theoretical Framework/2.2 - Intraband Transitions.md",
     "notes/Chapters & Sections/1 - Introduction/2 - Tasks.md",
     "notes/Chapters & Sections/3 - Intraband Transitions/3.1 - Numeric Convergence.md",
     "notes/Chapters & Sections/3 - Intraband Transitions/3 - Intraband Transitions.md",
-    "notes/Untitled.md",
-    "notes/Outline & Questions/thoughts with Gemini/Reflection Vs Photoluminescence.md",
-    "notes/Dedications.md",
+    "notes/Gemini.canvas/Reflection Vs Photoluminescence.md",
     "notes/Chapters & Sections/A - Appendices/A3 - Thermal Factor Energy Space.md",
     "notes/Chapters & Sections/A - Appendices/A4 - Electronic Density of States.md",
     "notes/Chapters & Sections/A - Appendices/A7 - Quadratic Intraband Transitions.md",
-    "notes/Chapters & Sections/A - Appendices/A6 - Boltzmann Equation.md",
-    "notes/Chapters & Sections/A - Appendices/A5 - Numeric Delta Approximation.md",
-    "notes/Chapters & Sections/A - Appendices/A2 - Derivation of Analytic Approximation.md",
-    "notes/Chapters & Sections/A - Appendices/A1 - Derivation of the General Emission Integral.md",
-    "notes/Chapters & Sections/3 - Intraband Transitions/3.5 - Quadratic Band.md",
-    "notes/Chapters & Sections/3 - Intraband Transitions/3.3 - Constant eDOS Approximation.md",
-    "notes/Chapters & Sections/3 - Intraband Transitions/3.2 - Analytic Approximations.md",
-    "notes/Chapters & Sections/1 - Introduction/1 - Introduction.md",
-    "notes/Outline & Questions/thoughts with Gemini/Bulk vs NP.md",
-    "notes/Outline & Questions/thoughts with Gemini/FDT & Kirchhoff.md",
-    "notes/Outline & Questions/thoughts with Gemini/Fermi Golden Rule Deep Dive.md",
-    "notes/Outline & Questions/thoughts with Gemini/Selective emission.md",
-    "notes/Outline & Questions/thoughts with Gemini",
-    "resources/2 - Hot Photoluminescence Supplamentary.pdf",
+    "notes/thoughts with Gemini/thoughts with Gemini",
     "resources/1 - theory-of-hot-photoluminescence-from-drude-metals.pdf",
     "resources/0 - Contribution_of_Interband_Transitions_to_Non_equilibrium_Emission_From_Gold.pdf",
     "resources/“Hot” electrons in metallic nanostructures—nonthermal carriers or heating?.pdf",
     "resources/8 - Novotny.pdf",
-    "notes/Chapters & Sections/A - Appendices/A9 - Kirchhoff's Law Of Radiation.md",
-    "resources/Theory of photoluminescence by metallic structures.pdf",
-    "resources/0 - Mooridan.pdf",
-    "resources/A1 - semiconductor_emission_slides.pdf",
-    "notes/Outline & Questions/Non-equilibrium Emission in Metals.md",
-    "notes/Outline & Questions/emission integral tree.canvas",
     "figures/Pasted image 20260121090737.png",
     "figures/Pasted image 20260121090715.png",
     "figures/Pasted image 20260121090651.png",
     "figures/gaussian_delta_double_integral.png",
-    "notes/Chapters & Sections/A - Appendices",
     "figures/consteDOS_error_heatmaps.png",
     "figures/analytic_error_heatmaps.png",
     "figures/Pasted image 20260118074501.png",
