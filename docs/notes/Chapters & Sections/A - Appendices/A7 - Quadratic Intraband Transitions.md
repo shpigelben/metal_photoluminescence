@@ -12,7 +12,7 @@ $$
 ## General Derivation
 
 $$I(\hbar\omega) \propto \iint_{\text{BZ}} d^{3}k_{1} d^{3}k_{2} \; f(\mathcal{E}_{c}(\mathbf{k}_{1})) \Big[1-f(\mathcal{E}_{c}(\mathbf{k}_{2}))\Big] \; \delta\Big(\mathcal{E}_{c}(\mathbf{k}_{1}) - \mathcal{E}_{c}(\mathbf{k}_{2}) - \hbar\omega \Big)$$
-Unlike the inter-band case, this process is phonon-assisted (or defect-assisted), meaning momentum is **not conserved** ($\mathbf{k}_1 \neq \mathbf{k}_2$) even approximately. We assume that whatever momentum is missing for an energetic transition to occur is readily available through various mediators (as mentioned above). The initial and final states are independent vectors in the Brillouin Zone. This allows us to decouple the six-dimensional integral into a product of two independent densities of states. By using the following
+Unlike the inter-band case, this process is phonon-assisted (Landau damped), meaning momentum is **not conserved** ($\mathbf{k}_1 \neq \mathbf{k}_2$). We assume that whatever momentum is missing for an energetic transition to occur is readily available through various mediators (as mentioned above). The initial and final states are independent vectors in the Brillouin Zone. This allows us to decouple the six-dimensional integral into a product of two independent densities of states. By using the following
 $$
 \delta\Big(\mathcal{E}_{c}(\mathbf{k}_{1}) - \mathcal{E}_{c}(\mathbf{k}_{2}) - \hbar\omega \Big) = \iint\limits \delta(\mathcal{E}_1 - \mathcal{E}_c(\mathbf{k}_1)) \times \delta(\mathcal{E}_2 - \mathcal{E}_c(\mathbf{k}_2))  \times \delta(\mathcal{E}_1 - \mathcal{E}_2 - \hbar\omega) \; d\mathcal{E}_{1}d\mathcal{E}_{2}
 $$

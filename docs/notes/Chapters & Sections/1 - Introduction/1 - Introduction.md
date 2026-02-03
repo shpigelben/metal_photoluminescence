@@ -6,13 +6,13 @@
 		- Does the fact this happen only near the metal surface somehow modify the Bloch states due to surface effects?
 ___
 # Introduction
-Luminescence generally refers to the spontaneous emission of light (generally incoherent and omnidirectional) due to the decay of an electron which had been perturbed into an exited state. Photoluminescence, which is the focus of this work, is one of many such phenomena where the perturbation is done by en electromagnetic radiation. Namely, an electron is excited by an one photon and then reemits another by radiatively recombining.
+*Luminescence* generally refers to the spontaneous emission of light (generally incoherent and omnidirectional) due to the decay of an electron which had been perturbed into an exited state. *Photoluminescence* (PL), which is the focus of this work, is one of many such phenomena where excitation is due to electromagnetic radiation.
 
-==Apart from fundamental scientific inquiry, a deeper understanding of this phenomenon is requisite for interpreting **plasmon-assisted photocatalysis** and **hot photoluminescence**, ultimately finding utility in applications such as **nano-thermometry**.
+==A better understanding of PL is requisite, apart from fundamental scientific inquiry, for interpreting **plasmon-assisted photocatalysis** and **hot photoluminescence**, ultimately finding utility in applications such as **nano-thermometry**.
 
-Photoluminescence (PL) in metals, which is the focus of our work, predominantly takes place in the conduction band, in the so called intraband transitions. Previous work by [Sivan & Dubi] calculated the steady-state distribution of electronic states in gold under continuous wave (CW) illumination, and consequently the intraband contribution to PL.
+When it comes to metals, PL predominantly takes place in the conduction band, in so called intraband transitions. Previous work by [Sivan & Dubi] calculated the steady-state distribution of electronic states in gold under continuous wave (CW) illumination, and consequently the intraband contribution to PL.
 
-In this work, we wish to expand upon previous endeavor by not only calculating intraband PL following transient (pulsed) illumination, but we also seek to quantify the contribution of radiative transitions between the conduction and valence band, namely interband PL.
+In this work, we wish to expand upon previous endeavors not only by calculating intraband PL following transient (pulsed) illumination, but also by quantifying interband contributions PL taking place between the conduction and valence bands.
 
 - Do we focus on bulk metals or nano-particles this should have quantitative and qualitative effect on the result.
 - Geometry and size are commonly thought of as affecting the photonic DOS, but nano-particles also modify electron behavior, broadening the amount of momentum states, potentially allowing for direct intraband transitions that are forbidden in bulk metals.
