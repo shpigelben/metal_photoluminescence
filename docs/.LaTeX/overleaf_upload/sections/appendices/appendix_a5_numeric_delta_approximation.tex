@@ -1,0 +1,122 @@
+\newpage
+\section{Numeric Delta Approximation}
+\label{app:numeric_delta_approximation}
+
+We attempt to numerically evaluate an integral with a delta function approximated by a gaussian with vanishing width. The Gaussian is given in a standard fashion
+\begin{equation}
+G_{\sigma}(x|\mu)=\frac{1}{\sigma \sqrt{ 2\pi }}{\Large e^{-\left( \frac{x-\mu}{\sqrt{ 2 }\sigma} \right)^{2}}}
+\label{eq:gaussian_delta_definition}
+\end{equation}
+The exact, approximated and numeric integral values are given as follows
+\begin{align}
+f(\mu) &= \int\limits_{-\infty}^{\infty} f(x)\delta(x-\mu)\, dx \\
+f^{\text{approx}}_{\sigma}(\mu) & = \int\limits_{-\infty}^{\infty} f(x)\cdot G_{\sigma}(x|\mu) \, dx \\
+f^{\text{numeric}}_{\sigma,N}(x_{0}) &= \sum\limits_{n=0}^{N} f(x_{n})\cdot G_{\sigma}(x_{n}|\mu) \cdot\Delta x
+\label{eq:delta_numeric_definitions}
+\end{align}
+
+Where $x_{n}= -L+n\Delta x$ and $\Delta x= \frac{{2L}}{N}$. Below is the order of convergence
+
+\begin{equation}
+f(x_{0}) = \lim\limits_{\sigma\to_{0}} \  f^{\text{approx}}_{\sigma}(x_{0}) =  \lim\limits_{\begin{aligned}
+\sigma&\to0 \\ {\small N}&\to \infty
+\end{aligned}}  f^{\text{numeric}}_{\sigma, N}(x_{0})
+\label{eq:delta_convergence_limits}
+\end{equation}
+- it is worth noting that the infinite integration interval introduces yet another limit, which we don't rigorously consider, just take an interval range $2L$ that is much larger than $2\sigma$.
+
+\begin{align}
+E^{\text{total}}_{N,\sigma} &= f-f^{\text{numeric}}_{\sigma,N} \\
+&= \underbrace{ f-I^{\text{approx}}_{\sigma} }_{ E_{\sigma}^{\text{approx}} }+\underbrace{ I^{\text{approx}}_{\sigma}-f^{\text{numeric}}_{\sigma,N} }_{ E_{N,\sigma}^{\text{numeric}} } 
+\label{eq:delta_total_error}
+\end{align}
+The general deviation of the calculation from the desired result has two contributions, one 
+The numeric error of a trapezoid integration is known and given by
+\begin{equation}
+E_{{\small N},\sigma}^{\text{numeric}}  = \frac{F_{\sigma}''(\xi)(2L)^{3}}{12N^{2}}
+\label{eq:delta_trapezoid_error}
+\end{equation}
+
+where $\xi\in(-L,L)$. We can set an upper bound for the error by seeking a certain $x^{*}$ such that $F_{\sigma}(x^{*})\geq F_{\sigma}(x) \quad \forall x\in(-L,L)$. I'm not sure that $E_{\sigma}^{\text{approx}}$ has a form that can be found, but it is clear that is depends only on $\sigma$. For a given $\sigma$
+\begin{equation}
+E^{\text{total}}_{N,\sigma} = E_{\sigma}^{\text{approx}} + \frac{F_{\sigma}''(\xi)(2L)^{3}}{12N^{2}}
+\label{eq:delta_total_error_bound}
+\end{equation}
+\begin{equation}
+\delta_{N,\sigma}^{\text{total}}=\delta^{\text{approx}}_{\sigma} + \frac{F''_{\sigma}(\xi)}{f(x_{0})} \frac{(2L)^{3}}{12N^{2}}
+\label{eq:delta_relative_error_bound}
+\end{equation}
+
+So for a given $\sigma$, as $N$ increases, $\delta_{N,\sigma}^{\text{total}}$ shrinks as $\propto N^{-2}$ and reaches $\delta^{\text{approx}}_{\sigma}$ asymptotically.
+
+On the one hand, smaller $\sigma$ corresponds to smaller $\delta^{\text{approx}}_{\sigma}$ value. On the other hand, since $F''$ contains a $G''$ component (which scales with $\sigma^{-4}$) we expect the numeric convergence to become more gradual as $\sigma$ shrinks - namely, to require larger values of $N$ to reach numeric accuracy. This interplay between the approximation error and the numerical error requires us to simultaneously decrease $\sigma$ while increasing $N$ for the total error to negligible (?) values.
+
+\newpage
+\subsection{2D delta}
+
+\begin{align}
+\delta\left( \frac{\hbar^{2} k_{1}^{2}}{2m}-\frac{\hbar^{2} k_{2}^{2}}{2m} -\hbar\omega\right) &= \lim\limits_{\sigma\to 0} \frac{1}{\sigma_{\mathcal{E}}\sqrt{ 2\pi }} \exp\left[-\frac{1}{2} \left(\frac{\frac{\hbar^{2} k_{1}^{2}}{2m}-\frac{\hbar^{2} k_{2}^{2}}{2m} -\hbar\omega}{\sigma_{\mathcal{E}}} \right)^{2} \right] \\
+&= \lim\limits_{\sigma\to 0} \frac{1}{\sigma_{\mathcal{E}}\sqrt{ 2\pi }} \exp\left[-\frac{1}{2} \left(\frac{k_{1}^{2}- k_{2}^{2} -\frac{2m\omega}{\hbar}}{\sigma_{k}^{2}} \right)^{2} \right] \equiv \lim\limits_{\sigma\to 0} G_{\sigma}(k_{1}, k_{2};\omega)
+\label{eq:delta_2d_gaussian}
+\end{align}
+
+\begin{align}
+I&=\iint\limits \underbrace{ \underbrace{ f(k_{1},k_{2}) }_{ \text{includes Jacobian} } G_{\sigma}(k_{1}, k_{2})  }_{ F_{\sigma}(k_{1},k_{2}) }\  dk_{1} \ dk_{2} \\
+&\sum\limits_{\substack{n\in [1,N]  \\ m \in [1,M]}}\left( \sum\limits_{m=1}^{M} \frac{F_{\sigma}(k_{n-1},k_{m-1})+F_{\sigma}(k_{n-1},k_{m})+F_{\sigma}(k_{},k_{m-1})+F_{\sigma}(k_{n},k_{m})}{4} \right) 
+\label{eq:delta_2d_integral}
+\end{align}
+
+\newpage
+\subsection{Nondimensionality}
+
+\begin{equation}
+\int\limits f(x) \frac{1}{\sigma \sqrt{ 2\pi }} {\Large e^{- \left( \frac{x-\mu}{\sqrt{ 2 }\sigma} \right)^{2} }} \, dx 
+\label{eq:delta_nondimensionality_start}
+\end{equation}
+\begin{equation}
+\chi \to \frac{x}{\sqrt{ 2 }\sigma} \quad \tilde{\mu}\to \frac{\mu}{\sqrt{ 2 }\sigma} 
+\label{eq:delta_nondimensionality_change}
+\end{equation}
+\begin{equation}
+\int\limits f(\sqrt{ 2 }\sigma\chi) {\Large e^{ -(\chi-\tilde{\mu})^{2} }} \, d\chi
+\label{eq:delta_nondimensionality_result}
+\end{equation}
+Maybe think in terms of Riemann sums since it is closer to a numerical integral?
+
+\begin{equation}
+\sum\limits_{n=\text{TODO}}^{N}f(x_{n})  \frac{\Delta x}{\sigma \sqrt{ 2\pi }} {\Large e^{- \left( \frac{x_{n}-\mu}{\sqrt{ 2 }\sigma} \right)^{2} }}
+\label{eq:delta_riemann_sum}
+\end{equation}
+\begin{equation}
+\Delta x = \frac{b-a}{N} \quad x_{n} = x_{0}+\Delta x\cdot n
+\label{eq:delta_dx_definition}
+\end{equation}
+
+If we wish for our $x$ interval to sample over the "interesting" part of the Gaussian and not miss it, we should demand that for every $\sigma$ the interval need be smaller. If we demand that $\Delta x \leq 0.1\sigma$ we guarantee at least 10 samples inside the significant portion of the integral. More generally, we can set the demand the $\Delta x\leq s\cdot\sigma$ where $0<s\leq 1$ then
+\begin{equation}
+s\cdot\sigma \geq \Delta x = \frac{b-a}{N} \ \Longrightarrow \ N \geq \frac{b-a}{s\cdot\sigma}
+\label{eq:delta_sampling_condition}
+\end{equation}
+
+Since the Gaussian is symmetric and vanishes quickly far from $\mu$ we can conveniently integrate over an interval of width, say, $10\sigma$ or more generally $m\cdot\sigma$ where $m \in\mathbb{N}$ Namely $[\mu-m\cdot\sigma, \mu+m\cdot\sigma]$ which changes the demand on $N$ to be
+\begin{equation}
+N\geq \left\lceil\frac{2m}{s} \right\rceil
+\label{eq:delta_sampling_condition_m}
+\end{equation}
+
+The above summation can be then written as
+
+\begin{equation}
+\Delta x = \frac{2m\sigma}{2m/s} = s\cdot\sigma \quad\Rightarrow\quad \begin{aligned}
+x_{n} &= (\mu-m\cdot\sigma)+  (s\cdot\sigma)n \\
+&= \mu - \sigma(m-s\cdot n)
+\end{aligned}
+\label{eq:delta_xn_expression}
+\end{equation}
+
+This leaves us with the following control parameters:
+\begin{itemize}
+  \item $\sigma$ - gaussian delta approximation
+  \item $s$ - sampling points inside gaussian (essentially $\Delta x$)
+  \item $m$ - interval width in terms of $\sigma$
+\end{itemize}

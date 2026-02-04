@@ -1,0 +1,21 @@
+\newpage
+\subsection{Delta Approximation}
+\label{sec:delta_approximation}
+
+\subsubsection{Gaussian Delta Approximation (Double Integral)}
+We approximate the energy conservation delta function $\delta(E_1 - E_2 - \hbar\omega)$ with a Gaussian $G_\sigma(x)$ of width $\sigma$. To optimize performance, the integration over the energy difference $u = E_1 - E_2 - \hbar\omega$ is restricted to a window $[-M\sigma, M\sigma]$ with $N$ steps within $2\sigma$:
+
+\begin{equation}
+I(\hbar\omega) \approx \int \rho(\mathcal{E}_1)f(\mathcal{E}_1) \left[ \int_{-M\sigma}^{M\sigma} \rho(\mathcal{E}') [1-f(\mathcal{E}')] G_\sigma(u) \, du 
+\right] d\mathcal{E}_1
+\label{eq:gaussian_delta_double_integral}
+\end{equation}
+
+where $\mathcal{E}' = \mathcal{E}_1 - \hbar\omega - u$. The parameters $M$ and $N$ allow tuning the balance between accuracy and computational cost.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{gaussian_delta_double_integral.png}
+  \caption{gaussian\_delta\_double\_integral.}
+  \label{fig:gaussian_delta_double_integral}
+\end{figure}

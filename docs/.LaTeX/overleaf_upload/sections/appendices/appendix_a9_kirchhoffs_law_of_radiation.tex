@@ -1,0 +1,127 @@
+\newpage
+\section{Kirchhoff's Law Of Radiation}
+\label{app:kirchhoffs_law_of_radiation}
+
+In thermodynamics equilibrium (TDE) a material body emits according to the expression
+\begin{equation}
+\mathcal{E}(\omega) = A(\omega)\cdot u_{\small\text{BB}}(\omega)
+\label{eq:kirchhoff_emission}
+\end{equation}
+
+The Planck Blackbody law is composed of two distinct parts:
+\begin{equation}
+u_{\small \text{BB}}(\omega)= \underbrace{\frac{\hbar\omega^3}{\pi^2 c^3}}_{\text{Photonic}} \times \underbrace{\frac{1}{e^{\hbar\omega/k_B T} - 1}}_{\text{Statistical}}
+\label{eq:kirchhoff_planck_parts}
+\end{equation}
+\textbf{The Photonic Part ($\omega^3$)} Comes from the ratio of vacuum modes to material absorption cross-section \textbf{The Statistical Part ($e^x - 1$)} Comes exactly from the ratio of the Fermi factors.
+
+Here is the mathematical proof that your Fermi factors generate the Bose-Einstein statistics necessary for Kirchhoff's Law.
+
+\subsection{From Fermi-Dirac to Bose-Einstein}
+
+\begin{itemize}
+  \item \textbf{Spontaneous Emission Rate ($\Gamma_{sp}$):} Electron starts at $\mathcal{E}+\hbar\omega$ (Upper) and ends at $\mathcal{E}$ (Lower).
+\end{itemize}
+\begin{equation}
+\Gamma_{sp} \propto f(\mathcal{E}+\hbar\omega) [1 - f(\mathcal{E})]
+\label{eq:kirchhoff_spontaneous}
+\end{equation}
+
+\begin{itemize}
+  \item \textbf{Net Absorption Rate ($\Gamma_{abs}$):} This is tricky. To get the exact Planck law, you must calculate \textbf{Net Absorption} (Absorption minus Stimulated Emission).
+\end{itemize}
+\begin{equation}
+\Gamma_{abs} \propto \underbrace{f(\mathcal{E}) [1 - f(\mathcal{E}+\hbar\omega)]}_{\text{Absorption}} - \underbrace{f(\mathcal{E}+\hbar\omega) [1 - f(\mathcal{E})]}_{\text{Stimulated Emission}}
+\label{eq:kirchhoff_absorption}
+\end{equation}
+
+Now, let's take the ratio of \textbf{Emission to Net Absorption} and see if we get the Planck statistical factor.
+
+\begin{equation}
+\text{Ratio} = \frac{\text{Spontaneous}}{\text{Absorption} - \text{Stimulated}}
+\label{eq:kirchhoff_ratio}
+\end{equation}
+
+\begin{equation}
+\text{Ratio} = \frac{f(U)[1-f(L)]}{f(L)[1-f(U)] - f(U)[1-f(L)]}
+\label{eq:kirchhoff_ratio_expanded}
+\end{equation}
+
+\textit{(Using shorthand: $U = \mathcal{E}+\hbar\omega$, $L = \mathcal{E}$)}
+
+Divide the numerator and denominator by the numerator ($f(U)[1-f(L)]$):
+
+\begin{equation}
+\text{Ratio} = \frac{1}{ \frac{f(L)[1-f(U)]}{f(U)[1-f(L)]} - 1 }
+\label{eq:kirchhoff_ratio_divided}
+\end{equation}
+
+\subsection{The Magic of the Fermi Function}
+
+Now we evaluate the fraction in the denominator using the definition $f(\mathcal{E}) = \frac{1}{e^{(\mathcal{E}-\mathcal{E}_F)/kT} + 1}$.
+
+A useful identity for Fermi functions is:
+
+\begin{equation}
+\frac{1-f(\mathcal{E})}{f(\mathcal{E})} = e^{(\mathcal{E}-\mathcal{E}_F)/k_B T}
+\label{eq:kirchhoff_fermi_identity}
+\end{equation}
+
+Let's plug this into our fraction:
+
+\begin{equation}
+\frac{f(L)[1-f(U)]}{f(U)[1-f(L)]} = \left( \frac{f(L)}{1-f(L)} \right) \times \left( \frac{1-f(U)}{f(U)} \right)
+\label{eq:kirchhoff_fraction}
+\end{equation}
+
+\begin{equation}
+= \left( e^{-(L-\mathcal{E}_F)/kT} \right) \times \left( e^{(U-\mathcal{E}_F)/kT} \right)
+\label{eq:kirchhoff_fraction_simplified}
+\end{equation}
+
+\begin{equation}
+= e^{(U - L)/k_B T}
+\label{eq:kirchhoff_fraction_final}
+\end{equation}
+
+Since $U - L = (\mathcal{E}+\hbar\omega) - \mathcal{E} = \hbar\omega$, the fraction becomes exactly:
+
+\begin{equation}
+e^{\hbar\omega/k_B T}
+\label{eq:kirchhoff_exponential}
+\end{equation}
+
+\subsection{The Result}
+
+Substitute this back into our Ratio equation:
+
+\begin{equation}
+\text{Ratio} = \frac{1}{e^{\hbar\omega/k_B T} - 1}
+\label{eq:kirchhoff_final_ratio}
+\end{equation}
+
+This is exactly the \textbf{Bose-Einstein distribution}.
+
+\subsection{Conclusion}
+
+Your intuition regarding the Fermi factors is correct and crucial.
+
+\begin{itemize}
+  \item \textbf{The $\omega^3$ factor} (from the Density of States) explains why the Blackbody spectrum rises polynomially at low frequencies.
+  \item \textbf{The Fermi factor ratio} (which you identified) explains why it rolls over and dies exponentially at high frequencies ($e^{-\hbar\omega/kT}$).
+\end{itemize}
+
+Both are required to perfectly reproduce the Planck law from microscopic principles.
+
+\subsection{The Role of Stimulated Emission}
+
+It is worth noting that this derivation fails to produce the Planck law if \textbf{stimulated emission} is neglected. If we were to compare spontaneous emission directly to absorption (ignoring the stimulated term in the denominator), the ratio would simplify to:
+
+\begin{equation}
+\text{Ratio} = \frac{\Gamma_{sp}}{\Gamma_{abs, \text{total}}} = \frac{f(U)[1-f(L)]}{f(L)[1-f(U)]} = e^{-\hbar\omega/k_B T}
+\label{eq:kirchhoff_wien}
+\end{equation}
+
+This result is known as \textbf{Wien's approximation}. While it correctly describes the high-energy (exponential decay) tail of the spectrum, it fails at low energies because it misses the "$-1$" in the denominator. 
+
+Physically, stimulated emission is the mechanism that accounts for the \textbf{bosonic nature} of photons. Neglecting it is equivalent to treating photons as classical, distinguishable particles (Maxwell-Boltzmann statistics) rather than Bosons. To recover the full \textbf{Bose-Einstein distribution}, the net absorption must account for the photons' tendency to induce further transitions.

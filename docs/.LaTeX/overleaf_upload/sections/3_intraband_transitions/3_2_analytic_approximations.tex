@@ -1,0 +1,56 @@
+\newpage
+\subsection{Analytic Approximations}
+\label{sec:analytic_approximations}
+
+After having established proper numeric convergence and extracted proper integration parameters we now turn to evaluate the region of validity of the analytic approximations.
+
+\begin{align}
+\boxed{I_{e}^{T}(\hbar\omega)\approx\;\rho^{2}(\mathcal{E}_{F})\int_{0}^{\infty}
+ f^{T}(\mathcal{E}+\hbar\omega)\big[1-f^{T}(\mathcal{E})\big]\,d\mathcal{E}}
+\label{eq:analytic_thermal_integral}\\
+\boxed{I^{T}(\hbar\omega)\;\approx \; \rho^{2}(\mathcal{E}_{F})\,\frac{\hbar\omega}{e^{\beta\hbar\omega}-1}\,}
+\label{eq:analytic_thermal_approx}
+\end{align}
+
+The relative error of Eqs.~\eqref{eq:analytic_thermal_integral} and \eqref{eq:analytic_thermal_approx} above is calculated for the thermal case and for Eqs.~\eqref{eq:analytic_steady_state_integral} and \eqref{eq:analytic_steady_state_approx} below for the steady-state case.
+
+\begin{align}
+\boxed{I_{e}^{S}(\hbar\omega)\approx\;\rho^{2}(\mathcal{E}_{F})\int_{0}^{\infty}
+ f^{S}(\mathcal{E}+\hbar\omega)\big[1-f^{S}(\mathcal{E})\big]\,d\mathcal{E}}
+\label{eq:analytic_steady_state_integral}\\
+\boxed{I_{e}^{S}(\hbar\omega)\approx \rho^{2}(\mathcal{E}_{F})\Big[ \mathcal{E}_{BB}(\omega) + \delta_{E} \, A(\omega, \omega_{L}) + \delta^{2}_{E} \, B(\omega, \omega_{L}) \Big]}
+\label{eq:analytic_steady_state_approx}
+\end{align}
+
+In the figure below the relative error of the two cases is plotted with respect to emission energy and for several electronic temperatures each
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{analytic_approximations.png}
+  \caption{figure 3.2.1 Analytic approximation vs constant eDOS numeric comparison. Thermal comparison in the upper graph and non-equilibrium in the lower. Each relative error spectrum is calculated for three different temperatures.}
+  \label{fig:analytic_approximations}
+\end{figure}
+A broader perspective can be gained by looking not only on the relative error with respect to the emission spectrum, but also with respect to electronic temperatures as can be viewed in the heatmaps below for both thermal and steady state
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{analytic_error_heatmaps.png}
+  \caption{Figure 3.2.1: Heat maps of $\log_{10}|\delta_{\mathrm{rel}}|$ with respect to emission energy and electron temperature for the analytic approximations of both the thermal and steady-state cases}
+  \label{fig:analytic_error_heatmaps}
+\end{figure}
+
+\begin{align}
+&\ln\left(1+e^{\beta(\hbar\omega-\mu)}\right)\approx 0 \\
+&\iff {\beta(\hbar\omega-\mu)}\ll-M && M\in\mathbb{R}>0 \\
+&\iff k_{\small B}T\ll \mu - \frac{1}{M}\hbar\omega
+\label{eq:analytic_approx_condition}
+\end{align}
+
+\subsubsection{Results and discussion}
+If one is concerned with low electron temperatures and emission energies $\hbar\omega < \mathcal{E}_{F}$ the approximation. Still, it is not clear why on
+
+\begin{itemize}
+  \item In the beginning I was calculating $\delta_{\text{rel}}$ with Eq.~\eqref{eq:intraband_thermal_approx} and Eq.~\eqref{eq:intraband_steady_state} explicitly. This created an issue for very small values of $\hbar\omega$ due to an unstable factor of ${n_{B}(\omega)/}{n_{B}(\omega)}$. This was immediately solved by simply cancelling the two terms.
+\end{itemize}
+
+In the remainder of the pipeline we will use Eq.~\eqref{eq:intraband_thermal_exact} as the \"exact\" constant-eDOS reference. The next stage therefore establishes that the numerical evaluation of Eq.~\eqref{eq:intraband_constant_edos} converges to Eq.~\eqref{eq:intraband_thermal_exact} for a practical (and not overly conservative) choice of integration step $\Delta\mathcal{E}$.

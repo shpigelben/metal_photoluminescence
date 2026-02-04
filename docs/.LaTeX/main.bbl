@@ -25,26 +25,14 @@
   {\relax}
   {\relax}
 
-\bibitem[Sivan and Dubi(2021)Sivan, and Dubi]{SivanDubi2021HotPL}
-Sivan,~Y.; Dubi,~Y. Theory of ``Hot'' Photoluminescence from Drude Metals. \emph{ACS Nano} \textbf{2021}, \emph{15}, 8724--8732\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Marini \latin{et~al.}(2013)Marini, Conforti, Della~Valle, Lee, Tran, Chang, Schmidt, Longhi, St~J~Russell, and Biancalana]{MariniEtAl2013UltrafastSPP}
-Marini,~A.; Conforti,~M.; Della~Valle,~G.; Lee,~H.~W.; Tran,~T.~X.; Chang,~W.; Schmidt,~M.~A.; Longhi,~S.; St~J~Russell,~P.; Biancalana,~F. Ultrafast Nonlinear Dynamics of Surface Plasmon Polaritons in Gold Nanowires Due to the Intrinsic Nonlinearity of Metals. \emph{New Journal of Physics} \textbf{2013}, \emph{15}, 013033\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Dubi and Sivan(2019)Dubi, and Sivan]{DubiSivan2019HotElectrons}
-Dubi,~Y.; Sivan,~Y. ``Hot'' Electrons in Metallic Nanostructures---Non-thermal Carriers or Heating? \emph{Light: Science \& Applications} \textbf{2019}, \emph{8}, 89\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
 \bibitem[Ben(2025)]{Ben2025InterbandContribution}
 Ben Unpublished internal project report, Ben-Gurion University of the Negev\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Sivan and Dubi(2021)Sivan, and Dubi]{SivanDubi2021HotPL}
+Sivan,~Y.; Dubi,~Y. Theory of ``Hot'' Photoluminescence from Drude Metals. \emph{ACS Nano} \textbf{2021}, \emph{15}, 8724--8732\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
@@ -57,6 +45,12 @@ Sivan,~Y.; Dubi,~Y. Supporting Information for ``Theory of ``Hot'' Photoluminesc
 \EndOfBibitem
 \bibitem[Sivan \latin{et~al.}(2019)Sivan, Un, and Dubi]{SivanUnDubi2019HeatSource}
 Sivan,~Y.; Un,~I.~W.; Dubi,~Y. Assistance of Metal Nanoparticles in Photocatalysis---Nothing More Than a Classical Heat Source. \emph{Faraday Discussions} \textbf{2019}, \emph{214}, 215--233\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Dubi and Sivan(2019)Dubi, and Sivan]{DubiSivan2019HotElectrons}
+Dubi,~Y.; Sivan,~Y. ``Hot'' Electrons in Metallic Nanostructures---Non-thermal Carriers or Heating? \emph{Light: Science \& Applications} \textbf{2019}, \emph{8}, 89\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
@@ -75,6 +69,12 @@ Farhan Semiconductor Emission Lecture Slides. n.d.; Unpublished lecture slides\r
 \EndOfBibitem
 \bibitem[Guerrisi \latin{et~al.}(1975)Guerrisi, Rosei, and Winsemius]{GuerrisiRoseiWinsemius1975InterbandAu}
 Guerrisi,~M.; Rosei,~R.; Winsemius,~P. Splitting of the Interband Absorption Edge in Au. \emph{Physical Review B} \textbf{1975}, \emph{12}, 557--563\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Marini \latin{et~al.}(2013)Marini, Conforti, Della~Valle, Lee, Tran, Chang, Schmidt, Longhi, St~J~Russell, and Biancalana]{MariniEtAl2013UltrafastSPP}
+Marini,~A.; Conforti,~M.; Della~Valle,~G.; Lee,~H.~W.; Tran,~T.~X.; Chang,~W.; Schmidt,~M.~A.; Longhi,~S.; St~J~Russell,~P.; Biancalana,~F. Ultrafast Nonlinear Dynamics of Surface Plasmon Polaritons in Gold Nanowires Due to the Intrinsic Nonlinearity of Metals. \emph{New Journal of Physics} \textbf{2013}, \emph{15}, 013033\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
