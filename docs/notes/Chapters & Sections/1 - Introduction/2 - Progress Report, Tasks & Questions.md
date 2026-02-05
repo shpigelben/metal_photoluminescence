@@ -5,7 +5,7 @@
 	 - Found an exact analytic expression for thermal intraband with constant eDOS.
  - Quantified the discrepancy between constant eDOS and energy-dependent eDOS. ([3.3](../../../figures/constant_eDOS_approximation.png))
  - Recognized the difficulty and inefficiency of working in k-space and having to approximate the delta function numerically ([A5](../A%20-%20Appendices/A5%20-%20Numeric%20Delta%20Approximation.md))
- - Found the proper transformations that take us to energy space, even with non-isotropic dispersion relations ([A7](../A%20-%20Appendices/A7%20-%20Quadratic%20Intraband%20Transitions.md), [A8](../A%20-%20Appendices/A8%20-%20Quadratic%20Interband%20Transitions.md))
+ - Found the proper transformations that take us to energy space, even with non-isotropic dispersion relations ([A7](../A%20-%20Appendices/A7%20-%20Quadratic%20Intraband%20Transitions.md), [A8](../A%20-%20Appendices/A8%20-%20Interband%20Transitions.md))
 
 # Tasks
 

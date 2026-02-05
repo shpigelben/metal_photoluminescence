@@ -28,7 +28,6 @@ The valence band is generally anisotropic and when performing interband calculat
 
 Once we have established that our calculations in momentum space align with those performed in energy space - both in equilibrium and non-equilibrium settings - we proceed to perform the interband scenario. In the end, hopefully, we will be able to provide a more complete emission spectrum to both cases.
 
-\newpage
 \subsection{Gold Nanoparticles}
 We focus on interband transitions from the X and L points in k-space whose approximate symmetry can be used to simplify calculations. They also account for lion-share of the interband transitions, but not all of them.
 
@@ -46,20 +45,19 @@ The overall electronic contribution to emission is therefore given by
 \label{eq:intro_total_emission}
 \end{equation}
 
-\newpage
 \subsection{Progress Report, Tasks \& Questions}
 
 \subsubsection{Progress Report}
 \begin{itemize}
-  \item Settled on a convergent numerical scheme for the calculation of the emission integral. (3.1 - Numeric Convergence)
-  \item Established approximate nature of the analytic expressions for intraband emission (thermal and non-equilibrium). (3.2 - Analytic Approximations)
+  \item Settled on a convergent numerical scheme for the calculation of the emission integral. (\hyperref[sec:numeric_convergence]{\ref*{sec:numeric_convergence}~\nameref*{sec:numeric_convergence}})
+  \item Established approximate nature of the analytic expressions for intraband emission (thermal and non-equilibrium). (\hyperref[sec:analytic_approximations]{\ref*{sec:analytic_approximations}~\nameref*{sec:analytic_approximations}})
   \begin{itemize}
     \item Outlined its region of validity.
     \item Found an exact analytic expression for thermal intraband with constant eDOS.
   \end{itemize}
-  \item Quantified the discrepancy between constant eDOS and energy-dependent eDOS. (constant\_eDOS\_approximation.png)
-  \item Recognized the difficulty and inefficiency of working in k-space and having to approximate the delta function numerically (A5 - Numeric Delta Approximation)
-  \item Found the proper transformations that take us to energy space, even with non-isotropic dispersion relations (A7 - Quadratic Intraband Transitions, A8 - Quadratic Interband Transitions)
+  \item Quantified the discrepancy between constant eDOS and energy-dependent eDOS. (\hyperref[fig:constant_edos_approximation]{Figure~\ref*{fig:constant_edos_approximation}})
+  \item Recognized the difficulty and inefficiency of working in k-space and having to approximate the delta function numerically (\hyperref[app:numeric_delta_approximation]{\ref*{app:numeric_delta_approximation}~\nameref*{app:numeric_delta_approximation}})
+  \item Found the proper transformations that take us to energy space, even with non-isotropic dispersion relations (\hyperref[app:quadratic_intraband_transitions]{\ref*{app:quadratic_intraband_transitions}~\nameref*{app:quadratic_intraband_transitions}}, \hyperref[app:quadratic_interband_transitions]{\ref*{app:quadratic_interband_transitions}~\nameref*{app:quadratic_interband_transitions}})
 \end{itemize}
 
 \subsubsection{Tasks}

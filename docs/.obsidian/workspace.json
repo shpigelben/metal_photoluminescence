@@ -11,15 +11,17 @@
             "id": "27a0132d2cd61901",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "notes/Chapters & Sections/3 - Intraband Transitions/3.5 - Quadratic Band.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
+                "file": "notes/Outline & Questions/Gemini.canvas",
+                "viewState": {
+                  "x": 360,
+                  "y": -100,
+                  "zoom": 0
+                }
               },
-              "icon": "lucide-file",
-              "title": "3.5 - Quadratic Band"
+              "icon": "lucide-layout-dashboard",
+              "title": "Gemini"
             }
           },
           {
@@ -28,32 +30,32 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/Chapters & Sections/A - Appendices/A9 - Kirchhoff's Law Of Radiation.md",
+                "file": "notes/Chapters & Sections/A - Appendices/A7 - Quadratic Intraband Transitions.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "A9 - Kirchhoff's Law Of Radiation"
+              "title": "A7 - Quadratic Intraband Transitions"
             }
           },
           {
-            "id": "539e2d7328010321",
+            "id": "37fb9c3c4553982a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/Chapters & Sections/A - Appendices/A5 - Numeric Delta Approximation.md",
+                "file": "notes/Chapters & Sections/A - Appendices/A8 - Interband Transitions (new).md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "A5 - Numeric Delta Approximation"
+              "title": "A8 - Interband Transitions (new)"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -85,13 +87,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "notes/Chapters & Sections/A - Appendices/A9 - Kirchhoff's Law Of Radiation.md",
+                "file": "notes/Chapters & Sections/A - Appendices/A8 - Interband Transitions (new).md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of A9 - Kirchhoff's Law Of Radiation"
+              "title": "Outline of A8 - Interband Transitions (new)"
             }
           },
           {
@@ -131,7 +133,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/Chapters & Sections/A - Appendices/A9 - Kirchhoff's Law Of Radiation.md",
+                "file": "notes/Chapters & Sections/A - Appendices/A8 - Interband Transitions (new).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -141,7 +143,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for A9 - Kirchhoff's Law Of Radiation"
+              "title": "Backlinks for A8 - Interband Transitions (new)"
             }
           },
           {
@@ -210,23 +212,26 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "6d62d09f0d1d7e61",
+  "active": "37fb9c3c4553982a",
   "lastOpenFiles": [
-    "notes/Chapters & Sections/1 - Introduction/2 - Progress Report, Tasks & Questions.md",
+    "notes/Chapters & Sections/A - Appendices/Interband Transitions (newer).md",
+    "notes/Chapters & Sections/A - Appendices/A8 - Interband Transitions.md",
+    "notes/Chapters & Sections/A - Appendices/A8 - Interband Transitions (new).md",
+    "notes/Outline & Questions/Gemini.canvas",
+    "notes/Chapters & Sections/A - Appendices/A7 - Quadratic Intraband Transitions.md",
+    "notes/Outline & Questions/Gemini_QA.md",
     "notes/Chapters & Sections/A - Appendices/A5 - Numeric Delta Approximation.md",
+    "notes/Chapters & Sections/3 - Intraband Transitions/3.3 - Constant eDOS Approximation.md",
+    "notes/Chapters & Sections/3 - Intraband Transitions/3.5 - Quadratic Band.md",
+    "notes/Chapters & Sections/A - Appendices/A9 - Kirchhoff's Law Of Radiation.md",
+    "notes/Chapters & Sections/1 - Introduction/2 - Progress Report, Tasks & Questions.md",
     "notes/Chapters & Sections/2 - Theoretical Framework/2.2 - Intraband Transitions.md",
     "notes/Chapters & Sections/2 - Theoretical Framework/2.1 - General Emission Integral.md",
-    "notes/Chapters & Sections/3 - Intraband Transitions/3.5 - Quadratic Band.md",
-    "notes/Chapters & Sections/3 - Intraband Transitions/3.3 - Constant eDOS Approximation.md",
     "notes/Chapters & Sections/1 - Introduction/1 - Introduction.md",
     "notes/Chapters & Sections/A - Appendices/A2 - Derivation of Analytic Approximation.md",
-    "notes/Chapters & Sections/A - Appendices/A8 - Quadratic Interband Transitions.md",
-    "notes/Chapters & Sections/A - Appendices/A7 - Quadratic Intraband Transitions.md",
     "resources/A1 - semiconductor_emission_slides.pdf",
     "notes/Chapters & Sections/2 - Theoretical Framework/2 - Theoretical Framework.md",
     "notes/Chapters & Sections/Abstract.md",
-    "notes/Outline & Questions/Gemini.canvas",
-    "notes/Outline & Questions/Gemini_QA.md",
     "notes/Outline & Questions/Gemini_canvas_fuckup.md",
     "notes/Outline & Questions/emission integral tree.canvas",
     "notes/Dedications.md",
@@ -239,14 +244,11 @@
     "notes/Outline & Questions/Electronic Transitions.md",
     "notes/Outline & Questions/1st order TDM.md",
     "notes/Outline & Questions/Comparisons New.md",
-    "notes/Outline & Questions/Assembled_Questions.md",
     "notes/Outline & Questions/thoughts with Gemini/Gemini.canvas",
     "notes/Gemini.canvas/Gemini.canvas",
     "notes/Outline & Questions/thoughts with Gemini",
     "notes/Gemini.canvas/Answers",
     "notes/Gemini.canvas/Questions",
-    "notes/Gemini.canvas/Bulk vs NP.md",
-    "notes/Gemini.canvas/FDT & Kirchhoff.md",
     "notes/Gemini.canvas",
     "notes/thoughts with Gemini/thoughts with Gemini",
     "resources/1 - theory-of-hot-photoluminescence-from-drude-metals.pdf",
