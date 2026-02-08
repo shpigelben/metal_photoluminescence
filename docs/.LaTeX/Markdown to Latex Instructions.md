@@ -8,8 +8,7 @@ Make sure the Author is Ben Shpigel
 		- keep the same content
 		- update equation numbering and referencing
 		- make the minimal changes necessary for the latex-overleaf transition to occur
-		- make sure that any new generation of overleaf-upload-relevant file is reflected in the overleaf folder
-- **"style changes**" - whenever I call for style changes I want you to focus on improving style, layout, references, links, geometry etc and not on content. These changes should be in the latex files only and should be implemented in the main latex folder and in the overleaf-upload folder.
+- **"style changes**" - whenever I call for style changes I want you to focus on improving style, layout, references, links, geometry etc and not on content. These changes should be in the latex files only and should be implemented in the main latex folder.
 
 
 # Markdown → LaTeX Conversion Spec (Overleaf-ready)
@@ -60,6 +59,10 @@ Because `article` has no `\\chapter`, map like this:
 
 ### Outline with hyperlinks
 - Use `\\tableofcontents` + `hyperref` so the outline is clickable.
+- For internal links, avoid manual numbering in link text. Use `\\ref`/`\\nameref` (or `\\autoref`) so the displayed text matches the document’s actual section/figure names.
+
+### Page breaks
+- Insert `\\newpage` **only** before major `\\section{...}` headings, not before `\\subsection` or `\\subsubsection` (applies to appendices as well).
 
 ## Markdown element conversion rules
 ### Headings
@@ -120,6 +123,7 @@ Goal: at any time, `docs/.LaTeX/` contains **only the current, necessary** sourc
 - LaTeX build artifacts: `*.aux`, `*.log`, `*.out`, `*.toc`, `*.bbl`, `*.blg`, `*.fls`, `*.fdb_latexmk`, `*.synctex.gz`
 - Locally compiled PDFs (e.g. `main.pdf`) unless explicitly needed as a figure asset (figure PDFs belong in `figures/`)
 - OS/editor junk: `.DS_Store`, temp files, “(copy)” duplicates
+- Overleaf transfer folders/zips (upload directly from the base `docs/.LaTeX/` directory).
 
 ### Update rules (avoid duplicates)
 - Overwrite in place: when a section is regenerated, it **replaces** its prior `.tex` file (no `*_v2.tex`, no “copy of …” files).

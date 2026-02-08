@@ -13,15 +13,15 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "notes/Outline & Questions/Gemini.canvas",
+                "file": "notes/Outline & Questions/DeepDive.canvas",
                 "viewState": {
-                  "x": 360,
-                  "y": -100,
-                  "zoom": 0
+                  "x": -1021.3932003600877,
+                  "y": 1300.121153853343,
+                  "zoom": -2.3258561003061153
                 }
               },
               "icon": "lucide-layout-dashboard",
-              "title": "Gemini"
+              "title": "DeepDive"
             }
           },
           {
@@ -45,17 +45,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/Chapters & Sections/A - Appendices/A8 - Interband Transitions (new).md",
+                "file": "notes/Chapters & Sections/A - Appendices/A8 - Interband Transitions.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "A8 - Interband Transitions (new)"
+              "title": "A8 - Interband Transitions"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -87,13 +86,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "notes/Chapters & Sections/A - Appendices/A8 - Interband Transitions (new).md",
+                "file": "notes/Outline & Questions/DeepDive.canvas",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of A8 - Interband Transitions (new)"
+              "title": "Outline of DeepDive"
             }
           },
           {
@@ -117,7 +116,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 222.50043487548828
   },
   "right": {
     "id": "ff902569427872ea",
@@ -133,7 +132,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/Chapters & Sections/A - Appendices/A8 - Interband Transitions (new).md",
+                "file": "notes/Outline & Questions/DeepDive.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -143,7 +142,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for A8 - Interband Transitions (new)"
+              "title": "Backlinks for DeepDive"
             }
           },
           {
@@ -212,12 +211,11 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "37fb9c3c4553982a",
+  "active": "27a0132d2cd61901",
   "lastOpenFiles": [
-    "notes/Chapters & Sections/A - Appendices/Interband Transitions (newer).md",
     "notes/Chapters & Sections/A - Appendices/A8 - Interband Transitions.md",
-    "notes/Chapters & Sections/A - Appendices/A8 - Interband Transitions (new).md",
-    "notes/Outline & Questions/Gemini.canvas",
+    "notes/Chapters & Sections/A - Appendices/Interband Transitions (newer).md",
+    "notes/Outline & Questions/DeepDive.canvas",
     "notes/Chapters & Sections/A - Appendices/A7 - Quadratic Intraband Transitions.md",
     "notes/Outline & Questions/Gemini_QA.md",
     "notes/Chapters & Sections/A - Appendices/A5 - Numeric Delta Approximation.md",
