@@ -1,6 +1,6 @@
 {
   "accentColor": "#ffbd2e",
-  "theme": "obsidian",
+  "theme": "moonstone",
   "cssTheme": "AnuPpuccin",
   "baseFontSize": 17,
   "textFontFamily": "ITC Garamond Std,Palatino,FiraCode Nerd Font,Palatino Linotype",
@@ -16,6 +16,6 @@
   "nativeMenus": false,
   "translucency": false,
   "baseFontSizeAction": true,
-  "showRibbon": true,
+  "showRibbon": false,
   "monospaceFontFamily": "FiraCode Nerd Font"
 }

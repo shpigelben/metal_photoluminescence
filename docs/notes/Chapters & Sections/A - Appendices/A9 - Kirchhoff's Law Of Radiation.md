@@ -1,3 +1,9 @@
+Kirchhoff showed that the ratio between specular emission and absorption is always the same regardless of what type of material emits.
+$$
+\frac{E(\omega)}{\alpha(\omega)} = B_{\scriptsize T} (\omega)
+$$
+Plank came later to show what $B_{\scriptsize T}(\omega)$ is and solved the ultraviolet catastrophy
+___
 In thermodynamics equilibrium (TDE) a material body emits according to the expression
 $$
 \mathcal{E}(\omega) = A(\omega)\cdot u_{\small\text{BB}}(\omega)
