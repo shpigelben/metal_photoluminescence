@@ -4,70 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "850b69765fa00dd8",
+        "id": "0a7cdb3ee918bffd",
         "type": "tabs",
         "children": [
           {
-            "id": "27a0132d2cd61901",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "notes/Outline & Questions/DeepDive.canvas",
-                "viewState": {
-                  "x": -1911.0095874491687,
-                  "y": 856.7112659775189,
-                  "zoom": -3.6991534793154504
-                }
-              },
-              "icon": "lucide-layout-dashboard",
-              "title": "DeepDive"
-            }
-          },
-          {
-            "id": "e988e7c90fbd57f3",
+            "id": "0d5e6c93643ea638",
             "type": "leaf",
             "state": {
               "type": "pdf",
               "state": {
-                "file": "resources/6 - Marini.pdf"
+                "file": "resources/5 - Rosei.pdf"
               },
               "icon": "lucide-file-text",
-              "title": "6 - Marini"
-            }
-          },
-          {
-            "id": "1ac7ecbddbf5f152",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/Outline & Questions/X & L Dispersion Relations.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "X & L Dispersion Relations"
-            }
-          },
-          {
-            "id": "ac34c722c5c7020d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/Outline & Questions/0 - Work Plan.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "0 - Work Plan"
+              "title": "5 - Rosei"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -123,6 +75,16 @@
               },
               "icon": "lucide-search",
               "title": "Search"
+            }
+          },
+          {
+            "id": "b3b5e15321f7f10b",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
@@ -224,12 +186,13 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "ac34c722c5c7020d",
+  "active": "0d5e6c93643ea638",
   "lastOpenFiles": [
-    "notes/Outline & Questions/X & L Dispersion Relations.md",
-    "notes/Outline & Questions/0 - Work Plan.md",
-    "resources/5 - Rosei.pdf",
+    "resources/6 - Marini.pdf",
     "resources/7 - Bowman.pdf",
+    "resources/5 - Rosei.pdf",
+    "notes/Outline & Questions/0 - Work Plan.md",
+    "notes/Outline & Questions/X & L Dispersion Relations.md",
     "resources/8 - Novotny.pdf",
     "resources/A1 - semiconductor_emission_slides.pdf",
     "resources/A2 - imon's presentation.pdf",
@@ -237,7 +200,6 @@
     "resources/A4 - notability_notes.pdf",
     "resources/B1 - hot_e_steady_state.pdf",
     "resources/C1 - thermoradiative_power.pdf",
-    "resources/6 - Marini.pdf",
     "notes/Outline & Questions/Non-equilibrium Emission in Metals.md",
     "notes/Outline & Questions/Integration Limits of X & L Points vs the Center of BZ.md",
     "notes/Outline & Questions/emission integral tree.canvas",
