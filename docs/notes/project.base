@@ -1,0 +1,18 @@
+filters:
+  and:
+    - 'section == "project"'
+
+properties:
+  file.name:
+    displayName: Document
+  file.mtime:
+    displayName: Last Updated
+  file.ctime:
+    displayName: Created
+
+views:
+  - type: table
+    name: Project Management
+    order:
+      - file.name
+      - file.mtime

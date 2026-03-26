@@ -1,0 +1,22 @@
+filters:
+  and:
+    - section == "working-notes"
+properties:
+  file.name:
+    displayName: Note
+  degree:
+    displayName: Degree
+  research:
+    displayName: Research Area
+  type:
+    displayName: Type
+  file.mtime:
+    displayName: Modified
+views:
+  - type: table
+    name: Working Notes
+    order:
+      - file.name
+      - research
+      - type
+      - file.mtime

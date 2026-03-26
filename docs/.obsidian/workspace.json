@@ -4,19 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "0a7cdb3ee918bffd",
+        "id": "1b9371c490a86329",
         "type": "tabs",
         "children": [
           {
-            "id": "0d5e6c93643ea638",
+            "id": "c982c0e0e9f74429",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "canvas",
               "state": {
-                "file": "resources/5 - Rosei.pdf"
+                "file": "MOC.canvas",
+                "viewState": {
+                  "x": -195.83485740270748,
+                  "y": -47.44832544375063,
+                  "zoom": -1.7864813084361757
+                }
               },
-              "icon": "lucide-file-text",
-              "title": "5 - Rosei"
+              "icon": "lucide-layout-dashboard",
+              "title": "MOC"
             }
           }
         ]
@@ -46,21 +51,6 @@
             }
           },
           {
-            "id": "204ae1a142ffae3d",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "notes/Outline & Questions/0 - Work Plan.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "Outline of 0 - Work Plan"
-            }
-          },
-          {
             "id": "aa18c8c5fae80cfc",
             "type": "leaf",
             "state": {
@@ -78,20 +68,25 @@
             }
           },
           {
-            "id": "b3b5e15321f7f10b",
+            "id": "204ae1a142ffae3d",
             "type": "leaf",
             "state": {
-              "type": "bookmarks",
-              "state": {},
-              "icon": "lucide-bookmark",
-              "title": "Bookmarks"
+              "type": "outline",
+              "state": {
+                "file": "MOC.canvas",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of MOC"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 222.50043487548828
+    "width": 279.5
   },
   "right": {
     "id": "ff902569427872ea",
@@ -102,12 +97,24 @@
         "type": "tabs",
         "children": [
           {
+            "id": "31058394660b43f9",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "MOC.canvas"
+              },
+              "icon": "lucide-info",
+              "title": "File properties for MOC"
+            }
+          },
+          {
             "id": "6ff11d62cde7ddf4",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/Outline & Questions/0 - Work Plan.md",
+                "file": "MOC.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -117,7 +124,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 0 - Work Plan"
+              "title": "Backlinks for MOC"
             }
           },
           {
@@ -126,12 +133,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "notes/1 - Introduction.md",
+                "file": "MOC.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from 1 - Introduction"
+              "title": "Outgoing links from MOC"
             }
           },
           {
@@ -186,45 +193,49 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "0d5e6c93643ea638",
+  "active": "c982c0e0e9f74429",
   "lastOpenFiles": [
-    "resources/6 - Marini.pdf",
-    "resources/7 - Bowman.pdf",
-    "resources/5 - Rosei.pdf",
-    "notes/Outline & Questions/0 - Work Plan.md",
-    "notes/Outline & Questions/X & L Dispersion Relations.md",
-    "resources/8 - Novotny.pdf",
-    "resources/A1 - semiconductor_emission_slides.pdf",
-    "resources/A2 - imon's presentation.pdf",
-    "resources/A3 - raman_pl.pdf",
-    "resources/A4 - notability_notes.pdf",
-    "resources/B1 - hot_e_steady_state.pdf",
-    "resources/C1 - thermoradiative_power.pdf",
-    "notes/Outline & Questions/Non-equilibrium Emission in Metals.md",
-    "notes/Outline & Questions/Integration Limits of X & L Points vs the Center of BZ.md",
+    "notes/Progress Report.md",
+    "notes/Progress Report + Questions for Yonatan.md",
+    "MOC.canvas",
+    "notes/First Order TDM.md",
+    "notes/Progress Report, Tasks & Questions.md",
+    "notes/0 - Outline.md",
+    "resources/supporting/A1 - semiconductor_emission_slides.pdf",
+    "notes/Untitled.md",
+    "notes/Work Plan.md",
+    "notes/working-notes.base",
+    "MOC.md",
+    "notes/A1 - Derivation of the General Emission Integral.md",
+    "MOC Canvas.canvas",
+    "notes/project.base",
+    "notes/appendices.base",
+    "notes/thesis.base",
     "notes/Outline & Questions/emission integral tree.canvas",
-    "notes/Outline & Questions/Untitled.md",
-    "notes/Chapters & Sections/A - Appendices/A7 - Quadratic Intraband Transitions.md",
-    "notes/Chapters & Sections/A - Appendices/A8 - Interband Transitions.md",
+    "notes/X & L Dispersion Relations.md",
+    "notes/Electronic Transitions.md",
+    "notes/Non-equilibrium Emission in Metals.md",
+    "notes/Integration Limits of X & L Points vs the Center of BZ.md",
+    "notes/4 - Interband Transitions.md",
+    "notes/Abstract.md",
+    "notes/A5 - Numeric Delta Approximation.md",
+    "notes/A9 - Kirchhoff's Law Of Radiation.md",
+    "notes/A7 - Quadratic Intraband Transitions.md",
+    "notes/A6 - Boltzmann Equation.md",
+    "notes/A4 - Electronic Density of States.md",
+    "notes/A2 - Derivation of Analytic Approximation.md",
+    "notes/A8 - Interband Transitions.md",
+    "notes/A3 - Thermal Factor Energy Space.md",
+    "notes/3.1 - Numeric Convergence.md",
+    "notes/3.3 - Constant eDOS Approximation.md",
+    "notes/3.2 - Analytic Approximations.md",
     "notes/Outline & Questions/DeepDive.canvas",
-    "notes/Outline & Questions/Progress Report + Questions for Yonatan.md",
-    "notes/Outline & Questions/Thesis Outline.md",
-    "notes/Outline & Questions/1st order TDM.md",
-    "notes/Outline & Questions/Electronic Transitions.md",
-    "notes/Chapters & Sections/A - Appendices/A9 - Kirchhoff's Law Of Radiation.md",
-    "notes/Chapters & Sections/A - Appendices/Interband Transitions (newer).md",
-    "notes/Outline & Questions/Gemini_QA.md",
-    "notes/Chapters & Sections/A - Appendices/A5 - Numeric Delta Approximation.md",
-    "notes/Chapters & Sections/3 - Intraband Transitions/3.3 - Constant eDOS Approximation.md",
-    "notes/Chapters & Sections/3 - Intraband Transitions/3.5 - Quadratic Band.md",
-    "notes/Chapters & Sections/1 - Introduction/2 - Progress Report, Tasks & Questions.md",
-    "notes/Chapters & Sections/2 - Theoretical Framework/2.2 - Intraband Transitions.md",
-    "notes/Chapters & Sections/2 - Theoretical Framework/2.1 - General Emission Integral.md",
-    "notes/Chapters & Sections/1 - Introduction/1 - Introduction.md",
-    "notes/Chapters & Sections/A - Appendices/A2 - Derivation of Analytic Approximation.md",
-    "notes/Chapters & Sections/2 - Theoretical Framework/2 - Theoretical Framework.md",
-    "notes/Chapters & Sections/Abstract.md",
-    "notes/Outline & Questions/Gemini_canvas_fuckup.md",
+    "figures/analytic_approximations.png",
+    "resources/supporting/A4 - notability_notes.pdf",
+    "resources/supporting",
+    "resources/main/1 - Hot_PL_main.pdf",
+    "resources/supporting/C - previous_pdf.pdf",
+    "resources/main",
     "notes/Outline & Questions/thoughts with Gemini/Gemini.canvas",
     "notes/Gemini.canvas/Gemini.canvas",
     "notes/Gemini.canvas",
@@ -236,7 +247,6 @@
     "figures/analytic_error_heatmaps.png",
     "figures/Pasted image 20260118074501.png",
     "figures/Pasted image 20260118074430.png",
-    "figures/notebook_lm_infographic2.png",
-    "figures/constant_eDOS_approximation.png"
+    "figures/notebook_lm_infographic2.png"
   ]
 }

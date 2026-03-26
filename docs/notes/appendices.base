@@ -1,0 +1,16 @@
+filters:
+  and:
+    - 'section == "appendix"'
+
+properties:
+  file.name:
+    displayName: Appendix
+  file.mtime:
+    displayName: Modified
+
+views:
+  - type: table
+    name: Appendices
+    order:
+      - file.name
+      - file.mtime

@@ -1,0 +1,83 @@
+---
+section: appendix
+---
+Show FGR, explain why we use it (weak perturbation) and how it relates to emission.
+# First Order Radiative Transitions in Solids
+Consider electrons in a solid. It's Hamiltonian consists of the kinetic energy term and the lattice term which embodies the periodic nature of the material. In the presence of an E&M field the Hamiltonian is
+$$
+\begin{align}
+\hat{H} &= \frac{\big[\hat{\mathbf{p}}+e\mathbf{A}(\hat{\mathbf{r}},t)\big]^{2}}{2m_{e}} + V_{\text{lattice}}(\hat{\mathbf{r}}) \\
+&\approx  \underbrace{ \frac{\hat{\mathbf{p}}\cdot\hat{\mathbf{p}}}{2m_{e}} + V_{\text{lattice}}(\hat{\mathbf{r}}) }_{ \hat{H}_{0} } + \underbrace{ \frac{e}{m_{e}}\Big[\mathbf{A}(\hat{\mathbf{r}},t)\cdot \hat{\mathbf{p}}  +\hat{\mathbf{p}}\cdot\mathbf{A}(\hat{\mathbf{r}},t)\Big] }_{ \hat{H}_{\text{int}} }
+\end{align}
+$$
+The diamagnetic term, $|\mathbf{A}(\hat{\mathbf{r}},t)|^{2}$, term relates to a two-photon process which is negligible in the case of spontaneous emission and we take the common course of neglecting it.
+
+- [ ] ==nonlinear effects for strong laser pumps \ pulsed dynamics? Well, for pulsed radiation $\mathbf{A}(\hat{\mathbf{r}},t)$ would be different).==
+- [ ] Coulomb gauge - always have this freedom?
+- [ ] Need to also account for phonon part in Hamiltonian for intraband transitions?
+
+Under the Coulomb gauge $\nabla\cdot\mathbf{A}(\hat{\mathbf{r}},t)=0$ the interaction term can be written as follows
+$$
+\begin{align}
+ \hat{H}_{\text{int}} &= \frac{e}{m_{e}}\mathbf{A}(\hat{\mathbf{r}},t)\cdot\hat{\mathbf{p}} \\
+&= \frac{eA_{0}}{2m_{e}}\Big[{\large e^{ i(\mathbf{q}\cdot \mathbf{r} -\omega t)}+\large e^{ -i(\mathbf{q}\cdot \mathbf{r} -\omega t)}}  \Big] \hat{\mathbf{n}}\cdot  \hat{\mathbf{p}} \\
+&\equiv  \hat{V}_{\uparrow}e^{-i\omega t} + \hat{V}_{\downarrow}e^{i\omega t}
+\end{align}
+$$
+
+where the vector potential is that of a plane wave
+
+$$
+\mathbf{A}(\hat{\mathbf{r}},t) = \hat{\mathbf{n}}A_{0}\cos(\mathbf{q}\cdot \mathbf{r}-\omega t)
+$$
+
+In the conduction band the eigenstates of $\hat{H}_{0}$ are famously Bloch states $\ket{\psi_{n\mathbf{k}}}$. We treat the interaction term as a perturbation and, using Fermi Golden Rule (FGR), calculate the transition rates between energy states, namely
+
+$$
+\begin{align}
+\Gamma_{\uparrow / \downarrow} &= \frac{2\pi}{\hbar} \left|\left\langle \psi_{m\mathbf{k}_{2}} \left| \hat{V}_{\uparrow / \downarrow} \right| \psi_{n\mathbf{k}_{1}} \right\rangle\right|^{2}\delta\Big(  \mathcal{E}_{m}(\mathbf{k}_{2}) - (\mathcal{E}_n(\mathbf{k}_{1})\pm\hbar\omega)\Big) \\
+&= \frac{2\pi}{\hbar} \left|\mathbf{P}_{mn}\cdot  \hat{\mathbf{n}}\right|^{2} \; \;  \delta \Big( \mathbf{k}_{2} - (\mathbf{k}_{1}\pm\mathbf{q}) \Big)\; \delta\Big(  \mathcal{E}_{m}(\mathbf{k}_{2}) - (\mathcal{E}_n(\mathbf{k}_{1})\pm\hbar\omega)\Big) 
+\end{align}
+$$
+
+Where $\uparrow$ stands for absorption and $\downarrow$ for emission[^1].
+
+# Second Order Radiative Transitions in Solids
+
+> [!NOTE]- Transition Dipole Matrix (TDM)
+>$$\mu_{mn}=\left\langle \psi_{m\mathbf{k}_{2}} \left| \hat{V}_{\uparrow / \downarrow} \right| \psi_{n\mathbf{k}_{1}} \right\rangle = \left|\left\langle \psi_{m\mathbf{k}_{2}} \left| {\large e^{ \pm i\mathbf{q}\cdot \mathbf{r} }}\mathbf{p}\cdot  \hat{\mathbf{n}}\right| \psi_{n\mathbf{k}_{1}} \right\rangle\right|$$ Bloch states are explicitly $$\ket{\psi_{n\mathbf{k}}}= u_{n\mathbf{k}}(\mathbf{r}) \cdot{\large e^{ i\mathbf{k}\cdot \mathbf{r} }}$$ where $u_{n\mathbf{k}}(\mathbf{r})$ has the periodicity of the lattice. The TDM is then explicitly $$\int\limits_{\text{BZ}}  \, d^{3}r  \; \left(u^{*}_{m\mathbf{k}_{2}}(\mathbf{r}) \cdot{\large e^{ -i\mathbf{k}_{2}\cdot \mathbf{r} }}\right) \left({\large e^{ \pm i\mathbf{q}\cdot \mathbf{r} }}\mathbf{p}\cdot  \hat{\mathbf{n}} \right)\left(u_{n\mathbf{k}_{1}}(\mathbf{r}) \cdot{\large e^{ i\mathbf{k}_{1}\cdot \mathbf{r} }}\right)$$$$
+\int\limits_{}^{}  \, d^{3}r \; {\large e^{ i(\mathbf{k}_{1}-\mathbf{k}_{2}\pm \mathbf{q})\cdot \mathbf{r} }} \; u^{*}_{m\mathbf{k}_{2}}(\mathbf{r}) \  u_{n\mathbf{k}_{1}}(\mathbf{r}) \ \mathbf{p} \cdot\hat{\mathbf{n}}
+$$
+
+
+Photons carry minuscule momentum $(\mathbf{q}\approx 0)$ so it is very common and a good approximation to assume that $\mathbf{k}_{1}\approx \mathbf{k}_{2}$ to simplify calculation while preserving meaningful and qualitatively accurate results. The transition rate then simplifies to the following
+
+$$
+\Gamma_{\uparrow / \downarrow} = \frac{2\pi}{\hbar} \mathbf{P}_{mn}\cdot  \hat{\mathbf{n}} \;\; \delta\Big(  \mathcal{E}_{m}(\mathbf{k}) - (\mathcal{E}_n(\mathbf{k})\pm\hbar\omega)\Big) 
+$$
+
+Looking at this equation, it is clear that such a first-order transition is possible only when $n\neq m$, namely when the energy states (bands) are different - an interband transition. It has been known for several decades that absorption and emission of photons by conduction electrons is impossible via a single-step process (Yonatan says it is possible for a nano-particle due to the wavefunctions no longer being Bloch). A second-order transitions in which the interaction is mediated by a phonon/impurity is however possible.
+
+# From a Single Transition to the Continuum
+Consider an electronic transition between an initial state $\ket{\mathbf{k}_{1}, n}$ and a final state $\ket{\mathbf{k}_{2}, m}$, mediated by an energy transfer $\hbar \omega$. The subscripts $n$ and $m$ represent specific energy bands (valence or conduction), allowing transitions between different branches of the dispersion relation. According to Fermi's Golden Rule, the microscopic transition rate is
+
+$$
+\Gamma_{1\to 2}(\hbar\omega) = \frac{2\pi}{\hbar} \left|\mu_{12}^{nm}\right|^{2} \ \delta\left(\mathcal{E}_{m}(\mathbf{k}_{2}) - \mathcal{E}_{n}(\mathbf{k}_{1}) + \hbar\omega \right)
+$$
+
+where $\mu_{12}^{nm}$ is the transition dipole moment governing momentum conservation, and the Dirac delta function enforces energy conservation based on the band-specific dispersion relations $\mathcal{E}_{n}$ and $\mathcal{E}_{m}$.
+
+For clarity, we temporarily suppress the band indices to derive the rate for a generic pair of bands. To determine the rate $\Gamma_{1}$ from a specific initial state $\ket{\mathbf{k}_{1}}$, we sum over all available final states $\ket{\mathbf{k}_{2}}$. This summation is weighted by the probability of the final state being vacant, $[1-f(\mathbf{k}_{2})]$, and accounts for spin degeneracy. In the continuum limit, the discrete summation over wave-vectors transforms into an integral over the Brillouin Zone (BZ) with a density of states factor $V/(2\pi)^{3}$:
+
+$$\begin{align} \Gamma_{1}(\hbar\omega) &= 2 \cdot \sum_{\mathbf{k}_{2}} \ \Gamma_{1\to 2}(\hbar\omega) \Big[1-f(\mathbf{k}_{2})\Big] \\ &= 2V \int\limits_{\text{BZ}} \frac{d^{3}k_{2}}{(2\pi)^{3}} \ \Gamma_{1\to 2}(\hbar\omega) \Big[1-f(\mathbf{k}_{2})\Big] \end{align}$$
+
+Similarly, to obtain the total rate for this band pair, we sum the single-state rates over all possible initial states $\ket{\mathbf{k}_{1}}$, weighted by the occupation probability $f(\mathbf{k}_{1})$
+
+$$\begin{align} \Gamma (\hbar\omega) &= 2\cdot \sum_{\mathbf{k}_{1}} \ \Gamma_{1}(\hbar\omega) f(\mathbf{k}_{1}) \\ &= 2V \int\limits_{\text{BZ}} \frac{d^{3}k_{1}}{(2\pi)^{3}} \ \Gamma_{1}(\hbar\omega) \ f(\mathbf{k}_{1}) \end{align}$$
+
+Finally, to account for all possible emission channels, we reintroduce the band indices and perform a general summation over all bands $n$ and $m$. This covers all permutations, including interband (conduction-valence $nm = cv$) and intraband (conduction-conduction $nm = cc$) transitions. Defining $\overline{f_{m}(\mathbf{k})} \equiv 1 - f_{m}(\mathbf{k})$, the general expression is
+
+$$\boxed{ \Gamma(\hbar\omega) = \frac{2\pi}{\hbar} \left( \frac{2V}{(2\pi)^{3}} \right)^{2} \sum_{n, m} \iint\limits_{\text{BZ}} |\mu^{nm}(\mathbf{k_{1}},\mathbf{k_{2}})|^{2} \ f_{n}(\mathbf{k}_{1})\overline{f_{m}(\mathbf{k}_{2})} \ \delta\big(\mathcal{E}_{m}(\mathbf{k}_{2}) - \mathcal{E}_{n}(\mathbf{k}_{1}) + \hbar\omega \big) \ d^{3}k_{1} \ d^{3}k_{2} }$$
+
+[^1]: But shouldn't emission here be mostly spontaneous emission?
+	The way it is presented here, stimulated absorption and emission are the opposites. It is really stimulated emission? Or are we actually calculating spontaneous emission without understanding it?

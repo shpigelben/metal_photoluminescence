@@ -1,0 +1,21 @@
+{
+	"nodes":[
+		{"id":"g_thesis","type":"group","x":-1050,"y":-640,"width":530,"height":590,"color":"5","label":"Thesis"},
+		{"id":"g_app","type":"group","x":-1050,"y":50,"width":610,"height":465,"color":"4","label":"Appendices"},
+		{"id":"g_work","type":"group","x":320,"y":-600,"width":700,"height":320,"color":"3","label":"Working Notes"},
+		{"id":"g_proj","type":"group","x":320,"y":325,"width":700,"height":230,"color":"2","label":"Project Management"},
+		{"id":"bn_app","type":"file","file":"notes/appendices.base","x":-1020,"y":80,"width":540,"height":360},
+		{"id":"bn_thesis","type":"file","file":"notes/thesis.base","x":-1020,"y":-580,"width":460,"height":490},
+		{"id":"title","type":"text","text":"# Metal Photoluminescence\n### MSc Thesis\nIntraband & interband transitions\nin gold under non-equilibrium conditions","x":-200,"y":-70,"width":320,"height":140,"color":"6"},
+		{"id":"bn_work","type":"file","file":"notes/working-notes.base","x":350,"y":-560,"width":640,"height":235},
+		{"id":"078e80e9f252710b","type":"text","text":"","x":-249,"y":876,"width":250,"height":60},
+		{"id":"a9d6437fa4ea9cc1","type":"text","text":"≤≥","x":791,"y":855,"width":250,"height":60},
+		{"id":"bn_proj","type":"file","file":"notes/project.base","x":350,"y":355,"width":640,"height":160}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"title","fromSide":"left","toNode":"g_thesis","toSide":"right","color":"5","label":"chapters"},
+		{"id":"e2","fromNode":"title","fromSide":"left","toNode":"g_app","toSide":"right","color":"4","label":"appendices"},
+		{"id":"e3","fromNode":"title","fromSide":"right","toNode":"g_work","toSide":"left","color":"3","label":"working notes"},
+		{"id":"e4","fromNode":"title","fromSide":"bottom","toNode":"g_proj","toSide":"left","color":"2","label":"project mgmt"}
+	]
+}
