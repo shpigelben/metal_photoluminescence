@@ -1,0 +1,14 @@
+/* ---------------------------------------------------------
+   Automatic Handwriting Color Matcher
+   Target: images tagged with 'hw' in the alias
+--------------------------------------------------------- */
+
+/* DARK MODE: Converts black SVG to #D3C5AA (Soft Beige) */
+.theme-dark img[alt*="hw"] {
+    filter: invert(93%) sepia(12%) saturate(603%) hue-rotate(344deg) brightness(86%) contrast(90%);
+}
+
+/* LIGHT MODE: Converts black SVG to #012B36 (Deep Teal) */
+.theme-light img[alt*="hw"] {
+    filter: invert(12%) sepia(76%) saturate(2335%) hue-rotate(177deg) brightness(94%) contrast(97%);
+}

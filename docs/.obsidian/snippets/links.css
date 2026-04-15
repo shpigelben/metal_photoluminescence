@@ -1,0 +1,13 @@
+/* Reading view */
+.markdown-reading-view a {
+  text-decoration: none !important;
+}
+
+/* Live preview / editor */
+.cm-underline {
+  text-decoration: none !important;
+}
+
+.markdown-source-view a {
+  text-decoration: none !important;
+}

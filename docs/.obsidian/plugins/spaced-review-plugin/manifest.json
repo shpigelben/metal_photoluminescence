@@ -1,0 +1,9 @@
+{
+  "id": "spaced-review",
+  "name": "Spaced Review",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "description": "Weighted random note review with spaced repetition",
+  "author": "Ben",
+  "isDesktopOnly": false
+}

@@ -1,0 +1,45 @@
+.spaced-review-modal {
+  text-align: center;
+  padding: 1em;
+}
+
+.spaced-review-filename {
+  font-weight: 600;
+  font-size: 1.1em;
+  margin-bottom: 1.5em;
+  color: var(--text-normal);
+}
+
+.spaced-review-buttons {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.spaced-review-btn {
+  padding: 0.6em 2em;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+  border: 1px solid var(--background-modifier-border);
+  transition: background 0.15s ease;
+}
+
+.spaced-review-revisit {
+  background: var(--background-modifier-error);
+  color: var(--text-on-accent);
+}
+
+.spaced-review-revisit:hover {
+  opacity: 0.85;
+}
+
+.spaced-review-solid {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+}
+
+.spaced-review-solid:hover {
+  opacity: 0.85;
+}

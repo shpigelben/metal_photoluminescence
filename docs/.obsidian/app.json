@@ -3,21 +3,19 @@
     "includeName": true,
     "pageSize": "A4",
     "landscape": false,
-    "margin": "0",
+    "margin": "1",
     "downscalePercent": 75
   },
   "useMarkdownLinks": true,
   "showInlineTitle": true,
   "newLinkFormat": "relative",
   "alwaysUpdateLinks": true,
-  "attachmentFolderPath": "attachments",
+  "attachmentFolderPath": "4 Misc/Attachments",
   "readableLineLength": true,
   "focusNewTab": false,
   "rightToLeft": false,
   "livePreview": true,
   "uriCallbacks": false,
   "showUnsupportedFiles": false,
-  "showLineNumber": false,
-  "newFileLocation": "folder",
-  "newFileFolderPath": "notes"
+  "showLineNumber": false
 }

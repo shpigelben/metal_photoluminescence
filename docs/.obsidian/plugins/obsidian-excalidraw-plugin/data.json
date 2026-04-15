@@ -1,6 +1,6 @@
 {
   "disableDoubleClickTextEditing": false,
-  "folder": "9. Misc/Excalidraw",
+  "folder": "4 Misc/Excalidraw",
   "cropFolder": "",
   "annotateFolder": "",
   "embedUseExcalidrawFolder": false,
@@ -96,7 +96,7 @@
   "experimentalFileTag": "✏️",
   "experimentalLivePreview": true,
   "fadeOutExcalidrawMarkup": false,
-  "loadPropertySuggestions": true,
+  "loadPropertySuggestions": false,
   "experimentalEnableFourthFont": false,
   "experimantalFourthFont": "Virgil",
   "addDummyTextElement": false,
@@ -17477,9 +17477,9 @@
           },
           {
             "shift": false,
-            "ctrl_cmd": true,
+            "ctrl_cmd": false,
             "alt_opt": false,
-            "meta_ctrl": true,
+            "meta_ctrl": false,
             "result": "md-properties"
           }
         ]

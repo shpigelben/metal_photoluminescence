@@ -1,1 +1,46 @@
-.MathJax {font-size: 1.15em;}
+.MathJax {
+  font-size: 1.1em;
+}
+
+:root {
+  --math-block-padding: 0.9em;
+  --math-block-padding-x: 0.18em;
+  --math-block-margin: 0.12em;
+}
+
+/* Display-math spacing in both Reading View and Editing mode */
+.markdown-reading-view .math.math-block,
+.markdown-preview-view .math.math-block,
+.markdown-rendered .math.math-block,
+.markdown-source-view.mod-cm6 .cm-embed-block.math-block,
+.markdown-reading-view mjx-container[display="true"],
+.markdown-preview-view mjx-container[display="true"],
+.markdown-rendered mjx-container[display="true"],
+.markdown-source-view.mod-cm6 mjx-container[display="true"] {
+  display: block;
+  padding-top: var(--math-block-padding);
+  padding-bottom: var(--math-block-padding);
+  padding-left: var(--math-block-padding-x);
+  padding-right: var(--math-block-padding-x);
+  margin-top: var(--math-block-margin);
+  margin-bottom: var(--math-block-margin);
+}
+
+/* Optional fallback for editor variants that wrap display math differently */
+.markdown-source-view.mod-cm6 .cm-embed-block:has(mjx-container[display="true"]) {
+  display: block;
+  padding-top: var(--math-block-padding);
+  padding-bottom: var(--math-block-padding);
+  padding-left: var(--math-block-padding-x);
+  padding-right: var(--math-block-padding-x);
+  margin-top: var(--math-block-margin);
+  margin-bottom: var(--math-block-margin);
+}
+
+.markdown-reading-view mjx-container[display="true"],
+.markdown-preview-view mjx-container[display="true"],
+.markdown-rendered mjx-container[display="true"],
+.markdown-source-view.mod-cm6 mjx-container[display="true"] {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}

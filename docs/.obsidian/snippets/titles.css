@@ -1,0 +1,131 @@
+/* Heading sizing + H1 underline with consistent gap below in both modes */
+:root {
+  --title-h1-size: clamp(2rem, 1.75rem + 1vw, 2.6rem);
+  --title-h2-size: clamp(1.45rem, 1.3rem + 0.55vw, 1.9rem);
+  --title-h3-size: clamp(1.18rem, 1.08rem + 0.3vw, 1.42rem);
+  --title-weight: 700;
+
+  --h1-underline-color: currentColor;
+  --h1-underline-thickness: 2px;
+
+  /* Keep this as-is: spacing between H1 text and underline */
+  --h1-text-to-underline: 0.4em;
+
+  /* This is the only "below line" spacing control */
+  --h1-gap-below: 0.4em;
+  --h2-gap-below: 0.28em;
+  --h3-gap-below: 0.22em;
+
+  /* Theme compatibility vars */
+  --h1-size: var(--title-h1-size);
+  --h2-size: var(--title-h2-size);
+  --h3-size: var(--title-h3-size);
+}
+
+/* Reading / Preview mode */
+.markdown-rendered h1,
+.markdown-preview-view h1,
+.markdown-reading-view h1 {
+  font-size: var(--title-h1-size) !important;
+  font-weight: var(--title-weight);
+  line-height: 1.25;
+  padding-bottom: var(--h1-text-to-underline);
+  margin-bottom: var(--h1-gap-below);
+  border-bottom: var(--h1-underline-thickness) solid var(--h1-underline-color) !important;
+  border-bottom-color: color-mix(in srgb, currentColor 50%, transparent) !important;
+}
+
+.markdown-rendered h2,
+.markdown-preview-view h2,
+.markdown-reading-view h2 {
+  font-size: var(--title-h2-size) !important;
+  font-weight: var(--title-weight);
+  line-height: 1.25;
+  margin-bottom: var(--h2-gap-below);
+}
+
+.markdown-rendered h3,
+.markdown-preview-view h3,
+.markdown-reading-view h3 {
+  font-size: var(--title-h3-size) !important;
+  font-weight: var(--title-weight);
+  line-height: 1.25;
+  margin-bottom: var(--h3-gap-below);
+}
+
+/* Editing mode (Live Preview): style heading line */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1 {
+  font-size: var(--title-h1-size) !important;
+  font-weight: var(--title-weight);
+  line-height: 1.25;
+  padding-bottom: var(--h1-text-to-underline) !important;
+  margin-bottom: 0 !important;
+  border-bottom: var(--h1-underline-thickness) solid var(--h1-underline-color) !important;
+  border-bottom-color: color-mix(in srgb, currentColor 50%, transparent) !important;
+}
+
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-2 {
+  font-size: var(--title-h2-size) !important;
+  font-weight: var(--title-weight);
+  line-height: 1.25;
+  margin-bottom: 0 !important;
+}
+
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-3 {
+  font-size: var(--title-h3-size) !important;
+  font-weight: var(--title-weight);
+  line-height: 1.25;
+  margin-bottom: 0 !important;
+}
+
+/* Editing mode (Live Preview): create gap BELOW heading underline */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1 + .cm-line {
+  padding-top: var(--h1-gap-below) !important;
+}
+
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-2 + .cm-line {
+  padding-top: var(--h2-gap-below) !important;
+}
+
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-3 + .cm-line {
+  padding-top: var(--h3-gap-below) !important;
+}
+
+/* Optional fallback for editor variants that expose token classes only */
+@supports selector(.cm-line:has(.cm-header-1)) {
+  .markdown-source-view.mod-cm6 .cm-line:has(.cm-header-1) {
+    font-size: var(--title-h1-size) !important;
+    font-weight: var(--title-weight);
+    line-height: 1.25;
+    padding-bottom: var(--h1-text-to-underline) !important;
+    margin-bottom: 0 !important;
+    border-bottom: var(--h1-underline-thickness) solid var(--h1-underline-color) !important;
+    border-bottom-color: color-mix(in srgb, currentColor 50%, transparent) !important;
+  }
+
+  .markdown-source-view.mod-cm6 .cm-line:has(.cm-header-2) {
+    font-size: var(--title-h2-size) !important;
+    font-weight: var(--title-weight);
+    line-height: 1.25;
+    margin-bottom: 0 !important;
+  }
+
+  .markdown-source-view.mod-cm6 .cm-line:has(.cm-header-3) {
+    font-size: var(--title-h3-size) !important;
+    font-weight: var(--title-weight);
+    line-height: 1.25;
+    margin-bottom: 0 !important;
+  }
+
+  .markdown-source-view.mod-cm6 .cm-line:has(.cm-header-1) + .cm-line {
+    padding-top: var(--h1-gap-below) !important;
+  }
+
+  .markdown-source-view.mod-cm6 .cm-line:has(.cm-header-2) + .cm-line {
+    padding-top: var(--h2-gap-below) !important;
+  }
+
+  .markdown-source-view.mod-cm6 .cm-line:has(.cm-header-3) + .cm-line {
+    padding-top: var(--h3-gap-below) !important;
+  }
+}

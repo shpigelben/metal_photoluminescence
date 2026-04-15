@@ -1,21 +1,53 @@
 /* Base styling for inline titles */
-.inline-title {
-  font-size: 3em;
+:root {
+  --inline-title-size: 4rem;
+  --inline-title-line-height: 1.1;
+  --inline-title-padding-x: 0.10em;
+  --inline-title-padding-top: 0.10em;
+  --inline-title-padding-bottom: 0.10em;
+  --inline-title-border-alpha: 100%;
+}
+
+.app-container,
+body {
+  --inline-title-size: 3.5rem !important;
+}
+
+.inline-title,
+.view-content .inline-title,
+.markdown-reading-view .inline-title,
+.markdown-rendered .inline-title,
+.markdown-source-view.mod-cm6 .inline-title,
+.markdown-source-view.mod-cm6.is-live-preview .inline-title {
+  font-size: var(--inline-title-size) !important;
+  line-height: var(--inline-title-line-height) !important;
   color: currentColor; /* Black text color in light mode */
   /* background-color: #548dbb7c; Background color */
-  border: 4px solid currentColor; /* Black border in light mode */
-  border-radius: 10px; /* Rounded corners */
+  border: 3.0px solid color-mix(in srgb, currentColor var(--inline-title-border-alpha), transparent);
+  border-radius: 8px; /* Rounded corners */
   text-align: center;
-  padding: 10px 0; /* Padding around text, with extra space below */
+  padding-top: var(--inline-title-padding-top);
+  padding-bottom: var(--inline-title-padding-bottom);
+  padding-left: var(--inline-title-padding-x);
+  padding-right: var(--inline-title-padding-x);
   display: block; /* Makes it extend to the end of the page */
   width: 100%; /* Ensures the title spans the page width */
-  margin: 0 auto 20px; /* Centers the content within the block */
+  margin: 0 auto 40px; /* Centers the content within the block */
+}
+
+/* Force nested inline-title text nodes/editors as well */
+.inline-title *,
+.inline-title input,
+.inline-title textarea,
+.inline-title [contenteditable="true"] {
+  font-size: var(--inline-title-size) !important;
+  line-height: var(--inline-title-line-height) !important;
 }
 
 /* Dark mode adjustments */
 .theme-dark .inline-title {
   color: currentColor; /* White text color in dark mode */
-  border-color: currentColor; /* White border color in dark mode */
+  border-color: color-mix(in srgb, currentColor var(--inline-title-border-alpha), transparent);
 }
 
-/* Editing mode adjustments
+/* Editing mode adjustments */

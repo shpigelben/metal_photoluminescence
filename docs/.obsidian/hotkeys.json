@@ -79,20 +79,18 @@
         "Ctrl"
       ],
       "key": "T"
-    }
-  ],
-  "app:toggle-left-sidebar": [
+    },
     {
       "modifiers": [
-        "Ctrl"
+        "Alt"
       ],
-      "key": ","
+      "key": "T"
     }
   ],
   "app:toggle-right-sidebar": [
     {
       "modifiers": [
-        "Ctrl"
+        "Alt"
       ],
       "key": "."
     }
@@ -100,7 +98,7 @@
   "obsidian-hider:toggle-hider-status": [
     {
       "modifiers": [
-        "Ctrl"
+        "Alt"
       ],
       "key": "S"
     }
@@ -109,7 +107,7 @@
   "app:toggle-ribbon": [
     {
       "modifiers": [
-        "Ctrl"
+        "Alt"
       ],
       "key": "A"
     }
@@ -122,11 +120,18 @@
       "key": "["
     }
   ],
+  "app:toggle-left-sidebar": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": ","
+    }
+  ],
   "font-size:decrement-font-size": [
     {
       "modifiers": [
-        "Mod",
-        "Shift"
+        "Alt"
       ],
       "key": "-"
     }
@@ -134,8 +139,7 @@
   "font-size:increment-font-size": [
     {
       "modifiers": [
-        "Mod",
-        "Shift"
+        "Alt"
       ],
       "key": "="
     }

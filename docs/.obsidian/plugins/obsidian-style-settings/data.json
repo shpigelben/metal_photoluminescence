@@ -12,7 +12,7 @@
   "primary-theme@@active-line-bg@@dark": "#D5AD84AB",
   "anuppuccin-theme-settings-extended@@anp-theme-ext-light": true,
   "anuppuccin-theme-settings-extended@@anp-theme-ext-dark": true,
-  "anuppuccin-theme-settings-extended@@catppuccin-theme-extended": "ctp-solarized-light",
+  "anuppuccin-theme-settings-extended@@catppuccin-theme-extended": "ctp-atom-light",
   "anuppuccin-theme-settings-extended@@catppuccin-theme-dark-extended": "ctp-everforest-dark",
   "anuppuccin-theme-settings@@anp-toggle-scrollbars": true,
   "anuppuccin-theme-settings@@anp-cursor": "pointer",

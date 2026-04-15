@@ -20,3 +20,5 @@ views:
       - research
       - type
       - file.mtime
+  - type: table
+    name: View

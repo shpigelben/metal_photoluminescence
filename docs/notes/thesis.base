@@ -1,13 +1,11 @@
 filters:
   and:
-    - 'section == "thesis"'
-
+    - section == "thesis"
 properties:
   file.name:
     displayName: Note
   file.mtime:
     displayName: Modified
-
 views:
   - type: table
     name: Thesis Chapters

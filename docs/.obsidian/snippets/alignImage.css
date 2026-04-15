@@ -1,15 +1,121 @@
-img[alt*="right"] {
-  float:right;
-  clear:right;
-  margin-left: 1rem;
-  margin-bottom: 2px;
-  margin-top: 2px;
+/*
+Use alignment tokens in image alt text:
+![right|350](...)
+![left|300](...)
+![center|500](...)
+![[image.png|center|500]]
+*/
+
+:root {
+  --image-align-gap: 0.6em;
+  --image-center-gap-y: 0.6em;
 }
 
-img[alt*="left"] {
-  float:left;
-  clear:left;
-  margin-right: 1rem;
-  margin-bottom: 1px;
-  margin-top: 2px;
+/* Scope to note content in both Reading and Editing modes */
+:where(
+  .markdown-rendered,
+  .markdown-preview-view,
+  .markdown-reading-view,
+  .markdown-source-view.mod-cm6
+) img[alt] {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Wrapper handling for wiki/image embeds when alt token is on wrapper */
+:where(
+  .markdown-rendered,
+  .markdown-preview-view,
+  .markdown-reading-view,
+  .markdown-source-view.mod-cm6
+) .image-embed:is([alt*="|right" i], [alt^="right" i], [alt~="right" i]) {
+  float: right;
+  clear: right;
+  display: block;
+  margin: var(--image-align-gap);
+}
+
+:where(
+  .markdown-rendered,
+  .markdown-preview-view,
+  .markdown-reading-view,
+  .markdown-source-view.mod-cm6
+) .image-embed:is([alt*="|left" i], [alt^="left" i], [alt~="left" i]) {
+  float: left;
+  clear: left;
+  display: block;
+  margin: var(--image-align-gap);
+}
+
+:where(
+  .markdown-rendered,
+  .markdown-preview-view,
+  .markdown-reading-view,
+  .markdown-source-view.mod-cm6
+) .image-embed:is([alt*="|center" i], [alt^="center" i], [alt~="center" i]) {
+  float: none;
+  clear: both;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: var(--image-center-gap-y) auto;
+}
+
+/* Prevent double spacing when wrapper styles apply */
+:where(
+  .markdown-rendered,
+  .markdown-preview-view,
+  .markdown-reading-view,
+  .markdown-source-view.mod-cm6
+) .image-embed:is(
+  [alt*="|right" i],
+  [alt^="right" i],
+  [alt~="right" i],
+  [alt*="|left" i],
+  [alt^="left" i],
+  [alt~="left" i],
+  [alt*="|center" i],
+  [alt^="center" i],
+  [alt~="center" i]
+) > img {
+  display: block;
+  float: none !important;
+  margin: 0 !important;
+}
+
+/* Fallback for standard markdown images (token on the img alt) */
+:where(
+  .markdown-rendered,
+  .markdown-preview-view,
+  .markdown-reading-view,
+  .markdown-source-view.mod-cm6
+) img:is([alt*="|right" i], [alt^="right" i], [alt~="right" i]) {
+  float: right;
+  clear: right;
+  display: block;
+  margin: var(--image-align-gap);
+}
+
+:where(
+  .markdown-rendered,
+  .markdown-preview-view,
+  .markdown-reading-view,
+  .markdown-source-view.mod-cm6
+) img:is([alt*="|left" i], [alt^="left" i], [alt~="left" i]) {
+  float: left;
+  clear: left;
+  display: block;
+  margin: var(--image-align-gap);
+}
+
+:where(
+  .markdown-rendered,
+  .markdown-preview-view,
+  .markdown-reading-view,
+  .markdown-source-view.mod-cm6
+) img:is([alt*="|center" i], [alt^="center" i], [alt~="center" i]) {
+  float: none;
+  clear: both;
+  display: block;
+  margin: var(--image-center-gap-y) auto;
 }

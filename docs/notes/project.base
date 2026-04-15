@@ -1,7 +1,6 @@
 filters:
   and:
-    - 'section == "project"'
-
+    - section == "project"
 properties:
   file.name:
     displayName: Document
@@ -9,10 +8,13 @@ properties:
     displayName: Last Updated
   file.ctime:
     displayName: Created
-
 views:
-  - type: table
+  - type: cards
     name: Project Management
     order:
       - file.name
       - file.mtime
+    indentProperties: true
+    imageAspectRatio: 1.6
+    imageFit: contain
+    cardSize: 220

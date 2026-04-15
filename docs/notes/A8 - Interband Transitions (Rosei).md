@@ -10,7 +10,7 @@ $$
 \end{align}
  $$
 
-Our starting point is the interband emission integral given by Fermi's golden rule for the transition from an initial momentum state $\mathbf{k}_{1}$ to a final state $\mathbf{k}_{2}$ 
+Our starting point is the interband emission integral given by Fermi's golden rule for the transition from an initial momentum state $\mathbf{k}_{1}$ to a final state $\mathbf{k}_{2}$
 
 $$
 \Gamma_{e}^{\text{cv}}(\hbar\omega) \propto\int\limits_{\text{BZ}} d^{3}k_{1} \int\limits_{\text{BZ}} d^{3}k_{2} \; f(\mathcal{E}_{c}(\mathbf{k}_{1})) \Big[1-f(\mathcal{E}_{v}(\mathbf{k}_{2}))\Big] \; \delta\Big(\mathcal{E}_{c}(\mathbf{k}_{1}) - \mathcal{E}_{v}(\mathbf{k}_{2}) - \hbar\omega  \Big)
@@ -44,7 +44,6 @@ To account for $\pm\sqrt{ v }$ we can use the fact that the bands are even funct
 $$
 2\pi k_{\perp} dk_{\perp} dk_{\parallel} \to \pi \frac{dudv}{\sqrt{ v }}
 $$
-
 # Energy Space
 Finally, we introduce another linear transformation from the linearized momenta $u$ and $v$ into the more physically meaningful variables $\mathcal{E}$ and $\Delta$ which are the conduction band energy and the energy difference between the conduction and valence
 
