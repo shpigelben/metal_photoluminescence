@@ -1,0 +1,23 @@
+filters:
+  and:
+    - 'type == "reference"'
+    - 'category == "core"'
+
+properties:
+  file.name:
+    displayName: Title
+  authors:
+    displayName: Authors
+  year:
+    displayName: Year
+  journal:
+    displayName: Journal
+
+views:
+  - type: table
+    name: Core — Sivan & Dubi Group
+    order:
+      - file.name
+      - authors
+      - year
+      - journal

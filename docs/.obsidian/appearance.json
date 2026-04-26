@@ -2,7 +2,7 @@
   "accentColor": "#ffbd2e",
   "theme": "moonstone",
   "cssTheme": "AnuPpuccin",
-  "baseFontSize": 15,
+  "baseFontSize": 16,
   "textFontFamily": "Tiempo,Palatino,Palatino Linotype,ITC Garamond Std,FiraCode Nerd Font",
   "interfaceFontFamily": "SF Pro Display,SF Pro Rounded,Inter,JetBrainsMono Nerd Font,Sathu",
   "enabledCssSnippets": [

@@ -1,0 +1,23 @@
+filters:
+  and:
+    - 'type == "reference"'
+    - 'category == "experiment"'
+
+properties:
+  file.name:
+    displayName: Title
+  authors:
+    displayName: Authors
+  year:
+    displayName: Year
+  journal:
+    displayName: Journal
+
+views:
+  - type: table
+    name: Gold & Experiment
+    order:
+      - file.name
+      - authors
+      - year
+      - journal

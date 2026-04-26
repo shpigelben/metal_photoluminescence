@@ -1,1 +1,0 @@
-![1 - Hot_PL_main](resources/main/1%20-%20Hot_PL_main.pdf)

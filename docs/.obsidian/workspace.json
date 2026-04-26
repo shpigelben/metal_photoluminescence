@@ -11,46 +11,20 @@
             "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "canvas",
               "state": {
-                "file": "resources/main/1 - Hot_PL_main.pdf"
+                "file": "MOC.canvas",
+                "viewState": {
+                  "x": 183.8606572448789,
+                  "y": 241.12733044864612,
+                  "zoom": -2.0830557397275586
+                }
               },
-              "icon": "lucide-file-text",
-              "title": "1 - Hot_PL_main"
-            }
-          },
-          {
-            "id": "1919a79891e9ad51",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Theory of \"Hot\" Photoluminescence from Drude Metals.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Theory of \"Hot\" Photoluminescence from Drude Metals"
-            }
-          },
-          {
-            "id": "1dd767c36e8f7380",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Theory of \"Hot\" Photoluminescence from Drude Metals.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Theory of \"Hot\" Photoluminescence from Drude Metals"
+              "icon": "lucide-layout-dashboard",
+              "title": "MOC"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -62,7 +36,7 @@
       {
         "id": "ccf4f2dc9011843f",
         "type": "tabs",
-        "dimension": 71.03825136612022,
+        "dimension": 62.825278810408925,
         "children": [
           {
             "id": "097b944a4aaf954b",
@@ -93,13 +67,23 @@
               "icon": "lucide-search",
               "title": "Search"
             }
+          },
+          {
+            "id": "7863835e764aa75f",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
           }
         ]
       },
       {
         "id": "7ebc1d4a992929a9",
         "type": "tabs",
-        "dimension": 28.96174863387978,
+        "dimension": 37.174721189591075,
         "children": [
           {
             "id": "204ae1a142ffae3d",
@@ -107,20 +91,20 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Theory of \"Hot\" Photoluminescence from Drude Metals.md",
+                "file": "MOC.canvas",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Theory of \"Hot\" Photoluminescence from Drude Metals"
+              "title": "Outline of MOC"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 241.5
+    "width": 287.5
   },
   "right": {
     "id": "ff902569427872ea",
@@ -136,10 +120,10 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Theory of \"Hot\" Photoluminescence from Drude Metals.md"
+                "file": "notes/Effective Mass Extraction.md"
               },
               "icon": "lucide-info",
-              "title": "File properties for Theory of \"Hot\" Photoluminescence from Drude Metals"
+              "title": "File properties for Effective Mass Extraction"
             }
           },
           {
@@ -171,8 +155,7 @@
               "title": "All properties"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       },
       {
         "id": "e05b9cc9b4287e55",
@@ -184,7 +167,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Theory of \"Hot\" Photoluminescence from Drude Metals.md",
+                "file": "notes/Effective Mass Extraction.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -194,7 +177,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Theory of \"Hot\" Photoluminescence from Drude Metals"
+              "title": "Backlinks for Effective Mass Extraction"
             }
           },
           {
@@ -203,22 +186,24 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Theory of \"Hot\" Photoluminescence from Drude Metals.md",
+                "file": "notes/Effective Mass Extraction.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Theory of \"Hot\" Photoluminescence from Drude Metals"
+              "title": "Outgoing links from Effective Mass Extraction"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
+      "daily-notes:Open today's daily note": false,
       "random-note:Open random note": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
@@ -229,52 +214,54 @@
       "obsidian-excalidraw-plugin:New drawing": false,
       "homepage:Open homepage": false,
       "pexels-banner:🚩 Pixel Banner Menu": false,
-      "obsidian-stille:Toggle Stille": false,
-      "terminal:Open terminal": false
+      "obsidian-stille:Toggle Stille": false
     }
   },
-  "active": "1dd767c36e8f7380",
+  "active": "097b944a4aaf954b",
   "lastOpenFiles": [
+    "notes/Effective Mass Extraction.md",
+    "references/Splitting of the Interband Absorption Edge in Au.md",
+    "figures/gaussian_delta_convergence.png",
+    "figures/constant_eDOS_heatmap.png",
     "MOC.canvas",
-    "notes/Log.md",
-    "Untitled.md",
+    "references/background.base",
+    "references/theory.base",
+    "references/experiment.base",
+    "references/core.base",
+    "references/Thermoradiative Power Conversion from HgCdTe Photodiodes.md",
+    "references/Ultrafast Nonlinear Dynamics of Surface Plasmon Polaritons in Gold Nanowires.md",
     "Theory of \"Hot\" Photoluminescence from Drude Metals.md",
-    "resources/main/1 - Hot_PL_main.pdf",
-    "resources/supporting/A2 - imon's presentation.pdf",
-    "resources/supporting/A3 - raman_pl.pdf",
-    "resources/supporting/A4 - notability_notes.pdf",
-    "resources/supporting/A1 - semiconductor_emission_slides.pdf",
-    "notes/Work Plan.md",
-    "notes/A8 - Interband Transitions (Rosei).md",
-    "notes/A7 - Intraband Transitions (Rosei).md",
-    "notes/A1 - Derivation of the General Emission Integral.md",
-    "notes/X & L Dispersion Relations.md",
-    "notes/Untitled.md",
-    "notes/Progress Report.md",
-    "notes/Progress Report + Questions for Yonatan.md",
-    "notes/First Order TDM.md",
-    "notes/0 - Outline.md",
-    "notes/working-notes.base",
-    "MOC.md",
+    "references/Semiconductor Emission Lecture Slides.md",
+    "notes/references/DubiSivan2019HotElectronsSI.md",
+    "references/Contribution of Interband Transitions to Non-equilibrium Emission in Metals.md",
+    "references/Phonon-Assisted Optical Absorption in Silicon from First Principles.md",
+    "references/Hot Electrons in a Steady State - Interband vs Intraband Excitation of Plasmonic Gold.md",
+    "references/Fermi Golden Rule - Handwritten Notes.md",
+    "references/Distinction Between Resonance Raman Scattering and Hot Luminescence.md",
+    "references/Photoluminescence from Metal Films - Imon Presentation.md",
+    "references/Photoluminescence from Metal Nanostructures - Dependence on Size.md",
+    "references/Theory of Photoluminescence by Metallic Structures.md",
+    "references/Photoluminescence of Metals.md",
+    "references/Quantum-mechanical Effects in Photoluminescence from Thin Crystalline Gold Films.md",
+    "references/Principles of Nano-Optics.md",
+    "references/Assistance of Metal Nanoparticles in Photocatalysis - Nothing More Than a Classical Heat Source.md",
+    "references/Supplementary Information - Hot Electrons in Metallic Nanostructures.md",
+    "references/Hot Electrons in Metallic Nanostructures - Non-thermal Carriers or Heating.md",
+    "references/Supporting Information - Hot Photoluminescence from Drude Metals.md",
+    "references/Theory of Hot Photoluminescence from Drude Metals.md",
+    "references/C - previous_pdf.pdf",
+    "references/B3 - electron-phonon.pdf",
+    "references/B2 - thermoradiative_power.pdf",
+    "references/B1 - hot_e_steady_state.pdf",
+    "references/A4 - notability_notes.pdf",
+    "references/A3 - raman_pl.pdf",
+    "notes/references/DubiSivan2019HotElectrons.md",
+    "notes/references/BowmanEtAl2024QuantumGoldFilms.md",
+    "notes/references/Ben2025InterbandContribution.md",
     "MOC Canvas.canvas",
-    "notes/project.base",
-    "notes/appendices.base",
-    "notes/thesis.base",
     "notes/Outline & Questions/emission integral tree.canvas",
-    "notes/Electronic Transitions.md",
-    "notes/Non-equilibrium Emission in Metals.md",
-    "notes/Integration Limits of X & L Points vs the Center of BZ.md",
-    "notes/4 - Interband Transitions.md",
-    "notes/Abstract.md",
-    "notes/A5 - Numeric Delta Approximation.md",
-    "notes/A9 - Kirchhoff's Law Of Radiation.md",
-    "notes/A6 - Boltzmann Equation.md",
-    "notes/A4 - Electronic Density of States.md",
-    "notes/A2 - Derivation of Analytic Approximation.md",
-    "notes/A3 - Thermal Factor Energy Space.md",
     "notes/Outline & Questions/DeepDive.canvas",
     "figures/analytic_approximations.png",
-    "resources/supporting",
     "notes/Outline & Questions/thoughts with Gemini/Gemini.canvas",
     "notes/Gemini.canvas/Gemini.canvas",
     "notes/Gemini.canvas",
@@ -284,8 +271,6 @@
     "figures/gaussian_delta_double_integral.png",
     "figures/consteDOS_error_heatmaps.png",
     "figures/analytic_error_heatmaps.png",
-    "figures/Pasted image 20260118074501.png",
-    "figures/Pasted image 20260118074430.png",
-    "figures/notebook_lm_infographic2.png"
+    "figures/Pasted image 20260118074501.png"
   ]
 }
