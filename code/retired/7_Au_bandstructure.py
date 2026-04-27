@@ -37,7 +37,7 @@ from PyQt6.QtWidgets import (
 )
 
 try:
-    from plot_style import apply_style
+    from code.misc.plot_style import apply_style
 except Exception:
     apply_style = lambda: None  # noqa: E731
 

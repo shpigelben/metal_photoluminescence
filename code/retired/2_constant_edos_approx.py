@@ -3,7 +3,7 @@ import numpy as np
 from scipy.integrate import simpson
 
 from _preamble_and_funcs import E_F, E_GRID, F_T, eDOS, f_neq, k_B, relative_error
-from plot_style import apply_style, save_svg, set_figure_title
+from code.misc.plot_style import apply_style, save_svg, set_figure_title
 
 DEFAULT_HW_L = 2.0
 DEFAULT_DELTA_E = 1e-2

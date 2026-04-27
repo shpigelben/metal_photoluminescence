@@ -3,7 +3,7 @@ import numpy as np
 from scipy.integrate import simpson, trapezoid
 
 from _preamble_and_funcs import *
-from plot_style import apply_style, save_svg
+from code.misc.plot_style import apply_style, save_svg
 
 _INTEGRATORS = {"simpson": simpson, "trapz": trapezoid}
 

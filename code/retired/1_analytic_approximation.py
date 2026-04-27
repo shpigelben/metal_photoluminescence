@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from _preamble_and_funcs import *
-from plot_style import apply_style, save_svg, set_figure_title
+from code.misc.plot_style import apply_style, save_svg, set_figure_title
 
 # TODO: need to insert nonthermal integral
 # exact integtral solution (Eq. 6)

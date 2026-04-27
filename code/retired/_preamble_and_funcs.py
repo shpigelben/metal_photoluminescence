@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
-from plot_style import apply_style, save_svg
+from code.misc.plot_style import apply_style, save_svg
 
 ############### PREAMBLE ###############
 

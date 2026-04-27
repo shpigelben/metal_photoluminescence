@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import simpson
-from plot_style import apply_style, save_svg, set_figure_title
+from code.misc.plot_style import apply_style, save_svg, set_figure_title
 from _preamble_and_funcs import *
 
 # --- Definitions ---
