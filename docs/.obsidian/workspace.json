@@ -11,17 +11,10 @@
             "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
-              "type": "canvas",
-              "state": {
-                "file": "MOC.canvas",
-                "viewState": {
-                  "x": 183.8606572448789,
-                  "y": 241.12733044864612,
-                  "zoom": -2.0830557397275586
-                }
-              },
-              "icon": "lucide-layout-dashboard",
-              "title": "MOC"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ]
@@ -91,20 +84,21 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "MOC.canvas",
+                "file": "references/7 - Rosei.pdf",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of MOC"
+              "title": "Outline of 7 - Rosei"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 287.5
+    "width": 287.5,
+    "collapsed": true
   },
   "right": {
     "id": "ff902569427872ea",
@@ -217,13 +211,20 @@
       "obsidian-stille:Toggle Stille": false
     }
   },
-  "active": "097b944a4aaf954b",
+  "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "references/7 - Rosei.pdf",
+    "4 Misc/Excalidraw/Drawing 2026-04-27 18.16.23.excalidraw.md",
+    "4 Misc/Attachments/Pasted Image 20260427181640_440.png",
+    "4 Misc/Attachments",
+    "4 Misc/Excalidraw",
+    "4 Misc",
+    "references/Photoluminescence from Metal Nanostructures - Dependence on Size.md",
+    "MOC.canvas",
     "notes/Effective Mass Extraction.md",
     "references/Splitting of the Interband Absorption Edge in Au.md",
     "figures/gaussian_delta_convergence.png",
     "figures/constant_eDOS_heatmap.png",
-    "MOC.canvas",
     "references/background.base",
     "references/theory.base",
     "references/experiment.base",
@@ -239,7 +240,6 @@
     "references/Fermi Golden Rule - Handwritten Notes.md",
     "references/Distinction Between Resonance Raman Scattering and Hot Luminescence.md",
     "references/Photoluminescence from Metal Films - Imon Presentation.md",
-    "references/Photoluminescence from Metal Nanostructures - Dependence on Size.md",
     "references/Theory of Photoluminescence by Metallic Structures.md",
     "references/Photoluminescence of Metals.md",
     "references/Quantum-mechanical Effects in Photoluminescence from Thin Crystalline Gold Films.md",
@@ -251,13 +251,7 @@
     "references/Theory of Hot Photoluminescence from Drude Metals.md",
     "references/C - previous_pdf.pdf",
     "references/B3 - electron-phonon.pdf",
-    "references/B2 - thermoradiative_power.pdf",
-    "references/B1 - hot_e_steady_state.pdf",
-    "references/A4 - notability_notes.pdf",
-    "references/A3 - raman_pl.pdf",
     "notes/references/DubiSivan2019HotElectrons.md",
-    "notes/references/BowmanEtAl2024QuantumGoldFilms.md",
-    "notes/references/Ben2025InterbandContribution.md",
     "MOC Canvas.canvas",
     "notes/Outline & Questions/emission integral tree.canvas",
     "notes/Outline & Questions/DeepDive.canvas",
@@ -270,7 +264,6 @@
     "figures/Pasted image 20260121090651.png",
     "figures/gaussian_delta_double_integral.png",
     "figures/consteDOS_error_heatmaps.png",
-    "figures/analytic_error_heatmaps.png",
-    "figures/Pasted image 20260118074501.png"
+    "figures/analytic_error_heatmaps.png"
   ]
 }
