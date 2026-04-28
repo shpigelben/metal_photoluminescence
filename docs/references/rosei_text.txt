@@ -1,0 +1,1856 @@
+PHYSICA L REVIEW B
+
+VOLUME 12, NUMBER 2
+
+15 JULY 1975
+
+Splitting of the interband
+
+absorption
+
+edge in An
+
+M. Guerrisi
+
+and R. Rosei*
+
+Istituto di Fisica, Universita
+
+di Roma, Roma,
+
+Italy
+
+Kamerlingh
+
+Onnes Laboratorium,
+
+University of Leiden, The ¹therlands
+
+(Received 26 November
+
+1974)
+
+P. Winsemius~
+
+Very accurate ellipsometric measurements
+
+in the 1.0-3.5-eV energy
+
+were made on very pure bulk samples of Au at room
+for d bands
+
+region. A model calculation
+
+to
+
+reasons
+
+transitions
+
+temperature
+Fermi-surface
+topological
+different
+data it has been possible
+contributions.
+transitions
+
+occurring
+
+near
+
+the X point
+
+the line shape of the imaginary
+
+in the Brillouin
+part of the dielectric
+
+has been developed
+zone and it
+constant
+
+that
+
+is shown
+e2 is considerably
+to fit our experimental
+
+for
+
+from what has been calculated
+to show that
+
+for L transitions. Using this model
+the absorption
+
+edge in Au is "split" into two separate
+
+The onset of X transitions
+
+has been located at 1.94 eV while
+
+has been confirmed
+
+at 2.45 eV in excellent
+
+agreement with previous
+
+the onset of the L
+determinations.
+
+I.
+
+INTRODUCTION
+
+band transitions
+
+near X.
+
+and speculation
+
+The characteristic
+
+shape of the interband transi-
+tion edge of gold has been the subject of consider-
+able interest
+While it is widely recognized that
+e~ at about 2. 5 eV is originating
+Fermi-surface
+puzzling
+tail which extends well below 2 eV.
+
+is the origin of a long nearly exponential
+
+near L, much more
+
+the steep rise of
+
+in recent years.
+
+from d bands to
+
+transitions
+
+in their pioneering paper' Cooper,
+
+using a model
+the expected line shape for the
+
+and Philipp showed,
+that
+
+Indeed,
+Ehrenreich,
+calculation,
+joint density of states at zero temperature
+behave like a square-root
+an Mo critical point).
+Several authors
+
+singularity
+
+' have been able to fit their ex-
+
+(roughly like
+
+should
+
+broadening
+
+smearing out,
+
+the
+of the edge due to
+it is not pos-
+
+data with the expected line shape in a
+Even taking into account
+
+perimental
+limited energy region.
+expected temperature
+the Fermi-distribution
+sible to explain the magnitude
+and extention of the
+tail. Various mechanisms were pro-
+low-energy
+posed: Nilsson et al.
+speculated that deformation
+of electronic bands due to lattice defects was to be
+or alternatively
+held responsible,
+of the absorption edge; Theye
+broadening
+found an irreducible
+surements
+broadening
+Lately,
+
+tail in her very careful mea-
+on thin films and invoked an Auger-type
+of the edge.
+the belief that
+tion edge is largely due to genuine
+tions has been prevailing.
+As a matter of fact,
+Christensen
+and Seraphin
+the change
+of slope at 2. 2 eV follows directly from the band
+calculation,
+band 5 to band 6 (at Ez) near X
+
+the first transition occurring from
+
+the tailing of the absorp-
+
+interband transi-
+
+the lifetime
+
+showed that
+
+also
+
+Szczepanek and Qlosser'
+at about I. 8 eV in the tetragonal
+piezomodulation
+
+experiment
+
+find structure
+
+starting
+spectra of their
+
+and assign it to inter-
+
+Even
+
+Despite the growing evidence,
+
+a few interroga-
+
+they may have much
+
+tives remain on the role of the X transitions.
+if it is acknowledged
+that
+it is not clear why
+weaker dipole matrix element,
+they present a smooth increase instead of a steep
+do. Also puzzling is their
+edge as L transitions
+failure to appear
+in thermomodulation
+since it is recognized that
+ments,
+ending at the Fermi surface give an important
+tribution in these spectra.
+
+experi-
+transitions
+
+In Sec. II we present new very accurate experi-
+mental data of the imaginary part of the dielectric
+function e~ of gold in the interband
+
+onset region.
+
+con-
+
+In Sec. III we give the derivation of the line shape
+
+already
+data
+
+extending a technique
+
+for the X transitions
+successfully used to fit thermomodulation
+and the absorption edge of Ag.
+indeed,
+ergy surfaces
+difference surfaces
+predicts a smoothly
+the steep edge characteristic
+
+It is shown that
+owing to the topology of the constant-en-
+(CES) and of the constant-energy-
+
+the theory
+(CEDS) in k space,
+sloping edge in contrast with
+
+of L transitions.
+
+Section IV shows how the experimental
+
+region summing
+
+be fitted in the onset
+tions for both X and L transitions.
+V the reasons for the failure of the X transitions
+to appear
+and suggestions
+ment which would bring out their contribution.
+
+are given for designing
+
+data are elucidated
+an experi-
+
+in thermomodulation
+
+Finally,
+
+in Sec.
+
+data can
+the contribu-
+
+II. EXPERIMENTAL
+
+A. Experimental
+
+setup
+
+Using the method of Beattie,
+
+the optical proper-
+ties of Au were measured between 1.0 and 3. 5 eV
+at room temperature
+During all measurements
+cryostat was of the order of 10~ Torr or better.
+in this photon-energy
+
+(angle of incidence = 69 ).
+
+vacuum in the cold-finger
+
+Experimental
+
+conditions
+
+558
+
+M. GUE RRISI R. ROSEI, AND P. WINSEMIUS
+
+tlal polishing was by etch attack17
+s urry made u
+of
+1
+p, m) and a 10-wt% CrO solut
+
+a ac
+p of A1~0, powder
+
+using an abrasive
+
+(final stage 0. 05
+
+chine similar
+c ine
+
+en was electropolished
+
+in design to the acid
+
+on a rotating wheel ma-
+o '
+
+~
+
+using
+
+y Dyer.
+
+Best results were obtainedine
+-
+
+olyte consisting of 9. 6-g Na S 0 4. 2-
+
+aa 3~
+4CNS, 5-ml H2SO4 (96%), 5-ml HF (40%)
+' e
+
+NH CNS
+285-ml but
+the current density was 3. 5 mA/cm
+are shiny,
+nd did not show any relief stru t
+attack of some
+
+ag,
+arise due to preferential
+
+o aine
+at the ed es
+that can aris
+
+flat except for a rounding
+e s ruc ure
+
+'
+and 55-ml deionized H~Q;
+
+osolve,
+
+lcell
+
+y
+
+Directly after polishing,
+
+the sample was m
+
+t d
+moun e
+
+ove
+
+as
+
+p
+
+'men holder and the vacuum chamber
+
+o
+
+Prior to the measurements
+
+f th
+the vacuum was of the order of 10~
+
+was pumped down. At all further
+crim
+ent
+p
+or better.
+was annealed at temperatures
+-
+for at least 4 h.
+This high -temperature
+gives rise to som
+thermal
+the optical spectra obtained on this sample give no
+
+e ex-
+stages
+r er o
+Torr
+n s
+e sample
+th
+of 700 K or hi her
+treatment
+men
+
+e o some surface roughness
+etchin g. However,
+
+caused b
+as shown elsewhere
+
+'
+
+'
+
+polished samples. Also,
+
+in films and mechanically
+in a large number of additional measurements
+'
+(after re olishin
+g and or extensive annealing),
+p
+for
+Ez data were found to be highly reproducible
+photon energies between 1.0 and 3. 5 eV Figure
+1 presents
+
+the results of E& measurements.
+
+the
+
+III. X-TRANSITIONS JOINT DENSITY OF STATES
+
+The joint density of states (JDOS) for any couple
+
+0
+
+~/4a
+
+&x
+
+-1-
+
+k
+
+m/4&
+
+X,, /
+
+X
+
+m
+
+FIG. l. Ima inar
+
+g
+
+y part of the dielectric constant
+
+for
+
+I
+
+3 4o) IeVj
+
+whereas
+
+e signal-to-
+is hi h
+ig y
+
+e.
+favorable.
+
+interval are particularly
+
+Th
+' e ra io o light source plus detector
+of the li h
+the degree of polarization
+the d
+1'
+amp is negli-
+e ungsten ribbon filament 1am
+y
+gib e.
+gi e.
+The angular polarized field of the double
+The
+is almost
+at
+Gian-Taylor polarizers
+14, thus facilitating the alignment
+izers. A s
+and re r
+an
+polarizers
+th
+ions a calculation of the random error
+
+setting of the
+n er these condi-
+'
+rror yie
+
+of the angular
+is better than 1'. U' d
+
+so, using a servo system the ae accuracy
+
+reproducibility
+
+symmetrical
+
+e polar-
+
+of the
+
+en o
+
+ld
+
+s
+
+into absolute values —I &&2! ~ 0. 02.
+
+or translating
+An estimate of the s sty
+arap
+see also next
+obtained from the reproduc'b 1 t
+upon complete readjustment
+ents that yielded l &&&I &0. 05.
+
+graph).
+
+ematic error is much harder
+An indication may be
+i i i y o measurements
+of all optical compon-
+
+f
+
+By appropriate
+
+i
+
+s an
+
+tion of the dis er
+measurement
+
+choice of the monochromat
+through the use of a computer calibra-
+' persion
+
+the systematic error in the
+is alwa
+
+of the photon ener
+
+e . The random error is determined
+
+1 t
+
+by the accuracy of the reading of the monochroma-
+tor setting and is estimated to be +0. 002 eV.
+
+B. Specimen preparation
+
+A polycrystalline
+
+average grain diameter
+
+Au sample (purity, 99.999%,'
+l. 5 mm) was grown b
+grown
+and subsequentl
+
+y
+cut
+
+acuum techniques
+
+mm,
+
+thickness
+
+ic ness, 3. 5 mm) by spark erosion.
+
+t
+
+Ini-
+
+FIG. 2. Detail of the band structure near X for Au
+or Au.
+
+"SPI ITTING" QF THE INTERBAND ~
+
+~
+
+~
+
+559
+
+T= 295 K
+
+I
+
+I
+
+fireu -20 k,T
+fireu-0 {Fermi Surface )
+
++co„=20k,T
+
+CEOS
+
+FIG. 3. Detail of the
+Fermi surface near X
+showing (100) cross sec-
+tion of a typical CEDS and
+constant
+surfaces. kj and k„are in
+units of 7l/4g.
+
+final-energy
+
+12
+
+0
+
+the energy dis-
+of bands can be obtained integrating
+tribution of the joint density of states (EDJDQS).ee'e'
+%hen the initial or the final band crosses the
+
+l~Q
+
+m)J mg{i + m„,m„„
+m Jim ) llmtglmgll
+
+"1/2
+
+Fermi energy,
+tion of the effect brought
+sion principle
+also the temperature
+edge is automatically
+
+this procedure
+
+allows the calcula-
+about by the Pauli exclu-
+
+in a very straightforward manner
+smearing of the absorption
+calculated.
+
+in this region. Assuming the energy
+
+Figure 2 shows a detail of the band structure
+gold near X. kcox marks the onset of interband
+transitions
+bands depend quadratically
+and assuming rotational
+write the equation for a constant-energy
+the upper
+
+on the distance from X
+around 4 we may
+surface of
+
+symmetry
+
+(u) band
+
+and
+
+of
+
+Rd„= BCUX +
+
+2/2
+
+2m'
+
+—
+
+@'2/2
+
+2m
+
+= E .
+
+Similarly the equation for a constant-energy
+
+surface of the lower
+
+(l) band is given by
+
+hler = —hrd» + —
+
+2m)2
+
+h, —
+
+2m)ll
+
+h„= E —h~ .
+
+(2)
+
+interband
+
+The transitions
+
+between these two bands at pho-
+ton energy @co are restricted to the surface of con-
+stant
+
+energy
+Qr „(k)= h&d„—her —h&o = 0 .
+(8)
+The EDJDQS for this pair of bands can now eas-
+
+ily be calculated following the procedure
+in Ref. 10. Qne obtains
+
+outlined
+
+&, „(E, hu&) = (8rr'h ) '7, „h..
+
+where 7,.„ is given by
+
+ki, = h~-k~~ ++
+
+7
+
+52
+
+2m)~
+
+A&ox
+
+6
+
+-E —
+
+@2
+
+2muj
+
+1/2
+
+E
+
+For the joint density of states we finally obtain:
+
+(8)
+
+8, „(h~, T)=
+
+~max
+
+m, „„(E,h(o)[1 f(E, T)jdE, -
+
+~mSn
+
+(7)
+where the factor in square brackets gives the prob-
+ability that a state with energy E in the upper band
+is empty.
+
+Referring to Fig. 3,
+
+it can be seen that
+
+the upper
+
+limit of integration
+
+is given by
+
+= hv»
+
++ (h&u»~. + her» —hrd) m„„/(m„, —m„„) .
+
+the lower
+
+while at each temperature
+gration can be safely assumed to be about —20 k~T
+for calculational purposes.
+shape of the JDQS obtained for zero,
+ature and 600 K.
+
+Figure 4 reports the
+
+room temper-
+
+(8)
+limit of inte-
+
+It is very important
+
+X transitions
+a gently sloping absorption.
+therefore quite different
+transitions.
+
+to note that even at 0 K the
+do not present a sharp edge but only
+
+Their behavior
+from that presented by L
+
+is
+
+This difference can be traced in the different
+
+topology of CES and CEDS at X and I.,
+as will be explained in the following.
+
+respectively,
+
+In order to understand
+
+physically this behavior
+to follow the "path" of the function
+
+it is convenient
+
+560
+
+M. GVERRISI, R. ROSEI, AND P. WINSEMIUS
+
+12
+
+3„)5-6),
+
+1.8
+
+2.0
+
+2.1
+
+%co (eV)
+
+FIG. 4. Joint density of states of Au due to band-
+
+near X calculated at different
+
+tem-
+
+5-band-6 transitions
+peratures.
+
+fifo=1.80 eV
+
+fico=1.90 eV
+
+-0.2
+
+nfl) =1.94 eV
+
+I
+
+-0.2
+
+fico=2.00 eV
+
+-Q2
+
+ik
+
+Wo)-2.10 eV
+
+I
+
+-0.2
+
+fico=2.20 eV
+
+-0.2
+
+0
+
+0.2
+
+E (eV)
+
+0
+
+0
+
+0.2
+
+E (eV)
+
+0.2
+
+E {eV)
+
+0.2 E(eY)
+
+0.2
+
+E(eV)
+
+0.2
+
+E (eV)
+
+B,.„(E,Av) for different photon energies A~.
+
+to six
+together with
+
+Figure 5 shows the CEDS corresponding
+interband photon energies
+
+different
+the Fermi surface, while Fig. 6 gives the EDJDOS
+calculated at the same energies.
+each curve in Fig. 6 shows how the density of inter-
+band transitions
+CEDS of Fig. 5. The boxlike functions
+
+on the corresponding
+
+In other words
+
+is distributed
+
+in Fig. 6
+
+-I
+-II
+
+~lV
+
+1.0-
+
+0.5-
+
+0
+
+0.5—
+
+/
+
+/
+
+/
+
+/
+
+/
+
+/
+
+I
+
+t
+
+]
+
+/
+
+/
+
+I
+
+i
+
+I CEDS4o)=2
+II CEDSfim-2
+III CEOS%o)=2.
+10 IV CEDSfio) 1.
+V CEOS%~-1.
+VI CEOSiico= N
+
+FIG. 5. Cross section of the Fermi surface and of
+
+CEDS in the region near X on a plane containing the
+X-1 direction.
+
+k~ and kii are in units of &/4a.
+
+FIG. 6. Absorption mechanism for band-5-band-6
+near X. The EDJDOS (E) is reported for
+
+transitions
+several photon energies.
+each case the probability that
+at zero temperature.
+by the product of the two curves.
+in each case by the hatched areas.
+
+The integrand
+
+The boxlike function gives in
+the final state is empty
+in Kq.
+
+(7) is given
+
+The absorption is given
+
+represent
+final state is empty at zero temperature.
+
+the probability P(E) = 1
+
+f(E, 0) that—the
+
+ex-
+
+singularity.
+
+It is important
+
+the singularity
+
+an inverse square-root
+
+can be easily understood when
+
+to note that
+hibited by the EDJDOS is in this case steplike,
+while the corresponding EDJDOS for L transitions
+presents
+different behavior
+it is realized that for L transitions
+is tangent
+to the onset
+responding
+face along a circle (the neck of the Fermi surface)
+thus giving rise to an infinite density of possible
+transitions with final energy in an interval E»,
+E+~+dE. At X,
+and the discontinuity
+fore be finite.
+
+the tangency is limited to a point
+of the EDJDOS should there-
+
+the CEDS cor-
+to the Fermi sur-
+
+The
+
+Following now the "path" of the EDJDOS on in-
+it is easily under-
+creasing the photon energies,
+stood that above the edge, obtained for Se = Aux
+(which is proportional
+= 1. 94 eV,
+the shaded areas) increases approximately
+with photon energies.
+
+the absorption
+
+to
+linearly
+
+IV. FITTING PROCEDURE
+
+In Sec. III we obtained the JDOS for transitions
+
+near X. The procedure
+transitions
+'
+papers
+
+for obtaining the JDOS for
+at L has been presented in a number of
+and will not be repeated here.
+
+In the constant matrix element
+
+approximation
+
+the
+
+JDOS can be easily related to the imaginary
+of the dielectric function.
+be assumed that
+
+part
+In the following it will
+for X transi-
+
+the dipole element
+
+12
+
+"SPLITTING" OF THE INTE RBAND. . .
+
+561
+
+0
+
+~/4a
+
+&/4a,
+
+k. E,
+
+FLQ. 7. Detail of the band structure near L for Au.
+
+tions Px(l- u) is approximately
+region near X [of the order of (v/loa)
+same is true for the dipole matrix element
+Pz, (f- u) in a small
+transitions
+
+] and the
+region near I..
+
+constant
+
+for L,
+
+in a small
+
+Assuming
+
+that
+
+in the region around and just above
+
+the onset no other interband transition contributes,
+we can write
+
+8~~~~g 4
+3m'(8'(o)'
+~[IP (~-u)I &x(@» T)+ IP.(f-u)l'
+X gz(h~, T)] .
+(8)
+
+Using this analytic expression for e2 we tried to
+
+It should be remembered
+
+data to about 2. 7 eV. Only
+
+fit our experimental
+limited regions in K space around X and around L
+are involved in our model when the fitting is ex-
+tended a few tenths of an eV above the absorption
+that al-
+edge.
+regions of the Bril-
+though occurring in different
+louin zone (BZ): we are dealing in both cases with
+band-5-band-6
+transitions.
+The danger of count-
+twice and of a breakdown of our ap-
+ing transitions
+proximations may therefore arise at higher photon
+energies.
+
+however
+
+The energy gaps shown in Figs. 2 and 7 were
+
+used as fitting parameters
+of the two transitions
+s» = vx IP (f- u) I
+
+The experimental
+tracting the background
+supposed to be Drude-like).
+
+as well as the "strength"
+
+as
+
+defined,
+
+respectively,
+s, = ri I Px(&- u) I
+(lo)
+data were first corrected by sub-
+absorption (which has been
+
+The fit is shown in Fig. 8. The result we ob-
+tem-
+
+tained is fairly good also using the nominal
+
+perature 295 K but a much better one can be ob-
+tained using an effective temperature T =600 K
+(Fig. 8, curve a). Curves b and c of Fig. 8 give,
+respectively,
+tions to the total absorption.
+
+of X and L transi-
+
+the contribution
+
+.
+
+The parameters
+@&L,=1.560 eV, 5~~, =1.770 eV,
+
+used for the fitting were
+
+=O. 37O .
+
+the optical masses and the gaps h&~
+X6
+
+and
+
+requested by the theory,
+
+The other parameters
+e. g. ,
+h ~L were taken from Ref. 4.
+L4-
+It should be noted that
+
+this fitting allows for the
+
+first time a direct determination
+dence of the optical dipole matrix element
+shows that
+stant
+rors.
+
+the usual approximation
+
+the whole BZ involves
+
+throughout
+
+and
+of setting it con-
+large er-
+
+of the k depen-
+
+We have used our model for fitting also other
+data taken from Ref. 3.
+
+It is partic-
+experimental
+since
+ularly interesting
+Th5ye's data were taken on thin films w'hile our
+data were taken on bulk samples. We obtained an
+excellent
+
+to compare the results
+
+fit using the parameters
+@~L.=1.565 ev, @~x,=1.650 eV,
+L4+
+I Px/Pl
+
+=0. 321,
+
+v'
+
+I
+
+and an effective temperature T of 700 K.
+
+It is striking that while the L gap does not change
+
+2.0
+
+2.2
+
+%f0(e&1
+
+FIG. 8.
+
+Au: solid triangles,
+sitions contribution;
+tribution;
+
+solid line,
+
+Imaginary part of the dielectric constant
+
+for
+dashed line, X-tran-
+con-
+
+experimental;
+dot-dashed line, L-transitions
+total
+
+theoretical.
+
+M. GUE RRISI
+
+RR. ROS E I, AND P. WINS E MIUS
+
+10'dz,
+
+'lp
+
+2.2
+
+I
+
+2.6
+
+3.0
+
+fico (eV)
+
+I'IG. 9. Th eoretical
+
+A~ for Au
+u:
+
+ashed line, X-transitions
+
+as e line, L-transitions contribut';
+theoretical.
+The same eff
+(T = 600 K), which fits the static data.
+
+total
+use
+
+thermomodulation
+
+'on spec ra of
+s e t
+f
+t 'b t
+coll rl u ion~
+i u loll; so ld line
+1'd
+arne e ective temperature was
+
+ti
+
+the X gap differs in the two measure-
+noticeably,
+ments by about 0. 12 eV. Even taking into account
+e su traction of
+the uncertainty
+the Drude term
+e Drude term,
+the most
+lead to
+
+b
+u e
+on thin f'l
+1 ms may
+zn
+t'
+n o op ical gaps.
+of
+
+ost careful measurements
+'
+o errors in the determination
+
+y
+still it must be concluded th t
+
+about b the
+
+brought
+
+a ever
+
+While it is not certain why also for fitting bulk
+a
+
+data it had to be used an effective temperature
+factor of 2 higher
+that
+evident
+re
+disordered
+tion more smeared out.
+
+thin film samples must be som h t
+thus making the Fermi distribu-
+
+than the actual one,
+
+it is also
+
+V. THERMODERIVATIVE LINE SHAPE
+
+From the analytic expression of the EDJDO
+
+e
+y s~mple to obtain the contribution
+
+spectra due to the Fermi-surface
+
+Sit
+to the de-
+smear-
+
+rivative
+ing out.
+
+In Ref. 1010 it is shown that such contribution
+ermi surface transitions
+
+d bands to F
+
+is given by
+
+s o
+
+for
+
+~max
+
+n(z, a~)
+
+& m~n
+
+f(z, r) dz- —
+
+8
+BT
+
+to the di
+o
+
+e C ~s a constant proportional
+
+(11)
+where C i
+matrix ellement of the transition and f(Z, 7) is the
+Fermi distribution
+now to " edict"
+It is ther
+spectra if it is
+the line sha e
+assumed that als o X transitions
+have a fairly small
+' Figure 9 shows the ex-
+deformation
+
+fefore stral. ghtforward
+pe of thermomodulation
+
+potential.
+
+function.
+
+e ipole
+
+s
+
+line shape of ~& in th
+
+&2 ~n
+
+e interband
+
+pected compound
+onset
+pected from transitions
+
+region together with the contributions
+
+ex-
+
+e ifferent
+
+at X and L r
+topology in k space is reflected
+The X
+
+also in the the thermoderivative
+transitions,
+dip which stretches as a long tail for
+
+sh ow a much smaller negative
+g ai or several
+tens
+
+behavior.
+
+in fact
+
+The &&2 theoretical
+
+Kramers-Kronig
+spectra. of &R/R have been obt
+formula
+
+25
+
+spectra have also been
+analyzed and th " redicted"
+rough the
+
+'
+arne
+
+d th
+
+/
+
+= (cg, eg)&eg+B(eg, eg)Keg .
+
+(12)
+
+The results are shown in Fig
+e contributions
+
+originating
+
+si ions. The parameters
+sit ions. Th
+mined from fi
+mine
+amplitude
+
+rom fitting our experimental
+of the thermal wave ~T
+
+ave
+
+10 h' h
+from the X d
+e
+ose eter-
+used were th
+d
+
+an L tran-
+
+data. The
+was taken 1 K.
+
+It can b
+
+can be noted that
+spectrum the X contribution
+
+in the thermoreflectance
+is even more de-
+q,
+d
+
+tend to bo become much smaller
+' F
+insert
+e
+xn
+transitions
+of 40 smaller
+transitions
+therm
+
+ln
+n
+e in rare
+in the inf
+zg. 10). The peak modulation
+10
+contribution
+
+12
+see
+of the X
+'
+«s about a factor
+due to the L
+than the contribution
+It should also be considered th t 'a 1n
+spec ra the contri-
+s
+
+experimental
+
+to bA/R
+
+t
+
+ermodenvative
+tion of the intraband
+
+transitions modulation
+un
+
+is
+s ow y rising
+It is therefore not sur ris-
+to thermomod-
+
+e
+
+transition contribution
+
+toward the infrared.
+
+2.0
+
+2.5~.0
+
+V)
+
+01-
+
+02-
+
+t')
+l)
+
+i
+
+J
+
+I
+
+R
+
+-2
+
+0
+
+1
+
+I
+
+L.
+
+2,.5
+
+fico(eV)
+
+I
+
+3 0
+
+2.0
+
+Theoretical
+
+thermomodulation
+ashed line, X-transitions
+
+u:
+
+FIG. 10
+or
+0 R/R for Au: d
+dot-dashed
+sh
+0
+
+e line, L-transitions
+ows the energy dependence of the A,
+fE. 1
+
+q. 12 o
+
+e
+
+pec rao
+f
+t
+s
+nrl u on;
+contrib ti
+' n.
+e insert
+contributio
+Th
+an. B coefficients
+d
+
+"SPLITTING" OF THE INTE RBAND. . .
+
+563
+
+ulation spectra of gold has never been noted before.
+
+It is suggested that a careful
+
+thermomodulation
+performed on bulk samples at very
+
+experiment,
+
+*Gruppo Nazionale di Struttura della Materia del Con-
+
+siglio Nazionale delle Ricerche.
+
+)Part of the research program of the Foundation F.O. M.
+supported by Z. W. O. and T.N. O. (Metaalinstuut).
+B. R. Cooper, H. Ehrenreich,
+Rev. 138, A494 (1965).
+P. O. Nilsson, A. Persson,
+Fysik. 35, 165 (1967).
+M. L. Theye, Phys. Rev. B 2, 3060 (1970).
+
+and H. R. Philipp, Phys.
+
+and H. Norden, Ark.
+
+and B. O. Seraphin, Phys. Rev. B ~4
+
+4¹E. Christensen
+
+Ph. D. thesis
+
+(University of Leiden,
+
+available upon request.
+
+3321 (1972).
+P. S. Szezepanek and R. Glosser, University of Mary-
+land, Technical Report, 1973 (unpublished);
+and Solid
+State Commun. 15, 1425 (1974).
+P. Winsemius,
+1973) (unpublished),
+~W. J. Scouler, Phys. Rev. Lett. 18, 455 (1967).
+8R. Rosei and D. W. Lynch, Phys. Rev. B 5, 3883 (1972).
+~R. Rosei, F. Antonangeli,
+Sci. 37, 689 (1973).
+R. Rosei, Phys. Rev. B 10, 474 (1974).
+R. Rosei, C. H. Culp,
+B 10, 484 (1974).
+F. Antonangeli, E. Colavita, R. Rosei, and S. E.
+Salusti, Nuovo Cimento B 24, 121 (1974).
+J. R. Beattie, Philos. Mag. 46, 235 (1955).
+
+and J. H. Weaver, Phys. Rev.
+
+and U. M. Grassano, Surf.
+
+low temperature may confirm our findings
+help to resolve the question of the exact position
+of the onset of the X transitions.
+
+and also
+
+.
+
+(unpublished).
+and P. Winsemius,
+
+~4H. P. Lengkeek and P. Winsemius
+~J. A. G. Verkuyl, H. P. Lengkeek,
+J. Phys. E 6, 322 (1973).
+6R. E. Fryer, Appl. Opt. 6, 275 (1967).
+~L. E. Samuel, Metallographic Polishirg by Mechanical
+1971), p. 145.
+2nd ed. (Pitman, Melbourne,
+Methods,
+L. D. Dyer, Rev. Sci. Instrum. 34, 114 (1963).
+P. Winsemius, H. P. Lengkeed and F. F. Van Kampen
+(unpublished)
+R. Y. Koyama and N. V. Smith, Phys. Rev. B 2, 3049
+(1970).
+N. V. Smith, Phys. Rev. B 3, 1862 (1971).
+This model
+by I. Lindau and L. Wallden fPhys. Scrip. 3, 77 {1971)]
+for interpreting
+E. O. Kane, Phys. Rev. 175, 1039 (1968).
+is somewhat
+of the deformation
+
+24This assumption
+measurement
+sition still exists in view of the large difference we
+have found in the positions of the onset of thin film
+compared to bulk samples.
+The statement
+made rigorous calculating the contribution
+low temperature.
+M. Cardona, Solid State Physics,
+and E. Eherenreich
+D. Turnbull,
+York, 1969), Suppl. 11.
+
+edited by F. Seitz,
+(Academic, New
+
+shaky even if no direct
+
+potential of this tran-
+
+to the model developed
+
+their photoemission
+
+could be
+at very
+
+data on Cu.
+
+is similar
+
+in spirit
+
+

@@ -1,0 +1,68 @@
+{
+  "Christensen & Seraphin 1971": {
+    "Eg_X": 1.94,
+    "Eg_L": 2.45,
+    "mc_perp_X": 0.31,
+    "mc_par_X": 0.40,
+    "mv_perp_X": 0.19,
+    "mv_par_X": 0.15,
+    "mc_perp_L": 0.24,
+    "mc_par_L": 0.12,
+    "mv_perp_L": 0.70,
+    "mv_par_L": 1.03,
+    "P_ratio_sq": 0.370,
+    "T_val": 600.0,
+    "Gamma_X": 0.07,
+    "Gamma_L": 0.07,
+    "A_drude": 6.0,
+    "Scale": 1.0
+  },
+  "Optimized": {
+    "Eg_X": 2.03,
+    "mc_perp_X": 0.38,
+    "mc_par_X": 0.6,
+    "mv_perp_X": 0.17,
+    "mv_par_X": 0.05,
+    "Gamma_X": 0.06699999999999999,
+    "Eg_L": 2.41,
+    "mc_perp_L": 0.27,
+    "mc_par_L": 0.07,
+    "mv_perp_L": 0.3,
+    "mv_par_L": 1.07,
+    "Gamma_L": 0.036,
+    "P_ratio_sq": 0.55,
+    "T_val": 1000.0,
+    "A_drude": 8.39999999999999,
+    "Scale": 670.2,
+    "_r2": {
+      "X": 0.9949713855891432,
+      "L": 0.9983431006251536,
+      "XL": 0.9984224815915163,
+      "XLD": 0.994131079974286
+    }
+  },
+  "Optimized No Broadening": {
+    "Eg_X": 2.03,
+    "mc_perp_X": 0.38,
+    "mc_par_X": 0.6,
+    "mv_perp_X": 0.17,
+    "mv_par_X": 0.05,
+    "Gamma_X": 0.0,
+    "Eg_L": 2.41,
+    "mc_perp_L": 0.27,
+    "mc_par_L": 0.07,
+    "mv_perp_L": 0.3,
+    "mv_par_L": 1.07,
+    "Gamma_L": 0.0,
+    "P_ratio_sq": 0.55,
+    "T_val": 1000.0,
+    "A_drude": 8.39999999999999,
+    "Scale": 670.2,
+    "_r2": {
+      "X": 0.9378499632746687,
+      "L": 0.9634857476695364,
+      "XL": 0.9772042493966141,
+      "XLD": 0.9835648754818007
+    }
+  }
+}
