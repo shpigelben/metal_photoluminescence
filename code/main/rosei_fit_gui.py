@@ -192,7 +192,7 @@ SLIDER_L = [
 SLIDER_SHARED = [
     ("P_ratio_sq", "|Px/PL|²",  0.10, 1.00, DEFAULTS["P_ratio_sq"], 0.01, 2),
 
-    ("T_val",      "T_eff (K)", 10.0, 1000.0, DEFAULTS["T_val"],    10.0, 0),
+    ("T_val",      "T_eff (K)", 10.0, 5000.0, DEFAULTS["T_val"],    10.0, 0),
     ("A_drude",    "A_drude",   0.00, 30.0, DEFAULTS["A_drude"],    0.1,  1),
     ("Scale",      "Scale",     10.0, 2000.0, DEFAULTS["Scale"],    1.0,  1),
 ]
@@ -388,7 +388,7 @@ class RoseiApp(QMainWindow):
 
         # Shared group + preset/reset controls stacked vertically
         shared_col = QVBoxLayout()
-        shared_col.addWidget(self._make_slider_group("Shared", SLIDER_SHARED))
+        shared_col.addWidget(self._make_slider_group("Shared", SLIDER_SHARED, fit_btn=True))
 
         preset_row = QHBoxLayout()
         self.preset_combo = QComboBox()
@@ -414,10 +414,13 @@ class RoseiApp(QMainWindow):
         self.statusBar().showMessage("Ready")
         self.resize(1200, 950)
 
-    def _make_slider_group(self, title: str, specs) -> QGroupBox:
+    def _make_slider_group(self, title: str, specs, fit_btn=False) -> QGroupBox:
         group = QGroupBox(title)
+        layout = QVBoxLayout()
+        layout.setContentsMargins(4, 2, 4, 2)
+        layout.setSpacing(3)
         form = QFormLayout()
-        form.setContentsMargins(4, 2, 4, 2)
+        form.setContentsMargins(0, 0, 0, 0)
         form.setSpacing(3)
         for key, label, lo, hi, default, step, decimals in specs:
             spin = QDoubleSpinBox()
@@ -428,10 +431,14 @@ class RoseiApp(QMainWindow):
             spin.setFixedWidth(120)
             spin.valueChanged.connect(self._on_param_changed)
             self.spins[key] = spin
-            # Label shows default in parentheses as reference
             ref = f"{label}  [{default}]"
             form.addRow(ref, spin)
-        group.setLayout(form)
+        layout.addLayout(form)
+        if fit_btn:
+            self.btn_fit_sd = QPushButton("Fit Scale + Drude")
+            self.btn_fit_sd.clicked.connect(self._on_fit_scale_drude)
+            layout.addWidget(self.btn_fit_sd)
+        group.setLayout(layout)
         return group
 
     # ── Enlarge subplot on double-click ─────────────────────────────────
@@ -514,6 +521,36 @@ class RoseiApp(QMainWindow):
         self.statusBar().showMessage(
             f"R²  X={self.r2['X']:.4f}  L={self.r2['L']:.4f}  "
             f"XL={self.r2['XL']:.4f}  XLD={self.r2['XLD']:.4f}")
+
+    def _on_fit_scale_drude(self):
+        """Optimize only Scale and A_drude against XLD data (all else fixed)."""
+        p = self._get_params()
+        tot, _, _ = compute_interband(p)
+        d = self.data["XLD"]
+        d_hw, d_e2 = d[:, 0], d[:, 1]
+        inv_hw3 = 1.0 / np.interp(d_hw, HW_DISP, HW_DISP)**3
+        tot_at_data = np.interp(d_hw, HW_DISP, tot)
+        drude_shape = 1.0 / d_hw**3  # A_drude * this = drude contribution
+
+        # Least-squares: d_e2 ≈ Scale * tot_at_data + A_drude * drude_shape
+        # Solve [tot_at_data, drude_shape] @ [Scale, A_drude] = d_e2
+        A = np.column_stack([tot_at_data, drude_shape])
+        result, _, _, _ = np.linalg.lstsq(A, d_e2, rcond=None)
+        opt_scale, opt_adrude = result
+
+        # Clamp to slider ranges
+        opt_scale = float(np.clip(opt_scale, 10.0, 2000.0))
+        opt_adrude = float(np.clip(opt_adrude, 0.0, 30.0))
+
+        self.spins["Scale"].blockSignals(True)
+        self.spins["A_drude"].blockSignals(True)
+        self.spins["Scale"].setValue(round(opt_scale, 1))
+        self.spins["A_drude"].setValue(round(opt_adrude, 1))
+        self.spins["Scale"].blockSignals(False)
+        self.spins["A_drude"].blockSignals(False)
+        self._update()
+        self.statusBar().showMessage(
+            f"Fit Scale+Drude: Scale={opt_scale:.1f}, A_drude={opt_adrude:.1f}")
 
     def _on_reset(self):
         for key, spin in self.spins.items():
