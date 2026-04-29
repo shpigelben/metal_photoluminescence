@@ -320,6 +320,7 @@ class RoseiApp(QMainWindow):
 
         # ── 2×2 plot grid ───────────────────────────────────────────────
         plot_grid = QGridLayout()
+        plot_grid.setVerticalSpacing(18)
         self.figures = {}
         self.canvases = {}
         self.axes = {}
@@ -337,11 +338,12 @@ class RoseiApp(QMainWindow):
 
         for key, (row, col) in positions.items():
             fig = Figure(figsize=(5, 3.5), dpi=100)
-            fig.subplots_adjust(left=0.12, right=0.97, top=0.92, bottom=0.14)
+            fig.patch.set_alpha(0.0)
+            fig.subplots_adjust(left=0.12, right=0.97, top=0.92, bottom=0.18)
             canvas = FigureCanvas(fig)
+            canvas.setStyleSheet("background: transparent;")
             canvas.setSizePolicy(QSizePolicy.Policy.Expanding,
                                  QSizePolicy.Policy.Expanding)
-            toolbar = NavigationToolbar(canvas, self)
             ax = fig.add_subplot(111)
             ax.set_xlabel("ℏω (eV)")
             ax.set_ylabel("ε₂")
@@ -367,46 +369,47 @@ class RoseiApp(QMainWindow):
             self.scats[key] = scat
             self.r2[key] = 0.0
 
-            # Stack toolbar above canvas
+            # Stack canvas in panel
             panel = QWidget()
             panel_layout = QVBoxLayout(panel)
             panel_layout.setContentsMargins(0, 0, 0, 0)
             panel_layout.setSpacing(0)
-            panel_layout.addWidget(toolbar)
             panel_layout.addWidget(canvas, stretch=1)
             plot_grid.addWidget(panel, row, col)
 
         root.addLayout(plot_grid, stretch=3)
+        root.addSpacing(10)
 
         # ── Slider panel ────────────────────────────────────────────────
         slider_row = QHBoxLayout()
 
         slider_row.addWidget(self._make_slider_group("X-point", SLIDER_X))
         slider_row.addWidget(self._make_slider_group("L-point", SLIDER_L))
-        slider_row.addWidget(self._make_slider_group("Shared", SLIDER_SHARED))
 
-        root.addLayout(slider_row, stretch=0)
+        # Shared group + preset/reset controls stacked vertically
+        shared_col = QVBoxLayout()
+        shared_col.addWidget(self._make_slider_group("Shared", SLIDER_SHARED))
 
-        # ── Preset / button row ─────────────────────────────────────────
         preset_row = QHBoxLayout()
         self.preset_combo = QComboBox()
-        self.preset_combo.setMinimumWidth(200)
+        self.preset_combo.setMinimumWidth(160)
         self._refresh_preset_combo()
         self.preset_combo.currentTextChanged.connect(self._on_preset_selected)
-        self.btn_save_preset = QPushButton("Save Preset")
+        self.btn_save_preset = QPushButton("Save")
         self.btn_save_preset.clicked.connect(self._on_save_preset)
-        self.btn_del_preset = QPushButton("Delete Preset")
+        self.btn_del_preset = QPushButton("Delete")
         self.btn_del_preset.clicked.connect(self._on_delete_preset)
         self.btn_rst = QPushButton("Reset")
         self.btn_rst.clicked.connect(self._on_reset)
-        preset_row.addStretch()
-        preset_row.addWidget(QLabel("Presets:"))
         preset_row.addWidget(self.preset_combo)
         preset_row.addWidget(self.btn_save_preset)
         preset_row.addWidget(self.btn_del_preset)
         preset_row.addWidget(self.btn_rst)
-        preset_row.addStretch()
-        root.addLayout(preset_row)
+        shared_col.addLayout(preset_row)
+
+        slider_row.addLayout(shared_col)
+
+        root.addLayout(slider_row, stretch=0)
 
         self.statusBar().showMessage("Ready")
         self.resize(1200, 950)
