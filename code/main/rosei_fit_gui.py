@@ -36,6 +36,7 @@ matplotlib.use("QtAgg")
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qtagg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
+from matplotlib.ticker import FuncFormatter, FixedLocator
 
 # ═══════════════════════════════════════════════════════════════════════════
 #  Physical constants & band-parameter dataclasses
@@ -91,15 +92,23 @@ def _F_rosei(E, hw, T):
 
 
 def _interband_integral(hw, T, p, is_L=False):
-    if hw <= p.Eg:
-        return 0.0
-    e_min, e_max = p.E_min(hw), p.E_max(hw)
-    if e_max <= e_min:
-        return 0.0
-    t_max = np.sqrt(e_max - e_min)
     if is_L:
+        # L-point (M0): no transitions below gap
+        if hw <= p.Eg:
+            return 0.0
+        e_min, e_max = p.E_min(hw), p.E_max(hw)
+        if e_max <= e_min:
+            return 0.0
+        t_max = np.sqrt(e_max - e_min)
         integrand = lambda t: 2.0 * _F_rosei(e_min + t**2, hw, T)
     else:
+        # X-point (M1 saddle): sub-gap transitions exist.
+        # Upper limit from geometry; lower limit = -20 kBT (Rosei 1975).
+        e_max = p.E_max(hw)
+        e_min = -20.0 * kB * T if T > 0 else -0.1
+        if e_max <= e_min:
+            return 0.0
+        t_max = np.sqrt(e_max - e_min)
         integrand = lambda t: 2.0 * _F_rosei(e_max - t**2, hw, T)
     result, _ = quad(integrand, 0, t_max)
     return p.prefactor() * result
@@ -324,9 +333,11 @@ class RoseiApp(QMainWindow):
         self.figures = {}
         self.canvases = {}
         self.axes = {}
+        self.sec_axes = {}
         self.lines = {}
         self.scats = {}
         self.r2 = {}
+        self._show_wavelength = True
 
         titles = {
             "X":  "X-point",
@@ -339,7 +350,7 @@ class RoseiApp(QMainWindow):
         for key, (row, col) in positions.items():
             fig = Figure(figsize=(5, 3.5), dpi=100)
             fig.patch.set_alpha(0.0)
-            fig.subplots_adjust(left=0.12, right=0.97, top=0.92, bottom=0.18)
+            fig.subplots_adjust(left=0.12, right=0.97, top=0.82, bottom=0.18)
             canvas = FigureCanvas(fig)
             canvas.setStyleSheet("background: transparent;")
             canvas.setSizePolicy(QSizePolicy.Policy.Expanding,
@@ -350,6 +361,14 @@ class RoseiApp(QMainWindow):
             ax.set_xlim(HW_LO, HW_HI)
             ax.set_title(titles[key])
             ax.grid(alpha=0.25)
+            ax2 = ax.secondary_xaxis("top",
+                    functions=(lambda e: 1239.8 / e, lambda w: 1239.8 / w))
+            ax2.set_xlabel("λ (nm)")
+            _e_ticks = [t for t in ax.get_xticks() if HW_LO <= t <= HW_HI]
+            ax2.xaxis.set_major_locator(FixedLocator([1239.8 / t for t in _e_ticks]))
+            ax2.xaxis.set_major_formatter(FuncFormatter(
+                lambda x, _: f"{x:.0f}"))
+            self.sec_axes[key] = ax2
 
             d = self.data[key]
             scat = ax.plot(d[:, 0], d[:, 1], "o", color="0.45", ms=4,
@@ -401,11 +420,24 @@ class RoseiApp(QMainWindow):
         self.btn_del_preset.clicked.connect(self._on_delete_preset)
         self.btn_rst = QPushButton("Reset")
         self.btn_rst.clicked.connect(self._on_reset)
+        self.btn_wavelength = QPushButton("λ axis")
+        self.btn_wavelength.setCheckable(True)
+        self.btn_wavelength.setChecked(True)
+        self.btn_wavelength.clicked.connect(self._on_toggle_wavelength)
         preset_row.addWidget(self.preset_combo)
         preset_row.addWidget(self.btn_save_preset)
         preset_row.addWidget(self.btn_del_preset)
         preset_row.addWidget(self.btn_rst)
+        preset_row.addWidget(self.btn_wavelength)
         shared_col.addLayout(preset_row)
+
+        opt_row = QHBoxLayout()
+        for label, scope in [("Opt X", "X"), ("Opt L", "L"),
+                              ("Opt XL", "XL"), ("Opt XLD", "XLD")]:
+            btn = QPushButton(label)
+            btn.clicked.connect(lambda _, s=scope: self._on_optimize(s))
+            opt_row.addWidget(btn)
+        shared_col.addLayout(opt_row)
 
         slider_row.addLayout(shared_col)
 
@@ -459,7 +491,7 @@ class RoseiApp(QMainWindow):
         layout.setContentsMargins(4, 4, 4, 4)
 
         fig = Figure(figsize=(9, 6), dpi=100)
-        fig.subplots_adjust(left=0.10, right=0.97, top=0.94, bottom=0.10)
+        fig.subplots_adjust(left=0.10, right=0.97, top=0.88, bottom=0.10)
         canvas = FigureCanvas(fig)
         canvas.setSizePolicy(QSizePolicy.Policy.Expanding,
                              QSizePolicy.Policy.Expanding)
@@ -478,6 +510,14 @@ class RoseiApp(QMainWindow):
         ax.set_ylabel("ε₂", fontsize=13)
         ax.set_title(titles.get(key, key), fontsize=14)
         ax.set_xlim(HW_LO, HW_HI)
+        ax2 = ax.secondary_xaxis("top",
+                functions=(lambda e: 1239.8 / e, lambda w: 1239.8 / w))
+        ax2.set_xlabel("λ (nm)", fontsize=13)
+        _e_ticks = [t for t in ax.get_xticks() if HW_LO <= t <= HW_HI]
+        ax2.xaxis.set_major_locator(FixedLocator([1239.8 / t for t in _e_ticks]))
+        ax2.xaxis.set_major_formatter(FuncFormatter(
+            lambda x, _: f"{x:.0f}"))
+        ax2.set_visible(self._show_wavelength)
         ymax = max(np.max(d[:, 1]), np.max(y)) * 1.15 if len(y) else 10
         ax.set_ylim(0, max(ymax, 0.5))
         ax.legend(fontsize=11, framealpha=0.9)
@@ -558,6 +598,12 @@ class RoseiApp(QMainWindow):
             spin.setValue(DEFAULTS[key])
             spin.blockSignals(False)
         self._update()
+
+    def _on_toggle_wavelength(self):
+        self._show_wavelength = self.btn_wavelength.isChecked()
+        for key, ax2 in self.sec_axes.items():
+            ax2.set_visible(self._show_wavelength)
+            self.canvases[key].draw_idle()
 
     # ── Presets ─────────────────────────────────────────────────────────
 
@@ -643,7 +689,13 @@ class RoseiApp(QMainWindow):
         elif scope == "L":
             specs = SLIDER_L
             vis = {"L": True}
-        else:  # ALL — fit against X and L data only
+        elif scope == "XL":
+            specs = SLIDER_X + SLIDER_L + SLIDER_SHARED
+            vis = {"XL": True}
+        elif scope == "XLD":
+            specs = SLIDER_X + SLIDER_L + SLIDER_SHARED
+            vis = {"XL": True}  # cost uses XLD data, handled below
+        else:  # ALL — fit against X and L data separately
             specs = SLIDER_X + SLIDER_L + SLIDER_SHARED
             vis = {"X": True, "L": True}
 
@@ -657,12 +709,16 @@ class RoseiApp(QMainWindow):
         self.statusBar().showMessage(f"Running Nelder-Mead ({scope})…")
 
         # For X/L-only: freeze the current Scale value.
-        # For ALL: let the optimizer find the best scale analytically.
-        fixed_scale = self.spins["Scale"].value() if scope != "ALL" else None
+        fixed_scale = self.spins["Scale"].value() if scope in ("X", "L") else None
+
+        # For XLD scope, pass XLD data keyed as "XL" so the cost function uses it
+        data_for_opt = self.data
+        if scope == "XLD":
+            data_for_opt = dict(self.data, XL=self.data["XLD"])
 
         self._opt_thread = threading.Thread(
             target=_run_optimize,
-            args=(x0, fit_keys, bounds, self.data, vis,
+            args=(x0, fit_keys, bounds, data_for_opt, vis,
                   self._get_params(), self._abort_event, self._opt_finished,
                   fixed_scale),
             daemon=True,
@@ -694,23 +750,35 @@ class RoseiApp(QMainWindow):
         for k, v, (lo, hi) in zip(fit_keys, res.x, bounds):
             self.spins[k].setValue(float(np.clip(v, lo, hi)))
 
-        # Compute optimal scale (for ALL scope)
-        if scope == "ALL":
+        # Compute optimal scale (for multi-param scopes)
+        if scope not in ("X", "L"):
             p = self._get_params()
             tot, cx, cl = compute_interband(p)
-            drude = compute_drude(HW_DISP, p)
-            parts = [
-                (self.data["XL"], tot),
-                (self.data["X"], cx),
-                (self.data["L"], cl),
-            ]
-            num = den = 0.0
-            for d, m in parts:
-                mi = np.interp(d[:, 0], HW_DISP, m)
-                num += np.dot(d[:, 1], mi)
-                den += np.dot(mi, mi)
-            opt_scale = num / den if den > 1e-30 else DEFAULTS["Scale"]
-            self.spins["Scale"].setValue(round(opt_scale, 1))
+            if scope == "XLD":
+                # Fit Scale + A_drude against XLD data
+                d = self.data["XLD"]
+                tot_at = np.interp(d[:, 0], HW_DISP, tot)
+                drude_at = 1.0 / d[:, 0]**3
+                A = np.column_stack([tot_at, drude_at])
+                coeffs, _, _, _ = np.linalg.lstsq(A, d[:, 1], rcond=None)
+                opt_scale = float(np.clip(coeffs[0], 10.0, 2000.0))
+                opt_adrude = float(np.clip(coeffs[1], 0.0, 30.0))
+                self.spins["Scale"].setValue(round(opt_scale, 1))
+                self.spins["A_drude"].setValue(round(opt_adrude, 1))
+            else:
+                if scope == "XL":
+                    parts = [(self.data["XL"], tot)]
+                else:
+                    parts = [(self.data["XL"], tot),
+                             (self.data["X"], cx),
+                             (self.data["L"], cl)]
+                num = den = 0.0
+                for d, m in parts:
+                    mi = np.interp(d[:, 0], HW_DISP, m)
+                    num += np.dot(d[:, 1], mi)
+                    den += np.dot(mi, mi)
+                opt_scale = num / den if den > 1e-30 else DEFAULTS["Scale"]
+                self.spins["Scale"].setValue(round(opt_scale, 1))
 
         for spin in self.spins.values():
             spin.blockSignals(False)

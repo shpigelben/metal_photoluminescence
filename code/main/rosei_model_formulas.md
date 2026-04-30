@@ -45,12 +45,19 @@ $$
 D_X = A_c^X B_v^X + A_v^X B_c^X
 $$
 
-**Integration limits** ($\hbar\omega > \mathcal{E}_g^X$):
+**Integration limits** (valid for all $\hbar\omega$):
 
 $$
-\mathcal{E}_{\max}^X(\omega) = \frac{A_c^X}{\bar{A}_X}(\hbar\omega - \mathcal{E}_g^X), \qquad
-\mathcal{E}_{\min}^X(\omega) = -\frac{B_c^X}{\bar{B}_X}(\hbar\omega - \mathcal{E}_g^X)
+\mathcal{E}_{\max}^X(\omega) = \frac{A_c^X}{\bar{A}_X}(\hbar\omega - \mathcal{E}_g^X)
 $$
+
+Because X is an $M_1$ saddle point, sub-gap transitions ($\hbar\omega < \mathcal{E}_g^X$) exist — the CEDS is open. Following Rosei (1975), the lower limit is replaced by a fixed thermal cutoff:
+
+$$
+\mathcal{E}_{\min}^X = -20\,k_BT
+$$
+
+The Fermi factor $[1-f(\mathcal{E})]$ naturally suppresses deeply occupied final states, making the integral convergent.
 
 **Joint density of states:**
 
