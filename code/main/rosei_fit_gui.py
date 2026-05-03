@@ -87,8 +87,31 @@ class LPointParams:
 #  Core physics functions
 # ═══════════════════════════════════════════════════════════════════════════
 
+def _W_absorption(E, hw, T):
+    """f(E-ħω)·[1-f(E)]: valence occupied × conduction empty. Numerically stable."""
+    if T == 0:
+        return (1.0 if (E - hw) < 0 else 0.0) * (0.0 if E < 0 else 1.0)
+    beta = 1.0 / (kB * T)
+    a = beta * E
+    b = beta * (E - hw)
+    return np.exp(-np.logaddexp(0.0, b) - np.logaddexp(0.0, -a))
+
+def _W_emission(E, hw, T):
+    """f(E)·[1-f(E-ħω)]: conduction occupied × valence empty. Numerically stable."""
+    if T == 0:
+        return (1.0 if E < 0 else 0.0) * (1.0 if (E - hw) > 0 else 0.0)
+    beta = 1.0 / (kB * T)
+    a = beta * E
+    b = beta * (E - hw)
+    return np.exp(-np.logaddexp(0.0, a) - np.logaddexp(0.0, -b))
+
+# Module-level flag toggled by the GUI
+_emission_mode = False
+
 def _F_rosei(E, hw, T):
-    return 1.0 - fermi(E, T)
+    if _emission_mode:
+        return _W_emission(E, hw, T)
+    return _W_absorption(E, hw, T)
 
 
 def _interband_integral(hw, T, p, is_L=False):
@@ -143,10 +166,10 @@ def compute_interband(params: dict):
     X and L are broadened independently with Gamma_X and Gamma_L."""
     xp = XPointParams(Ac=C / params["mc_perp_X"], Bc=C / params["mc_par_X"],
                       Av=C / params["mv_perp_X"], Bv=C / params["mv_par_X"],
-                      Eg=params["Eg_X"])
+                      Eg=params["Eg_X"], E0c=params["E0c_X"])
     lp = LPointParams(Ac=C / params["mc_perp_L"], Bc=C / params["mc_par_L"],
                       Av=C / params["mv_perp_L"], Bv=C / params["mv_par_L"],
-                      Eg=params["Eg_L"])
+                      Eg=params["Eg_L"], E0c=params["E0c_L"])
     T = params["T_val"]
     P2 = params["P_ratio_sq"]
     raw_x = np.empty(len(HW_EXT))
@@ -174,7 +197,8 @@ def compute_drude(hw, params: dict):
 # ═══════════════════════════════════════════════════════════════════════════
 
 DEFAULTS = dict(
-    Eg_X=1.94, Eg_L=2.45,
+    Eg_X=1.94, E0c_X=0.00,
+    Eg_L=1.70, E0c_L=-0.75,
     mc_perp_X=0.31, mc_par_X=0.40, mv_perp_X=0.19, mv_par_X=0.15,
     mc_perp_L=0.24, mc_par_L=0.12, mv_perp_L=0.70, mv_par_L=1.03,
     P_ratio_sq=0.370, T_val=600.0, Gamma_X=0.07, Gamma_L=0.07,
@@ -184,6 +208,7 @@ DEFAULTS = dict(
 # Slider specifications: (key, label, min, max, default, step, decimals)
 SLIDER_X = [
     ("Eg_X",      "Eg_X (eV)",  1.70, 2.10, DEFAULTS["Eg_X"],      0.01, 2),
+    ("E0c_X",    "E0c_X (eV)",-2.00, 0.50, DEFAULTS["E0c_X"],     0.01, 2),
     ("mc_perp_X", "mc⊥ X",      0.15, 0.60, DEFAULTS["mc_perp_X"], 0.01, 2),
     ("mc_par_X",  "mc∥ X",      0.15, 0.60, DEFAULTS["mc_par_X"],  0.01, 2),
     ("mv_perp_X", "mv⊥ X",      0.10, 0.50, DEFAULTS["mv_perp_X"], 0.01, 2),
@@ -191,7 +216,8 @@ SLIDER_X = [
     ("Gamma_X",   "\u0393_X (eV)",  0.00, 0.30, DEFAULTS["Gamma_X"],   0.005, 3),
 ]
 SLIDER_L = [
-    ("Eg_L",      "Eg_L (eV)",  2.20, 2.60, DEFAULTS["Eg_L"],      0.01, 2),
+    ("Eg_L",      "Eg_L (eV)",  1.00, 2.60, DEFAULTS["Eg_L"],      0.01, 2),
+    ("E0c_L",    "E0c_L (eV)",-2.00, 0.50, DEFAULTS["E0c_L"],     0.01, 2),
     ("mc_perp_L", "mc\u22a5 L",      0.10, 0.50, DEFAULTS["mc_perp_L"], 0.01, 2),
     ("mc_par_L",  "mc\u2225 L",      0.05, 0.30, DEFAULTS["mc_par_L"],  0.01, 2),
     ("mv_perp_L", "mv\u22a5 L",      0.30, 1.50, DEFAULTS["mv_perp_L"], 0.01, 2),
@@ -233,11 +259,13 @@ class _AbortOptimization(Exception):
 
 
 def _run_optimize(x0, fit_keys, bounds, data, vis_flags, base_params,
-                  abort_event: threading.Event, signal, fixed_scale=None):
+                  abort_event: threading.Event, signal, fixed_scale=None,
+                  include_drude=False):
     """Run Nelder-Mead in a daemon thread; emit result via signal.
     
     If fixed_scale is given, use it instead of computing an analytic optimal
     scale (used for X-only / L-only fits where Scale stays at its slider value).
+    If include_drude is True, the model adds A_drude / hw³ (not scaled by Scale).
     """
     base = dict(base_params)
 
@@ -258,6 +286,8 @@ def _run_optimize(x0, fit_keys, bounds, data, vis_flags, base_params,
 
         if fixed_scale is not None:
             scale = fixed_scale
+        elif "Scale" in fit_keys:
+            scale = p.get("Scale", 1.0)
         else:
             num = den = 0.0
             for d, m in parts:
@@ -266,8 +296,13 @@ def _run_optimize(x0, fit_keys, bounds, data, vis_flags, base_params,
                 den += np.dot(mi, mi)
             scale = num / den if den > 1e-30 else 1.0
 
-        return sum(np.sum((d[:, 1] - scale * np.interp(d[:, 0], HW_DISP, m))**2)
-                   for d, m in parts)
+        err = 0.0
+        for d, m in parts:
+            model_at = scale * np.interp(d[:, 0], HW_DISP, m)
+            if include_drude:
+                model_at = model_at + p.get("A_drude", 0.0) / d[:, 0]**3
+            err += np.sum((d[:, 1] - model_at)**2)
+        return err
 
     def check_abort(xk):
         if abort_event.is_set():
@@ -427,8 +462,13 @@ class RoseiApp(QMainWindow):
         preset_row.addWidget(self.preset_combo)
         preset_row.addWidget(self.btn_save_preset)
         preset_row.addWidget(self.btn_del_preset)
+        self.btn_fermi_mode = QPushButton("Absorption")
+        self.btn_fermi_mode.setCheckable(True)
+        self.btn_fermi_mode.setChecked(False)
+        self.btn_fermi_mode.clicked.connect(self._on_toggle_fermi_mode)
         preset_row.addWidget(self.btn_rst)
         preset_row.addWidget(self.btn_wavelength)
+        preset_row.addWidget(self.btn_fermi_mode)
         shared_col.addLayout(preset_row)
 
         opt_row = QHBoxLayout()
@@ -480,40 +520,42 @@ class RoseiApp(QMainWindow):
             self._show_enlarged(key)
 
     def _generate_caption(self, key):
-        """Generate an academic caption with model parameters."""
+        """Generate a LaTeX-rendered caption table for the enlarged plot."""
         p = self._get_params()
-        
-        # Base caption
-        if key == "X":
-            caption = (
-                f"X-point transitions: Eg = {p['Eg_X']:.3f} eV  |  "
-                f"mc⊥ = {p['mc_perp_X']:.3f} me, mc∥ = {p['mc_par_X']:.3f} me  |  "
-                f"mv⊥ = {p['mv_perp_X']:.3f} me, mv∥ = {p['mv_par_X']:.3f} me  |  "
-                f"Γ = {p['Gamma_X']:.4f} eV"
+        lines = []
+
+        def _band_block(label, Eg, E0c, mcp, mcl, mvp, mvl, Gamma):
+            return (
+                f"${label}$:  "
+                f"$E_g = {Eg:.3f}$ eV,  "
+                f"$E_{{0c}} = {E0c:.3f}$ eV,  "
+                f"$\\Gamma = {Gamma:.4f}$ eV\n"
+                f"    $m_{{c\\perp}} = {mcp:.3f}\\,m_e$,  "
+                f"$m_{{c\\parallel}} = {mcl:.3f}\\,m_e$,  "
+                f"$m_{{v\\perp}} = {mvp:.3f}\\,m_e$,  "
+                f"$m_{{v\\parallel}} = {mvl:.3f}\\,m_e$"
             )
-        elif key == "L":
-            caption = (
-                f"L-point transitions: Eg = {p['Eg_L']:.3f} eV  |  "
-                f"mc⊥ = {p['mc_perp_L']:.3f} me, mc∥ = {p['mc_par_L']:.3f} me  |  "
-                f"mv⊥ = {p['mv_perp_L']:.3f} me, mv∥ = {p['mv_par_L']:.3f} me  |  "
-                f"Γ = {p['Gamma_L']:.4f} eV"
-            )
-        elif key == "XL":
-            caption = (
-                f"X-point: Eg = {p['Eg_X']:.3f} eV, Γ = {p['Gamma_X']:.4f} eV  |  "
-                f"L-point: Eg = {p['Eg_L']:.3f} eV, Γ = {p['Gamma_L']:.4f} eV  |  "
-                f"|Px/PL|² = {p['P_ratio_sq']:.3f}  |  T = {p['T_val']:.0f} K  |  "
-                f"Scale = {p['Scale']:.1f}"
-            )
-        else:  # XLD
-            caption = (
-                f"X-point: Eg = {p['Eg_X']:.3f} eV, Γ = {p['Gamma_X']:.4f} eV  |  "
-                f"L-point: Eg = {p['Eg_L']:.3f} eV, Γ = {p['Gamma_L']:.4f} eV  |  "
-                f"|Px/PL|² = {p['P_ratio_sq']:.3f}  |  T = {p['T_val']:.0f} K  |  "
-                f"Scale = {p['Scale']:.1f}  |  Adrude = {p['A_drude']:.2f}"
-            )
-        
-        return caption
+
+        if key in ("X", "XL", "XLD"):
+            lines.append(_band_block("X", p["Eg_X"], p["E0c_X"],
+                                     p["mc_perp_X"], p["mc_par_X"],
+                                     p["mv_perp_X"], p["mv_par_X"],
+                                     p["Gamma_X"]))
+        if key in ("L", "XL", "XLD"):
+            lines.append(_band_block("L", p["Eg_L"], p["E0c_L"],
+                                     p["mc_perp_L"], p["mc_par_L"],
+                                     p["mv_perp_L"], p["mv_par_L"],
+                                     p["Gamma_L"]))
+
+        shared = (f"$|P_X/P_L|^2 = {p['P_ratio_sq']:.3f}$,  "
+                  f"$T_{{eff}} = {p['T_val']:.0f}$ K,  "
+                  f"Scale $= {p['Scale']:.1f}$")
+        if key == "XLD":
+            shared += f",  $A_{{Drude}} = {p['A_drude']:.2f}$"
+        shared += f"     $R^2 = {self.r2[key]:.4f}$"
+        lines.append(shared)
+
+        return "\n".join(lines)
 
     def _show_enlarged(self, key):
         """Open a resizable dialog with a live copy of the subplot."""
@@ -527,7 +569,7 @@ class RoseiApp(QMainWindow):
         layout.setContentsMargins(4, 4, 4, 4)
 
         fig = Figure(figsize=(9, 7), dpi=100)
-        fig.subplots_adjust(left=0.10, right=0.97, top=0.88, bottom=0.18)
+        fig.subplots_adjust(left=0.10, right=0.97, top=0.88, bottom=0.28)
         canvas = FigureCanvas(fig)
         canvas.setSizePolicy(QSizePolicy.Policy.Expanding,
                              QSizePolicy.Policy.Expanding)
@@ -561,8 +603,9 @@ class RoseiApp(QMainWindow):
 
         # Add caption text beneath the plot, integrated into the figure
         caption_text = self._generate_caption(key)
-        fig.text(0.10, 0.04, caption_text, fontsize=10, family="monospace",
-                 verticalalignment="top", wrap=True, color="#333333",
+        fig.text(0.10, 0.18, caption_text, fontsize=11,
+                 verticalalignment="top", wrap=False, color="#222222",
+                 linespacing=1.6,
                  bbox=dict(boxstyle="round,pad=0.6", facecolor="#f5f5f5",
                           edgecolor="#cccccc", linewidth=0.5, alpha=0.95))
 
@@ -649,6 +692,12 @@ class RoseiApp(QMainWindow):
             ax2.set_visible(self._show_wavelength)
             self.canvases[key].draw_idle()
 
+    def _on_toggle_fermi_mode(self):
+        global _emission_mode
+        _emission_mode = self.btn_fermi_mode.isChecked()
+        self.btn_fermi_mode.setText("Emission" if _emission_mode else "Absorption")
+        self._update()
+
     # ── Presets ─────────────────────────────────────────────────────────
 
     @staticmethod
@@ -726,25 +775,40 @@ class RoseiApp(QMainWindow):
         if self._opt_thread is not None and self._opt_thread.is_alive():
             return
 
-        # Select which parameters and datasets to optimise against
+        # Select which parameters and datasets to optimise against.
+        # For X/L scopes: fit band params (no broadening) + Scale, |Px/PL|², T.
+        _EXCLUDE_X = {"Gamma_X"}
+        _EXCLUDE_L = {"Gamma_L"}
+        _SHARED_FIT = [("P_ratio_sq", "|Px/PL|²", 0.10, 1.00, DEFAULTS["P_ratio_sq"], 0.01, 2),
+                       ("T_val",      "T_eff (K)", 10.0, 5000.0, DEFAULTS["T_val"], 10.0, 0),
+                       ("Scale",      "Scale",     10.0, 2000.0, DEFAULTS["Scale"], 1.0, 1)]
+
         if scope == "X":
-            specs = SLIDER_X
+            specs = [s for s in SLIDER_X if s[0] not in _EXCLUDE_X] + _SHARED_FIT
             vis = {"X": True}
         elif scope == "L":
-            specs = SLIDER_L
+            specs = [s for s in SLIDER_L if s[0] not in _EXCLUDE_L] + _SHARED_FIT
             vis = {"L": True}
         elif scope == "XL":
             specs = SLIDER_X + SLIDER_L + SLIDER_SHARED
             vis = {"XL": True}
         elif scope == "XLD":
-            specs = SLIDER_X + SLIDER_L + SLIDER_SHARED
+            specs = ([s for s in SLIDER_X if s[0] not in _EXCLUDE_X] +
+                     [s for s in SLIDER_L if s[0] not in _EXCLUDE_L] +
+                     _SHARED_FIT +
+                     [("A_drude", "A_drude", 0.00, 30.0, DEFAULTS["A_drude"], 0.1, 1)])
             vis = {"XL": True}  # cost uses XLD data, handled below
         else:  # ALL — fit against X and L data separately
             specs = SLIDER_X + SLIDER_L + SLIDER_SHARED
             vis = {"X": True, "L": True}
 
-        fit_keys = [s[0] for s in specs if s[0] != "Scale"]
-        bounds   = [(s[2], s[3]) for s in specs if s[0] != "Scale"]
+        # For X/L/XLD scopes, Scale is directly optimised; for others, analytically.
+        if scope in ("X", "L", "XLD"):
+            fit_keys = [s[0] for s in specs]
+            bounds   = [(s[2], s[3]) for s in specs]
+        else:
+            fit_keys = [s[0] for s in specs if s[0] != "Scale"]
+            bounds   = [(s[2], s[3]) for s in specs if s[0] != "Scale"]
         x0 = np.array([self.spins[k].value() for k in fit_keys])
 
         self._opt_scope = scope
@@ -752,19 +816,25 @@ class RoseiApp(QMainWindow):
 
         self.statusBar().showMessage(f"Running Nelder-Mead ({scope})…")
 
-        # For X/L-only: freeze the current Scale value.
-        fixed_scale = self.spins["Scale"].value() if scope in ("X", "L") else None
+        fixed_scale = None
 
         # For XLD scope, pass XLD data keyed as "XL" so the cost function uses it
         data_for_opt = self.data
         if scope == "XLD":
             data_for_opt = dict(self.data, XL=self.data["XLD"])
 
+        # For X/L scopes, run the optimiser with zero broadening.
+        base_params = self._get_params()
+        if scope in ("X", "L", "XLD"):
+            base_params["Gamma_X"] = 0.0
+            base_params["Gamma_L"] = 0.0
+
         self._opt_thread = threading.Thread(
             target=_run_optimize,
             args=(x0, fit_keys, bounds, data_for_opt, vis,
-                  self._get_params(), self._abort_event, self._opt_finished,
+                  base_params, self._abort_event, self._opt_finished,
                   fixed_scale),
+            kwargs={"include_drude": scope == "XLD"},
             daemon=True,
         )
         self._opt_thread.start()
@@ -777,15 +847,29 @@ class RoseiApp(QMainWindow):
             return
 
         scope = getattr(self, "_opt_scope", "ALL")
+        _EXCLUDE_X = {"Gamma_X"}
+        _EXCLUDE_L = {"Gamma_L"}
+        _SHARED_FIT = [("P_ratio_sq", "|Px/PL|²", 0.10, 1.00, DEFAULTS["P_ratio_sq"], 0.01, 2),
+                       ("T_val",      "T_eff (K)", 10.0, 5000.0, DEFAULTS["T_val"], 10.0, 0),
+                       ("Scale",      "Scale",     10.0, 2000.0, DEFAULTS["Scale"], 1.0, 1)]
         if scope == "X":
-            specs = SLIDER_X
+            specs = [s for s in SLIDER_X if s[0] not in _EXCLUDE_X] + _SHARED_FIT
         elif scope == "L":
-            specs = SLIDER_L
+            specs = [s for s in SLIDER_L if s[0] not in _EXCLUDE_L] + _SHARED_FIT
+        elif scope == "XLD":
+            specs = ([s for s in SLIDER_X if s[0] not in _EXCLUDE_X] +
+                     [s for s in SLIDER_L if s[0] not in _EXCLUDE_L] +
+                     _SHARED_FIT +
+                     [("A_drude", "A_drude", 0.00, 30.0, DEFAULTS["A_drude"], 0.1, 1)])
         else:
             specs = SLIDER_X + SLIDER_L + SLIDER_SHARED
 
-        fit_keys = [s[0] for s in specs if s[0] != "Scale"]
-        bounds   = [(s[2], s[3]) for s in specs if s[0] != "Scale"]
+        if scope in ("X", "L", "XLD"):
+            fit_keys = [s[0] for s in specs]
+            bounds   = [(s[2], s[3]) for s in specs]
+        else:
+            fit_keys = [s[0] for s in specs if s[0] != "Scale"]
+            bounds   = [(s[2], s[3]) for s in specs if s[0] != "Scale"]
 
         # Block signals while setting many sliders
         for spin in self.spins.values():
@@ -794,12 +878,11 @@ class RoseiApp(QMainWindow):
         for k, v, (lo, hi) in zip(fit_keys, res.x, bounds):
             self.spins[k].setValue(float(np.clip(v, lo, hi)))
 
-        # Compute optimal scale (for multi-param scopes)
-        if scope not in ("X", "L"):
+        # Compute optimal scale (analytic, for scopes where Scale is not directly optimised)
+        if "Scale" not in fit_keys:
             p = self._get_params()
             tot, cx, cl = compute_interband(p)
             if scope == "XLD":
-                # Fit Scale + A_drude against XLD data
                 d = self.data["XLD"]
                 tot_at = np.interp(d[:, 0], HW_DISP, tot)
                 drude_at = 1.0 / d[:, 0]**3
