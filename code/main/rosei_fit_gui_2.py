@@ -93,7 +93,7 @@ def _F_rosei(E, hw, T):
 
 def _interband_integral(hw, T, p, is_L=False):
     if is_L:
-        # L-point (M0): no transitions below gap
+        # L-point (M0): no transitions below geometric gap
         if hw <= p.Eg:
             return 0.0
         e_min, e_max = p.E_min(hw), p.E_max(hw)
@@ -144,9 +144,10 @@ def compute_interband(params: dict):
     xp = XPointParams(Ac=C / params["mc_perp_X"], Bc=C / params["mc_par_X"],
                       Av=C / params["mv_perp_X"], Bv=C / params["mv_par_X"],
                       Eg=params["Eg_X"])
+    # FIXED: Map E0c_L so the L-point is properly submerged
     lp = LPointParams(Ac=C / params["mc_perp_L"], Bc=C / params["mc_par_L"],
                       Av=C / params["mv_perp_L"], Bv=C / params["mv_par_L"],
-                      Eg=params["Eg_L"])
+                      Eg=params["Eg_L"], E0c=params["E0c_L"])
     T = params["T_val"]
     P2 = params["P_ratio_sq"]
     raw_x = np.empty(len(HW_EXT))
@@ -174,7 +175,8 @@ def compute_drude(hw, params: dict):
 # ═══════════════════════════════════════════════════════════════════════════
 
 DEFAULTS = dict(
-    Eg_X=1.94, Eg_L=2.45,
+    Eg_X=1.94, 
+    Eg_L=1.70, E0c_L=-0.75, # FIXED: Lowered geometric gap, added submersion parameter
     mc_perp_X=0.31, mc_par_X=0.40, mv_perp_X=0.19, mv_par_X=0.15,
     mc_perp_L=0.24, mc_par_L=0.12, mv_perp_L=0.70, mv_par_L=1.03,
     P_ratio_sq=0.370, T_val=600.0, Gamma_X=0.07, Gamma_L=0.07,
@@ -188,15 +190,16 @@ SLIDER_X = [
     ("mc_par_X",  "mc∥ X",      0.15, 0.60, DEFAULTS["mc_par_X"],  0.01, 2),
     ("mv_perp_X", "mv⊥ X",      0.10, 0.50, DEFAULTS["mv_perp_X"], 0.01, 2),
     ("mv_par_X",  "mv∥ X",      0.05, 0.40, DEFAULTS["mv_par_X"],  0.01, 2),
-    ("Gamma_X",   "\u0393_X (eV)",  0.00, 0.30, DEFAULTS["Gamma_X"],   0.005, 3),
+    ("Gamma_X",   "Γ_X (eV)",   0.00, 0.30, DEFAULTS["Gamma_X"],   0.005, 3),
 ]
 SLIDER_L = [
-    ("Eg_L",      "Eg_L (eV)",  2.20, 2.60, DEFAULTS["Eg_L"],      0.01, 2),
-    ("mc_perp_L", "mc\u22a5 L",      0.10, 0.50, DEFAULTS["mc_perp_L"], 0.01, 2),
-    ("mc_par_L",  "mc\u2225 L",      0.05, 0.30, DEFAULTS["mc_par_L"],  0.01, 2),
-    ("mv_perp_L", "mv\u22a5 L",      0.30, 1.50, DEFAULTS["mv_perp_L"], 0.01, 2),
-    ("mv_par_L",  "mv\u2225 L",      0.50, 2.50, DEFAULTS["mv_par_L"],  0.01, 2),
-    ("Gamma_L",   "\u0393_L (eV)",  0.00, 0.30, DEFAULTS["Gamma_L"],   0.005, 3),
+    ("Eg_L",      "Eg_L (eV)",  1.00, 2.60, DEFAULTS["Eg_L"],      0.01, 2), # FIXED: Widened range
+    ("E0c_L",     "E0c_L (eV)",-2.00, 0.50, DEFAULTS["E0c_L"],     0.01, 2), # FIXED: New slider
+    ("mc_perp_L", "mc⊥ L",      0.10, 0.50, DEFAULTS["mc_perp_L"], 0.01, 2),
+    ("mc_par_L",  "mc∥ L",      0.05, 0.30, DEFAULTS["mc_par_L"],  0.01, 2),
+    ("mv_perp_L", "mv⊥ L",      0.30, 1.50, DEFAULTS["mv_perp_L"], 0.01, 2),
+    ("mv_par_L",  "mv∥ L",      0.50, 2.50, DEFAULTS["mv_par_L"],  0.01, 2),
+    ("Gamma_L",   "Γ_L (eV)",   0.00, 0.30, DEFAULTS["Gamma_L"],   0.005, 3),
 ]
 SLIDER_SHARED = [
     ("P_ratio_sq", "|Px/PL|²",  0.10, 1.00, DEFAULTS["P_ratio_sq"], 0.01, 2),
@@ -292,7 +295,7 @@ class RoseiApp(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Rosei \u03b5\u2082 \u2014 Guerrisi, Rosei & Winsemius (1975)")
+        self.setWindowTitle("Rosei ε₂ — Guerrisi, Rosei & Winsemius (1975)")
         self.data = load_data()
         self.spins: dict[str, QDoubleSpinBox] = {}
         self._opt_thread: threading.Thread | None = None
@@ -493,7 +496,7 @@ class RoseiApp(QMainWindow):
             )
         elif key == "L":
             caption = (
-                f"L-point transitions: Eg = {p['Eg_L']:.3f} eV  |  "
+                f"L-point transitions: Eg = {p['Eg_L']:.3f} eV, E0c = {p['E0c_L']:.3f} eV |  "
                 f"mc⊥ = {p['mc_perp_L']:.3f} me, mc∥ = {p['mc_par_L']:.3f} me  |  "
                 f"mv⊥ = {p['mv_perp_L']:.3f} me, mv∥ = {p['mv_par_L']:.3f} me  |  "
                 f"Γ = {p['Gamma_L']:.4f} eV"
