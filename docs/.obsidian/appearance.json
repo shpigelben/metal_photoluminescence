@@ -2,16 +2,15 @@
   "accentColor": "#ffbd2e",
   "theme": "moonstone",
   "cssTheme": "AnuPpuccin",
-  "baseFontSize": 16,
-  "textFontFamily": "Tiempo,Palatino,Palatino Linotype,ITC Garamond Std,FiraCode Nerd Font",
-  "interfaceFontFamily": "SF Pro Display,SF Pro Rounded,Inter,JetBrainsMono Nerd Font,Sathu",
+  "baseFontSize": 15,
+  "textFontFamily": "Palatino,Tiempo,FiraCode Nerd Font,Palatino Linotype,ITC Garamond Std",
+  "interfaceFontFamily": "Sathu,JetBrainsMono Nerd Font,SF Pro Display,SF Pro Rounded,Inter",
   "enabledCssSnippets": [
     "pictureCenter",
     "hide_properties",
     "Annupucin-extended-colorschemes",
     "alignImage",
-    "titles",
-    "inlineTitle"
+    "mathjax font"
   ],
   "showViewHeader": false,
   "nativeMenus": false,

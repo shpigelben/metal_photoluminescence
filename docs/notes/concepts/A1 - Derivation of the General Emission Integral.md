@@ -45,11 +45,14 @@ Where $\uparrow$ stands for absorption and $\downarrow$ for emission[^1].
 # Second Order Radiative Transitions in Solids
 
 > [!NOTE]- Transition Dipole Matrix (TDM)
->$$\mu_{mn}=\left\langle \psi_{m\mathbf{k}_{2}} \left| \hat{V}_{\uparrow / \downarrow} \right| \psi_{n\mathbf{k}_{1}} \right\rangle = \left|\left\langle \psi_{m\mathbf{k}_{2}} \left| {\large e^{ \pm i\mathbf{q}\cdot \mathbf{r} }}\mathbf{p}\cdot  \hat{\mathbf{n}}\right| \psi_{n\mathbf{k}_{1}} \right\rangle\right|$$ Bloch states are explicitly $$\ket{\psi_{n\mathbf{k}}}= u_{n\mathbf{k}}(\mathbf{r}) \cdot{\large e^{ i\mathbf{k}\cdot \mathbf{r} }}$$ where $u_{n\mathbf{k}}(\mathbf{r})$ has the periodicity of the lattice. The TDM is then explicitly $$\int\limits_{\text{BZ}}  \, d^{3}r  \; \left(u^{*}_{m\mathbf{k}_{2}}(\mathbf{r}) \cdot{\large e^{ -i\mathbf{k}_{2}\cdot \mathbf{r} }}\right) \left({\large e^{ \pm i\mathbf{q}\cdot \mathbf{r} }}\mathbf{p}\cdot  \hat{\mathbf{n}} \right)\left(u_{n\mathbf{k}_{1}}(\mathbf{r}) \cdot{\large e^{ i\mathbf{k}_{1}\cdot \mathbf{r} }}\right)$$$$
-\int\limits_{}^{}  \, d^{3}r \; {\large e^{ i(\mathbf{k}_{1}-\mathbf{k}_{2}\pm \mathbf{q})\cdot \mathbf{r} }} \; u^{*}_{m\mathbf{k}_{2}}(\mathbf{r}) \  u_{n\mathbf{k}_{1}}(\mathbf{r}) \ \mathbf{p} \cdot\hat{\mathbf{n}}
-$$
-
-
+> $$\mu_{mn}=\left\langle \psi_{m\mathbf{k}_{2}} \left| \hat{V}_{\uparrow / \downarrow} \right| \psi_{n\mathbf{k}_{1}} \right\rangle = \left|\left\langle \psi_{m\mathbf{k}_{2}} \left| {\large e^{ \pm i\mathbf{q}\cdot \mathbf{r} }}\mathbf{p}\cdot  \hat{\mathbf{n}}\right| \psi_{n\mathbf{k}_{1}} \right\rangle\right|$$
+> Bloch states are explicitly $\ket{\psi_{n\mathbf{k}}}= u_{n\mathbf{k}}(\mathbf{r}) \cdot{\large e^{ i\mathbf{k}\cdot \mathbf{r} }}$ where $u_{n\mathbf{k}}(\mathbf{r})$ has the periodicity of the lattice. The TDM is then explicitly:
+> $$
+> \begin{aligned}
+> &\int\limits_{\text{BZ}}  \, d^{3}r  \; \left(u^{*}_{m\mathbf{k}_{2}}(\mathbf{r}) \cdot{\large e^{ -i\mathbf{k}_{2}\cdot \mathbf{r} }}\right) \left({\large e^{ \pm i\mathbf{q}\cdot \mathbf{r} }}\mathbf{p}\cdot  \hat{\mathbf{n}} \right)\left(u_{n\mathbf{k}_{1}}(\mathbf{r}) \cdot{\large e^{ i\mathbf{k}_{1}\cdot \mathbf{r} }}\right) \\
+> &\quad = \int\limits_{}^{}  \, d^{3}r \; {\large e^{ i(\mathbf{k}_{1}-\mathbf{k}_{2}\pm \mathbf{q})\cdot \mathbf{r} }} \; u^{*}_{m\mathbf{k}_{2}}(\mathbf{r}) \  u_{n\mathbf{k}_{1}}(\mathbf{r}) \ \mathbf{p} \cdot\hat{\mathbf{n}}
+> \end{aligned}
+> $$
 Photons carry minuscule momentum $(\mathbf{q}\approx 0)$ so it is very common and a good approximation to assume that $\mathbf{k}_{1}\approx \mathbf{k}_{2}$ to simplify calculation while preserving meaningful and qualitatively accurate results. The transition rate then simplifies to the following
 
 $$
@@ -69,15 +72,22 @@ where $\mu_{12}^{nm}$ is the transition dipole moment governing momentum conse
 
 For clarity, we temporarily suppress the band indices to derive the rate for a generic pair of bands. To determine the rate $\Gamma_{1}$ from a specific initial state $\ket{\mathbf{k}_{1}}$, we sum over all available final states $\ket{\mathbf{k}_{2}}$. This summation is weighted by the probability of the final state being vacant, $[1-f(\mathbf{k}_{2})]$, and accounts for spin degeneracy. In the continuum limit, the discrete summation over wave-vectors transforms into an integral over the Brillouin Zone (BZ) with a density of states factor $V/(2\pi)^{3}$:
 
-$$\begin{align} \Gamma_{1}(\hbar\omega) &= 2 \cdot \sum_{\mathbf{k}_{2}} \ \Gamma_{1\to 2}(\hbar\omega) \Big[1-f(\mathbf{k}_{2})\Big] \\ &= 2V \int\limits_{\text{BZ}} \frac{d^{3}k_{2}}{(2\pi)^{3}} \ \Gamma_{1\to 2}(\hbar\omega) \Big[1-f(\mathbf{k}_{2})\Big] \end{align}$$
+$$
+\begin{align} \Gamma_{1}(\hbar\omega) &= 2 \cdot \sum_{\mathbf{k}_{2}} \ \Gamma_{1\to 2}(\hbar\omega) \Big[1-f(\mathbf{k}_{2})\Big] \\ &= 2V \int\limits_{\text{BZ}} \frac{d^{3}k_{2}}{(2\pi)^{3}} \ \Gamma_{1\to 2}(\hbar\omega) \Big[1-f(\mathbf{k}_{2})\Big] \end{align}
+$$
 
 Similarly, to obtain the total rate for this band pair, we sum the single-state rates over all possible initial states $\ket{\mathbf{k}_{1}}$, weighted by the occupation probability $f(\mathbf{k}_{1})$
 
-$$\begin{align} \Gamma (\hbar\omega) &= 2\cdot \sum_{\mathbf{k}_{1}} \ \Gamma_{1}(\hbar\omega) f(\mathbf{k}_{1}) \\ &= 2V \int\limits_{\text{BZ}} \frac{d^{3}k_{1}}{(2\pi)^{3}} \ \Gamma_{1}(\hbar\omega) \ f(\mathbf{k}_{1}) \end{align}$$
+$$
+\begin{align} \Gamma (\hbar\omega) &= 2\cdot \sum_{\mathbf{k}_{1}} \ \Gamma_{1}(\hbar\omega) f(\mathbf{k}_{1}) \\ &= 2V \int\limits_{\text{BZ}} \frac{d^{3}k_{1}}{(2\pi)^{3}} \ \Gamma_{1}(\hbar\omega) \ f(\mathbf{k}_{1}) \end{align}
+$$
 
 Finally, to account for all possible emission channels, we reintroduce the band indices and perform a general summation over all bands $n$ and $m$. This covers all permutations, including interband (conduction-valence $nm = cv$) and intraband (conduction-conduction $nm = cc$) transitions. Defining $\overline{f_{m}(\mathbf{k})} \equiv 1 - f_{m}(\mathbf{k})$, the general expression is
 
-$$\boxed{ \Gamma(\hbar\omega) = \frac{2\pi}{\hbar} \left( \frac{2V}{(2\pi)^{3}} \right)^{2} \sum_{n, m} \iint\limits_{\text{BZ}} |\mu^{nm}(\mathbf{k_{1}},\mathbf{k_{2}})|^{2} \ f_{n}(\mathbf{k}_{1})\overline{f_{m}(\mathbf{k}_{2})} \ \delta\big(\mathcal{E}_{m}(\mathbf{k}_{2}) - \mathcal{E}_{n}(\mathbf{k}_{1}) + \hbar\omega \big) \ d^{3}k_{1} \ d^{3}k_{2} }$$
+$$
+\boxed{ \Gamma(\hbar\omega) = \frac{2\pi}{\hbar} \left( \frac{2V}{(2\pi)^{3}} \right)^{2} \sum_{n, m} \iint\limits_{\text{BZ}} |\mu^{nm}(\mathbf{k_{1}},\mathbf{k_{2}})|^{2} \ f_{n}(\mathbf{k}_{1})\overline{f_{m}(\mathbf{k}_{2})} \ \delta\big(\mathcal{E}_{m}(\mathbf{k}_{2}) - \mathcal{E}_{n}(\mathbf{k}_{1}) + \hbar\omega \big) \ d^{3}k_{1} \ d^{3}k_{2} }
+$$
+
 
 [^1]: But shouldn't emission here be mostly spontaneous emission?
 	The way it is presented here, stimulated absorption and emission are the opposites. It is really stimulated emission? Or are we actually calculating spontaneous emission without understanding it?

@@ -21,15 +21,15 @@ section: project
 ## Progress
 - Reviewed relevant publications and studied the theoretical and mathematical foundations, including the advisor's previous works.
 - Recreated past emission results for intraband emission in both equilibrium (blackbody) and non-equilibrium settings in energy space.
-- Settled on a convergent numerical scheme for calculating emission integrals. ([3.1](3.1%20-%20Numeric%20Convergence.md))
-- Established the approximate nature of the analytic expressions for intraband emission (thermal and non-equilibrium). ([3.2](3.2%20-%20Analytic%20Approximations.md))
+- Settled on a convergent numerical scheme for calculating emission integrals. ([3.1](log/3.1%20-%20Numeric%20Convergence.md))
+- Established the approximate nature of the analytic expressions for intraband emission (thermal and non-equilibrium). ([3.2](log/3.2%20-%20Analytic%20Approximations.md))
 	- Outlined their regions of validity.
 	- Found an exact analytic expression for thermal intraband with constant eDOS.
-- Quantified the discrepancy between constant eDOS and energy-dependent eDOS. ([3.3](3.3%20-%20Constant%20eDOS%20Approximation.md))
+- Quantified the discrepancy between constant eDOS and energy-dependent eDOS. ([3.3](log/3.3%20-%20Constant%20eDOS%20Approximation.md))
 - Understood the new challenges involved in interband transitions compared to intraband (anisotropy requiring k-space treatment).
 - Performed k-space calculations and compared with energy-space results.
-- Recognized the difficulty and inefficiency of working in k-space and approximating the delta function numerically. ([A5](A5%20-%20Numeric%20Delta%20Approximation.md))
-- Found the proper transformations to energy space, valid even for non-isotropic dispersion relations. ([A7](A7%20-%20Intraband%20Transitions%20(Rosei).md), [A8](A8%20-%20Interband%20Transitions%20(Rosei).md))
+- Recognized the difficulty and inefficiency of working in k-space and approximating the delta function numerically. ([A5](concepts/A5%20-%20Numeric%20Delta%20Approximation.md))
+- Found the proper transformations to energy space, valid even for non-isotropic dispersion relations. ([A7](concepts/A7%20-%20Intraband%20Transitions%20(Rosei).md), [A8](concepts/A8%20-%20Interband%20Transitions%20(Rosei).md))
 
 ## Misconceptions
 - Thought anisotropy necessarily requires k-space treatment. In practice, for a quadratic band approximation, a careful variable change into 1D energy space is feasible.

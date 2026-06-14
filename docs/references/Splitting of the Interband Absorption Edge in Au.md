@@ -17,4 +17,4 @@ tags: [reference, gold, interband, band-structure, absorption, Rosei]
 
 A foundational study of the interband optical absorption spectrum of gold near the L and X high-symmetry points of the Brillouin zone. Provides analytic dispersion relations (quadratic band approximations) for the conduction and valence bands at these critical points, fitted to optical data. These "Rosei bands" are the starting point for the interband transition calculations in this project.
 
-**Relevance:** Primary source for the band-structure model used in the interband emission integrals. The appendices [[A7 - Intraband Transitions (Rosei)]] and [[A8 - Interband Transitions (Rosei)]] are based directly on this paper's geometry.
+**Relevance:** Primary source for the band-structure model used in the interband emission integrals. The appendices [[../notes/concepts/A7 - Intraband Transitions (Rosei)]] and [[../notes/concepts/A8 - Interband Transitions (Rosei)]] are based directly on this paper's geometry.

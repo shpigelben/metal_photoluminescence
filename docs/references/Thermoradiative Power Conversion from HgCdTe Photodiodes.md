@@ -17,4 +17,4 @@ tags: [reference, thermoradiative, Kirchhoff, detailed-balance, emission, thermo
 
 Demonstrates thermoradiative power generation from narrow-gap HgCdTe photodiodes, where a warm emitter radiates into a cold environment and the resulting photocurrent does electrical work — the time-reversal of photovoltaics. Analyses the device using detailed-balance and Kirchhoff's law of radiation.
 
-**Relevance:** Provides context for Kirchhoff's law of radiation ([[A9 - Kirchhoff's Law Of Radiation]]) and the detailed-balance relationship between absorption and emission, which underpins the equilibrium limit of the PL calculation.
+**Relevance:** Provides context for Kirchhoff's law of radiation ([[../notes/concepts/A9 - Kirchhoff's Law Of Radiation]]) and the detailed-balance relationship between absorption and emission, which underpins the equilibrium limit of the PL calculation.

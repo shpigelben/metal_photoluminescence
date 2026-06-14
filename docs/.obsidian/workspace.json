@@ -11,15 +11,12 @@
             "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "notes/A1 - Derivation of the General Emission Integral.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
+                "file": "4 Misc/Attachments/Pasted Image 20260427181640_440.png"
               },
-              "icon": "lucide-file",
-              "title": "A1 - Derivation of the General Emission Integral"
+              "icon": "lucide-image",
+              "title": "Pasted Image 20260427181640_440"
             }
           }
         ]
@@ -34,7 +31,6 @@
       {
         "id": "ccf4f2dc9011843f",
         "type": "tabs",
-        "dimension": 62.825278810408925,
         "children": [
           {
             "id": "097b944a4aaf954b",
@@ -67,42 +63,25 @@
             }
           },
           {
-            "id": "7863835e764aa75f",
-            "type": "leaf",
-            "state": {
-              "type": "bookmarks",
-              "state": {},
-              "icon": "lucide-bookmark",
-              "title": "Bookmarks"
-            }
-          }
-        ]
-      },
-      {
-        "id": "7ebc1d4a992929a9",
-        "type": "tabs",
-        "dimension": 37.174721189591075,
-        "children": [
-          {
             "id": "204ae1a142ffae3d",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "notes/A1 - Derivation of the General Emission Integral.md",
-                "followCursor": false,
+                "file": "4 Misc/Attachments/Pasted Image 20260427181640_440.png",
+                "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of A1 - Derivation of the General Emission Integral"
+              "title": "Outline of Pasted Image 20260427181640_440"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 229.5
+    "width": 236.5
   },
   "right": {
     "id": "ff902569427872ea",
@@ -217,46 +196,48 @@
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
-    "notes/A7 - Intraband Transitions (Rosei).md",
-    "notes/A9 - Kirchhoff's Law Of Radiation.md",
-    "notes/A8.L - Interband Transitions at L (Rosei).md",
+    "figures/delta_convergence_cos_L10_fine.png",
+    "figures/consteDOS_error_heatmaps.png",
+    "figures/delta_convergence_cos.png",
+    "notes/temp/Work Plan.md",
+    "notes/temp/Effective Mass Extraction.md",
+    "notes/temp/Dedications.md",
+    "notes/temp/Abstract.md",
+    "notes/temp/1 - Introduction.md",
+    "notes/temp/0 - Outline.md",
+    "Absorption Integral (Using Rosei's Notations).md",
+    "interband_derivation.pdf",
+    "notes/concepts/A8 - Interband Transitions (Rosei).md",
+    "4 Misc/Bases/appendices.base",
+    "notes/concepts/Integration Limits of X & L Points vs the Center of BZ.md",
+    "4 Misc/Bases",
+    "notes/concepts/Non-equilibrium Emission in Metals.md",
+    "4 Misc/Bases/thesis.base",
+    "notes/log/Log.md",
+    "4 Misc/Bases/working-notes.base",
+    "notes/concepts/X & L Dispersion Relations.md",
+    "notes/concepts/Lifetime Broadening.md",
+    "notes/concepts/First Order TDM.md",
+    "notes/concepts/Electronic Transitions.md",
+    "notes/concepts/A7 - Intraband Transitions (Rosei).md",
+    "notes/concepts/A5 - Numeric Delta Approximation.md",
+    "notes/concepts/A4 - Electronic Density of States.md",
+    "notes/concepts/A3 - Thermal Factor Energy Space.md",
+    "notes/concepts/A2 - Derivation of Analytic Approximation.md",
+    "notes/concepts/A1 - Derivation of the General Emission Integral.md",
+    "notes/4 - Interband Transitions.md",
+    "notes/log/3.3 - Constant eDOS Approximation.md",
+    "notes/3.5 - Quadratic Band.md",
+    "notes/log/3.2 - Analytic Approximations.md",
+    "notes/temp",
+    "notes/log",
+    "notes/concepts",
+    "4 Misc/Bases/project.base",
     "references/7 - Rosei.pdf",
-    "references/ultrafast-electron-dynamics-and-optical-nonlinearities-in-metal-nanoparticles.pdf",
-    "references/rosei_text.txt",
-    "4 Misc/Excalidraw/Drawing 2026-04-27 18.16.23.excalidraw.md",
     "4 Misc/Attachments/Pasted Image 20260427181640_440.png",
-    "4 Misc/Attachments",
-    "4 Misc/Excalidraw",
-    "4 Misc",
-    "references/Photoluminescence from Metal Nanostructures - Dependence on Size.md",
     "MOC.canvas",
-    "notes/Effective Mass Extraction.md",
-    "references/Splitting of the Interband Absorption Edge in Au.md",
     "figures/gaussian_delta_convergence.png",
     "figures/constant_eDOS_heatmap.png",
-    "references/background.base",
-    "references/theory.base",
-    "references/experiment.base",
-    "references/core.base",
-    "references/Thermoradiative Power Conversion from HgCdTe Photodiodes.md",
-    "references/Ultrafast Nonlinear Dynamics of Surface Plasmon Polaritons in Gold Nanowires.md",
-    "Theory of \"Hot\" Photoluminescence from Drude Metals.md",
-    "references/Semiconductor Emission Lecture Slides.md",
-    "notes/references/DubiSivan2019HotElectronsSI.md",
-    "references/Contribution of Interband Transitions to Non-equilibrium Emission in Metals.md",
-    "references/Phonon-Assisted Optical Absorption in Silicon from First Principles.md",
-    "references/Hot Electrons in a Steady State - Interband vs Intraband Excitation of Plasmonic Gold.md",
-    "references/Fermi Golden Rule - Handwritten Notes.md",
-    "references/Distinction Between Resonance Raman Scattering and Hot Luminescence.md",
-    "references/Photoluminescence from Metal Films - Imon Presentation.md",
-    "references/Theory of Photoluminescence by Metallic Structures.md",
-    "references/Photoluminescence of Metals.md",
-    "references/Quantum-mechanical Effects in Photoluminescence from Thin Crystalline Gold Films.md",
-    "references/Principles of Nano-Optics.md",
-    "references/Assistance of Metal Nanoparticles in Photocatalysis - Nothing More Than a Classical Heat Source.md",
-    "references/Supplementary Information - Hot Electrons in Metallic Nanostructures.md",
-    "references/Hot Electrons in Metallic Nanostructures - Non-thermal Carriers or Heating.md",
-    "references/Supporting Information - Hot Photoluminescence from Drude Metals.md",
     "MOC Canvas.canvas",
     "notes/Outline & Questions/emission integral tree.canvas",
     "notes/Outline & Questions/DeepDive.canvas",
@@ -267,8 +248,6 @@
     "figures/Pasted image 20260121090737.png",
     "figures/Pasted image 20260121090715.png",
     "figures/Pasted image 20260121090651.png",
-    "figures/gaussian_delta_double_integral.png",
-    "figures/consteDOS_error_heatmaps.png",
-    "figures/analytic_error_heatmaps.png"
+    "figures/gaussian_delta_double_integral.png"
   ]
 }

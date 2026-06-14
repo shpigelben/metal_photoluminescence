@@ -1,14 +1,14 @@
 filters:
   and:
-    - section == "thesis"
+    - section == "appendix"
 properties:
   file.name:
-    displayName: Note
+    displayName: Appendix
   file.mtime:
     displayName: Modified
 views:
   - type: table
-    name: Thesis Chapters
+    name: Appendices
     order:
       - file.name
       - file.mtime
