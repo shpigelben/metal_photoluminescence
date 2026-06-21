@@ -10,5 +10,6 @@
     "**/.cache": true,
     "**/__pycache__": true,
     "**/requirements.txt": true,
+    "**/.claude": true,
   }
 }

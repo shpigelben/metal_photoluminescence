@@ -11,12 +11,12 @@
             "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "pdf",
               "state": {
-                "file": "4 Misc/Attachments/Pasted Image 20260427181640_440.png"
+                "file": "references/C - previous_pdf.pdf"
               },
-              "icon": "lucide-image",
-              "title": "Pasted Image 20260427181640_440"
+              "icon": "lucide-file-text",
+              "title": "C - previous_pdf"
             }
           }
         ]
@@ -68,13 +68,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "4 Misc/Attachments/Pasted Image 20260427181640_440.png",
+                "file": "references/C - previous_pdf.pdf",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Pasted Image 20260427181640_440"
+              "title": "Outline of C - previous_pdf"
             }
           }
         ]
@@ -97,10 +97,10 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "notes/Effective Mass Extraction.md"
+                "file": "references/C - previous_pdf.pdf"
               },
               "icon": "lucide-info",
-              "title": "File properties for Effective Mass Extraction"
+              "title": "File properties for C - previous_pdf"
             }
           },
           {
@@ -144,7 +144,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/Effective Mass Extraction.md",
+                "file": "references/C - previous_pdf.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -154,7 +154,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Effective Mass Extraction"
+              "title": "Backlinks for C - previous_pdf"
             }
           },
           {
@@ -163,20 +163,19 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "notes/Effective Mass Extraction.md",
+                "file": "references/C - previous_pdf.pdf",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Effective Mass Extraction"
+              "title": "Outgoing links from C - previous_pdf"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -196,9 +195,25 @@
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "references/ultrafast-electron-dynamics-and-optical-nonlinearities-in-metal-nanoparticles.pdf",
+    "figures/gaussian_delta_convergence.png",
+    "references/Fermi Golden Rule - Handwritten Notes.md",
+    "references/experiment.base",
+    "figures/gaussian_delta_double_integral.png",
+    "figures/edos_relative_error_default.png",
     "figures/delta_convergence_cos_L10_fine.png",
-    "figures/consteDOS_error_heatmaps.png",
     "figures/delta_convergence_cos.png",
+    "figures/consteDOS_error_heatmaps.png",
+    "figures/constant_eDOS_heatmap.png",
+    "figures/constant_eDOS_approximation.png",
+    "figures/analytic_error_heatmaps.png",
+    "figures/analytic_approximations.png",
+    "references/Principles of Nano-Optics.md",
+    "notes/concepts/A1 - Derivation of the General Emission Integral.md",
+    "notes/concepts/3 - Intraband Transitions.md",
+    "notes/concepts/2.2 - Intraband Transitions.md",
+    "notes/concepts/2.1 - General Emission Integral.md",
+    "notes/concepts/2 - Theoretical Framework.md",
     "notes/temp/Work Plan.md",
     "notes/temp/Effective Mass Extraction.md",
     "notes/temp/Dedications.md",
@@ -222,32 +237,16 @@
     "notes/concepts/A7 - Intraband Transitions (Rosei).md",
     "notes/concepts/A5 - Numeric Delta Approximation.md",
     "notes/concepts/A4 - Electronic Density of States.md",
-    "notes/concepts/A3 - Thermal Factor Energy Space.md",
-    "notes/concepts/A2 - Derivation of Analytic Approximation.md",
-    "notes/concepts/A1 - Derivation of the General Emission Integral.md",
-    "notes/4 - Interband Transitions.md",
-    "notes/log/3.3 - Constant eDOS Approximation.md",
-    "notes/3.5 - Quadratic Band.md",
-    "notes/log/3.2 - Analytic Approximations.md",
     "notes/temp",
     "notes/log",
     "notes/concepts",
     "4 Misc/Bases/project.base",
-    "references/7 - Rosei.pdf",
-    "4 Misc/Attachments/Pasted Image 20260427181640_440.png",
     "MOC.canvas",
-    "figures/gaussian_delta_convergence.png",
-    "figures/constant_eDOS_heatmap.png",
     "MOC Canvas.canvas",
     "notes/Outline & Questions/emission integral tree.canvas",
     "notes/Outline & Questions/DeepDive.canvas",
-    "figures/analytic_approximations.png",
     "notes/Outline & Questions/thoughts with Gemini/Gemini.canvas",
     "notes/Gemini.canvas/Gemini.canvas",
-    "notes/Gemini.canvas",
-    "figures/Pasted image 20260121090737.png",
-    "figures/Pasted image 20260121090715.png",
-    "figures/Pasted image 20260121090651.png",
-    "figures/gaussian_delta_double_integral.png"
+    "notes/Gemini.canvas"
   ]
 }
