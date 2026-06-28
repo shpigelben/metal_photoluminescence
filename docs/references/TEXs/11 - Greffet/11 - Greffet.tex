@@ -1,0 +1,845 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\graphicspath{ {./images/} }
+\usepackage{caption}
+
+\title{Theory of photoluminescence by metallic structures }
+
+\author{Aurelian Loirette-Pelous*, ${ }^{\dagger, \ddagger}$ and Jean-Jacques Greffet*, $\dagger$\\
+† Université Paris-Saclay, Institut d'Optique Graduate School, CNRS, Laboratoire Charles\\
+Fabry\\
+‡ Current address: Materials Physics Center, CSIC-UPV/EHU, Donostia-San Sebastián, Spain\\
+E-mail: aurelianjoan.loirettepelous@ehu.eus; jean-jacques.greffet@institutoptique.fr}
+\date{}
+
+
+%New command to display footnote whose markers will always be hidden
+\let\svthefootnote\thefootnote
+\newcommand\blfootnotetext[1]{%
+  \let\thefootnote\relax\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \let\thefootnote\svthefootnote%
+}
+
+%Overriding the \footnotetext command to hide the marker if its value is `0`
+\let\svfootnotetext\footnotetext
+\renewcommand\footnotetext[2][?]{%
+  \if\relax#1\relax%
+    \ifnum\value{footnote}=0\blfootnotetext{#2}\else\svfootnotetext{#2}\fi%
+  \else%
+    \if?#1\ifnum\value{footnote}=0\blfootnotetext{#2}\else\svfootnotetext{#2}\fi%
+    \else\svfootnotetext[#1]{#2}\fi%
+  \fi
+}
+
+\DeclareUnicodeCharacter{2020}{\ifmmode\dagger\else{$\dagger$}\fi}
+\DeclareUnicodeCharacter{2021}{\ifmmode\ddagger\else{$\ddagger$}\fi}
+\DeclareUnicodeCharacter{2207}{\ifmmode\nabla\else{$\nabla$}\fi}
+
+\begin{document}
+\maketitle
+\captionsetup{singlelinecheck=false}
+
+
+\begin{abstract}
+Light emission by metals at room temperature is quenched by fast relaxation processes. Nevertheless, Mooradian reported in 1969 the observation of photoluminescence by metals pumped by a laser. Strikingly, while it is currently at the heart of many promising applications, this phenomenon is still poorly understood. In this work, we report a theory which reproduces quantitatively previously published experimental data. We first provide a general formula that relates the emitted power for a frequency, direction and polarization state to a sum over all transitions involving matrix elements, electronic distribution of all bands and the Green tensor. We then consider the case of intraband recombination and derive a closed-form expression of the emitted power depending only on macroscopic quantities. This formula, which is a generalization of Kirchhoff's law, answers many of the open questions related to intraband photoluminescence.
+\end{abstract}
+
+\section*{Introduction}
+Photoluminescence, broadly defined as the process of light emission by a material following the absorption of an incident radiation, is a major process for light generation in physics. It is easily observable in materials with a gap such as semiconductors or dye molecules. Light emission is then due to electron-hole recombination and called fluorescence. Incandescence is an alternative light emission mechanism, that arises due to heating of the emitting material under strong illumination. An incident radiation can also produce Raman scattering, which is an ultrafast coherent process that does not involve electronic population modification.
+
+Metals are known to emit light by incandescence but fluorescence is usually quenched. Indeed, electron-electron and electron-phonon interactions provides a fast relaxation path for excited electrons. Owing to the absence of a gap, nothing prevents a full relaxation so that no light emission is observed. However, observation of photoluminescence in the visible and near infrared was reported by Mooradian in $1969 .{ }^{\underline{1}}$ This phenomenon was surprising given that metal heating was negligible in the experimental conditions. This effect is characterized by a very low quantum yield on the order of $\sim 10^{-10}, \frac{1}{1}$ that has hindered its study for decades. Nevertheless, observation of luminescence by metals is nowadays a simple task thanks to recent advances in the fabrication and characterization of single metallic nanoparticles. $\stackrel{2-44}{4}$ Due to a strong plasmonic resonance, quantum yields can be enhanced up to $\sim 10^{-5}$ -$10^{-6}, \sqrt[5]{5}$ so that photoluminescence is now a source of detrimental background signal when performing Raman scattering measurements. ${ }^{[6]}$ By contrast, photoluminescence from metallic nanoparticles has become an useful tool. For example, it enables to create new luminescent markers in biomedecine, ${ }^{[78]}$ to supervise chemical reactions ${ }^{[9 / 11}$ or to measure the temperature at the nanoscale, $\stackrel{12+19}{-19}$ among other applications.
+
+Despite a large number of studies and these practical applications, the physical origin of photoluminescence by metallic nanostructures is still under debate. ${ }^{1920}$ On the one hand, the long standing explanation in term of interband transitions $\sqrt{121} / \sqrt{23}$ is still widely accepted for emission at frequencies beyond the interband threshold. On the other hand, many evidences\\
+of emission at frequencies lower than the interband threshold have been observed in the past twenty years, $\stackrel{2|4| 6|12| 24}{27}$ revealing the necessity to consider other mechanisms. Therefore, current alternative theories focus on processes occurring within the metal conduction band. Intraband recombinations have been first proposed as the origin of the luminescence, 2 later followed by other works. $\underline{162528 \mid 29}$ However, the peculiar temperature dependence of the anti-Stokes spectrum used for thermometry was first explained by a mechanism based on electronic Raman scattering. $\stackrel{6[12 \mid 26}{ }$ Nevertheless, later theoretical work showed that the temperature dependence of the anti-Stokes spectrum can also been explained with an intraband recombination process, considering that a non-equilibrium electronic distribution is induced by the pumping. $\stackrel{30}{30}$ Finally, let us note that this theory has predicted a peculiar scaling of the emitted power with the pumping strength. $\stackrel{30}{30}$ Interestingly, recent experiments have observed this scaling, 31 giving support to the hypothesis of an intraband recombination mechanism.
+
+Leaving aside the controversy on the physical mechanism involved in photoluminescence by metals, there is still a lack of models able to predict quantitatively the emitted power. Such a model must account for two effects: a nonequilibrium electronic distribution and the emission in a metallic environment. The first theory enabling comparisons with experiments has been proposed in Ref. 27, considering a non-equilibrium hot carriers distribution and including emission from both interband and intraband electron-hole recombinations. A good agreement with experimental measurements was obtained for the Stokes part of the spectrum but the anti-Stokes part of the spectrum could not be modeled due the assumption of zero electronic temperature. This issue has been tackled in the case of intraband recombinations in Ref. 30, Yet, in both theories the metallic environment is included by inserting a photonic density of states. To date, the most elaborated theory has been proposed in Ref. 23 to model the PL of planar gold flakes. It features a calculation of the nonequilibrium electronic distribution for both intraband and interband transitions, combined with a calculation of the corresponding transition matrix elements and the calculation of the Green tensor. Yet, while a good agreement is found with experimental data for emission from interband transitions, it\\
+fails to reproduce the emission from intraband transitions. This indicates that the intraband matrix elements are not correctly taken into account or that an alternative mechanism should be introduced.
+
+Here, we introduce a quantitative theory of photoluminescence by metals that covers both intraband and interband transitions. In the particular case of intraband photoluminescence, we circumvent the calculation of matrix elements by deriving a closed-form expression which depends on the absorption cross-section. To this end, we use a statistical physics approach of light emission. The emitted power is computed from the knowledge of fluctuating currents which are included in Maxwell equations in the spirit of a Langevin model. We derive a fluctuation relation connecting the current density correlation function with the non-equilibrium electronic distribution. This formulation is exact and general but difficult to implement. In the case of intraband photoluminescence, we show that it can be drastically simplified by inserting further approximations. We manage to cast the result in the form of a generalized Kirchhoff's law so that the emitted power can be expressed as the product of the absorption cross section of the metallic nanostructure and a generalized blackbody radiance. When using non-equilibrium conduction band distributions evaluated by solving the Boltzmann equation under pumping by a continuous wave (CW) laser, we obtain analytical formulas that enable to solve many debates related to intraband CW photoluminescence. Finally, we proceed to quantitative comparisons with experimental data.
+
+\section*{Results and discussion}
+\section*{General theory}
+modeling light emission by a metallic nanostructure is a subtle issue. On the one hand, a quantum point of view is implicitly taken when referring to electron-hole recombinations. On the other hand, radiation problems associated to emitters embedded in a specific (possibly resonant) electromagnetic environment are naturally tackled in the classical framework of
+
+Maxwell equations, with electric dipoles as source terms. Hence, a quantitative theory of photoluminescence by metals must connect the classical and quantum points of view on light emission. In this section, we bridge this gap using a statistical physics theory of light emission. $\stackrel{\sqrt{32 \mid 33}}{\text { The cornerstone of this framework is the cross spectral density } W_{j^{\dagger} j}\left(\boldsymbol{r}_{1}, \boldsymbol{r}_{2}, \omega\right) \text {, }}$ that quantifies the correlation of the fluctuating current density operators $\hat{\boldsymbol{j}}$ at positions $\boldsymbol{r}_{1}$ and $\boldsymbol{r}_{2}$ and at frequency $\omega$. We will show how this quantity is connected to the two points of view underlying the emitted light. This will eventually provide a general relation connecting the emitted power with the non-equilibrium electronic distribution.
+
+First, let us remark that $W_{j^{\dagger} j}$ is the source term of the classical radiation problem involved in the light emission. Indeed, Maxwell equations connect the radiated field $\hat{\boldsymbol{E}}$ and the current density $\hat{\boldsymbol{j}}$, that can be written using the Green tensor $\boldsymbol{G}$ as $\hat{\boldsymbol{E}}(\boldsymbol{r})=i \omega \mu_{0} \int \boldsymbol{G}\left(\boldsymbol{r}, \boldsymbol{r}^{\prime}, \omega\right) \hat{\boldsymbol{j}}\left(\boldsymbol{r}^{\prime}, \omega\right) d \boldsymbol{r}^{\prime}$.
+
+We note that the Green tensor accounts for the electromagnetic environment including field enhancement and resonances. Hence, we show in Section A. of the Supporting Information that the power $d P_{e}$ emitted at a frequency $\omega$, in a solid angle $d \Omega_{r}$ centered around a position $\boldsymbol{r}$ in the far-field of a metallic structure and in a polarisation state $p$ is related to $W_{j^{\dagger} j}$ through the equation:
+
+
+\begin{equation*}
+\frac{d P_{e}}{d \Omega_{r}}\left(\omega, \boldsymbol{u}_{r}, p\right)=\sigma_{a b s}\left(\omega,-\boldsymbol{u}_{r}, p\right) \frac{\omega^{2}}{8 \pi^{3} c^{2}} \frac{W_{j^{\dagger} j}(\omega)}{2 \omega \epsilon_{0} \operatorname{Im}[\epsilon(\omega)]}, \tag{1}
+\end{equation*}
+
+
+where $\boldsymbol{u}_{r}=\boldsymbol{r} /|\boldsymbol{r}|$ is the direction of emission defined by the position $\boldsymbol{r}$, and $c$ is the vacuum speed of light. $\sigma_{a b s}\left(\omega,-\boldsymbol{u}_{r}, p^{*}\right)$ is the absorption cross section of the metallic structure, calculated for an incident plane wave of same frequency but reverse direction and polarization handedness compared to the far field plane wave emitted by photoluminescence. This quantity contains the information on the Green tensor, as shown in Section A. of the Supporting Information. Let us also point out that the presence of the absorption cross section in a calculation of light emission is a consequence of Lorentz reciprocity. ${ }^{[34]}$ The dimensionless relative permittivity of the emitting metal is noted $\epsilon(\omega, \boldsymbol{r})$. Finally, it is assumed that the metal is isotropic and homogeneous, so that $W_{j^{\dagger} j}$ and $\epsilon$ are scalars and their spatial\\
+dependence can be dropped.\\
+Second, $W_{j^{\dagger} j}$ describes the statistical behavior of the fluctuating current densities in the metal. In Section B.1. of the Supporting Information, we show that for a homogeneous and isotropic electron gas with arbitrary mean occupation number of the electronic states, the cross spectral density of the current density can be cast into the form:
+
+
+\begin{equation*}
+W_{j^{\dagger} j}(\omega)=\frac{\epsilon_{0} \omega_{p}^{2}}{m} \frac{2 \pi}{N} \sum_{n, n^{\prime}=1}^{N}\left|p_{n, n^{\prime}}\right|^{2} f_{n^{\prime}}\left[1-f_{n}\right] \delta\left(\omega-\left[\omega_{n^{\prime}}-\omega_{n}\right]\right), \tag{2}
+\end{equation*}
+
+
+where $\epsilon_{0}$ is the vacuum permittivity, $\omega_{p}$ is the metal plasma frequency, $m$ is the electron mass, $N$ is the total electron number in the metal, $n=1,2, \ldots, N$ labels the electronic states without specifying a band, $\hbar \omega_{n}$ labels their corresponding energy and $f_{n}$ their mean occupation number, while $p_{n, n^{\prime}}$ is the transition matrix element between state $n$ and state $n^{\prime}$. Importantly, let us emphasize that Eq. (2) describes the current density fluctuations in any nonequilibrium condition, i.e. the $f_{n}$ can take any value. Remarkably, in the specific case of thermodynamic equilibrium, the mean occupation number follows the Fermi-Dirac distribution, that is $f_{n}=1 /\left[\exp \left(\frac{\hbar \omega_{n}-\mu_{F}}{k_{B} T}\right)+1\right]$ where $k_{B}$ is the Boltzmann constant, $T$ is the temperature of the equilibrium electron gas and $\mu_{F}$ its Fermi level. Eq. (2) then reduces to (see Sections B.2. and B.3. of the Supporting Information):
+
+
+\begin{equation*}
+W_{j^{\dagger} j, e q}(\omega)=2 \omega \epsilon_{0} \operatorname{Im}\left[\epsilon_{e q}(\omega)\right] \frac{\hbar \omega}{\exp \left(\frac{\hbar \omega}{k_{B} T}\right)-1} \tag{3}
+\end{equation*}
+
+
+where $\epsilon_{e q}$ is the metal relative permittivity at equilibrium. Equation (3) is known as the Fluctuation-Dissipation Theorem (FDT). ${ }^{\frac{35136}{36}}$ Indeed, it connects the current fluctuations to the imaginary part of the permittivity, that quantifies how the electrons dissipate the energy provided by an external radiation. Hence, we note that the fluctuation relation Eq. (2) generalizes the FDT Eq. (3) to nonequilibrium situations. Yet, we also note that it cannot be related, in general, to $\operatorname{Im}[\epsilon]$ so that it is not a fluctuation-dissipation relation.
+
+In summary, the fluctuation relation Eq. (2) enables to establish the expected link\\
+between the quantum matter and classical radiation pictures of light emission: On the one hand, $W_{j^{\dagger} j}$ is the source term of the classical radiation problem involved in the light emission, as shown in Eq. (1). On the other hand, the right hand side of Eq. (2) clearly displays the quantum point of view through the product $f_{n^{\prime}}\left[1-f_{n}\right] \delta\left(\omega-\left[\omega_{n^{\prime}}-\omega_{n}\right]\right)$, that corresponds to the recombination probability of an electron on a state with energy $\hbar \omega_{n}+\hbar \omega$ with a hole on a state with energy $\hbar \omega_{n}$.
+
+Lastly, we insert Eq. (2) into Eq. (1), which shows that the photoluminescence power can be cast into the form:
+
+
+\begin{equation*}
+\frac{d P_{e}}{d \Omega_{r}}\left(\omega, \boldsymbol{u}_{r}, p\right)=\sigma_{a b s}\left(\omega,-\boldsymbol{u}_{r}, p^{*}\right) \frac{\omega^{2}}{8 \pi^{3} c^{2}} \frac{\omega_{p}^{2}}{2 \omega \operatorname{Im}[\epsilon(\omega)]} \frac{2 \pi}{N} \sum_{n, n^{\prime}=1}^{N}\left|p_{n, n^{\prime}}\right|^{2} f_{n^{\prime}}\left[1-f_{n}\right] \delta\left(\omega-\left[\omega_{n^{\prime}}-\omega_{n}\right]\right) \tag{4}
+\end{equation*}
+
+
+Eq. (4) is the first main result of this work. It provides a framework to calculate quantitatively the emitted power at each frequency, direction and polarization state by a metallic structure. Remarkably, Eq. (4) is of very broad generality: (i) the absorption cross section is not the absorption by a volume of the bare metal but the absorption of a system. It can be, e.g. the absorption by a metallic nanoparticle in vacuum, or the same metallic nanoparticle placed in a cavity. Hence, it takes into account the local photonic density of states in the metal. (ii) Eq. (4) was derived for a stationary excitation. Yet, it can also be used for incident pulses under a quasistationary approximation using a time-dependent electronic population and permittivity. (iii) Similarly, metal inhomogeneities can be accounted for using a position-dependent absorption cross section density, $\underline{37}$ electronic population and permittivity. (iv) Light emission can be calculated with Eq. (4) for nonequilibrium electrons. Hence, it entails light emission by metallic bodies possibly driven out-of-equilibrium by an external (pulsed or continuous) pumping. (v) Eq. (4) encompasses both intraband and interband photoluminescence, as no hypothesis on the type of transitions has been made at this point.
+
+\section*{Generalized Kirchhoff's law for emission from intraband transitions}
+Modeling photoluminescence by metallic structures with Eq. (4) requires the knowledge of the band structure and of the transition matrix elements of the metal. While the derivation of these microscopic quantities has been performed in several publications, $\stackrel{23138}{41}$ it demands complex and cumbersome numerical investigations. In this section, we specifically focus on emission arising from intraband transitions and introduce an approximation that circumvent this difficulty, enabling to compute the emitted power knowing the absorption cross section.
+
+We start by assuming that the density of states of the conduction electrons, as well as the transition matrix elements corresponding to intraband transitions are constant over the electronic states, and equal to their value at the metal Fermi level. Let us note that this approximation is usually justified in calculations of the absorption by metals in the mid/far IR range, $\frac{\sqrt{42|43|}}{\text { but requires more investigations in the visible/near-IR range that are out of the }}$ scope of this work. Here, we will instead evaluate the impact of the approximation in the next section through comparison with experiments. We also assume that the mean occupation numbers $f_{n}$ of the conduction band electronic states follow a well defined distribution $f(E)$ that only depends on energy $E$. These hypotheses eventually enable to cast the fluctuation relation Eq. (2) into the form (see Section C. of the Supporting Information for a detailed derivation):
+
+
+\begin{equation*}
+W_{j^{\dagger} j}^{i n t r a}(\omega)=2 \epsilon_{0} \omega \operatorname{Im}\left[\epsilon_{e q}^{i n t r a}(\omega)\right] \times \Theta^{i n t r a}(\omega) \tag{5}
+\end{equation*}
+
+
+where $\epsilon_{e q}^{i n t r a}$ is the relative permittivity of the metal at equilibrium and limited to intraband transitions, and where:
+
+
+\begin{equation*}
+\Theta^{i n t r a}(\omega)=\int f(E+\hbar \omega)[1-f(E)] d E \tag{6}
+\end{equation*}
+
+
+corresponds to the integral of the electron-hole recombination probabilities associated to indirect transitions of frequency $\omega$ in the conduction band. Let us emphasize that $f(E)$\\
+can be any arbitrary distribution. Hence, Eqs. (5), (6) appears as a generalization of the Fluctuation-Dissipation theorem Eq. (3) to out-of-equilibrium statistics of conduction band electrons.
+
+Finally, as long as nonequilibrium effects yield a small deviation of the imaginary part of the metal permittivity from the equilibrium one, inserting Eq. (5) into Eq. (1) enables to cast the expression of the emitted power into the form:
+
+
+\begin{equation*}
+\frac{d P_{e}}{d \Omega_{r}}\left(\omega, \boldsymbol{u}_{r}, p\right)=\sigma_{a b s}^{i n t r a}\left(\omega,-\boldsymbol{u}_{r}, p^{*}\right) \frac{\omega^{2}}{8 \pi^{3} c^{2}} \Theta^{i n t r a}(\omega) \tag{7}
+\end{equation*}
+
+
+where $\sigma_{a b s}^{\text {intra }}=\left(\operatorname{Im}\left[\epsilon_{e q}^{\text {intra }}\right] / \operatorname{Im}\left[\epsilon_{e q}\right]\right) \times \sigma_{a b s}$ is the part of the total absorption that is due to intraband transitions.
+
+Eqs. (5), (7) constitute the second main result of this work. We now discuss further their properties. Firstly, it is remarkable that at thermodynamic equilibrium, Eq. (5) coincides with the equilibrium Fluctuation-Dissipation theorem Eq. (3), and $\omega^{2} /\left(8 \pi^{3} c^{2}\right) \times \Theta^{\text {intra }}(\omega)$ yields the Planck's law. Eq. (7) then reproduces the so-called Kirchhoff's law, $37 / 44$ that is the basic tool to model thermal radiation. Hence, Eqs. (7), (6) identifies as a generalization of Kirchhoff's law to metals featuring an arbitrary conduction band electron distribution.
+
+Secondly, as for the equilibrium Kirchhoff's law, let us stress that our approach is based on statistical physics. Hence, the detailed knowledge about the microscopic transition processes (phonon-assisted transitions, electron-assisted transitions etc...), as well as their respective weighting in the emission is not necessary. Instead, it is fully taken into account within macroscopic quantities: (i) the permittivity of the emitting metal, that underlies the absorption cross section; (ii) the distribution of the electrons in the conduction band.
+
+Thirdly, as it only requires the knowledge of macroscopic quantities, the generalized Kirchhoff's law Eqs. (7), (6) turns out to be way simpler to use than Eq. (4): (i) The electronic distributions can be routinely calculated with satisfying accuracy solving the Boltzmann equation in the relaxation time approximation. 434547 (ii) The absorption cross sections $\sigma_{a b s}$ of the metallic nanostructure can be computed with Maxwell's solvers. Further, the ab-\\
+sorption cross section contains all the information on the plasmon resonance that shapes the emission spectrum, directivity and polarization; the electronic distribution contains all the information on the excitation frequency and, if defined, on the temperature.
+
+\section*{Application to emission arising from intraband transitions in the CW pumping regime}
+\section*{Generalized Kirchhoff's law under CW pumping}
+We now focus on the intraband photoluminescence of single metallic nanoparticules illuminated by a CW pumping laser. This pumping scheme has been experimentally studied by many groups, so that it represents a convenient testbed for our generalized Kirchhoff's law. In particular, these efforts have resulted in an empirical guess for the emitted power: $\stackrel{19}{19}$
+
+
+\begin{equation*}
+\frac{d P_{e}}{d \Omega_{r}}(\omega) \propto S_{L P R}(\omega) F\left(\hbar \omega-\hbar \omega_{L}, T\right) I_{L} \tag{8}
+\end{equation*}
+
+
+where $S_{L P R}$ is the localized plasmon resonance lineshape, $F(\hbar \omega, T)$ is a function of the frequency and temperature, $\omega_{L}$ is the frequency of the pump laser and $I_{L}$ its intensity at the sample position. However, several aspects of this empirical expression are still under debate. First, we note that $S_{L P R}$ has been modeled so far by the scattering cross section ${ }^{\sqrt{16}}$ or by a quantity related to the local density of photonic states. ${ }^{[27]}$ Instead, Ref. 19 suggested that the absorption cross section should be rather used. Similarly, $F(\hbar \omega, T)$ is the BoseEinstein distribution for some authors ${ }^{[12] 14|17| 18}$ and the Fermi-Dirac distribution reduced to its Boltzmann component for others. ${ }^{[16] 48]}$ Accordingly, $T$ has been proposed to be the temperature of the metal lattice (that is of phonons) in the former case and that of the electron gas in the latter. In this section, we compare Kirchhoff's law Eqs. (7), (6) to Eq. (8) and address the open questions discussed above.
+
+To start, let us note that CW pumping induces a stationary nonequilibrium electron distribution, whose shape is schematically depicted on the right side of Fig. 1. It is seen
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{c69a44df-5ad2-48c8-bd83-4af8ee7a999a-11_1103_1606_423_244}
+\captionsetup{labelformat=empty}
+\caption{Figure 1: Nonequilibrium electron-hole recombination (left) and nonequilibrium electron distribution under $C W$ pumping (right). In both panels, the Fermi level is depicted by the horizontal, black dashed line at energy $\mu_{F}$. Right panel: low energy electrons are promoted to states over the Fermi level by absorption of photons with frequency $\omega_{L}$ from the pumping beam. Accumulation of these hot electrons and their corresponding hot holes is limited by relaxation toward equilibrium, mainly due to electron-electron interaction. In the stationary regime, the competition between excitation and relaxation yields a steady population of hot electrons and holes (red line) with respective occupation probability $K_{n}$ and $1-K_{n}$. Left panel: scheme of two electron-hole (e-h) recombinations events, one above the Fermi level and one below, that are enabled by the nonequilibrium distribution of the electrons. The corresponding state occupation probabilities are indicated by the blue dotted lines. Note that an exaggerated value of $K_{n} \sim 0.2$ has been used to simplify the illustration, when realistic values are $K_{n} \sim I_{L} /\left(10^{11} \mathrm{~W} . \mathrm{cm}^{-2}\right)$ with $I_{L}$ the pumping intensity at sample. See Methods for the analytical form of the nonequilibrium distribution and for the interpretation of $K_{n}$.}
+\end{center}
+\end{figure}
+
+that the nonequilibrium pattern consists in the creation of hot electron and hot hole populations, respectively above and below the Fermi level, with occupation probabilities orders of magnitudes higher compared to equilibrium (though its actual value is exaggerated on the figure for the sake of clarity). Interestingly, an analytical expression of this distribution has been derived in Refs. 30, 47, using the Boltzmann equation in the relaxation time approximation (see Methods). In Section D. of the Supporting Information, we use this expression to perform the integral $\Theta^{\text {intra }}$ in Eq. (6). Inserting the result into Eq. (7), the emitted power under continuous laser illumination at frequency $\omega_{L}$ can be cast into the form:
+
+
+\begin{equation*}
+\frac{d P_{e}}{d \Omega_{r}}\left(\omega, \boldsymbol{u}_{r}, p\right)=\sigma_{a b s}^{i n t r a}\left(\omega,-\boldsymbol{u}_{r}, p^{*}\right) \frac{\omega^{2}}{8 \pi^{3} c^{2}} \frac{2\left(\hbar \omega-\hbar \omega_{L}\right)}{\exp \left(\frac{\hbar \omega-\hbar \omega_{L}}{k_{B} T_{e}}\right)-1} \frac{\hbar \omega_{L}}{\hbar \omega} K_{n}^{e f f} \tag{9}
+\end{equation*}
+
+
+where $k_{B}$ is the Boltzmann constant, $T_{e}$ is the conduction electron temperature, that can be defined rigorously due to the weakness of the nonequilibrium effects (see Methods and Ref. 47), and where the dimensionless parameter $K_{n}^{e f f}$ is proportional to the rate of absorbed photons:
+
+
+\begin{equation*}
+K_{n}^{e f f} \propto \frac{\sigma_{a b s}^{i n t r a}\left(\omega_{L}, \boldsymbol{u}_{L}, p_{L}\right) I_{L}}{\hbar \omega_{L}} \tag{10}
+\end{equation*}
+
+
+where $\boldsymbol{u}_{L}, p_{L}$ and $I_{L}$ are, respectively, the direction, the polarization and the intensity at sample of the pumping beam. The full expression of $K_{n}^{e f f}$, given in Methods, shows that it can be identified as an effective Knudsen number and that it does not depend significantly on the emission frequency and electronic temperature.
+
+We can now compare Kirchhoff's law Eq. (9) to the empirical guess Eq. (8). Remarkably, we observe that the three terms in the empirical guess are recovered and unambiguously identified in Kirchhoff's law. First, Kirchhoff's law states that the localized plasmon resonance lineshape is given by the product of the absorption cross section by the vacuum mode density, that is $S_{L P R}(\omega)=\sigma_{a b s}^{\text {intra }, e q}(\omega) \times \omega^{2} / 8 \pi^{3} c^{2}$. This is an important result, as the shape of the absorption cross section usually differs from the one of the easily measurable scattering\\
+cross section, especially for large particles when the electrostatic approximation fails or for complex structures involving several resonances. In particular, we note that our finding is corroborated by Ref. 49 where the PL spectra of Au sphere dimers were shown to resemble more closely the absorption spectra than the scattering spectra. Moreover, let us note that a resonance of the absorption cross section is blueshifted by the $\omega^{2}$ dependence of the vacuum mode density. This may explain the reproducible blueshift observed, e.g., in Ref. 50,
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{c69a44df-5ad2-48c8-bd83-4af8ee7a999a-13_974_1151_760_487}
+\captionsetup{labelformat=empty}
+\caption{Figure 2: Comparison between the function $F\left(\hbar \omega-\hbar \omega_{L}, T_{e}\right) / 2($ red line $)$ and a Bose-Einstein distribution with enforced positive frequency $\left|\omega-\omega_{L}\right|$ (blue line). Parameters: $T_{e}=293 \mathrm{~K}$, $\hbar \omega_{L}=1.58 \mathrm{eV}$ (i.e. $\lambda_{L}=785 \mathrm{~nm}$ ).}
+\end{center}
+\end{figure}
+
+Second, Kirchhoff's law states that $F\left(\hbar \omega-\hbar \omega_{L}, T_{e}\right)=2\left(\hbar \omega-\hbar \omega_{L}\right) /\left[\exp \left(\frac{\hbar \omega-\hbar \omega_{L}}{k_{B} T_{e}}\right)-1\right]$, as previously identified in Ref. 30, Interestingly, there is a Bose-Einstein function in $F(\hbar \omega- \hbar \omega_{L}$ ). In the anti-Stokes part of the spectrum, this function enables to recover the exponential scaling $d P_{e} / d \Omega_{r}(\omega) \propto \exp \left(-\hbar \omega / k_{B} T_{e}\right)$ observed in experiments and used in the anti-Stokes thermometry technique. $\stackrel{12}{19}$ By contrast, close to $\hbar \omega=\hbar \omega_{L}$, the shape of the Bose-Einstein distribution is deeply modified by the factor $\hbar \omega-\hbar \omega_{L}$, that turns the divergence of the\\
+distribution into a smooth concave curve, as shown on Fig. 2. This behavior is in agreement with experiments, see, e.g., Ref. 51 in which the spectrum around $\hbar \omega_{L}$ is finely probed using an ultra-narrow bandwidth notch filter.
+
+Further, we stress that the Bose-Einstein function does not originates from a distribution of phonons. On the contrary, it only stems from the electronic distributions product in Eq. (6), as shown in Section D. of the Supporting Information. This is the reason why the Bose-Einstein distribution is ruled by the temperature of the conduction electrons. This means that the temperature measured through anti-Stokes thermometry is the electronic temperature, that may differ from the targeted lattice temperature.
+
+Third, the linear scaling of the Stokes spectrum with the pump intensity is recovered in Kirchhoff's law through the term $K_{n}^{e f f}$ (see Eq. (10)). In our theory, this term arises from the scheme depicted on Fig. 1, plasmons and/or photons are absorbed by the metal, that creates "hot" electrons and "hot" holes populations, as shown on the nonequilibrium distribution on the right panel of the figure. Above the Fermi level, a hot electron then recombines with a hole, that emits a plasmon or a photon. The reverse process involving a hot hole is also possible under the Fermi level. Hence, the overall scheme is based on a one-photon absorption process.
+
+In summary, the considerations above show that Kirchhoff's law Eq. (9) enables to recover the empirical guess Eq. (8) and to solve most of the open questions related to this empirical form.
+
+\section*{Quantitative comparisons between theory and experiments}
+We now turn to a quantitative comparison of the theory with experiments. First, we show on Fig. 3 (a-d) comparisons between gold nanorods emission spectra measured experimentally (red lines) and simulated with Kirchhoff's law (black dotted lines). The position of the pumping wavelength ( 785 nm ) with respect to the longitudinal plasmon resonance enables to focus either on the Stokes spectrum (panel (a)) or on the exponentially decaying part
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{c69a44df-5ad2-48c8-bd83-4af8ee7a999a-15_1452_1636_330_244}
+\captionsetup{labelformat=empty}
+\caption{Figure 3: Comparisons between experimental photoluminescence spectra (PL) of gold nanorods (red lines) and simulations with Kirchhoff's law (black dotted lines), under CW pumping at 785 nm . Kirchhoff's law Eq. (9) is used in panels (a-d), while Eq. (11) is used in panels (e-f). Panel (a): nanorod with longitudinal plasmon resonance at 871 nm (measured in dark-field scattering) and dimensions $18.2 \mathrm{~nm} \times 85 \mathrm{~nm}$ (measured with SEM). Reprinted with permission from Ref. 27, Panels (b-f): nanorod with longitudinal plasmon resonance at 734 nm and dimensions $25 \mathrm{~nm} \times 79 \mathrm{~nm}$, illuminated with an intensity at sample $I_{L}=0.37 \mathrm{MW} . \mathrm{cm}^{-2}$ for panels (b-e), and $I_{L}=1.30 \mathrm{MW} . \mathrm{cm}^{-2}$ for panels (d) and (f). The electronic temperature is the only fit parameter and is indicated on the panels. Panel (b) shows same data as panels (c) and (e), but focuses only on the anti-Stokes part of the spectrum and is plotted on semilogarithmic scale. Reprinted with permission from Ref. 16. Details on the fitting procedure are provided in Methods.}
+\end{center}
+\end{figure}
+
+of the anti-Stokes spectrum (panel (b)). In both panels, it is seen that the agreement between theory and experimental data is satisfying. Next, panels (c) and (d) show emission spectra spanning both the Stokes and anti-Stokes sides of the spectrum. Also, these spectra are obtained from the same gold nanorod for two different pumping intensities. It is seen that it induces substantial spectral changes. Adjusting the electronic temperature $T_{e}$, these spectral changes are well reproduced by the simulations at short wavelengths. Interestingly, it suggests that these changes originate from an increase of the electronic temperature due to the higher pumping intensity. However, it is also seen in both panels that an agreement between theory and experiment cannot be found on the whole spectrum. This points out a limitation of Kirchhoff's law in the form of Eq. (9) that will be addressed in the following subsection.
+
+Second, let us stress that the theory presented in this work enables for the first time to calculate quantitatively the PL quantum yield. For a gold nanorod pumped continuously at 785 nm and with longitudinal plasmon resonance around 860 nm , corresponding to the experimental conditions of Fig. 3 (a), we calculate in Methods a theoretical quantum yield $\eta_{\text {sim }} \sim 1.3 \times 10^{-7}$. Experimentally, the corresponding quantum yield has been estimated to be $\eta_{\text {exp }} \sim 1.5 \times 10^{-6}$ in Ref. 27. While these values do not show a perfect agreement, they remain relatively close to each other. Hence, this shows that light emission through intraband transitions has a high quantum yield and is likely to be a dominant process in PL from metals. This also calls for further refinements of the theory in order to reach a better agreement.
+
+\section*{Phenomenological Kirchhoff's law}
+In the previous section, we observed that Kirchhoff's law Eq. (9) reproduces the emission spectrum for short wavelengths but fails for larger wavelengths. Here, we introduce a phenomenological correction to Eq. (9) that enables to solve this issue.
+
+Let us consider here the phenomenological generalization of Kirchhoff's law in the CW\\
+pumping regime:
+
+
+\begin{equation*}
+\frac{d P_{e}}{d \Omega_{r}}\left(\omega, \boldsymbol{u}_{r}, p\right)=\sigma_{a b s}^{i n t r a}\left(\omega,-\boldsymbol{u}_{r}, p^{*}\right) \frac{\omega^{2}}{8 \pi^{3} c^{2}} \times C \frac{\arctan \left(\frac{\hbar \omega-\hbar \omega_{L}}{k_{B} T_{e}}\right)}{\exp \left(\frac{\hbar \omega-\hbar \omega_{L}}{k_{B} T_{e}}\right)-1} \tag{11}
+\end{equation*}
+
+
+where $C$ is a constant. We show on Fig. 3 (e),(f) a comparison between this model and the experimental data. The agreement is now satisfying on the whole spectrum in both cases. Remarkably, these fits are achieved using the same simulated absorption cross section, only moderately increasing the electronic temperature $T_{e}$ as the pumping intensity is raised. We provide further support to the validity of Eq. (11) in Section E. of the Supporting Information. In addition, although our derivation of Eq. (9) and then Eq. (11) has been restricted to intraband transitions, we have used it to compare with PL spectra obtained using pumping above the interband threshold, so that interband transitions are expected to play a dominant role. It is seen on Figs. S. 2 and S. 3 of the Supporting Information that the theory is in good agreement with the experimental measurements. This suggests that a theory for the emission from interband transitions can be cast into a formula resembling to Eq. (11).
+
+In summary, the comparisons presented in this section suggest that Eq. (11) is a powerful tool with only one free parameter ( $T_{e}$ ) to predict the emission spectrum of metallic structures pumped in the CW regime. In addition, let us note that Eq. (11) has the same overall form as the generalized Kirchhoff's law Eq. (7). Interestingly, this could mean that the missing ingredients to explain the origin of the arctan function in Eq. (11) may be related to the nonequilibrium electronic function $f$ rather than to the approximations underlying Kirchhoff's law Eq. (7). This calls for more detailed investigations of the non-equilibrium CW electronic distribution.
+
+\section*{Conclusion}
+In summary, we have introduced a model of photoluminescence by metallic structures based on a statistical physics approach circumventing the calculation of microscopic quantities.
+
+We first derived a nonequilibrium fluctuation relation Eq. (2) which relates the current density correlation function with the nonequilibrium electronic distribution. This relation is instrumental in connecting the electron-hole recombination picture of light emission with the Maxwell point of view based on radiation by time-dependent currents. Equipped with this fluctuation relation, we derived the general relation Eq. (4) between the power radiated and the nonequilibrium electronic distribution. This relation shows that the absorption cross section can be used to capture the spectral and directional shaping of the emitted light. The full calculation requires a sum over all the transitions including the corresponding populations and matrix elements.
+
+To bypass this cumbersome microscopic approach, we derived in Eq. (5) a nonequilibrium fluctuation-dissipation relation for intraband transitions. It enabled to establish in Eq. (7) a closed-form expression of the emitted power. This form requires only the knowledge of the nonequilibrium macroscopic absorption cross section and the electronic distribution.
+
+When applied to continuous wave pumping, this theoretical approach recovers the main features of an ansatz used in the literature to analyze the experiments. It enables to resolve several open questions. It also gives a quantitative model of many different published experiments.
+
+This approach has the structure of a generalized Kirchhoff law. We have found that while it is has been derived for intraband transitions, it also enables to reproduce experimental data attributed to interband transitions. This suggests that our derivation of the fluctuation relation and Kirchhoff's law could be extended to interband transitions. This is left for future work. Another natural extension of this work is photoluminescence induced by short pulses with high intensities. In this case, the strong time dependence of the absorptivity due to band filling effects should be included in the generalized Kirchhoff law. We hope\\
+that this analytical model of photoluminescence will prove useful to optimize the different applications already demonstrated.
+
+\section*{Methods}
+\section*{Nonequilibrium electron distribution under CW pumping and Knudsen number}
+We plotted the shape of the nonequilibrium electron distribution under CW pumping on Fig. 1 (right panel, red line). To this end, we used the analytical expression of the conduction electrons distribution under continuous wave pumping $f_{c w}$ that has been derived in Refs. 30,47, solving the steady-state Boltzmann equation in the relaxation time approximation for the electron-electron collision rate:
+
+
+\begin{equation*}
+f_{c w}\left(E, T_{e}\right)=f_{F D}\left(E, T_{e}\right)+K_{n}\left(E, T_{e}\right) \times\left[f_{F D}\left(E-\hbar \omega_{L}, T_{e}\right)+f_{F D}\left(E+\hbar \omega_{L}, T_{e}\right)-2 f_{F D}\left(E, T_{e}\right)\right] \tag{12}
+\end{equation*}
+
+
+with the shorthand:
+
+
+\begin{equation*}
+K_{n}\left(E, T_{e}\right)=\frac{4 I_{L} \sigma_{a b s}\left(\hbar \omega_{L}, p_{L}\right) \tau_{e e}\left(E, T_{e}\right)}{\left[\hbar \omega_{L}\right]^{2} \rho_{c}(E)} \tag{13}
+\end{equation*}
+
+
+where $E$ stands for the electron energy, $T_{e}$ the electronic temperature, $f_{F D}\left(E, T_{e}\right)= 1 /\left[\exp \left(\frac{E-\mu_{F}}{k_{B} T_{e}}+1\right]\right.$ is the Fermi-Dirac distribution with $\mu_{F}$ the metal Fermi level and $k_{B}$ the Boltzmann constant, $I_{L}, \omega_{L}$ and $p_{L}$ are respectively the intensity, the frequency and the polarization state of the pump beam, $\tau_{e e}$ is the relaxation time associated to electronelectron collisions and $\rho_{c}$ is the density of electronic states in the conduction band. In transport theory, the dimensionless parameter $K_{n}$ is called Knudsen number, and quantifies the competition between equilibrium and out-of-equilibrium driving mechanisms. In particular, $K_{n}$ is the ratio of two characteristic times: (i) $\tau_{e e}(E)$ which is the lifetime of an electron with energy $E$ before it relaxes due to electron-electron collisions, and (ii)\\
+$\left[\hbar \omega_{L}\right]^{2} \rho_{c}(E) / 4 I_{L} \sigma_{a b s}\left(\hbar \omega_{L}, p_{L}\right)$ which is the time interval between two consecutive photon absorption events promoting an electron on a final state with energy $E$. Further, it was shown in Refs. 30,52 that $K_{n} \sim I_{L} /\left(10^{11}\right.$ W. $\left.\mathrm{cm}^{-2}\right)$, so that $K_{n} \ll 1$ in experimental conditions. Hence, the nonequilibrium correction to the equilibrium distribution is weak and perturbative, so that the electronic temperature $T_{e}$ can still be rigorously defined. ${ }^{47}$ In addition, let us note that electron-phonon collisions are neglected in Eq. (12), which is valid provided $\left|E-\mu_{F}\right| \gg k_{B} T_{e} .{ }^{30}$ Also note that in Fig. 1 we neglected the dependence of $K_{n}$ on energy $E$ and used an exaggerated value $K_{n} \sim 0.2$ to simplify the illustration. Finally, we used in Eq. (10) an effective Knudsen number, that is related to the above Knudsen number as (see Section D. of the Supporting Information):
+
+
+\begin{equation*}
+K_{n}^{e f f}=K_{n}\left(E=\mu_{F}, T_{e}\right) \times\left[\frac{\pi k_{B} T_{e}}{\hbar \omega_{L}}\right]^{2}=\frac{4 I_{L} \sigma_{a b s}\left(\hbar \omega_{L}, p_{L}\right)}{W_{e e} \rho_{c}\left(\mu_{F}\right)\left[\hbar \omega_{L}\right]^{4}} \tag{14}
+\end{equation*}
+
+
+where $W_{e e}$ is a characteristic electron-electron scattering constant (see Section D. of the Supporting Information). The right hand side of this equation further shows that $K_{n}^{e f f}$ is independent on the electron temperature $T_{e}$.
+
+\section*{Numerical procedure for simulations with Kirchhoff's law}
+We first simulate the scattering cross section corresponding to the metallic structures under study, using the structure dimensions measured experimentally by scanning electron microscopy (SEM). All simulations are carried out with a home-build Maxwell solver based on the Finite Element Method. When possible, we compare the scattering cross section to the experimental dark-field scattering spectra, and adjust the structure dimensions in order to improve their matching. As shown in Fig. 4, a nearly perfect agreement can be found within a sub-nanometer variation of the dimensions for the nanorods studied in Fig. 3 of the main text. We note that our simulations account for the presence of a substrate, so that the experimental conditions are accurately reproduced. In addition, in the simulations illumina-
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{c69a44df-5ad2-48c8-bd83-4af8ee7a999a-21_1058_981_603_573}
+\captionsetup{labelformat=empty}
+\caption{Figure 4: Comparison between the experimental dark-field scattering spectra (red lines) and the simulated scattering cross sections (dark dashed lines) of the gold nanorods studied in Fig. 3 in the main text. Panel (a): nanorod with longitudinal plasmon resonance at 871 nm (Ref. 27). Dimensions measured with SEM are $18.2 \mathrm{~nm} \times 85 \mathrm{~nm}$. Adjusted dimensions $18.1 \mathrm{~nm} \times 85.7 \mathrm{~nm}$ are used in the simulation, as well as an absorption enhancement factor $C_{\text {abs }}=1.2$. Panel (b): nanorod with longitudinal plasmon resonance at 734 nm (Ref. 16). Dimensions measured with SEM are $25 \mathrm{~nm} \times 79 \mathrm{~nm}$. Adjusted dimensions $25 \mathrm{~nm} \times 78.3$ nm are used in the simulation, as well as an absorption enhancement factor $C_{a b s}=1.0$. A Quartz substrate with refractive index 1.4536 has been taken into account.}
+\end{center}
+\end{figure}
+
+tion is modeled by a plane wave at normal incidence with respect to the substrate. While experimental platforms may use a condenser so that the beam impinges on the nanoparticle with some angle, Fig. 4 shows that it does not introduce any flaw. We eventually note that the (normalized) dark-field scattering spectrum and the scattering cross section are defined a bit differently (since the total light collected in the former is reduced compared to the latter due to a limited objective aperture in experiments), but this also does not introduce discrepancies. Finally, we used the values of Ref. 53 for the gold permittivity. In order to improve the fit quality, the imaginary part of the gold permittivity has been multiplied by a dimensionless factor $C_{a b s}>1$ in some simulations. Indeed, the presence of defects and edges in the narrow nanorods modeled in this work may enhance the absorption processes in the metal, and hence the imaginary part of the permittivity. $\sqrt[33]{ }$
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{c69a44df-5ad2-48c8-bd83-4af8ee7a999a-22_570_1149_1175_489}
+\captionsetup{labelformat=empty}
+\caption{Figure 5: Numerical calculation of the absorption cross section normalized to maximum. The red line shows a calculation taking into account the full numerical aperture of the microscope objective used to collect the emitted light in the experiments (N.A. $=0.8$ ). The dark dotted line shows calculation only at normal incidence with respect to the substrate. The metallic structure used in the calculations correspond to the one whose scattering cross section is shown on Fig. 4 (a) and PL is shown on Fig. 3 (a).}
+\end{center}
+\end{figure}
+
+Once the above adjustments are made, the absorption cross section (ACS) of the metallic structure is computed with the same Maxwell solver. On Fig. 5, we show an example of comparison between the normalized ACS calculated at normal incidence with respect to the substrate (dark dotted line) and the normalized ACS calculated taking into account\\
+the numerical aperture of the microscope objective used to collect the emitted light in the experiments (red line). No difference can be seen between both quantities, so that the former has been used in the simulations presented in this work (except to calculate the quantum yield in the next section where the full measured signal is needed). We further repeat the calculation of the ACS for orthogonal polarizations. Nevertheless, let us note that absorption in the polarization perpendicular to the nanorods investigated here is negligible. Finally, we stress that only the absorption due to intraband recombinations is to be considered in Fig. 3 of the main text and Fig. S. 1 of the Supporting Information. We note that this condition is fulfilled since the contribution from interband recombinations to the imaginary part of the permittivity of gold and silver is negligible in the wavelength ranges studied here.
+
+\section*{Calculation of the quantum yield in the CW pumping regime with}
+\section*{Kirchhoff's law Eq. (9)}
+Here, we use Kirchhoff's law Eq. (9) to calculate the PL quantum yield of the gold nanorod whose PL is shown on Fig. 3 (a) of the main text. The theoretical quantum yield $\eta_{\text {sim }}$ is evaluated from the power spectrum $d P / d \Omega_{r}\left(\omega, \boldsymbol{u}_{r}, p\right)$ as:
+
+
+\begin{equation*}
+\eta_{s i m}=\frac{\sum_{p} \int_{\omega_{\min }}^{\omega_{\max }} d \omega \int_{\mathrm{N} . \mathrm{A} .} d \Omega_{r}\left(\boldsymbol{u}_{r}\right) \frac{d P}{d \Omega_{r}}\left(\omega, \boldsymbol{u}_{r}, p\right)}{\sigma_{a b s}\left(\omega_{L}, \boldsymbol{u}_{L}, p_{L}\right) I_{L}} \tag{15}
+\end{equation*}
+
+
+where $\omega_{\text {min } / \text { max }}$ indicates the minimal and maximal frequencies over which the PL signal is integrated, N.A. indicates that the integration runs over the solid angle within the Numerical Aperture of the microscope collecting the PL signal and $\omega_{L}, \boldsymbol{u}_{L}, p_{L}, I_{L}$ are respectively the frequency, the direction, the polarization and the intensity at sample of the pumping laser.
+
+In the CW regime, inserting Eq. (9) and Eq. (14) into the above equation yields:
+
+
+\begin{align*}
+\eta_{s i m}=\frac{4}{W_{e e} \rho_{c}\left(\mu_{F}\right)\left[\hbar \omega_{L}\right]^{4}} \int_{\omega_{\min }}^{\omega_{\max }} d \omega & {\left[\sum_{p} \int_{0}^{\theta_{\text {N.A. }}} \sin (\theta) d \theta \int_{0}^{2 \pi} d \phi \sigma_{a b s}^{i n t r a}\left(\omega, \theta, \phi, p^{*}\right)\right] }  \tag{16}\\
+& \times \frac{\omega^{2}}{8 \pi^{3} c^{2}} \frac{2\left(\hbar \omega-\hbar \omega_{L}\right)}{\exp \left(\frac{\hbar \omega-\hbar \omega_{L}}{k_{B} T_{e}}\right)-1} \frac{\hbar \omega_{L}}{\hbar \omega}
+\end{align*}
+
+
+where we used the spherical coordinate angles $\theta$ and $\phi$ to parameterize the emission angle ( $\theta$ being defined from the normal direction with respect to the substrate). We then use the following numerical values that are representative of the experimental conditions of Ref. 27; (i) $W_{e e}=0.01135 \mathrm{eV}^{-2} . \mathrm{fs}^{-1}, \unlhd^{1}$ (ii) $\rho_{c}\left(\mu_{F}\right)=\left[V / 2 \pi^{2}\right] \times\left[2 m_{e} / \hbar^{2}\right]^{3 / 2} \times \sqrt{\mu_{F}}$ in the parabolic approximation for the conduction band, with $V=\pi \times 9.1^{2} \times 85 \mathrm{~nm}^{3}, \frac{27}{27} m_{e}$ the electron mass and $\mu_{F}=5.5 \mathrm{eV},{ }^{[42}$ (iii) $\hbar \omega_{L}=1.58 \mathrm{eV}, \omega_{\text {min }}=1.24 \mathrm{eV}$ and $\omega_{\text {max }}=1.57 \mathrm{eV},{ }^{27}$ (iv) $\theta_{\text {N.A. }}=\arcsin (0.8),{ }^{27}(\mathrm{v}) T_{e}=293 \mathrm{~K}$. Using these values and calculating numerically the absorption cross section according to the procedure described in the last section, we obtain the theoretical estimate of the quantum yield:
+
+
+\begin{equation*}
+\eta_{s i m} \sim 1.3 \times 10^{-7} \tag{17}
+\end{equation*}
+
+
+\section*{Acknowledgement}
+We thanks M. Besbes for assistance with finite element simulations, as well as Y. Cai, J. Tauzin and S. Link for sharing with us their experimental data. This work was supported by Agence Nationale de la Recherche (GYN project ANR-17-CE24-0046).
+
+\footnotetext{${ }^{1}$ This value enables the best fit with Eq. (S.39) of the function used in Ref. 30: $\tau_{e e}(E)=e^{\frac{1}{a+b\left(E-\mu_{F}\right)}}$ with $a=0.08585$ and $b=0.1278 \mathrm{eV}^{-1}$ in the range $1.24-1.57 \mathrm{eV}$.
+}\section*{Supporting Information Available}
+\section*{A. Statistical physics model of light emission by a reciprocal medium}
+In this section, we introduce the key elements of a statistical physics model of light emission by a reciprocal medium. In particular, we link the electromagnetic power radiated by a metallic structure to the cross spectral density of its electronic current density. We also show that accounting for Lorentz reciprocity enables to reformulate the radiation problem into a practical form using the absorption cross section.
+
+\section*{A.1. Linking the emitted power spectrum to the cross spectral density of the electronic current density}
+Let us consider an emitting metallic structure, with a basis centered somewhere in the structure. We focus on an observation point $\boldsymbol{r}$ in the far field. The corresponding emission direction is defined by the unit vector $\boldsymbol{u}_{r}=\boldsymbol{r} /|\boldsymbol{r}|$. The power $d P_{e}(t, \boldsymbol{r}, p)$ emitted by the metallic structure at time $t$, in a polarization state $p$ and measured by a detector with surface $d A$ placed at the point $\boldsymbol{r}$ is given by the Poynting vector: $\stackrel{54}{\mathbf{4}}$
+
+
+\begin{equation*}
+d P_{e}(t, \boldsymbol{r}, p)=2 \epsilon_{0} c\left\langle\hat{\mathcal{E}}^{(-)}(t, \boldsymbol{r}, p) \hat{\mathcal{E}}^{(+)}(t, \boldsymbol{r}, p)\right\rangle d A \tag{S.1}
+\end{equation*}
+
+
+where $\hat{\mathcal{E}}^{(+/-)}(t, \boldsymbol{r}, p)=\boldsymbol{e}^{(p)} \cdot \hat{\mathcal{E}}^{(+/-)}(t, \boldsymbol{r})$ is the amplitude of the electric field operator along the unit vector $\boldsymbol{e}^{(p)}$ defining the polarization state $p$, with $\hat{\boldsymbol{\mathcal { E }}}^{(+)}(t, \boldsymbol{r})=\int_{0}^{+\infty} \hat{\mathcal{E}}(\omega, \boldsymbol{r}) e^{-i \omega t} d \omega / 2 \pi$ the positive frequency part of the electric field operator $\hat{\mathcal{E}}(t, \boldsymbol{r})$, and $\hat{\mathcal{E}}^{(-)}$the negative frequency part, that satisfies $\hat{\mathcal{E}}^{(-)}=\hat{\mathcal{E}}^{(+) \dagger}$. In this work, $\langle\ldots\rangle$ stands for the canonical ensemble average. We note that the order $(-),(+)$ of the electric field operators corresponds to normal ordering, that stems from the absorption process occurring in the detector.
+
+First, let us remark that the electric field operators appearing in the right hand side of Eq. S.1 are connected to the current density operator $\hat{\boldsymbol{j}}(\omega)$ associated to a homogeneous metal through:
+
+
+\begin{equation*}
+\hat{\mathcal{E}}(\omega, \boldsymbol{r}, p)=i \mu_{0} \omega \int_{V} d^{3} \boldsymbol{r}^{\prime} e_{x}^{(p)} G_{x y}\left(\omega, \boldsymbol{r}, \boldsymbol{r}^{\prime}\right) \hat{j}_{y}(\omega) \tag{S.2}
+\end{equation*}
+
+
+where $\mu_{0}$ is the vacuum permeability, $V$ is the metal volume and $G_{x y}$ is the component of the Green tensor $\boldsymbol{G}$ associated to the vector components $x$ and $y$. Throughout this work, we use the Einstein notation so that there is a sum over repeated indices.
+
+Second, we remind that the cross spectral density $W_{j^{\dagger} j}(\omega)$ of a homogeneous and stationary system is defined from the correlation of its current density: 55
+
+
+\begin{equation*}
+\left\langle\hat{j}_{x}^{\dagger}(\omega) \hat{j}_{y}\left(\omega^{\prime}\right)\right\rangle=2 \pi \delta\left(\omega-\omega^{\prime}\right) \frac{1}{V} W_{j_{x}^{\dagger} j_{y}}(\omega) \tag{S.3}
+\end{equation*}
+
+
+where $\delta$ is the Dirac function.\\
+Hence, inserting Eq. (S.2) into the Fourier transform of Eq. S.1) and using Eq. (S.3), the power spectrum can be cast into the form:
+
+
+\begin{equation*}
+\frac{d P_{e}}{d \Omega_{r}}(\omega, \boldsymbol{r}, p)=\frac{|\boldsymbol{r}|^{2} \omega^{2}}{\pi \epsilon_{0} c^{3}} \int_{V} d^{3} \boldsymbol{r}^{\prime} e_{u}^{(p)} G_{u x}\left(\omega, \boldsymbol{r}, \boldsymbol{r}^{\prime}\right) e_{v}^{(p)} G_{v y}\left(\omega, \boldsymbol{r}, \boldsymbol{r}^{\prime}\right) W_{j_{x}^{\dagger} j_{y}}(\omega) \tag{S.4}
+\end{equation*}
+
+
+where we have used $d \Omega_{r}=d A /|\boldsymbol{r}|^{2}$ to denote the solid angle subtended by the surface $d A$.
+
+Finally, noting that the permittivity of common metals is isotropic, the cross spectral density tensor reduces to $W_{j_{x}^{\dagger} j_{y}}=\delta_{x, y} W_{j^{\dagger} j}$, so that Eq. (S.4) can be simplified into:
+
+
+\begin{equation*}
+\frac{d P_{e}}{d \Omega_{r}}(\omega, \boldsymbol{r}, p)=\frac{|\boldsymbol{r}|^{2} \omega^{2}}{\pi \epsilon_{0} c^{3}} W_{j^{\dagger} j}(\omega) \times \sum_{x} \int_{V} d^{3} \boldsymbol{r}^{\prime}\left|e_{u}^{(p)} G_{u x}\left(\omega, \boldsymbol{r}, \boldsymbol{r}^{\prime}\right)\right|^{2} \tag{S.5}
+\end{equation*}
+
+
+\section*{A.2. Role of Lorentz reciprocity}
+The emitted power in Eq. (1) of the main text is expressed as a function of the absorption cross section of the metallic body. We now show how to relate Eq. S.5) to this quantity. ${ }^{37}$ To start, we recall the definition of the absorption cross section of an isotropic and homogeneous metallic body of volume $V$ :
+
+
+\begin{equation*}
+\sigma_{a b s}\left(\omega,-\boldsymbol{u}_{r}, p\right)=\frac{\omega}{c} \operatorname{Im}[\epsilon(\omega)] \int_{V} d \boldsymbol{r}^{\prime} \frac{\left|\mathcal{E}\left(\boldsymbol{r}^{\prime}, \omega,-\boldsymbol{u}_{r}, p\right)\right|^{2}}{\left|\mathcal{E}_{L}\left(\omega,-\boldsymbol{u}_{r}, p\right)\right|^{2}} \tag{S.6}
+\end{equation*}
+
+
+where $\epsilon$ is the permittivity of the metal, $\mathcal{E}_{L}\left(\omega,-\boldsymbol{u}_{r}, p\right)$ is the electric field amplitude corresponding to an incident plane wave and $\mathcal{E}\left(\boldsymbol{r}^{\prime}, \omega,-\boldsymbol{u}_{r}, p\right)$ is the electric field induced by this plane wave at a position $\boldsymbol{r}^{\prime}$ in the metal. It will be convenient to assume that the incident plane wave is emitted by an electric dipole with frequency $\omega$ and polarization $p$ placed at the point $\boldsymbol{r}$ in the far field of the metallic body. This emission point defines the plane wave direction $-\boldsymbol{u}_{r}=-\boldsymbol{r} /|\boldsymbol{r}|$.
+
+In this context, the vector component $u$ of $\mathcal{E}\left(\boldsymbol{r}^{\prime}, \omega,-\boldsymbol{u}_{r}, p\right)$ can be related to $\mathcal{E}_{L}\left(\omega,-\boldsymbol{u}_{r}, p\right)$ using the Green tensor:
+
+
+\begin{equation*}
+\mathcal{E}_{u}\left(\boldsymbol{r}^{\prime}, \omega,-\boldsymbol{u}_{r}, p\right)=4 \pi|\boldsymbol{r}| e^{-\frac{i \omega|\boldsymbol{r}|}{c}} G_{u x}\left(\omega, \boldsymbol{r}^{\prime}, \boldsymbol{r}\right) e_{x}^{(p)} \mathcal{E}_{L}\left(\omega,-\boldsymbol{u}_{r}, p\right) \tag{S.7}
+\end{equation*}
+
+
+Hence, inserting Eq. (S.7) into Eq. S.6 yields:
+
+
+\begin{equation*}
+\sigma_{a b s}\left(\omega,-\boldsymbol{u}_{r}, p\right)=\frac{\omega}{c} \operatorname{Im}[\epsilon(\omega)](4 \pi|\boldsymbol{r}|)^{2} \times \sum_{u} \int_{V} d^{3} \boldsymbol{r}^{\prime}\left|G_{u x}\left(\omega, \boldsymbol{r}^{\prime}, \boldsymbol{r}\right) e_{x}^{(p)}\right|^{2} \tag{S.8}
+\end{equation*}
+
+
+Since the metal has a scalar permittivity, Lorentz reciprocity imposes: 34
+
+
+\begin{equation*}
+G_{x u}\left(\omega, \boldsymbol{r}, \boldsymbol{r}^{\prime}\right)=G_{u x}\left(\omega, \boldsymbol{r}^{\prime}, \boldsymbol{r}\right) \tag{S.9}
+\end{equation*}
+
+
+Using Eq. (S.9), the absorption cross section Eq. (S.8) can be inserted into Eq. (S.5),\\
+which yields the desired connection between the emitted power, the cross spectral density of $\hat{\boldsymbol{j}}$ and the absorption cross section:
+
+
+\begin{equation*}
+\frac{d P_{e}}{d \Omega_{r}}\left(\omega, \boldsymbol{u}_{r}, p\right)=\sigma_{a b s}\left(\omega,-\boldsymbol{u}_{r}, p\right) \frac{\omega^{2}}{8 \pi^{3} c^{2}} \frac{W_{j^{\dagger} j}(\omega)}{2 \omega \epsilon_{0} \operatorname{Im}[\epsilon(\omega)]} \tag{S.10}
+\end{equation*}
+
+
+This last equation corresponds to the Equation (1) reported in the main text.
+
+\section*{B. Fluctuation and dissipation of a stationary nonequilibrium electron gas}
+In this section, we derive nonequilibrium forms of $W_{j^{\dagger} j}$ and $\operatorname{Im}[\epsilon]$. We start by calculating the cross spectral density of the current density $W_{j^{\dagger} j}(\omega)$, that quantifies the system fluctuations. We then derive $\operatorname{Im}[\epsilon]$, through a calculation of the linear response under optical excitation. Finally, we show that when the gas is in thermodynamic equilibrium, $W_{j^{\dagger} j}(\omega)$ can be related to the linear response, yielding the so-called Fluctuation-Dissipation theorem.
+
+\section*{B.1. Cross spectral density of the current density}
+The current density operator of a homogeneous metal at a time $t$ in the Heisenberg picture can be expressed generally as a function of the electron field operator $\hat{\psi}:\left[\begin{array}{l}56 \\ \end{array}\right.$
+
+
+\begin{equation*}
+\hat{\boldsymbol{j}}(t)=\frac{e}{2 m V} \int_{V} d^{3} \boldsymbol{r}\left[\hat{\psi}^{\dagger}(\boldsymbol{r}, t) \mathbf{p} \hat{\psi}(\boldsymbol{r}, t)-\hat{\psi}(\boldsymbol{r}, t) \mathbf{p} \hat{\psi}^{\dagger}(\boldsymbol{r}, t)\right] \tag{S.11}
+\end{equation*}
+
+
+where $e$ is the electron charge, $m$ is the electron mass, $V$ is the metal volume, $\boldsymbol{r}$ is a position in the metal, ${ }^{\dagger}$ is the Hermitian conjugate and $\mathbf{p}=-i \hbar \nabla$ is the momentum operator with $\hbar$ the reduced Planck constant and ∇ the gradient operator.
+
+First, we focus on the electron field operator. In the following, we will assume that the electron gas can be described as a non-interacting gas, and will neglect the electron\\
+spin degree of freedom. Accordingly, the electronic states are given by the solutions of the single-electron Schrödinger equation in the metal (with a mean-potential accounting for the lattice). We index these states by $n=1 \ldots N$ where $N$ is the total electron number, and note their corresponding energy by $\hbar \omega_{n}$ and wavefunction by $\left|\phi_{n}\right\rangle$. Hence, the second-quantization Hamiltonian describing the electron gas writes:
+
+
+\begin{equation*}
+\hat{\mathcal{H}}=\sum_{n=1}^{N} \hbar \omega_{n} \hat{c}_{n}^{\dagger} \hat{c}_{n} \tag{S.12}
+\end{equation*}
+
+
+where $\hat{c}_{n}^{\dagger}, \hat{c}_{n}$ are respectively the electron creation and annihilation operators of the state $n$, that obey the Fermionic commutation relations $\left\{\hat{c}_{n}^{\dagger}, \hat{c}_{n^{\prime}}^{\dagger}\right\}=0 ;\left\{\hat{c}_{n}, \hat{c}_{n^{\prime}}\right\}=0$ and $\left\{\hat{c}_{n}^{\dagger}, \hat{c}_{n^{\prime}}\right\}=\delta_{n, n^{\prime}}$, where $\{\hat{a}, \hat{b}\}=\hat{a} \hat{b}+\hat{b} \hat{a}$. In this context, the electron field operator in the Heisenberg picture is defined as: 56
+
+
+\begin{equation*}
+\hat{\psi}(\boldsymbol{r}, t)=\sum_{n} \phi_{n}(\boldsymbol{r}) e^{-i \omega_{n} t} \hat{c}_{n} \tag{S.13}
+\end{equation*}
+
+
+where $\phi_{n}(\boldsymbol{r})=\left\langle\boldsymbol{r} \mid \phi_{n}\right\rangle$. Inserting the electron field operator definition Eq. (S.13) into Eq. (S.11) and carrying out a time Fourier transform, we obtain the current density operator in the frequency domain:
+
+
+\begin{equation*}
+\hat{j}_{x}(\omega)=\frac{e}{m V} \sum_{n, n^{\prime}} 2 \pi \delta\left(\omega-\left[\omega_{n^{\prime}}-\omega_{n}\right]\right) p_{n, n^{\prime}}^{x} \hat{c}_{n}^{\dagger} \hat{c}_{n^{\prime}} \tag{S.14}
+\end{equation*}
+
+
+where $x$ indicates a vector component in a given basis and where we introduced the shorthand $p_{n, n^{\prime}}^{x}=\left\langle\phi_{n}\right| p^{x}\left|\phi_{n^{\prime}}\right\rangle$.
+
+Then inserting Eq. (S.14) into Eq. S.3) defined in the last section, we can calculate the correlation of the current densities. To this end, the main difficulty to overcome is the evaluation of the 4 -operators correlations $\left\langle\hat{c}_{n^{\prime}}^{\dagger} \hat{c}_{n} \hat{c}_{m}^{\dagger} \hat{c}_{m^{\prime}}\right\rangle$. Yet, let us remind that for a non-interacting electron gas, the electronic states can be described as Fock states, that we note by $\left|\left\{n_{l}\right\}\right\rangle=\left|n_{1} \ldots n_{l} \ldots n_{N}\right\rangle$ where $n_{l}$ denotes the number of particles in the state $l$. The\\
+explicit form of the average correlation is $\left\langle\hat{c}_{n^{\prime}}^{\dagger} \hat{c}_{n} \hat{c}_{m}^{\dagger} \hat{c}_{m^{\prime}}\right\rangle=\sum_{\left\{n_{l}\right\}} P_{\left\{n_{l}\right\}}\left\langle\left\{n_{l}\right\}\right| \hat{c}_{n^{\prime}}^{\dagger} \hat{c}_{n} \hat{c}_{m}^{\dagger} \hat{c}_{m^{\prime}}\left|\left\{n_{l}\right\}\right\rangle$, where $P_{\left\{n_{l}\right\}}$ is the canonical probability that the system is in the Fock state $\left|\left\{n_{l}\right\}\right\rangle$. The elements in the sum can be evaluated given that $\left\langle\left\{n_{l}\right\}\right| \hat{c}_{n}^{\dagger}\left|\left\{n_{l}\right\}\right\rangle=\left\langle\left\{n_{l}\right\}\right| \hat{c}_{n}\left|\left\{n_{l}\right\}\right\rangle=0$ and $\left\langle\left\{n_{l}\right\}\right| \hat{c}_{n}^{\dagger} \hat{c}_{n^{\prime}}\left|\left\{n_{l}\right\}\right\rangle=\delta_{n, n^{\prime}} f_{n}$, where $f_{n}$ is the mean occupation number of the electronic state $n$. These considerations enables to simplify the above correlations:
+
+
+\begin{equation*}
+\left\langle\hat{c}_{n^{\prime}}^{\dagger} \hat{c}_{n} \hat{c}_{m}^{\dagger} \hat{c}_{m^{\prime}}\right\rangle=\delta_{n, n^{\prime}} \delta_{m, m^{\prime}}\left[\delta_{n, m} f_{n}+\left[1-\delta_{n, m}\right] f_{n} f_{m}\right]+\delta_{n^{\prime}, m^{\prime}} \delta_{n, m}\left[1-\delta_{n, n^{\prime}}\right] f_{n^{\prime}}\left[1-f_{n}\right] \tag{S.15}
+\end{equation*}
+
+
+Importantly, let us stress that at this point the mean occupation numbers can take any value, that is the $f_{n}$ may differ from the equilibrium Fermi-Dirac distribution. We also note that the first term in the right hand side of Eq. (S.15) only implies emission at zero frequency so that it is not relevant to the present study. Conversely, the second term in the right hand side of Eq. (S.15) involves mixing of the $n$ and $m$ electronic states, namely time-dependent correlation between the two current densities. Using this relation finally enables to derive the fluctuation relation reported in Eq.(2) of the main text:
+
+
+\begin{equation*}
+W_{j^{\dagger} j}(\omega)=\frac{\epsilon_{0} \omega_{p}^{2}}{m} \frac{2 \pi}{N} \sum_{n, n^{\prime}=1}^{N}\left|p_{n, n^{\prime}}\right|^{2} f_{n^{\prime}}\left[1-f_{n}\right] \delta\left(\omega-\left[\omega_{n^{\prime}}-\omega_{n}\right]\right), \tag{S.16}
+\end{equation*}
+
+
+where $\epsilon_{0}$ is the vacuum permittivity and $\omega_{p}=\sqrt{N e^{2} / m V \epsilon_{0}}$ is the plasma frequency.\\
+In summary, we have provided a derivation of the nonequilibrium cross spectral density of $\hat{\boldsymbol{j}}$. We note that a similar expression was used in Ref. 57 in the context of scintillation-induced light emission. To finish, let us discuss further the transition matrix elements $\left|p_{n, n^{\prime}}\right|= \left.\left|\left\langle\phi_{n}\right| \mathbf{p}\right| \phi_{n^{\prime}}\right\rangle \mid$ that appears in Eq. S.16). We note that for a bulk, non-interacting electron gas, the electronic wavefunctions reduce to Bloch waves so that $\left.\left|\left\langle\phi_{n}\right| \mathbf{p}\right| \phi_{n^{\prime}}\right\rangle \mid=0$ if $n \neq n^{\prime}$. In reality, these transition matrix elements are obviously non-zero, otherwise the existence of thermal emission would be precluded. Actually, it is well-known that intraband absorption processes are assisted by phonons or electrons. While taking into account these microscopic processes is beyond the scope of the present paper, we note that this issue has been tackled\\
+in Ref. 58 (Chapter 15. Section 3.) for the contribution of static impurities and in Ref. 59 (Chapter 5. Appendix A.) for the contribution of phonon-assisted transitions.
+
+\section*{B.2. Linear response}
+We now calculate the imaginary part of the permittivity of a nonequilibrium electron gas in the linear response approximation. We start by writing the semiclassical coupling Hamiltonian in the Schrödinger picture between an incident radiation described by the vector potential $\boldsymbol{A}$ and a homogeneous electron gas described by the electron current density $\hat{\boldsymbol{j}}$ :
+
+
+\begin{equation*}
+\hat{\mathcal{H}}_{i n t}(t)=-\hat{\boldsymbol{j}} \cdot \boldsymbol{A}(t) V \tag{S.17}
+\end{equation*}
+
+
+where we have neglected spatial variations of the vector potential inside the metallic structure, in accordance with the homogeneous gas description.
+
+We then treat the Hamiltonian $\hat{\mathcal{H}}_{\text {int }}(t)$ as a time-dependent perturbation of the electron gas. In the linear response approximation, the so-called Kubo formula ${ }^{60 \mid 61}$ expresses elegantly the expectation value of $\hat{\boldsymbol{j}}^{\text {ind }}$, the electron current density induced by the perturbation:
+
+
+\begin{equation*}
+\left\langle\hat{j}_{x}^{i n d}(t)\right\rangle=\left\langle\hat{j}_{x}\left(t_{0}\right)\right\rangle-\frac{i V}{\hbar} \int_{t_{0}}^{t} d t^{\prime}\left\langle\left[\hat{j}_{x}(t), \hat{j}_{y}\left(t^{\prime}\right)\right]\right\rangle A_{y}\left(t^{\prime}\right) \tag{S.18}
+\end{equation*}
+
+
+where it should be noted that $\hat{\boldsymbol{j}}_{\text {ind }}(t)$ is written in the interaction picture while $\hat{\boldsymbol{j}}(t)$ is now written in the Heisenberg picture.
+
+From Eq. (S.18), it is possible to define the electric susceptibility tensor of the electron gas in the vector potential-current density gauge (noted by $\boldsymbol{j} . \boldsymbol{A}$ ):
+
+
+\begin{equation*}
+\chi_{x, y}^{j \cdot \boldsymbol{A}}\left(t, t^{\prime}\right)=-\frac{i V}{\hbar}\left\langle\left[\hat{j}_{x}(t), \hat{j}_{y}\left(t^{\prime}\right)\right]\right\rangle H\left(t-t^{\prime}\right) \tag{S.19}
+\end{equation*}
+
+
+where $H$ is the Heaveside step function. Now, resorting again to the assumption that the electrons are non-interacting, the current density operator in the Heisenberg picture can be\\
+expressed by inserting Eq. (S.13) into Eq. (S.11). Then inserting the result into Eq. S.19 and using the relation Eq. S.15. to simplify the 4-operator correlation, we obtain $\chi^{\boldsymbol{j} . \boldsymbol{A}}$ into the form:
+
+
+\begin{equation*}
+\chi_{x, y}^{\boldsymbol{j} \cdot \boldsymbol{A}}\left(t-t^{\prime}\right)=\frac{i}{\hbar} \frac{\epsilon_{0} \omega_{p}^{2}}{m} \frac{1}{N} \sum_{n, n^{\prime}} p_{n, n^{\prime}}^{x} p_{n^{\prime}, n}^{y}\left[f_{n^{\prime}}-f_{n}\right] e^{-i\left(\omega_{n^{\prime}}-\omega_{n}\right)\left(t-t^{\prime}\right)} H\left(t-t^{\prime}\right) \tag{S.20}
+\end{equation*}
+
+
+Finally, moving to the electric field-dipole moment gauge and noting that Eq. S.20 is stationary in time, the imaginary part of the permittivity tensor (that is the imaginary part of the electric susceptibility tensor) associated to metal writes in the frequency domain:
+
+
+\begin{equation*}
+\operatorname{Im}\left[\epsilon_{x, y}\right](\omega)=\frac{\omega_{p}^{2}}{2 \hbar m \omega^{2}} \frac{2 \pi}{N} \sum_{n, n^{\prime}=1}^{N} p_{n, n^{\prime}}^{x} p_{n^{\prime}, n}^{y}\left[f_{n}-f_{n^{\prime}}\right] \delta\left(\omega-\left[\omega_{n^{\prime}}-\omega_{n}\right]\right) \tag{S.21}
+\end{equation*}
+
+
+In the assumption that the metal is isotropic, this equation reduces to:
+
+
+\begin{equation*}
+\operatorname{Im}[\epsilon](\omega)=\frac{\omega_{p}^{2}}{2 \hbar m \omega^{2}} \frac{2 \pi}{N} \sum_{n, n^{\prime}=1}^{N}\left|p_{n, n^{\prime}}\right|^{2}\left[f_{n}-f_{n^{\prime}}\right] \delta\left(\omega-\left[\omega_{n^{\prime}}-\omega_{n}\right]\right) \tag{S.22}
+\end{equation*}
+
+
+where it is stressed again that the $f_{n}$ can take any value.
+
+\section*{B.3. Fluctuation-Dissipation theorem}
+To finish, let us focus on the peculiar but common case in which the electron gas has relaxed to thermodynamic equilibrium. The mean occupation numbers $f_{n}$ of the electrons then follow the Fermi-Dirac distribution:
+
+
+\begin{equation*}
+f_{n}=f_{F D}\left(\omega_{n}, T_{e}, \mu_{F}\right) \equiv \frac{1}{\exp \left(\frac{\hbar \omega_{n}-\mu_{F}}{k_{B} T_{e}}\right)+1} \tag{S.23}
+\end{equation*}
+
+
+where $T_{e}$ is the temperature of the electron gas and $\mu_{F}$ its Fermi level. Using Eq. (S.23),\\
+it is straightforward to derive the identity:
+
+
+\begin{equation*}
+\frac{f_{F D}\left(\hbar \omega_{n}\right)-f_{F D}\left(\hbar \omega_{n}+\hbar \omega\right)}{\exp \left(\frac{\hbar \omega}{k_{B} T}\right)-1}=f_{F D}\left(\hbar \omega_{n}+\hbar \omega\right)\left[1-f_{F D}\left(\hbar \omega_{n}\right)\right] \tag{S.24}
+\end{equation*}
+
+
+The right hand side of Eq. (S.24) can be viewed as the probability of spontaneous emission in a photonic mode with energy $\hbar \omega$ whereas the left hand side is the product of the probability of absorption by the Bose-Einstein distribution. This equation is actually equivalent to the so-called Van Roosbroeck-Shockley relation, which connects the emission and absorption rates in a homogeneous semiconductor medium. $\underline{6263}$
+
+Using Eq. (S.24), a connection can now be made between the cross spectral density Eq. (S.16) and the linear response Eq. (S.22) of the electron gas at thermodynamic equilibrium, that is called the Fluctuation-Dissipation theorem: $\lcm{3536}$
+
+
+\begin{equation*}
+W_{j^{\dagger} j}^{e q}\left(\omega, T_{e}\right)=2 \omega \epsilon_{0} \operatorname{Im}\left[\epsilon_{e q}\left(\omega, T_{e}\right)\right] \frac{\hbar \omega}{\exp \left(\frac{\hbar \omega}{k_{B} T_{e}}\right)-1} \tag{S.25}
+\end{equation*}
+
+
+which corresponds to equation (3) of the main text.
+
+\section*{C. Generalized Kirchhoff's law for emission from intraband transitions}
+In this section, we detail the approximations and calculation steps used to derive Eq. (7) of the main text. Hence, we focus on the conduction band electronic states and intraband transitions only. We want to calculate the cross spectral density corresponding to these intraband recombination processes, that we note $W_{j^{\dagger} j}^{\text {intra }}$.
+
+We start by assuming that the transition matrix elements of intraband transitions are constant over the electronic states, and equal to their value at Fermi level. Building on the notations of section B., this amounts to write that $p_{n, n^{\prime}}=p_{F}$. This assumption enables to\\
+cast Eq. (S.16) into:
+
+
+\begin{equation*}
+W_{j^{\dagger} j}^{i n t r a}(\omega)=\frac{\epsilon_{0} \omega_{p, c}^{2}}{m} \frac{2 \pi}{N_{c}}\left|p_{F}\right|^{2} \sum_{n, n^{\prime}=1}^{N_{c}} f_{n^{\prime}}\left[1-f_{n}\right] \delta\left(\omega-\left[\omega_{n^{\prime}}-\omega_{n}\right]\right), \tag{S.26}
+\end{equation*}
+
+
+where $\omega_{p, c}=\sqrt{N_{c} e^{2} / m V \epsilon_{0}}$ with $N_{c}$ the number of electrons in the conduction band. We stress that now the sums over the electronic states is restricted to the conduction band.
+
+We now convert the sum over electronic states into integrals. To this end, we assume that the mean occupation numbers $f_{n}$ of the conduction band electronic states follow a distribution $f$ that only depends on the state energy. Hence, Eq. S.26 can be written as:
+
+
+\begin{equation*}
+W_{j^{\dagger} j}^{i n t r a}(\omega)=\frac{\epsilon_{0} \omega_{p, c}^{2}}{m} \frac{2 \pi}{N_{c}}\left|p_{F}\right|^{2} D_{J}\left(\mu_{F}, \hbar \omega\right) \int_{E_{c, 0}}^{\infty} d E f(E+\hbar \omega)[1-f(E)] \tag{S.27}
+\end{equation*}
+
+
+where $E$ is an electron state energy, $E_{c, 0}$ the energy minimum of the conduction band, and $D_{J}(E, \hbar \omega)$ is the energy distribution of the joint density of states (defined by volume unit):
+
+
+\begin{equation*}
+D_{J}(\omega, E)=V^{2} \int_{E_{c, 0}}^{\infty} d E^{\prime} \rho_{c}\left(E^{\prime}\right) \rho_{c}(E) \delta\left(\hbar \omega-\left[E^{\prime}-E\right]\right) \tag{S.28}
+\end{equation*}
+
+
+with $\rho_{c}(E)$ the density of states of the conduction band (defined by volume unit). In addition, let us note that in Eq. S.27) we assumed $D_{J}(\omega, E)$ to be constant over the electronic states and equal to its value at Fermi level, so that it can be taken out of the integral.
+
+We now focus on the prefactor of the integral in Eq. S.27. Performing the same approximations as above on Eq. (S.22), the imaginary part of the metal permittivity corresponding to absorption through intraband processes can be cast into the form:
+
+
+\begin{equation*}
+\operatorname{Im}\left[\epsilon^{i n t r a}\right](\omega)=\frac{\omega_{p, c}^{2}}{2 \hbar m \omega^{2}} \frac{2 \pi}{N_{c}}\left|p_{F}\right|^{2} D_{J}\left(\mu_{F}, \omega\right) \int_{E_{c, 0}}^{\infty} d E[f(E)-f(E+\hbar \omega)] \tag{S.29}
+\end{equation*}
+
+
+At thermodynamic equilibrium, it is possible to simplify further Eq. S.29). Indeed, the\\
+distributions $f$ can then be replaced by Fermi-Dirac distributions. Interestingly, we further note that the ambient-temperature thermal energy ( $\sim 25 \mathrm{meV}$ ) is negligible compared to the energy of visible or NIR photons ( $\sim 1 \mathrm{eV}$ ). Therefore, the Fermi-Dirac distribution can be approximated by a step function, that is $f_{F D}(E) \approx 1-H\left(E-\mu_{F}\right)$. Inserting this approximation into Eq. S.29, we find that at thermodynamic equilibrium $\operatorname{Im}\left[\epsilon^{\text {intra }}\right]$ reduces to:
+
+
+\begin{equation*}
+\operatorname{Im}\left[\epsilon_{e q}^{i n t r a}\right](\omega)=\frac{\omega_{p, c}^{2}}{2 \hbar m \omega^{2}} \frac{2 \pi}{N_{c}}\left|p_{F}\right|^{2} D_{J}\left(\mu_{F}, \hbar \omega\right) V \hbar \omega \tag{S.30}
+\end{equation*}
+
+
+Finally, inserting Eq. (S.30) into Eq. (S.27) yields a generalization of the FluctuationDissipation theorem, valid for any out-of-equilibrium electronic distribution $f$ :
+
+
+\begin{equation*}
+W_{j^{\dagger} j}^{i n t r a}(\omega)=2 \epsilon_{0} \omega \operatorname{Im}\left[\epsilon_{e q}^{i n t r a}(\omega)\right] \int_{E_{c, 0}}^{\infty} d E f(E+\hbar \omega)[1-f(E)] \tag{S.31}
+\end{equation*}
+
+
+that is the equation reported in Eqs. (5),(6) of the main text.\\
+Now, inserting Eq. S.31 into Eq. S.10 yields:
+
+
+\begin{equation*}
+\frac{d P_{e}}{d \Omega_{r}}\left(\omega, \boldsymbol{u}_{r}, p\right)=\sigma_{a b s}\left(\omega,-\boldsymbol{u}_{r}, p^{*}\right) \frac{\omega^{2}}{8 \pi^{3} c^{2}} \frac{\operatorname{Im}\left[\epsilon_{e q}^{i n t r a}(\omega)\right]}{\operatorname{Im}[\epsilon(\omega)]} \int f(E+\hbar \omega)[1-f(E)] d E \tag{S.32}
+\end{equation*}
+
+
+We finally define the absorption cross section due to intraband transitions only as:
+
+
+\begin{equation*}
+\sigma_{a b s}^{i n t r a}\left(\omega,-\boldsymbol{u}_{r}, p^{*}\right)=\frac{\operatorname{Im}\left[\epsilon^{i n t r a}(\omega)\right]}{\operatorname{Im}[\epsilon(\omega)]} \times \sigma_{a b s}\left(\omega,-\boldsymbol{u}_{r}, p^{*}\right) \tag{S.33}
+\end{equation*}
+
+
+where we note that the imaginary part of the metal permittivity due to intraband transitions $\operatorname{Im}\left[\epsilon^{\text {intra }}(\omega)\right]$ is not necessarily evaluated at equilibrium here. Inserting Eq. S.33 into Eq. (S.32), we get:
+
+
+\begin{equation*}
+\frac{d P_{e}}{d \Omega_{r}}\left(\omega, \boldsymbol{u}_{r}, p\right)=\sigma_{a b s}^{i n t r a}\left(\omega,-\boldsymbol{u}_{r}, p^{*}\right) \frac{\omega^{2}}{8 \pi^{3} c^{2}} \frac{\operatorname{Im}\left[\epsilon_{e q}^{i n t r a}(\omega)\right]}{\operatorname{Im}\left[\epsilon^{i n t r a}(\omega)\right]} \int f(E+\hbar \omega)[1-f(E)] d E \tag{S.34}
+\end{equation*}
+
+
+Finally, assuming that $\operatorname{Im}\left[\epsilon_{\text {eq }}^{\text {intra }}(\omega)\right] / \operatorname{Im}\left[\epsilon^{\text {intra }}(\omega)\right] \approx 1$, namely that possible nonequilib-\\
+rium effects are sufficiently weak so that the imaginary part of the metal permittivity stays close to the equilibrium one, we obtain the equation (7) reported in the main text. We note that this last approximation is expected to hold in most pumping conditions, in particular through continuous wave pumping. However, it may be inaccurate for excitation through ultrashort laser pulses with high peak intensity. ${ }^{64}$
+
+\section*{D. Generalized Kirchhoff's law for emission from intraband transitions in the CW regime}
+In this section, we detail the derivation of the generalized Kirchhoff's law for emission from intraband transitions in the CW pumping regime Eq. (9) from the generalized Kirchhoff's law Eq. (7).
+
+To start, we insert Eqs. (12), (13) of Methods into Eq. (6) of the main text. Keeping only the components to first order in $K_{n}$, the integral $\Theta^{\text {intra }}$ can be cast into the form:
+
+
+\begin{align*}
+\Theta_{c w}^{i n t r a}(\omega)= & \int f_{F D}\left(E+\hbar \omega-\hbar \omega_{L}\right)\left[1-f_{F D}(E)\right] K_{n}(E+\hbar \omega) d E  \tag{S.35}\\
+& +\int f_{F D}(E+\hbar \omega)\left[1-f_{F D}\left(E+\hbar \omega_{L}\right)\right] K_{n}(E) d E
+\end{align*}
+
+
+Using the remarkable relation between Fermi-Dirac distributions:
+
+
+\begin{equation*}
+\frac{f_{F D}\left(E+E_{1}\right)\left[1-f_{F D}\left(E+E_{2}\right)\right]}{f_{F D}\left(E+E_{2}\right)-f_{F D}\left(E+E_{1}\right)}=\frac{1}{\exp \left(\frac{E_{1}-E_{2}}{k_{B} T_{e}}\right)-1} \tag{S.36}
+\end{equation*}
+
+
+we get:
+
+
+\begin{align*}
+\Theta_{c w}^{i n t r a}(\omega)=\frac{1}{\exp \left(\frac{\hbar \omega-\hbar \omega_{L}}{k_{B} T_{e}}\right)-1} \times & {\left[\int\left[f_{F D}(E)-f_{F D}\left(E+\hbar \omega-\hbar \omega_{L}\right)\right] K_{n}(E+\hbar \omega) d E\right.} \\
+& \left.+\int\left[f_{F D}\left(E+\hbar \omega_{L}\right)-f_{F D}(E+\hbar \omega)\right] K_{n}(E) d E\right] \tag{S.37}
+\end{align*}
+
+
+As in Section C., we now use the fact that thermal energy $k_{B} T$ at ambient temperature is negligible compared to $\hbar \omega, \hbar \omega_{L}, \mu_{F}$. Therefore, we approximate the Fermi-Dirac distribution by a step function $f_{F D}(E) \approx 1-H\left(E-\mu_{F}\right)$. Hence, Eq. S.37) simplifies into:
+
+
+\begin{equation*}
+\Theta_{c w}^{i n t r a}(\omega)=\frac{1}{\exp \left(\frac{\hbar \omega-\hbar \omega_{L}}{k_{B} T_{e}}\right)-1} \times\left[\int_{\mu_{F}+\hbar \omega_{L}}^{\mu_{F}+\hbar \omega} K_{n}(E) d E+\int_{\mu_{F}-\hbar \omega}^{\mu_{F}-\hbar \omega_{L}} K_{n}(E) d E\right] \tag{S.38}
+\end{equation*}
+
+
+We then need to perform an integral over the Knudsen number. To simplify this integral, we assume that the electronic density of state $\rho_{c}$ can be evaluated at Fermi level, as in the last section when we derived the generalized Kirchhoff's law. Hence, according to Eq. (13) in Methods, the only quantity that depends on energy in $K_{n}$ is the relaxation time $\tau_{e e}$. In Landau's Fermi liquid Theory, $\sqrt{65}$ this dependence is a Lorentzian:
+
+
+\begin{equation*}
+\tau_{e e}\left(E, T_{e}\right)=\frac{1}{W_{e e}\left[\pi k_{B} T_{e}\right]^{2}} \frac{1}{1+\left[\frac{E-\mu_{F}}{\pi k_{B} T_{e}}\right]^{2}} \tag{S.39}
+\end{equation*}
+
+
+where $W_{e e}$ is a characteristic electron-electron scattering constant.\\
+Using Eq. (S.39) into Eq. (S.38), one finds an analytic result involving arctan functions. Using the remarkable identity $\arctan (x)-\arctan (y)=\arctan \left(\frac{x-y}{1-x y}\right)$ with $x, y>0$ eventually enables to cast $\Theta^{\text {intra }}(\omega)$ under CW pumping into the form:
+
+
+\begin{equation*}
+\Theta_{c w}^{i n t r a}(\omega)=\frac{2\left(\hbar \omega-\hbar \omega_{L}\right)}{\exp \left(\frac{\hbar \omega-\hbar \omega_{L}}{k_{B} T_{e}}\right)-1} \frac{\hbar \omega_{L}}{\hbar \omega} K_{n}^{e f f} \tag{S.40}
+\end{equation*}
+
+
+where we defined the effective Knudsen number also given in Methods:
+
+
+\begin{equation*}
+K_{n}^{e f f}=K_{n}\left(E=\mu_{F}, T_{e}\right) \times\left[\frac{\pi k_{B} T_{e}}{\hbar \omega_{L}}\right]^{2}=\frac{4 I_{L} \sigma_{a b s}\left(\hbar \omega_{L}, p_{L}\right)}{W_{e e} \rho_{c}\left(\mu_{F}\right)\left[\hbar \omega_{L}\right]^{4}} \tag{S.41}
+\end{equation*}
+
+
+that is independent on the electron temperature $T_{e}$.
+
+\section*{E. Phenomenological Kirchhoff's law: additional simulationexperiment comparisons}
+In this appendix, we provide additional evidence that the phenomenological Kirchhoff's law Eq. (11) is an accurate tool to model PL from metals in the CW pumping regime. We reproduce data obtained with silver and data measured with gold pumped at 532 nm that exhibit PL in the $500-600 \mathrm{~nm}$ range.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{c69a44df-5ad2-48c8-bd83-4af8ee7a999a-38_862_1153_844_491}
+\captionsetup{labelformat=empty}
+\caption{Figure S.1: Comparison between experimental ${ }^{[25]}$ photoluminescence spectra $(\mathrm{PL})$ from silver nanorods of various lengths (plain colored lines) and simulations with the phenomenological Kirchhoff's law Eq. (11) (black and blue triangles). The colored dotted lines correspond to experimental dark-field scattering spectra and evidence the longitudinal plasmon resonance of the nanorods. The width of the nanorods was measured to $23 \mathrm{~nm} .^{25}$ All nanorods are pumped at 633 nm . The theory-experiment comparison lies on the nanorods with respectively lower (exp: green line; sim: black triangles) and higher (exp: brown line; sim: blue triangles) resonance wavelength. Their length is estimated to 72 nm and 92 nm respectively through adjustments of the dark-field scattering spectra with the scattering cross section (not shown). These adjustments also required to use $C_{a b s}=1.8$ and $C_{a b s}=3.5$ respectively. Figure adapted from Ref. 25. Details on the fitting procedure are provided in Methods.}
+\end{center}
+\end{figure}
+
+First, we show on Fig. S. 1 experimental PL spectra of silver nanorods with different length under CW pumping at 633 nm (plain colored lines). $\stackrel{25}{\text { This material is interesting as }}$\\
+it does not feature interband transitions in the visible range, which enables to study intraband PL at shorter excitation wavelengths than we did previously for gold. For readability reasons, we only show comparisons with simulations (colored triangles) for the nanorods with respectively lower (exp: green line, sim: black triangles) and higher (exp: brown line, sim: blue triangles) resonance wavelength. Again, the agreement between theory and experiments is very good for both nanorods. In particular, let us notice that the green curve features a small anti-Stokes emission around 620 nm that is nicely reproduced by the simulation. Hence, this provides support that calculations with Eq. (11) are robust whatever type of emitting metal.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{c69a44df-5ad2-48c8-bd83-4af8ee7a999a-39_660_1138_1003_489}
+\captionsetup{labelformat=empty}
+\caption{Figure S.2: Comparison between the experimental ${ }^{[16]}$ photoluminescence spectrum (PL) of a gold nanorod (red line) and a simulation with the phenomenological Kirchhoff's law Eq. (11) (black dashed line), under pumping at 633 nm . The nanorod has a longitudinal plasmon resonance at 619 nm (measured in dark-field scattering) and dimensions $30 \mathrm{~nm} \times 63 \mathrm{~nm}$ (measured with SEM). Reprinted with permission from Ref. 16. The electron temperature is the only fit parameter and is indicated on the figure. Details on the fitting procedure are provided in Methods.}
+\end{center}
+\end{figure}
+
+Second, we show on Figs. S.2 and S.3 experimental PL spectra for metallic nanostructures pumped in CW over the interband threshold (Gold nanorod pumped at 633 nm in Fig. S.2, Gold nanosphere pumped at 532 nm in Fig. S.3). While Kirchhoff's law Eq. (11) has been developed for CW emission under the interband threshold, we try to fit with it the experimental data, only replacing $\sigma_{a b s}^{i n t r a}$ by $\sigma_{a b s}$. It is seen on both figures that a quite good
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{c69a44df-5ad2-48c8-bd83-4af8ee7a999a-40_852_1151_657_489}
+\captionsetup{labelformat=empty}
+\caption{Figure S.3: Comparison between the experimental ${ }^{[18]}$ photoluminescence spectra (PL) of a gold nanosphere in water (colored lines) and simulations with the phenomenological Kirchhoff's law Eq. (11) (colored triangles), under pumping at 532 nm and for several illumination intensities. The nanosphere has a longitudinal plasmon resonance at 540 nm and diameter 80 nm . The theory-experiment comparison is made for the illumination irradiances $0.2 \mathrm{~mW} . \mu \mathrm{m}^{2}$ (exp: purple line; sim: green triangles), $0.9 \mathrm{~mW} \cdot \mu \mathrm{~m}^{2}$ (exp: pink line; sim: blue triangles) and $1.6 \mathrm{~mW} \cdot \mu \mathrm{~m}^{2}$ (exp: yellow line; sim: black triangles). The electron temperature is the only fit parameter, and is 293 K for the green and blue triangles and 320 K for the black triangles. The absorption cross section of the nanosphere in water has been calculated with a Mie theory solver. The influence of the substrate has been neglected. Figure adapted from Ref. 18.}
+\end{center}
+\end{figure}
+
+agreement can be reached. We stress that interband transitions are expected to provide the leading contribution in this frequency range. Hence, this agreement suggests that the contribution of the interband transitions can also be cast in a form resembling Eq. (11).
+
+\section*{References}
+(1) Mooradian, A. Photoluminescence of metals. Physical Review Letters 1969, 22, 185.\\
+(2) Beversluis, M. R.; Bouhelier, A.; Novotny, L. Continuum generation from single gold nanostructures through near-field mediated intraband transitions. Physical Review $B$ 2003, 68, 115433.\\
+(3) Gaiduk, A.; Yorulmaz, M.; Orrit, M. Correlated absorption and photoluminescence of single gold nanoparticles. ChemPhysChem 2011, 12, 1536-1541.\\
+(4) Tcherniak, A.; Dominguez-Medina, S.; Chang, W.-S.; Swanglap, P.; Slaughter, L. S.; Landes, C. F.; Link, S. One-photon plasmon luminescence and its application to correlation spectroscopy as a probe for rotational and translational dynamics of gold nanorods. The Journal of Physical Chemistry C 2011, 115, 15938-15949.\\
+(5) Yorulmaz, M.; Khatua, S.; Zijlstra, P.; Gaiduk, A.; Orrit, M. Luminescence quantum yield of single gold nanorods. Nano Letters 2012, 12, 4385-4391.\\
+(6) Hugall, J. T.; Baumberg, J. J. Demonstrating photoluminescence from Au is electronic inelastic light scattering of a plasmonic metal: the origin of SERS backgrounds. Nano Letters 2015, 15, 2600-2604.\\
+(7) Wu, X.; Ming, T.; Wang, X.; Wang, P.; Wang, J.; Chen, J. High-photoluminescenceyield gold nanocubes: for cell imaging and photothermal therapy. ACS Nano 2010, 4, 113-120.\\
+(8) Carattino, A.; Keizer, V. I.; Schaaf, M. J.; Orrit, M. Background suppression in imaging gold nanorods through detection of anti-Stokes emission. Biophysical Journal 2016, 111, 2492-2499.\\
+(9) Zheng, Z.; Tachikawa, T.; Majima, T. Single-particle study of Pt-modified Au nanorods for plasmon-enhanced hydrogen generation in visible to near-infrared region. Journal of the American Chemical Society 2014, 136, 6870-6873.\\
+(10) Zheng, Z.; Tachikawa, T.; Majima, T. Plasmon-enhanced formic acid dehydrogenation using anisotropic Pd-Au nanorods studied at the single-particle level. Journal of the American Chemical Society 2015, 137, 948-957.\\
+(11) Hill, C. M.; Bennett, R.; Zhou, C.; Street, S.; Zheng, J.; Pan, S. Single Ag nanoparticle spectroelectrochemistry via dark-field scattering and fluorescence microscopies. The Journal of Physical Chemistry C 2015, 119, 6760-6768.\\
+(12) Huang, J.; Wang, W.; Murphy, C. J.; Cahill, D. G. Resonant secondary light emission from plasmonic Au nanostructures at high electron temperatures created by pulsedlaser excitation. Proceedings of the National Academy of Sciences 2014, 111, 906-911.\\
+(13) Xie, X.; Cahill, D. G. Thermometry of plasmonic nanostructures by anti-Stokes electronic Raman scattering. Applied Physics Letters 2016, 109, 183104.\\
+(14) Carattino, A.; Caldarola, M.; Orrit, M. Gold nanoparticles as absolute nanothermometers. Nano Letters 2018, 18, 874-880.\\
+(15) Jones, S.; Andren, D.; Karpinski, P.; Kall, M. Photothermal heating of plasmonic nanoantennas: Influence on trapped particle dynamics and colloid distribution. $A C S$ Photonics 2018, 5, 2878-2887.\\
+(16) Cai, Y.-Y.; Sung, E.; Zhang, R.; Tauzin, L. J.; Liu, J. G.; Ostovar, B.; Zhang, Y.;
+
+Chang, W.-S.; Nordlander, P.; Link, S. Anti-Stokes emission from hot carriers in gold nanorods. Nano Letters 2019, 19, 1067-1073.\\
+(17) Wu, S.; Hogan, N.; Sheldon, M. Hot electron emission in plasmonic thermionic converters. ACS Energy Letters 2019, 4, 2508-2513.\\
+(18) Barella, M.; Violi, I. L.; Gargiulo, J.; Martinez, L. P.; Goschin, F.; Guglielmotti, V.; Pallarola, D.; Schlücker, S.; Pilo-Pais, M.; Acuna, G. P.; others In situ photothermal response of single gold nanoparticles through hyperspectral imaging anti-Stokes thermometry. ACS Nano 2020, 15, 2458-2467.\\
+(19) Baffou, G. Anti-Stokes thermometry in nanoplasmonics. ACS Nano 2021, 15, 57855792.\\
+(20) Cai, Y.-Y.; Tauzin, L. J.; Ostovar, B.; Lee, S.; Link, S. Light emission from plasmonic nanostructures. The Journal of Chemical Physics 2021, 155.\\
+(21) Boyd, G.; Yu, Z.; Shen, Y. Photoinduced luminescence from the noble metals and its enhancement on roughened surfaces. Physical Review B 1986, 33, 7923.\\
+(22) Apell, P.; Monreal, R.; Lundqvist, S. Photoluminescence of noble metals. Physica Scripta 1988, 38, 174.\\
+(23) Bowman, A. R.; Rodríguez Echarri, A.; Kiani, F.; Iyikanat, F.; Tsoulos, T. V.; Cox, J. D.; Sundararaman, R.; García de Abajo, F. J.; Tagliabue, G. Quantummechanical effects in photoluminescence from thin crystalline gold films. Light: Science \& Applications 2024, 13, 91.\\
+(24) Eustis, S.; El-Sayed, M. Aspect ratio dependence of the enhanced fluorescence intensity of gold nanorods: experimental and simulation study. The Journal of Physical Chemistry B 2005, 109, 16350-16356.\\
+(25) Lin, K.-Q.; Yi, J.; Hu, S.; Sun, J.-J.; Zheng, J.-T.; Wang, X.; Ren, B. Intraband hot-electron photoluminescence from single silver nanorods. ACS Photonics 2016, 3, 1248-1255.\\
+(26) Mertens, J.; Kleemann, M.-E.; Chikkaraddy, R.; Narang, P.; Baumberg, J. J. How light is emitted by plasmonic metals. Nano Letters 2017, 17, 2568-2574.\\
+(27) Cai, Y.-Y.; Liu, J. G.; Tauzin, L. J.; Huang, D.; Sung, E.; Zhang, H.; Joplin, A.; Chang, W.-S.; Nordlander, P.; Link, S. Photoluminescence of gold nanorods: Purcell effect enhanced emission from hot carriers. ACS Nano 2018, 12, 976-985.\\
+(28) Haug, T.; Klemm, P.; Bange, S.; Lupton, J. M. Hot-electron intraband luminescence from single hot spots in noble-metal nanoparticle films. Physical Review Letters 2015, 115, 067403.\\
+(29) Ostovar, B.; Cai, Y.-Y.; Tauzin, L. J.; Lee, S. A.; Ahmadivand, A.; Zhang, R.; Nordlander, P.; Link, S. Increased intraband transitions in smaller gold nanorods enhance light emission. ACS nano 2020, 14, 15757-15765.\\
+(30) Sivan, Y.; Dubi, Y. Theory of "Hot" Photoluminescence from Drude Metals. ACS Nano 2021, 15, 8724-8732.\\
+(31) Sivan, Y.; Un, I. W.; Kalyan, I.; Lin, K.-Q.; Lupton, J. M.; Bange, S. Crossover from nonthermal to thermal photoluminescence from metals excited by ultrashort light pulses. ACS nano 2023, 17, 11439-11453.\\
+(32) Rytov, S. M.; Kravtsov, Y. A.; Tatarskii, V. I. Principles of statistical radiophysics. 3. Elements of random fields.; Springer Verlag: Berlin, 1989.\\
+(33) Benisty, H.; Greffet, J.-J.; Lalanne, P. Introduction to Nanophotonics; Oxford University Press: Oxford, 2022.\\
+(34) Collin, R. E. Field theory of guided waves; McGraw-Hill, 1960.\\
+(35) Callen, H. B.; Welton, T. A. Irreversibility and generalized noise. Physical Review 1951, 83, 34.\\
+(36) Kubo, R. The fluctuation-dissipation theorem. Reports on progress in physics 1966, 29, 255.\\
+(37) Greffet, J.-J.; Bouchon, P.; Brucoli, G.; Marquier, F. Light emission by nonequilibrium bodies: local Kirchhoff law. Physical Review X 2018, 8, 021008.\\
+(38) Sundararaman, R.; Narang, P.; Jermyn, A. S.; Goddard III, W. A.; Atwater, H. A. Theoretical predictions for hot-carrier generation from surface plasmon decay. Nature communications 2014, 5, 5788.\\
+(39) Bernardi, M.; Mustafa, J.; Neaton, J. B.; Louie, S. G. Theory and computation of hot carriers generated by surface plasmon polaritons in noble metals. Nature communications 2015, 6, 7044.\\
+(40) Brown, A. M.; Sundararaman, R.; Narang, P.; Goddard III, W. A.; Atwater, H. A. Nonradiative plasmon decay and hot carrier dynamics: effects of phonons, surfaces, and geometry. ACS Nano 2016, 10, 957-966.\\
+(41) Coudert, S.; Dilhaire, S.; Lalanne, P.; Duchateau, G. Unified theoretical description of out-of-equilibrium electron intraband dynamics in gold induced by femtosecond laser pulses. Physical Review B 2022, 106, 134308.\\
+(42) Ashcroft, N. W.; Mermin, N. D. Solid state physics; Cengage Learning, 2022.\\
+(43) Ziman, J. M. Electrons and phonons: the theory of transport phenomena in solids; Oxford university press, 2001.\\
+(44) Kirchhoff, G. I. On the relation between the radiating and absorbing powers of different bodies for light and heat. The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science 1860, 20, 1-21.\\
+(45) Lundstrom, M. Fundamentals of carrier transport, 2nd edn. Measurement Science and Technology 2002, 13, 230-230.\\
+(46) Lugovskoy, A. V.; Bray, I. Ultrafast electron dynamics in metals under laser irradiation. Physical Review B 1999, 60, 3279.\\
+(47) Dubi, Y.; Sivan, Y. "Hot" electrons in metallic nanostructures-non-thermal carriers or heating ? Light: Science \& Applications 2019, 8, 1-8.\\
+(48) He, Y.; Xia, K.; Lu, G.; Shen, H.; Cheng, Y.; Liu, Y.-c.; Shi, K.; Xiao, Y.-F.; Gong, Q. Surface enhanced anti-Stokes one-photon luminescence from single gold nanorods. Nanoscale 2015, 7, 577-582.\\
+(49) Huang, D.; Byers, C. P.; Wang, L.-Y.; Hoggard, A.; Hoener, B.; Dominguez-Medina, S.; Chen, S.; Chang, W.-S.; Landes, C. F.; Link, S. Photoluminescence of a plasmonic molecule. ACS Nano 2015, 9, 7072-7079.\\
+(50) Hu, H.; Duan, H.; Yang, J. K.; Shen, Z. X. Plasmon-modulated photoluminescence of individual gold nanostructures. ACS Nano 2012, 6, 10147-10155.\\
+(51) Wen, T.; He, Y.; Liu, X.-L.; Lin, M.-L.; Cheng, Y.; Zhao, J.; Gong, Q.; Xia, K.; Tan, P.H.; Lu, G. Spectral shape of one-photon luminescence from single gold nanorods. AIP Advances 2017, 7.\\
+(52) Sivan, Y.; Un, I. W.; Dubi, Y. Assistance of metal nanoparticles in photocatalysisnothing more than a classical heat source. Faraday discussions 2019, 214, 215-233.\\
+(53) Johnson, P. B.; Christy, R.-W. Optical constants of the noble metals. Physical Review B 1972, 6, 4370.\\
+(54) Loudon, R. The quantum theory of light; Oxford university press, 2000.\\
+(55) Goodman, J. W. Statistical optics; John Wiley \& Sons, 2015.\\
+(56) Giuliani, G.; Vignale, G. Quantum theory of the electron liquid; Cambridge university press, 2005.\\
+(57) Roques-Carmes, C.; Rivera, N.; Ghorashi, A.; Kooi, S. E.; Yang, Y.; Lin, Z.; Beroz, J.; Massuda, A.; Sloan, J.; Romeo, N.; others A framework for scintillation in nanophotonics. Science 2022, 375, eabm9293.\\
+(58) Pottier, N. Physique statistique hors d'équilibre; EDP sciences, 2021.\\
+(59) Loirette-Pelous, A. Étude théorique de l'émission de lumière par une assemblée d'émetteurs thermalisés dans un résonateur. Ph.D. thesis, Université Paris-Saclay, 2023.\\
+(60) Kubo, R. Statistical-mechanical theory of irreversible processes. I. General theory and simple applications to magnetic and conduction problems. Journal of the Physical Society of Japan 1957, 12, 570-586.\\
+(61) Kubo, R.; Yokota, M.; Nakajima, S. Statistical-mechanical theory of irreversible processes. II. Response to thermal disturbance. Journal of the Physical Society of Japan 1957, 12, 1203-1211.\\
+(62) Van Roosbroeck, W.; Shockley, W. Photon-radiative recombination of electrons and holes in germanium. Physical Review 1954, 94, 1558.\\
+(63) Loirette-Pelous, A.; Greffet, J.-J. Photon Bose-Einstein Condensation and Lasing in Semiconductor Cavities. Laser \& Photonics Reviews 2023, 17, 2300366.\\
+(64) Hou, X.; Djellali, N.; Palpant, B. Absorption of ultrashort laser pulses by plasmonic nanoparticles: not necessarily what you might think. ACS photonics 2018, 5, 38563863.\\
+(65) Coleman, P. Introduction to many-body physics; Cambridge University Press, 2015.
+
+
+\end{document}

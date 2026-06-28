@@ -22,4 +22,3 @@ repo/
    ├─ figures/             # Images, diagrams, exported plots
    └─ assets/              # Misc supporting files (snippets, templates, etc.)
 ```
-

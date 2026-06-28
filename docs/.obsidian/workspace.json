@@ -6,17 +6,56 @@
       {
         "id": "4509724f8bf84da7",
         "type": "tabs",
+        "dimension": 51.464063886424135,
         "children": [
           {
             "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
+              "type": "markdown",
+              "state": {
+                "file": "references/REFERENCES.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "REFERENCES"
+            }
+          },
+          {
+            "id": "f794d5a5409d7895",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "notes/Interband Absorption at X and L (Rosei's Notation).md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Interband Absorption at X and L (Rosei's Notation)"
+            }
+          }
+        ],
+        "currentTab": 1
+      },
+      {
+        "id": "044940e5b45f5872",
+        "type": "tabs",
+        "dimension": 48.535936113575865,
+        "children": [
+          {
+            "id": "65edc6609fc45769",
+            "type": "leaf",
+            "state": {
               "type": "pdf",
               "state": {
-                "file": "references/C - previous_pdf.pdf"
+                "file": "references/PDFs/7 - Rosei.pdf"
               },
               "icon": "lucide-file-text",
-              "title": "C - previous_pdf"
+              "title": "7 - Rosei"
             }
           }
         ]
@@ -68,13 +107,22 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "references/C - previous_pdf.pdf",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of C - previous_pdf"
+              "title": "Outline"
+            }
+          },
+          {
+            "id": "a5369314a6c82fff",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
@@ -96,11 +144,9 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {
-                "file": "references/C - previous_pdf.pdf"
-              },
+              "state": {},
               "icon": "lucide-info",
-              "title": "File properties for C - previous_pdf"
+              "title": "File properties"
             }
           },
           {
@@ -144,7 +190,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "references/C - previous_pdf.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -154,7 +199,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for C - previous_pdf"
+              "title": "Backlinks"
             }
           },
           {
@@ -163,19 +208,19 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "references/C - previous_pdf.pdf",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from C - previous_pdf"
+              "title": "Outgoing links"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -193,55 +238,54 @@
       "obsidian-stille:Toggle Stille": false
     }
   },
-  "active": "e7a7b303c61786dc",
+  "active": "f794d5a5409d7895",
   "lastOpenFiles": [
-    "references/ultrafast-electron-dynamics-and-optical-nonlinearities-in-metal-nanoparticles.pdf",
-    "figures/gaussian_delta_convergence.png",
-    "references/Fermi Golden Rule - Handwritten Notes.md",
-    "references/experiment.base",
-    "figures/gaussian_delta_double_integral.png",
-    "figures/edos_relative_error_default.png",
-    "figures/delta_convergence_cos_L10_fine.png",
-    "figures/delta_convergence_cos.png",
-    "figures/consteDOS_error_heatmaps.png",
-    "figures/constant_eDOS_heatmap.png",
-    "figures/constant_eDOS_approximation.png",
-    "figures/analytic_error_heatmaps.png",
-    "figures/analytic_approximations.png",
-    "references/Principles of Nano-Optics.md",
-    "notes/concepts/A1 - Derivation of the General Emission Integral.md",
-    "notes/concepts/3 - Intraband Transitions.md",
-    "notes/concepts/2.2 - Intraband Transitions.md",
-    "notes/concepts/2.1 - General Emission Integral.md",
-    "notes/concepts/2 - Theoretical Framework.md",
-    "notes/temp/Work Plan.md",
-    "notes/temp/Effective Mass Extraction.md",
-    "notes/temp/Dedications.md",
-    "notes/temp/Abstract.md",
-    "notes/temp/1 - Introduction.md",
-    "notes/temp/0 - Outline.md",
-    "Absorption Integral (Using Rosei's Notations).md",
-    "interband_derivation.pdf",
-    "notes/concepts/A8 - Interband Transitions (Rosei).md",
-    "4 Misc/Bases/appendices.base",
-    "notes/concepts/Integration Limits of X & L Points vs the Center of BZ.md",
-    "4 Misc/Bases",
-    "notes/concepts/Non-equilibrium Emission in Metals.md",
-    "4 Misc/Bases/thesis.base",
-    "notes/log/Log.md",
-    "4 Misc/Bases/working-notes.base",
-    "notes/concepts/X & L Dispersion Relations.md",
-    "notes/concepts/Lifetime Broadening.md",
-    "notes/concepts/First Order TDM.md",
-    "notes/concepts/Electronic Transitions.md",
-    "notes/concepts/A7 - Intraband Transitions (Rosei).md",
-    "notes/concepts/A5 - Numeric Delta Approximation.md",
-    "notes/concepts/A4 - Electronic Density of States.md",
-    "notes/temp",
-    "notes/log",
-    "notes/concepts",
-    "4 Misc/Bases/project.base",
-    "MOC.canvas",
+    "notes/Rosei Equivalence Derivation/page-7.png",
+    "notes/Rosei Equivalence Derivation/page-6.png",
+    "notes/Rosei Equivalence Derivation/page-5.png",
+    "notes/Rosei Equivalence Derivation/pdflatex17084.fls",
+    "notes/Rosei Equivalence Derivation/pdflatex17083.fls",
+    "notes/Rosei Equivalence Derivation/page-8.png",
+    "notes/Rosei Equivalence Derivation/page-4.png",
+    "notes/Rosei Equivalence Derivation/page-3.png",
+    "notes/Rosei Equivalence Derivation/page-2.png",
+    "notes/Rosei Equivalence Derivation/page-1.png",
+    "notes/Rosei Equivalence Derivation/pdflatex17002.fls",
+    "notes/Rosei Equivalence Derivation/pdflatex16888.fls",
+    "notes/Rosei Equivalence Derivation/rosei_equivalence_derivation.out",
+    "notes/Rosei Equivalence Derivation/rosei_equivalence_derivation.pdf",
+    "notes/Rosei Equivalence Derivation/pdflatex16887.fls",
+    "notes/Rosei Equivalence Derivation/rosei_equivalence_derivation.log",
+    "notes/Rosei Equivalence Derivation/rosei_equivalence_derivation.fls",
+    "notes/Rosei Equivalence Derivation/pdflatex16875.fls",
+    "Untitled.md",
+    "notes/Interband Absorption at X and L (Rosei's Notation).md",
+    "notes/Equivalence of My Absorption Integral and Rosei's.md",
+    "notes/Absorption Integral (Using Rosei's Notations).md",
+    "references/TEXs/7 - Rosei 1/images/dfe331d9-fc5a-453b-8575-91a380946592-6_729_607_333_311.jpg",
+    "references/TEXs/7 - Rosei 1/images/dfe331d9-fc5a-453b-8575-91a380946592-6_725_647_1632_1130.jpg",
+    "references/REFERENCES.md",
+    "references/PDFs/Untitled.md",
+    "references/PDFs/MOC.canvas",
+    "notes/log/3.1 - Numeric Convergence.md",
+    "notes/log/3.2 - Analytic Approximations.md",
+    "references/1 - Hot PL/1 - Hot PL.md",
+    "references/12 - Imon.md/6d130213-22d8-4a11-ae32-675e1fd064c5.md",
+    "references/12 - Imon.md",
+    "references/11 - Greffet.md/c69a44df-5ad2-48c8-bd83-4af8ee7a999a.md",
+    "references/11 - Greffet.md",
+    "references/10 - Mooridan.md/61a709aa-f744-4cc8-aa20-36a57c58807d.md",
+    "references/10 - Mooridan.md",
+    "references/9 - Bowman.md/73169eec-5b48-47f1-9eff-fd9f4dccd667.md",
+    "references/9 - Bowman.md",
+    "references/8 - Marini.md/fedff7ea-fb9d-4a80-ac6f-348dbc7a5487.md",
+    "references/8 - Marini.md",
+    "references/7 - Rosei.md/dfe331d9-fc5a-453b-8575-91a380946592.md",
+    "references/7 - Rosei.md",
+    "references/6 - Novotny.md/0781daed-441b-41f1-a5d4-fc13c7f71e63.md",
+    "references/6 - Novotny.md",
+    "references/5 - Boltzmann Equation.md/1d0b0cec-18d9-476c-9c1d-acab43e995e5.md",
+    "references/5 - Boltzmann Equation.md",
     "MOC Canvas.canvas",
     "notes/Outline & Questions/emission integral tree.canvas",
     "notes/Outline & Questions/DeepDive.canvas",

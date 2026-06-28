@@ -1,0 +1,541 @@
+% This LaTeX document needs to be compiled with XeLaTeX.
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\graphicspath{ {./images/} }
+\usepackage{caption}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan,}
+\urlstyle{same}
+\usepackage[fallback]{xeCJK}
+\usepackage{polyglossia}
+\usepackage{fontspec}
+\usepackage{newunicodechar}
+\IfFontExistsTF{Noto Serif CJK TC}
+{\setCJKmainfont{Noto Serif CJK TC}}
+{\IfFontExistsTF{STSong}
+  {\setCJKmainfont{STSong}}
+  {\IfFontExistsTF{Droid Sans Fallback}
+    {\setCJKmainfont{Droid Sans Fallback}}
+    {\setCJKmainfont{SimSun}}
+}}
+
+\setmainlanguage{english}
+\IfFontExistsTF{CMU Serif}
+{\setmainfont{CMU Serif}}
+{\IfFontExistsTF{DejaVu Sans}
+  {\setmainfont{DejaVu Sans}}
+  {\setmainfont{Georgia}}
+}
+
+\title{Photoluminescence from metal nanostructures - dependence on size }
+
+\author{Imon Kalyan, ${ }^{\dagger}$ leng Wai Un, ${ }^{\ddagger, \text { 亿 }}$ Gilles Rosolen, ${ }^{§}$ Nir Shitrit, ${ }^{\dagger}$ and Yonatan Sivan ${ }^{*, \dagger}$\\
+† School of Electrical and Computer Engineering, Ben-Gurion University of the Negev, Israel\\
+‡ Guangdong Basic Research Center of Excellence for Structure and Fundamental Interactions of Matter, School of Physics, South China Normal University, Guangzhou 510006, China\\
+【Guangdong-Hong Kong Joint Laboratory of Quantum Matter, South China Normal University, Guangzhou 510006, China\\
+§Micro and Nanophotonic Materials Group,Research Institute for Materials Science and Engineering, University of Mons, 7000 Mons, Belgium\\
+E-mail: sivanyon@bgu.ac.il}
+\date{}
+
+
+%New command to display footnote whose markers will always be hidden
+\let\svthefootnote\thefootnote
+\newcommand\blfootnotetext[1]{%
+  \let\thefootnote\relax\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \let\thefootnote\svthefootnote%
+}
+
+%Overriding the \footnotetext command to hide the marker if its value is `0`
+\let\svfootnotetext\footnotetext
+\renewcommand\footnotetext[2][?]{%
+  \if\relax#1\relax%
+    \ifnum\value{footnote}=0\blfootnotetext{#2}\else\svfootnotetext{#2}\fi%
+  \else%
+    \if?#1\ifnum\value{footnote}=0\blfootnotetext{#2}\else\svfootnotetext{#2}\fi%
+    \else\svfootnotetext[#1]{#2}\fi%
+  \fi
+}
+
+\newunicodechar{†}{\ifmmode\dagger\else{$\dagger$}\fi}
+\newunicodechar{‡}{\ifmmode\ddagger\else{$\ddagger$}\fi}
+
+\begin{document}
+\maketitle
+\captionsetup{singlelinecheck=false}
+
+
+\begin{abstract}
+For decades, there have been multiple seemingly contradicting experimental reports on the dependence of the photoluminescence from metal nanostructures on their size. We reconcile these reports using a simple analytic formula which is found to match well photoluminescence measurements for a range of structures and illumination conditions. Our expression requires only knowledge of the local electric field and temperature, and it points to the physical quantities that determine the emission strength and its dependence on size.
+\end{abstract}
+
+\section*{1 Introduction}
+The emission of light from metal nanostructures induced by illumination, frequently referred to colloquially as metal photoluminescence (PL), is a fundamental process occurring in a prototypical solid-state system ${ }^{1}$. It also has practical importance - metal nanoparticles are frequently used as non-bleaching fluorescent labels in bio-imaging ${ }^{1-3}$, correlative light-electron microscopy, ${ }^{4}$ and more recently, as enablers of thermometry. ${ }^{5-9}$
+
+Despite that dual importance, it is surprising that many aspects of the metal PL have been under debate for decades. These debates are on, for example, whether the emission occurs due to recombination of an electron and hole residing both within the conduction band ${ }^{10-12}$ or involving a hole in the valence band (e.g., Ref. [13-18]), on whether the emission statistics is fermionic or bosonic (e.g., Ref. [7,19]), thermal or non-thermal (e.g., Ref. [11,12,20-22]), or how it depends on the local electric field (e.g., Ref. [11,20,21,23]). Of particular interest is the dependence on the size of the nanostructure (e.g., Ref. [16,17,24-26]). Many early works studied the emission from metal clusters or few nm particles, primarily focussing on atomistic considerations and ligand coverage; these works highlighted the trade-off between the presence of a plasmonic resonance and the quantum yield for emission, see Ref. [27]. For larger structures, there have been reports of contradicting trends. For example, Dulkeith et al. Ref. [24] showed that the (time and) frequency integrated Stokes emission (SE) from spheres of growing radii illuminated by a short pulse scales linearly with their volume; similar results were reported by Gaiduk et al. Ref. [25] for continuous wave (CW) illumination. On the other hand, Lin et al. Ref. [28] and more recently, Bowman et al. Ref. [29] have demonstrated that the CW PL from rods and thin Au films, respectively, decreases with growing thickness; similar trends were reported in Ref. [17,30] for pulsed illumination. Other works reported a mixed trend (e.g., Ref. [26]).
+
+\footnotetext{${ }^{1}$ In many cases, the term photoluminescence is used to refer to spontaneous emission / radiative recombination of an electron and a hole, in contrast to inelastic light scattering, aka electronic Raman scattering. In that sense, in this work we use the term photoluminescence (PL) as a shorthand for emission, without distinguishing between these possibilities.
+}These debates originate from the different conditions under which the PL measurements have been made (in terms of the number, density and shape of the nanostructure geometry, the illumination duration, intensity and wavelength, the relative position of the latter with respect to the resonances of the structure, the relative spectral position of emission with respect to the illumination wavelength, the geometry and thermal properties of the surrounding etc.) or the exact quantity studied (temporally and/or spectrally resolved/integrated PL), but also from the absence of a simple theory that encompasses both photonic aspects of the problem (via the photonic density of states, as appearing in Purcell's formula, see e.g., ${ }^{22}$ ), as well as the thermal aspects and the electronic aspects, i.e., the distribution and associated weights of the continuum of possible recombination transitions.
+
+Recently, Dubi and Sivan employed a simple analytic expression for the steady-state electron distribution in a Drude metal to derive an equally simple expression for the PL from metals illuminated by CW light. ${ }^{12}$ By relying on the empiric values of the permittivity to determine the absorption, this approach circumvents the need to specify the transition matrix element and circumvents the arguments about the origins of the emission (being radiative recombination or electronic Raman / inelastic light scattering etc. ${ }^{5,29,31-34}$ ). This predicted behaviour was verified experimentally in Ref. [18], and enabled the resolution of many of the disagreements described above (in particular, associated with the emission statistics and electric-field dependence). This expression was more recently extended to explain the dependence of the PL following short pulse illumination on the electric field. ${ }^{35}$
+
+In this work, we use the approach of Ref. [12] to reconcile the various seemingly contradicting reports on the size-dependence of the PL from the prototypical geometries of metal particles and films. Specifically, in Section 2, we combine the analytic expression of Ref. [ 12] with the detailed analysis of the heating of illuminated metal spheres ${ }^{36}$ and most importantly, with recent progress made by Loirette-Pelous and Greffet who showed how to determine the total PL of a metal nanostructure in the case of a non-thermal distribution. ${ }^{37}$
+
+In Section 3, we use the resulting analytic expression to compute the PL from metal nano-\\
+spheres and nano-films as a function of their size. We distinguish between three cases. For weak illumination (hence, negligible heating), the dependence of the PL spectrum (both the Stokes Emission (SE) and the anti-Stokes Emission (aSE)) on the structure size is determined by a single parameter - the absorption cross-section density (or equivalently, via Kirchhoff's Law, the emission cross-section density); the electronic contribution is size-independent in this regime. Thus, generically, the PL scales with the illuminated volume, i.e., it is a volume effect for small sizes and it becomes a surface effect when the size exceeds the penetration depth of a few 10s of nm. However, in the latter case, the resonances characteristic of particles modify further the size-dependence of the PL and effectively dominate it. Indeed, a change of size causes the emission at a given frequency to shift in and then out of resonance.
+
+For stronger illumination (hence, moderate heating), the size-dependence of the PL is amplified through the dependence of the Bose function on the (electron) temperature. This has a fairly small effect on the SE, but a large effect on the aSE due to the exponential dependence of the Bose function on the temperature, which itself scales with the absorption cross-section density. For even stronger heating, thermo-optic effects kick in, and cause the quality factor of the resonance to decrease. ${ }^{38,39}$ This causes weaker (excessive) heating at resonance (away from resonance), and hence, has a complex effect on the PL , depending on the emission frequency (SE/aSE).
+
+We then demonstrate a good qualitative match between the prediction of our model and experimental results for spheres and films; in fact, good quantitative matches are observed in most cases. We demonstrate different trends by looking also at other particle shapes (rods and nano disks), and find a good qualitative match, even in the presence of modest field and temperature non-uniformity levels. Remarkably, the agreement usually extends beyond the formal limits of the analysis, specifically, in the presence of interband emission events, which are not accounted for in our analytic expression.
+
+In Section 4, we discuss possible reasons for the occasional quantitative mismatches we observe, the implications of the results, their pros and cons compared with more sophisticated\\[0pt]
+approaches in the literature, specifically, the rigorous momentum-space calculations provides in Ref. [29,30,33], and mention possible extensions of our approach.
+
+\section*{2 Theory}
+\subsection*{2.1 A microscopic view}
+Based on the CW solution for $f$ (the steady-state electron distribution) obtained in Ref. [ 40,41] for uniformly illuminated Drude metals and its experimental verification in Ref. [ 42-45], in Ref. [12], Sivan and Dubi presented a quantitative theory for the PL from Drude metals under continuous wave (CW) illumination, showing that the probability of emitted photons per unit frequency is given approximately by
+
+
+\begin{equation*}
+\Gamma^{e m}\left(\mathbf{r}, \omega, \omega_{L} ; \mathcal{E}_{F}\right) \cong \gamma_{\mathcal{E}}\left(\mathbf{r}, \omega, \omega_{L} ; \mathcal{E}_{F}\right) \rho_{e}^{2}\left(\mathcal{E}_{F}\right) I_{e}\left(\omega, \omega_{L},\left|\mathbf{E}_{L}\left(\omega_{L}, \mathbf{r}\right)\right|^{2}\right) \tag{1}
+\end{equation*}
+
+
+where
+
+
+\begin{equation*}
+I_{e}\left(\omega, \omega_{L},\left|\mathbf{E}_{L}\left(\omega_{L}, \mathbf{r}\right)\right|^{2}\right)=\int f\left(\mathcal{E}+\hbar \omega,\left|\mathbf{E}_{L}\left(\omega_{L}, \mathbf{r}\right)\right|^{2}\right)\left[1-f\left(\mathcal{E},\left|\mathbf{E}_{L}\left(\omega_{L}, \mathbf{r}\right)\right|^{2}\right)\right] d \mathcal{E} \tag{2}
+\end{equation*}
+
+
+represents the electronic contribution to the emission formula and
+
+
+\begin{equation*}
+\gamma_{\mathcal{E}}\left(\mathbf{r}, \omega, \omega_{L}, \mathcal{E}\right)=\frac{\pi \omega_{L} V^{2}}{\epsilon_{0}}\left|\vec{\mu}\left(\mathcal{E}, \mathcal{E}+\hbar \omega_{L}\right)\right|^{2} \rho_{\text {phot }}(\mathbf{r}, \omega) \tag{3}
+\end{equation*}
+
+
+represents the emission rate of a single electron. In the above, $\mathbf{r}$ and $\omega$ are the emitter position vector and frequency, $\omega_{L}$ is the excitation frequency, $\mathcal{E}_{F}$ is the Fermi energy, $\rho_{e}$ is the electron density of states and $\mathbf{E}_{L}$ is the local field. $\left|\vec{\mu}\left(\mathcal{E}_{f}, \mathcal{E}_{i}\right)\right|$ is the transition dipole moment between electronic states with an initial energy $\mathcal{E}_{i}$ and final energy $\mathcal{E}_{f}$ (assumed to be energy-independent) and $\rho_{\text {phot }}(\mathbf{r}, \omega)$ is the local density of photonic states (LDOPS).
+
+The electronic contribution of the emission formula (Eq. (2)) was shown in Ref. [12] to\\
+consist of a series of Planck's black-body radiation-like terms $\left(\mathcal{E}_{B B}\right)$, i.e.,
+
+
+\begin{align*}
+I_{e}\left(\omega, \omega_{L},\left|\mathbf{E}_{L}\left(\omega_{L}, \mathbf{r}\right)\right|^{2}\right) & \sim I_{e}\left(\omega, \omega_{L}, T_{e},\left|\mathbf{E}_{L}\left(\omega_{L}, \mathbf{r}\right)\right|^{2}\right)  \tag{4}\\
+& \sim\left\langle\mathcal{E}_{B B}\left(\omega ; T_{e}\right)\right\rangle+2\left\langle\mathcal{E}_{B B}\left(\omega-\omega_{L} ; T_{e}\right)\right\rangle \delta_{E}+\left\langle\mathcal{E}_{B B}\left(\omega-2 \omega_{L} ; T_{e}\right)\right\rangle \delta_{E}^{2}+\cdots
+\end{align*}
+
+
+where $\left\langle\mathcal{E}_{B B}\left(\omega, T_{e}\right)\right\rangle=\hbar \omega /\left(e^{\frac{\hbar \omega}{k_{B} T_{e}}}-1\right)$ and
+
+
+\begin{equation*}
+\delta_{E}\left(\mathbf{r} ; \omega_{L}, p o l^{\prime}, \hat{k}^{\prime}\right)=p_{a b s}\left(\mathbf{r} ; \omega_{L}, p o l^{\prime}, \hat{k}^{\prime}\right) / p_{s a t} \tag{5}
+\end{equation*}
+
+
+Here, $T_{e}$ is the (effective) electron temperature, extracted from the first energy moment of the electron distribution ${ }^{40,41,46,47}$; for CW illumination, the latter is nearly equal to the phonon temperature, however, since the PL literature is inconsistent on the matter, the notation adopted in this manuscript emphasizes that the dependence is on the electron temperature. Further, the absorbed power density ( $p_{a b s}$ ) is defined in terms of the local $\mathbf{E}_{L}\left(\mathbf{r} ; \omega_{L}, p o l^{\prime}, \hat{k}^{\prime}\right)$ as
+
+
+\begin{equation*}
+p_{a b s}\left(\mathbf{r} ; \omega_{L}, p o l, \hat{k^{\prime}}\right)=\frac{\omega_{L} \epsilon_{0}}{2} \epsilon_{m}^{\prime \prime}\left(\omega_{L}\right)\left|\mathbf{E}_{L}\left(\mathbf{r} ; \omega_{L}, p o l^{\prime}, \hat{k^{\prime}}\right)\right|^{2}=\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}, p o l^{\prime}, \hat{k^{\prime}}\right) I_{i n}\left(\mathbf{r} ; \omega_{L}, p o l^{\prime}, \hat{k^{\prime}}\right) \tag{6}
+\end{equation*}
+
+
+where $\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}, p o l^{\prime}, \hat{k^{\prime}}\right)$ is the absorption cross-section density or, in more general terms, the absorbed power density per unit incident intensity ( $I_{\text {in }}$ ) of polarization pol' and incidence direction $\hat{k^{\prime}}$ at a position $\mathbf{r}$ corresponding to the illumination frequency. The saturation power density can be approximated by Ref. [12,41]
+
+
+\begin{equation*}
+p_{s a t}\left(\omega_{L}\right)=\frac{3}{4} \frac{n_{e}\left(\hbar \omega_{L}\right)^{2}}{\mathcal{E}_{F} \tau_{e-e}} \tag{7}
+\end{equation*}
+
+
+where $n_{e}$ is the electron density and $\tau_{e-e}$ is an average rate of collisions between electrons. For simplicity, we set $\tau_{e-e}$ in Eq. (7) to a value typical for a non-thermal electron, i.e., we use the Fermi Liquid theory expression ${ }^{40,48}$ at $\mathcal{E} \sim \mathcal{E}_{F}+\hbar \omega$.
+
+The first term on the RHS of Eq. (4) represents the average energy of thermal emission per electromagnetic mode (i.e., for vacuum electric fields); the next terms represent the nonthermal emission caused by deviations of the electron distribution from thermal equilibrium due to one photon absorption (1PA), two photon absorption (2PA) etc.. As discussed in Ref. [ 12,35], for CW illumination, these terms are typically small compared to the thermal emission at mid-IR frequencies, but dominate the emission close to the illumination frequencies and above them. ${ }^{12,35}$ All these details are depicted in the schematic representation (Fig. 1). The complete step structure of the non-thermal contributions was observed experimentally for CW illumination for the first time in Ref. [18].
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{6d130213-22d8-4a11-ae32-675e1fd064c5-07_639_728_1052_663}
+\captionsetup{labelformat=empty}
+\caption{Figure 1: (Color online) Schematic of the contribution from thermal emission: $\left\langle\mathcal{E}_{B B}\left(\omega ; T_{e}\right)\right\rangle$ (black), 1PA: $2\left\langle\mathcal{E}_{B B}\left(\omega-\omega_{L} ; T_{e}\right)\right\rangle \delta_{E}$ (blue), 2 PA: $\left\langle\mathcal{E}_{B B}\left(\omega-2 \omega_{L} ; T_{e}\right)\right\rangle \delta_{E}^{2}$ (red) from Eq. (4) calculated under CW wave illumination. The plots are shown for two intensities, where solid and dotted lines indicate lower and higher intensities, respectively.}
+\end{center}
+\end{figure}
+
+Notably, the emission (1) is assumed to occur only within the conduction band, i.e., to involve only intraband transitions; in that sense, strictly speaking, $\alpha_{a b s}$ should include only the intraband contribution (as in Ref. [37]). This would not matter for the illustrative examples below, for which we study Ag nanostructures, but could somewhat affect the match between our predictions and the experimental data (see Sections 3.1.4 and 3.2.3). In order to include interband absorption and emission transitions, our PL formula can be amended\\
+by accounting for the increased number of non-thermal holes above the interband absorption threshold in the electron distribution function $f$, as shown in Fig. S10(b) of Ref. [29], and adding the valence bands to the electron density of states. As shown below, our analysis provides a qualitative (and usually, also a quantitative) match to the experimental data even without accounting for these additional transitions.
+
+\subsection*{2.2 A macroscopic view}
+The result (1) applies for a general point within the metal. It was so far used to understand the general parametric dependence of the PL on the electric field, its statistics etc. with only a phenomenological address of the shape and size of the emitting nanostructure.
+
+In order to account for a specific nanostructure geometry, one needs to sum over the random spontaneous emission events from the nanostructure volume as a function of space. This should allow one to account also for the actual magnitude of the emission, thus, including also the portion of the emitted photons that got re-absorbed (sometimes referred to as recycled), rather than only the probability of emission (as given by $\Gamma^{e m}(1)$ ). This can be done using the local Kirchhoff Law for non-isothermal bodies ${ }^{49-51}$ and its extension to metals having non-equilibrium electron distributions. ${ }^{37}$ The latter study showed that the actual emitted power in the direction $\hat{k}$ into a solid angle $d \Omega\left(=\frac{d^{3} k}{k^{2} d k}\right.$; see Eq. (9.15.9) in Ref. [52]) is given by
+
+
+\begin{equation*}
+d P^{e m}\left(\omega, \omega_{L}, \hat{k}\right) \cong \frac{\rho_{p h o t}^{(0)}}{8 \pi} \sum_{p o l=s, p} \int_{V} \alpha_{a b s}(\mathbf{r} ; \omega, p o l,-\hat{k}) I_{e}\left(\omega, \omega_{L}, T_{e}(\mathbf{r}),\left|\mathbf{E}_{L}\left(\mathbf{r} ; \omega_{L}, p o l^{\prime}, \hat{k}^{\prime}\right)\right|^{2}\right) d^{3} r d \omega d \Omega \tag{8}
+\end{equation*}
+
+
+where $\rho_{\text {phot }}^{(0)}=\frac{\omega^{2}}{\pi^{2} c^{2}}$ is the photonic density of states of free space, pol and pol' are the polarization of the emitted and incident waves, respectively, and $\alpha_{a b s}(\mathbf{r} ; \omega, p o l,-\hat{k})$ is the emission cross-section density (aka emissivity density), which by the local Kirchhoff Law, equals the absorption cross-section density. In that regard, following Ref. [49-51], and unlike\\[0pt]
+in Ref. [37], where the PL was expressed in terms of absorption cross-section, Eq. (8) utilizes the absorption cross-section density to extend the formulation to structures with nonuniform field distributions.
+
+Using Eqs. (4)-(6) in Eq. (8) gives
+
+
+\begin{align*}
+d P^{e m}\left(\omega, \omega_{L}, \hat{k}\right) \sim & \frac{\omega^{2}}{8 \pi^{3} c^{2}} \sum_{p o l=s, p} \int_{V}\left[\frac{I_{i n}}{p_{s a t}} \alpha_{a b s}(\mathbf{r} ; \omega, p o l,-\hat{k}) \alpha_{a b s}\left(\mathbf{r} ; \omega_{L}, p o l^{\prime}, \hat{k^{\prime}}\right)\right. \\
+& 2\left\langle\mathcal{E}_{B B}\left(\omega-\omega_{L} ; T_{e}\right)\right\rangle_{r}+\frac{I_{i n}^{2}}{p_{s a t}^{2}} \alpha_{a b s}(\mathbf{r} ; \omega, p o l,-\hat{k}) \alpha_{a b s}^{2}\left(\mathbf{r} ; \omega_{L}, p o l^{\prime}, \hat{k^{\prime}}\right) \\
+& \left.\left\langle\mathcal{E}_{B B}\left(\omega-2 \omega_{L} ; T_{e}\right)\right\rangle_{r}+\cdots\right] d^{3} r d \omega d \Omega \tag{9}
+\end{align*}
+
+
+Eq. (9) shows that the quantities that determine the emission are the absorption crosssection density $\alpha_{a b s}$ and the (electron) temperature distribution. This dependence is similar to that provided in Ref. [53], as well as to the scaling of surface-enhanced Raman Scattering (see Ref. [54]), but goes beyond these theories by providing a rigorous (rather than an empiric ${ }^{53}$ ) account of the effect of the electron distribution to the PL. As shown below, the expression (9) also circumvents the more advanced yet complicated $k$-space calculations (as e.g., in Ref. [29,30,33]), without compromising much predictive capabilities.
+
+We now note that the spatially-integrated emission (9) involves space-varying functions. Specifically, the spatial distribution of $\alpha_{a b s}$ is determined by the material constituents and geometry of the nanostructure. In addition to gradients induced by illumination non-uniformity (e.g., when a focussed beam illuminates a film), Eq. ((9)) exhibits significant gradients on scales exceeding the penetration (skin) depth, i.e., for more than a few tens of nm for noble metals. In contrast, the non-uniformity of temperature is typically much weaker than that of the electric field (and hence $\alpha_{a b s}$ ) due to the strong (electron, hence) heat diffusion in metals. This (electron) temperature non-uniformity should, in principle, be extracted from a self-consistent solution of microscopic equations for the electron dynamics; however, in practice, since the deviation from thermal equilibrium is minute for CW illumination, $40,41,45$\\
+it is usually determined by coarse-graining such equations into heat equations, see, e.g., Ref. [ $40,41,47,55]$. The resulting single or two temperature models reveal that heat gradients and electron-phonon temperature differences are very small (see, e.g., Ref. [56-61]). Finally, like the absorption cross-section density $\alpha_{a b s}$ and unlike the electron temperature $T_{e}$, the nonthermal part of the electron distribution, manifested via $\delta_{E}(5)$, is roughly determined by the local electric field distribution. As predicted in Ref. [31,62,63] and demonstrated experimentally in Ref. [29], the reason for that is the minimal (few nm ) mean free path of these electrons, which in turn, originates from their femtosecond-scale collision rate. Accordingly, to determine the spatial dependence of the PL integrand, in what follows we use heat equations to determine the electron temperature and rely on the solution of Maxwell's equations to determine the electric field, and hence, $\alpha_{a b s}$ and $\delta_{E}$. Having said that, in many cases (specifically, for few nm spheres and uniformly illuminated thin films, both studied below), $\alpha_{a b s}$ is quite uniform. In such cases, $\alpha_{a b s}$ can be estimated from measurable quantities like the absorption cross-section, $\sigma_{a b s}$ (in the case of particles) or absorptance, $A$ (in the case of films), thus, simplifying the formulation slightly, and making the analysis of the PL simpler.
+
+\section*{3 Results}
+\subsection*{3.1 Nano-spheres under CW illumination}
+\subsection*{3.1.1 Determination of the electron temperature}
+We start our analysis by considering the PL from nano-spheres under CW plane wave illumination in a uniform optical and thermal environment (oil, in our case), see Fig. 2(a). We choose silver as a prototypical plasmonic material, as it does not require accounting for interband transitions for illumination with visible light. As mentioned above, in this case, it is customary to neglect the small difference between the electron and phonon temperatures (see, e.g., Ref. [40,41,64]) and consider a single temperature model. Nevertheless, as mentioned, we choose to denote the temperature below as $T_{e}$, in order to emphasize that it is the\\
+electron temperature that is the relevant quantity as far as photon emission in the visible and near infrared spectral regimes is concerned. Then, the steady-state temperature $T_{e}(\mathbf{r})$ can be obtained by solving the heat diffusion equation ${ }^{65}$
+
+\[
+\nabla \cdot\left[\kappa(\mathbf{r}) \nabla T_{e}\left(\mathbf{r}, \omega_{L}\right)\right]= \begin{cases}-\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right) I_{i n}, & \text { inside the nanostructure }  \tag{10}\\ 0, & \text { outside the nano structure }\end{cases}
+\]
+
+where $\kappa$ is the thermal conductivity and we used Eqs. (6) on the right-hand-side. Due to the symmetry, $\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)$ for a nanosphere is independent of the direction and polarization of the incident beam.
+
+As shown already in Ref. [36,65], even in the presence of substantial field non-uniformity (occurring for nano-spheres of more than a few tens of nm in size), the high thermal conductivity of the metal ensures that the temperature of the nanosphere is only weakly inhomogeneous. In fact, as shown in Ref. [36], the temperature can be calculated quite accurately also when replacing $\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)$ in Eq. (10) by its spatial average, $\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r}= \frac{1}{V} \int \alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right) d \mathbf{r}=\sigma_{a b s}\left(\omega_{L}\right) / V$. Particularly, for spheres whose radius is up to $\approx 60 \mathrm{~nm}$, the temperature can be approximated as
+
+
+\begin{equation*}
+T_{e} \approx\left\langle T_{e}\right\rangle_{r}=T_{h}+\frac{\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r} I_{i n}}{3 \kappa_{h}} a^{2} \tag{11}
+\end{equation*}
+
+
+Here, $\kappa_{h}$ and $T_{h}$ are the thermal conductivity and the temperature of the surrounding media far from the particle.
+
+As a representative example, Fig. 2(b)-(c) show $\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r}$ and the (electron) temperature (11), respectively, calculated for Ag spheres of sizes up to 60 nm dispersed in oil (permittivity $\epsilon_{h}=2.235$, thermal conductivity $k_{h}=0.2873 \mathrm{Wm}^{-1} \mathrm{~K}^{-1}$ ) for an excitation laser wavelength $\lambda_{L}$ close to the (dipolar) plasmon resonance ( 488 nm ) and for a wavelength farther from the resonance ( 900 nm ). The absorption cross-section (density) is well studied, ${ }^{66}$ hence, described below only briefly. Specifically, $\left\langle\alpha_{a b s}\left(\mathbf{r} ; \lambda_{L}=488 n m\right)\right\rangle_{r}$ shows a peak around 30 nm .
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{6d130213-22d8-4a11-ae32-675e1fd064c5-12_543_1623_244_262}
+\captionsetup{labelformat=empty}
+\caption{Figure 2: (Color online) (a) A schematic illustration of light emission from a sphere. (b) The absorption cross-section density $\left\langle\alpha_{a b s}\right\rangle_{r}$ vs. radius for $\lambda_{L}=488 \mathrm{~nm}$ (black) and 900 nm (red) for Ag spheres in oil. (b) The corresponding (electron) temperature reached due to CW illumination of the Ag spheres, calculated using Eq. (11). The corresponding illumination intensities are $I_{i n}=0.25 \mathrm{MW} / \mathrm{cm}^{2}$ (black line) and $I_{i n}=3.5 \mathrm{MW} / \mathrm{cm}^{2}$ (red line). The thermo-optic effect on $\left\langle\alpha_{a b s}\right\rangle_{r}$ and $T_{e}$ is represented by the dotted lines.}
+\end{center}
+\end{figure}
+
+For $a<10 \mathrm{~nm}$, the absorption cross-section $\sigma_{a b s}\left(\omega_{L}\right)$ (hence, $\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r} \sim \sigma_{a b s}\left(\omega_{L}\right) / a^{3}$ ) takes the quasi-static form, $\sigma_{\text {abs }}^{q s} \simeq \frac{6 \pi}{\lambda} V \Im\left(\frac{\epsilon-\epsilon_{b g}}{\epsilon+2 \epsilon_{b g}}\right)$ (see Fig. ?? or more generally, Ref. [66]). As the sphere radius increases, the $\lambda \sim 400 \mathrm{~nm}$ dipole resonance undergoes a red-shift (see Fig. ??(a)). Thus, since the chosen excitation wavelength $\lambda_{L} \sim 488 \mathrm{~nm}$ is at the long wavelength tail of the resonance, $\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r}$ increases with $a$ as the dipole resonance tunes towards $\lambda_{L}$. However, the strength of the dipole resonance decreases with growing sphere size, so that beyond $a \sim 30 \mathrm{~nm}$, the importance of higher-order resonances increases, and thus, the absorption becomes limited to the surface. The corresponding size dependence of $\sigma_{a b s}$ is shown in Fig. ??.
+
+Similarly, for excitation at $\lambda_{L}=900 \mathrm{~nm}$, the averaged absorption cross-section density $\left\langle\alpha_{a b s}\right\rangle_{r}$ increases monotonically with the sphere size for all sizes studied here since the peak response occurs beyond the range of consideration in this work, see Fig. ??(b). In that sense, the off-resonance illumination case behaves as in the small size regime of the on-resonance case; we will not dwell on it further in this study.
+
+Fig. 2(c) shows the corresponding size-dependence of the electron temperature. By Eq. (11), and as explained in Ref. [36], the size-dependence of the temperature $T_{e}$ originates\\
+from the proportionality with $\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r}$ and $a^{2}$. Specifically, for on-resonance excitation, the product $\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r} a^{2}$ results in a peak of $T_{e}$ at $\approx 35 \mathrm{~nm}$ while for off-resonance excitation, the monotonic increase of $\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r}$ results in a monotonic increase of $T_{e}$. The similarity to the size-dependence of the absorption cross-section density is apparent.
+
+\subsection*{3.1.2 Determination of the PL}
+Fig. 3 illustrates the size-dependence of the total PL (as per Eq. (9)) for an excitation wavelength close to resonance ( $\lambda_{L}=488 \mathrm{~nm}$ ). The intensities used for the calculations are chosen such that at the lower intensity ( $I_{\text {in }}=2.5 \mathrm{~kW} / \mathrm{cm}^{2}$ ), the temperature of each sphere is close to room temperature and at the higher intensity ( $I_{\text {in }}=0.25 M W / \mathrm{cm}^{2}$ ) the maximum temperature does not exceed $500 K$ (for which sintering and damage may start to occur). The calculations are conducted at three different emission wavelengths. The calculated emission at $\lambda=420 \mathrm{~nm}$ (aSE; Fig. 3(a)) displays a peak at $a=28 \mathrm{~nm}$ when excited by the low intensity. When excited at a higher intensity (Fig. 3(d)), the peak slightly red-shifts to $a=34 \mathrm{~nm}$ and becomes more distinct. For the emission at $\lambda=680 \mathrm{~nm}$ (SE; Fig. 3(b) and (e)), the PL increases monotonously until $a \approx 42 \mathrm{~nm}$, decreases until $a=51 \mathrm{~nm}$ and then rises again. The PL at $\lambda=950 \mathrm{~nm}$, (lower frequency SE; Fig. 3(c) and (f)) exhibits a similar behavior, except for a higher slope beyond $a=50 \mathrm{~nm}$.
+
+As already noted above, the expression for PL (9) can be further simplified for a sphere. As discussed in Section 3.1.1, the temperature is fairly uniform in the sphere and the spacedependence of $I_{e}$ in Eq. (9) originates only from that of $\alpha_{a b s}$ and $\delta_{E}$, as indicated by Eq. (4). Further, we rely on the calculations of the mean free path of the non-thermal electrons ${ }^{31}$ to justify the neglect of spatial broadening of the non-thermal electron distribution. These results motivate the use of the analytic result (4) also for non-uniform fields, i.e., to approximate the level of non-thermal electron population $\delta_{E}$ by simply summing over its local value across the particle volume. Accordingly, $\delta_{E}$ (5) can be expressed in terms of the spatially averaged, $\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r}$. With this consideration, $I_{e}$ (4) becomes independent of position.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{6d130213-22d8-4a11-ae32-675e1fd064c5-14_965_1601_655_247}
+\captionsetup{labelformat=empty}
+\caption{Figure 3: (Color online) The total PL (Eq. (9); circles) and its homogenized approximation (Eq. (12); black continuous line) calculated for spheres under CW illumination with $\lambda_{L}=488$ nm and emission wavelengths of $\lambda=420 \mathrm{~nm}$ ((a) and (d)), $\lambda=680 \mathrm{~nm}$ ((b) and (e)) and $\lambda=950 \mathrm{~nm}$ ((c) and (f)). For these calculations, $p_{\text {sat }} \sim 1.2 \times 10^{25} \mathrm{~W} / \mathrm{m}^{3}$ and $I_{\text {in }}$ used for the calculation are (a)-(c) $2.5 \mathrm{~kW} / \mathrm{cm}^{2}$ and (d)-(f) $0.25 \mathrm{MW} / \mathrm{cm}^{2}$. The magenta crosses show the PL calculation when the thermo-optic effect is included. The dashed blue lines represent $a^{3}\left\langle\alpha_{a b s}\left(\lambda_{L}\right)\right\rangle_{r}\left\langle\alpha_{a b s}(\lambda)\right\rangle_{r}$ and the red dash-dot lines represent $\left\langle\mathcal{E}_{B B}\right\rangle$. The gray dotted lines are an $a^{3}$ fit to the calculation for $a<10 \mathrm{~nm}$. Frequency and wavelength are used interchangeably, as convenient.}
+\end{center}
+\end{figure}
+
+The volume integration over $\alpha_{a b s}(\mathbf{r} ; \omega)$ is now replaceable by the absorption cross-section of the sphere, which in turn, can be expressed as $\sigma_{a b s}(\omega) \sim a^{3}\left\langle\alpha_{a b s}(\mathbf{r} ; \omega)\right\rangle_{r}$. Thus, Eq. (9) simplifies to
+
+
+\begin{align*}
+d P^{e m}\left(\omega, \omega_{L}\right) \sim & \omega^{2} a^{3}\left\langle\alpha_{a b s}(\mathbf{r} ; \omega)\right\rangle_{r}\left[2 \frac{I_{i n}}{p_{s a t}\left(\omega_{L}\right)}\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r}\left\langle\mathcal{E}_{B B}\left(\omega-\omega_{L} ; T_{e}\right)\right\rangle_{r}\right. \\
+& \left.+\left(\frac{I_{i n}}{p_{s a t}\left(\omega_{L}\right)}\right)^{2}\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r}^{2}\left\langle\mathcal{E}_{B B}\left(\omega-2 \omega_{L} ; T_{e}\right)\right\rangle_{r}\right] d \omega d \Omega \tag{12}
+\end{align*}
+
+
+Using this expression, we can determine the total PL solely via the absorption crosssection density evaluated at the pump frequency $\left(\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r}\right.$, Fig. 2(b)) and emission frequency $\left(\left\langle\alpha_{a b s}(\mathbf{r} ; \omega)\right\rangle_{r}\right.$, Fig. ??(a)), as well as the electron temperature (Fig. 2(c)). As seen in Fig. 3(a)-(c), the qualitative behaviour of the PL (Eq. (9)) and its approximation (Eq. (12)) is nearly identical except for the former being slightly higher for $a>30 \mathrm{~nm}^{2}$.
+
+While the computational simplification associated with Eq. (12) is minor, its more significant contribution is to allow us to pinpoint the origins of the behaviour observed in Fig. 3. Specifically, the PL in Fig. 3(a)-(c) pertains roughly to room temperature for all sphere sizes, making the Bose function $\left(\mathcal{E}_{B B}\left(\omega-\omega_{L}\right)\right)$ essentially size-independent. In this scenario, the PL varies with sphere size as the product of $\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r}$ (at the absorption wavelength), $\left\langle\alpha_{a b s}(\mathbf{r} ; \omega)\right\rangle_{r}$ (at the emission wavelength) and the volume, $V$. For spheres of radius $a<10 \mathrm{~nm}$ (i.e., safely within the quasi-static regime), $\left\langle\alpha_{a b s}\right\rangle_{r}$ has a very weak dependence on the volume (see Fig. ??) so that the PL scales as $a^{3}$. For spheres with sufficiently large radii with respect to the skin depth, the absorption is dominated by the surface layer of the particle, so that $\left\langle\alpha_{a b s}\right\rangle_{r} \sim 1 / a$. Consequently, the PL scales linearly with $a\left(\sim a^{3} \frac{1}{a} \frac{1}{a}\right)$. For sphere sizes between these two extremes, the sub-volume scaling of the absorption and temperature, along with variations in $\left\langle\alpha_{a b s}\right\rangle_{r}$ with particle size owing to the sphere's modal response (see Ref. [36] and Fig. 2(b)) result in the observed deviation from the volume scaling, namely, the peaks and troughs in the PL shown in all subplots of Fig. 3. Specifically,
+
+\footnotetext{${ }^{2}$ This can be shown analytically via the Mie solution; the proof of this behaviour for the case of layers is shown in footnote 4.
+}
+the non-monotonic behaviour in the PL observed for the larger sizes are due to the combined effect of the system tuning into and then out of the dipole resonance, and then tuning into the quadrupole mode. In that respect, considering the PL as being a volume effect for small spheres, and as a surface effect for larger spheres, is a crude description, which misses the dominant effect of the modal structure but captures the baseline.
+
+Fig. 3(d)-(f) shows the PL for a higher intensity which results in a size-dependent temperature, varying from room temperature to $\sim 500 K$ (see Fig. 2(c)). The higher varying temperature affects differently the different parts of the PL spectrum. First, it hardly affects the SE (Fig. 3(e)-(f)) which thus follows the same trend observed for the low-intensities, at least up to temperatures for which thermo-optic effects are still negligible ${ }^{39,67}$ (see Section 3.1.3 below). Indeed, for SE, the non-thermal contribution from the 1PA term dominates $I_{e}$ (see Eq. (4), Fig. 1 and Fig. ??), which is nearly temperature-independent since it originates from the non-thermal electron shoulders given in Eq. (5) (see SI Section S3 of Ref. [ 12]). In contrast, the aSE is exponentially sensitive to the temperature via the Bose function $\left\langle\mathcal{E}_{B B}\left(\omega-\omega_{L} ; T_{e}\right)\right\rangle$ (see Fig. 1). As a result, the size-dependence of the PL is much stronger (see Fig. 3(d)), exhibiting superlinear scaling with the volume.
+
+Deeper into the aSE regime, the 2 PA term becomes stronger than the 1 PA term, see Fig. 1. To demonstrate this, we calculate the PL for a longer (off-resonant) excitation wavelength $\left(900 \mathrm{~nm}\right.$, i.e., smaller $\left.\omega_{L}\right)$, see Fig. ??. In this case, while the near aSE (Fig. ??(b) and (f)) grows as $\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r}$, for frequencies sufficiently deep into the aSE, the PL scales as $\sim\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r}^{2}$ at low intensity excitation (Fig. ??(a)) and as $\sim\left\langle\mathcal{E}_{B B}\left(\omega-2 \omega_{L}\right)\right\rangle$ at high intensity illumination (Fig. ??(d)).
+
+Finally, in order to show the generality of our approach, and to demonstrate that the behaviour we identify is not qualitatively affected by the choice of the exciting laser frequency (e.g., its position with respect to resonance), we replicate the results of Fig. 3 (for which the illumination is on the red-side of the plasmon resonance) in Fig. ?? and Fig. ?? for backgrounds with higher refractive indices. This results in a red-shift of the resonances and\\
+introduces the higher-order modal response to the PL emission, particularly, for the larger spheres. However, the qualitative behaviour is similar to that with the lower background refractive index.
+
+\subsection*{3.1.3 The thermo-optic effect}
+Illumination at high intensity can induce significant changes in the temperature of the spheres, consequently altering their permittivity via the so-called thermo-optic effect, $38,68,69$ and as a result, modify the absorptivity (hence, the emissivity) and finally the PL. To analyze this effect, we assume that the permittivity of the metal and the thermal conductivity of the surrounding medium depend linearly on the change of temperature, compute the thermoderivative of the metal permittivity from ellipsometry data ${ }^{70}$ and set the thermo-derivative of the thermal conductivity of the surrounding medium to $1.3 \times 10^{-4} \mathrm{Wm}^{-1} \mathrm{~K}^{-2}$, as in Ref. [ 67]; the temperature of the nanoparticle is then calculated using the method described by Un et al. ${ }^{67}$
+
+Overall, as the intensity (hence, temperature) increases, the real part of the permittivity ( $\epsilon_{m}^{\prime}$ ) becomes more negative, while the imaginary part ( $\epsilon_{m}^{\prime \prime}$ ) increases to higher positive values at most frequencies. This results in a blue shift of the resonance peak and a broadening of its spectral width, leading to enhanced absorption at off-resonance frequencies, see Fig. ?? and Ref. [38,69-72]. As a result, $\left\langle\alpha_{a b s}(\mathbf{r} ; \omega)\right\rangle_{r}$ slightly decreases at 488 nm and slightly increases at 900 nm , as seen in Fig. 2(b). The decrease in the former case leads to a reduction in the temperature for the hottest spheres (around $a=30 \mathrm{~nm}$ ), and hence, to the reduction of the aSE observed in Fig. 3(d). However, the SE PL is hardly affected by the temperature. Thus, the increase in $\left\langle\alpha_{a b s}(\mathbf{r} ; \omega)\right\rangle_{r}$ at longer wavelengths results in a slight increase of the PL, as observed in Fig. 3(e) and (f). For excitation at 900 nm , the temperature of the spheres (especially for $a>30 \mathrm{~nm}$ ) increases slightly compared to the value calculated for the linear case, leading to a slight increase in the PL for aSE, as shown in Fig. ??(d)-(e). The thermo-optic increase of $\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r}$ and $\left\langle\alpha_{a b s}(\mathbf{r} ; \omega)\right\rangle_{r}$ leads to a\\
+slight increase in SE, as observed in Fig. ??(f).
+
+\subsection*{3.1.4 Comparison to single particle experiments}
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{6d130213-22d8-4a11-ae32-675e1fd064c5-18_545_1585_528_257}
+\captionsetup{labelformat=empty}
+\caption{Figure 4: (Color online) (a) Normalized PL from gold spheres on a glass substrate immersed in glycerol with $\lambda_{L}=514 \mathrm{~nm}$ with emission integrated over the range of $560-640 \mathrm{~nm}$, as measured by Gaiduk et al. ${ }^{25}$. (b) PL spectrally-resolved peak positions and intensities vs. diameter of gold disks of height 30 nm at $\lambda_{L}=532 \mathrm{~nm}$ as measured by Hu et al. ${ }^{26}$ (c) Spectrally-integrated PL from silver nanorods of diameter 23 nm on a quartz substrate, at $\lambda_{L}=532 \mathrm{~nm}$ as measured by Lin et al. ${ }^{28}$. In all panels, experimental results and theoretical calculations using Eq. (9) are depicted by black circles and red squares, respectively, with corresponding solid lines added for visual guidance. The corresponding calculated PL peak positions are indicated on the top axis of (b) and (c).}
+\end{center}
+\end{figure}
+
+Our theoretical predictions can be compared to various single particle PL measurements. First, Fig. 4(a) shows that our calculations align with the experimental observations of the normalized SE PL (spectrally integrated over the range of 560 nm to 640 nm ) measured from single gold nanospheres of different sizes, as reported by Gaiduk et al. (see Fig. S5 of Ref. [25]). The experimental results are presented as they appear in the referenced paper (in arbitrary units), and the corresponding theoretical calculations are scaled by a constant normalization factor to enable quantitative comparison with the experimental data. In this experiment, the illumination intensity was adjusted to keep the temperature rise relatively low (approximately below 20 K ). The PL is calculated using Eq. (9) with the refractive index of gold obtained from Ref. [73], and those of glass and glycerol being 1.45 and 1.47, respectively. The normalized PL roughly scales with the volume until $a \sim 30 \mathrm{~nm}$, but seems\\
+to saturate upon further increase in size; assuming this is the onset of a decrease, this is in line with our prediction.
+
+Size-dependence of the PL from larger particles was studied by Hu et al. ${ }^{26}$ who demonstrated that the spectral peak of the PL from gold nano-disks on a $\mathrm{SiO}_{2}$-coated absorptive (silicon) substrate initially increases, reaches a maximum, and then decreases significantly with further increases in size. The absorption cross-section densities and the $T_{e}$ of the disks are calculated using COMSOL, considering normal incidence and emission perpendicular to the substrate, with the permittivity data for gold and Si taken from Ref. [73] and Ref. [74], respectively. Calculations based on Eq. (9) exhibit a qualitatively similar trend (even if at a slight spectral shift).
+
+Lastly, our theoretical prediction of PL are compared with the PL measurements by Lin et al. ${ }^{28}$ This work showed the spectrally-integrated PL from single nanorods of different lengths with constant diameter along their main axis. In contrast to the nanospheres (and in similarity to films, shown later), the PL monotonically decreases with nanorod length. These results are reproduced in Fig. 4(c) along with the theoretical prediction, i.e., the spectral integration of Eq. (9). The optical response is calculated in COMSOL, where the substrate refractive index is $n=1.45$ and the permittivity of the silver rods is taken from Ref. [73]. The temperature is estimated with an approximate expression ${ }^{65}$ and remains close to the ambient temperature ( $0.1 \%$ variation) for the laser illumination intensity considered ( $I_{\text {in }}=3 \mathrm{mW} / \mathrm{cm}^{2}$ ). Good qualitative agreement is obtained for nanorods longer than 72 nm , however, our prediction underestimates the PL for shorter nanorods, thus providing only a qualitative match for this regime (specifically, in a 30 nm wide wavelength range close to the pump). A similar observation was recently reported above the pump wavelength for Au rods; ${ }^{37}$ in that case, the discrepancy between theory and measurements was ascribed to interband transitions.
+
+Remarkably, while our theory (9) includes only emission events occurring in the conduction band, it successfully predicts the dependence of the emission on the particle size even in\\
+spectral regimes where interband emission events should occur (specifically, for the spheres and nano-disks (Fig. 4(a)-(b), respectively). This implies that, in these cases, interband transitions modify the emission features in a modest quantitative manner, but not qualitatively. We expect that inclusion of such transitions may yield a better quantitative match to the experimental results, due to a better match of the permittivity and non-thermal electron distribution.
+
+\subsection*{3.2 Films under continuous illumination}
+We now turn to study the PL from a thin film of a Drude metal using the approach used above. Specifically, we examine a thin silver film on a glass substrate illuminated at normal incidence (hence, no dependence on polarization pol', and $k_{z}=\left|\mathbf{k}^{\prime}\right|$, where $k_{z}$ is the component of the wavenumber $\mathbf{k}$ normal to the surface of the film) by a focused Gaussian CW beam with an intensity profile $I_{\text {in }}\left(\rho, \omega_{L}\right)=I_{0} e^{-2 \rho^{2} / b^{2}}$ as depicted in Fig. 5(a).
+
+\subsection*{3.2.1 Determination of the electron temperature}
+The absorbed power density and temperature distribution calculated by solving the heat equation (10) using the electromagnetic heat module of COMSOL Multiphysics are presented in Figs. 5(b)-(c), respectively. The absorbed power density decreases exponentially along the illumination direction ( $z$-axis) due to the short penetration depth (Fig. 5(d)). However, along the radius it exhibits nearly the same distribution as that of the incident intensity, as shown in Fig. 5(e).
+
+In contrast, the temperature variation across the film's thickness is minimal (see Fig. 5(d)) due to the high thermal conductivity of the metal; for the same reason, along the radius, the temperature shows a Gaussian profile with a full width at half maximum (FWHM) greater than that of the incident beam, as illustrated in Fig. 5(e).
+
+Generically, $\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right.$, pol $\left.^{\prime}, \hat{k}^{\prime}\right)$ is uniform in the plane of the film (i.e., it is independent of $\rho$ and $\phi$ ) and varies only along the thickness of the film (i.e., it is only $z$-dependent). The av-
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{6d130213-22d8-4a11-ae32-675e1fd064c5-21_1000_1452_577_345}
+\captionsetup{labelformat=empty}
+\caption{Figure 5: (Color online) (a) Schematic illustration of the emission from an Ag film on a glass substrate illuminated from above by a focused Gaussian beam. (b) The absorbed power density calculated for a 60 nm film due to continuous wave illumination using the electromagnetic heating module of COMSOL Multiphysics (shown on a quarter domain). (c) The corresponding calculated temperature distribution. (d) Vertical (along the $z$-axis) and (e) transverse ( $x$-axis, $z=0$ ) cross-sections of the absorbed power density and temperature. The red-solid and yellow dotted lines in (d) and (e) represent $T_{e}$ calculated using Eq. (10), considering the actual distribution of $\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)$ and the position averaged $\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{z}$ respectively. The yellow dashed line in (e) represents the distribution of the incident intensity along the $x$-axis. The peak intensity and radius of illumination are $2 \mathrm{MW} / \mathrm{cm}^{2}$ and $3 \mu \mathrm{~m}$, respectively.}
+\end{center}
+\end{figure}
+
+erage value of $\alpha_{a b s}\left(z, \omega_{L}, p o l^{\prime}, \hat{k^{\prime}}\right)$ along the thickness can be derived from the experimentally measurable quantity, the absorptance $A\left(\omega, p o l^{\prime}, \hat{k^{\prime}}\right)$, as
+
+
+\begin{equation*}
+\left\langle\alpha_{a b s}\left(z, \omega_{L}, p o l^{\prime}, \hat{k}^{\prime}\right)\right\rangle_{z}=\frac{1}{h} \int_{h} \alpha_{a b s}\left(z, \omega_{L}, p o l^{\prime}, \hat{k^{\prime}}\right) d z=\frac{A\left(\omega_{L}, p o l^{\prime}, \hat{k}^{\prime}\right)}{h} \tag{13}
+\end{equation*}
+
+
+$\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}, p o l^{\prime}, \hat{k^{\prime}}\right)$ and its average can also be calculated using the transfer matrix method. ${ }^{75}$ For normal incidence, this quantity is independent of polarization.
+
+Since the variation of temperature along the film thickness is negligible (see Figs. 5(c)(d)), the temperature of the film can be calculated by using the $z$-averaged cross-section density $\left\langle\alpha_{a b s}\left(z, \omega_{L}, \text { pol }^{\prime}, \hat{k}^{\prime}\right)\right\rangle_{z}$ in Eq. (10). The temperature calculated for a 60 nm Ag film with this approximation closely matches the temperature calculated based on the exact absorbed power density distribution, as shown in Fig. 5(e). This also enables simplifying the expression for the PL in Eq. (9) by separating the integrations with respect to $z$ and $\rho$, as discussed in more detail in Section 3.2.2.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{6d130213-22d8-4a11-ae32-675e1fd064c5-22_551_1137_1381_481}
+\captionsetup{labelformat=empty}
+\caption{Figure 6: (Color online) (a) $\left\langle\alpha_{a b s}\right\rangle_{z}$ and (b) the (electron) temperature of Ag films at the center of the illumination by a CW Gaussian beam with central intensity $I_{0}=1.5 \mathrm{MW} / \mathrm{cm}^{2}$ and $b=3 \mu \mathrm{~m}$, with $\lambda_{L}=488 \mathrm{~nm}$ (black) and $\lambda_{L}=900 \mathrm{~nm}$ (red).}
+\end{center}
+\end{figure}
+
+The size-dependence of $\left\langle\alpha_{a b s}\left(z ; \omega_{L}\right)\right\rangle_{z}$ for normal incidence at $\lambda_{L}=488 \mathrm{~nm}$ and 900 nm are shown in Fig. 6(a). $\left\langle\alpha_{a b s}\left(z, \omega_{L}\right)\right\rangle_{z}$ decreases with increasing film thickness for both wavelengths, with this decay occurring more rapidly at the longer wavelength. This trend can be explained by the distribution of the electric field within the metal film. Typically, the\\
+electric field is strongest near the surface of the metal film and exhibits an exponential decay as it penetrates deeper into the material. Thus, as the film thickness increases, the average field, hence, absorptance density $A / h$ decreases. This decay is more rapid for $\lambda=900 \mathrm{~nm}$ due to its shorter penetration depth $(=21 \mathrm{~nm})$ compared to the penetration depth of 26 nm at $\lambda_{L}=488 \mathrm{~nm}$ as shown in Fig. 6 and Fig. ??(b).
+
+Unlike the case of spheres, the size-dependence of the film temperature differs from $\alpha_{a b s}$. The temperature at the center of the illumination spot ( $\rho=0$ ) as a function of film thickness is depicted in Fig. 6(b). Maximal temperature is reached at $h=14 \mathrm{~nm}$ and 6 nm , corresponding to the short and long wavelengths, respectively. This peak temperature can be explained from Fourier's law of heat transfer (solution of the divergence in Eq. (10)), according to which, $T_{e} \propto h\left\langle\alpha_{a b s}\left(z ; \omega_{L}\right)\right\rangle_{z}{ }^{3}$. Thus, with increasing thickness, the temperature initially increases. However, due to the sharp decline of $\left\langle\alpha_{a b s}\left(\mathbf{r} ; \omega_{L}\right)\right\rangle_{r}$, with thickness, the temperature eventually decreases, resulting in a peak.
+
+\subsection*{3.2.2 Determination of the PL}
+Fig. 7 presents the predicted PL obtained using Eq. (9) for Ag films of thickness ranging from 2 nm to 60 nm . For this calculation, we consider normal illumination at a wavelength of 488 nm , with the emitted PL collected within a solid angle $d \Omega$ positioned directly above the illumination point. As above, calculations are performed at two incident intensities: one for which the films remain roughly at room temperature ( $I_{0}=1.5 \mathrm{~kW} / \mathrm{cm}^{2}$ ) and the other to elevate their temperature to $486 \mathrm{~K}\left(I_{0}=1.5 \mathrm{MW} / \mathrm{cm}^{2}\right)$ as shown in Fig. 6(b). At room temperature, the PL at the three emission wavelengths ( $420 \mathrm{~nm}, 680 \mathrm{~nm}$ and 950 nm ) shows peaks at film thicknesses of $13 \mathrm{~nm}, 8 \mathrm{~nm}$ and 6 nm , respectively. Similar to the case of the spheres, when the peak illumination intensity is increased to $I_{0}=1.5 \mathrm{MW} / \mathrm{cm}^{2}$, the trends of SE remain unchanged so that Figs. 7(e)-(f) are hardly distinguishable from Figs. 7(b)-(c).
+
+\footnotetext{${ }^{3}$ Solving the divergence in Eq. (10) simply along z-axis, we obtain $-\kappa \nabla T_{e}(z, \rho=0) \sim h\left\langle\alpha_{a b s}\left(z ; \omega_{L}\right)\right\rangle_{z} I_{i n}\left(\rho=0 ; \omega_{L}\right)$. Since the temperature inside the film remains nearly constant along z-axis, and decreases linearly to $T_{h}$ at a distance $\Delta z$ outside the film, $T_{e}(z, \rho=0)-T_{h} \sim \frac{\Delta z}{\kappa} h\left\langle\alpha_{a b s}\left(z ; \omega_{L}\right)\right\rangle_{z} I_{i n}(\rho= \left.0 ; \omega_{L}\right)$.
+}However, the peak corresponding to aSE becomes narrower.\\
+Similar to the analysis of the PL from particles above, the PL can be again approximated by replacing $\alpha_{a b s}(z)$ by its average value along the thickness, $\left\langle\alpha_{a b s}(z)\right\rangle_{z}$ as
+
+
+\begin{align*}
+d P^{e m}\left(\omega, \omega_{L}, \hat{k}\right) & \sim \sum_{p o l=s, p} \frac{\omega^{2}}{4 \pi^{2} c^{2}}\left[\frac { 1 } { p _ { s a t } ( \omega _ { L } ) } \left(h\left\langle\alpha_{a b s}\left(z, \omega_{L}\right)\right\rangle_{z}\left\langle\alpha_{a b s}(z, \omega)\right\rangle_{z}\right.\right. \\
+& \left.\int_{\rho=0}^{\infty} 2 I_{i n}\left(\rho, \omega_{L}\right)\left\langle\mathcal{E}_{B B}\left(\omega-\omega_{L} ; T_{e}(\rho)\right)\right\rangle_{z} \rho d \rho\right)  \tag{14}\\
+& +\frac{1}{p_{s a t}^{2}\left(\omega_{L}\right)}\left(h\left\langle\alpha_{a b s}^{2}\left(z, \omega_{L}\right)\right\rangle_{z}\left\langle\alpha_{a b s}(z, \omega)\right\rangle_{z}\right. \\
+& \left.\left.\int_{\rho=0}^{\infty} I_{i n}^{2}\left(\rho, \omega_{L}\right)\left\langle\mathcal{E}_{B B}\left(\omega-2 \omega_{L} ; T_{e}(\rho)\right)\right\rangle_{z} \rho d \rho\right)\right] d \omega d \Omega
+\end{align*}
+
+
+Again, the calculations (14) closely match the results with the exact calculations (Eq. (9)), with the SE (Fig. 7(b)-(c),(e)-(f)) and low temperature aSE (Fig. 7(a)) being well approximated by $\left\langle\alpha_{a b s}\left(z, \omega_{L}\right)\right\rangle_{z}\left\langle\alpha_{a b s}(z, \omega)\right\rangle_{z} h$ for films up to $h \sim 20 \mathrm{~nm}$, after which the approximation falls below the exact results ${ }^{4}$.
+
+As for particles, we can now deduce the general scaling of the PL with the size from Eq. (14). Specifically, for very thin films $(h<5 \mathrm{~nm}),\left\langle\alpha_{a b s}(z)\right\rangle_{z}$ decays relatively slowly. As a result, due to the presence of the $h$ term in the PL expression in Eq. (14), the PL in this regime exhibits sublinear growth. For thicker films $\left.(h>30 \mathrm{~nm}), \alpha_{a b s}(z)\right\rangle_{z} \sim 1 / h$ due to the fact that total absorption becomes almost independent of film thickness ( $\int \alpha_{a b s} d z=$ Const). Consequently, the PL scales as $\frac{1}{h} \frac{1}{h} h=1 / h$, as demonstrated in Fig. 7(c) and (f) and. In the intermediate region, a peak appears. The stronger decay of $\left\langle\alpha_{a b s}(z)\right\rangle_{z}$ at longer wavelengths causes the PL peak to shift slightly towards smaller values of $h$ (see Fig. 7(d), (f) and Fig. ??). As seen in Fig. 7(d), for higher temperatures, the aSE undergoes exponential amplification via the $\left\langle\mathcal{E}_{B B}\left(\omega-\omega_{L} ; T_{e}(\rho)\right)\right\rangle_{z}$ term, resulting in sharper peaks compared to those at the room temperature.
+
+The PL calculated at the longer excitation wavelength of 900 nm allows us to explore
+
+\footnotetext{${ }^{4}$ For films thicker than 30 nm , the PL calculated with Eq. (14) is less than that calculated with Eq. (9) because $\frac{\int_{0}^{h} \alpha_{a b s}\left(z, \omega_{L}\right) \alpha_{a b s}(z, \omega) d z}{h\left\langle\alpha_{a b s}\left(z, \omega_{L}\right)\right\rangle_{z}\left\langle\alpha_{a b s}(z, \omega)\right\rangle_{z}} \sim \frac{2 n^{\prime \prime}(\omega) k(\omega) n^{\prime \prime}\left(\omega_{L}\right) k\left(\omega_{L}\right)}{n^{\prime \prime}(\omega) k(\omega)+n^{\prime \prime}\left(\omega_{L}\right) k\left(\omega_{L}\right)}>1$ for $n^{\prime \prime}>1$.
+}
+the PL behaviour deeper into the aSE regime, where the 2PA contribution takes over the 1PA contribution, see Figs. ??(a) and (d). For this excitation wavelength, while the PL in the near aSE region (Fig. ??(b) and (e)) can be explained using the same reasoning applied to $\lambda_{L}=488 \mathrm{~nm}$ illustrated in Fig. 7(a) and (d), in the deeper aSE regime, the PL varies as $\sim\left\langle\alpha_{a b s}\left(z, \omega_{L}\right)\right\rangle_{z}^{2}$ (rather than $\left\langle\alpha_{a b s}\left(z, \omega_{L}\right)\right\rangle_{z}$ ) at room temperature and as $\sim \left\langle\mathcal{E}_{B B}\left(\omega-2 \omega_{L}, T_{e}(\rho)\right)\right\rangle_{z}$ (rather than $\left\langle\mathcal{E}_{B B}\left(\omega-\omega_{L}, T_{e}(\rho)\right)\right\rangle_{z}$ ) at the high temperature excitation. It should be noted that, in the high-temperature 2PA aSE case shown in Fig. ??(d), $\left\langle\mathcal{E}_{B B}(\omega-\right. \left.\left.\omega_{L}, T_{e}(\rho)\right)\right\rangle_{z}$ overestimates the exact calculation (9) due to the additional dependence of the exact PL on $\left\langle\alpha_{a b s}\left(z, \omega_{L}\right)\right\rangle_{z}^{2}$. As the temperature increases further, $\left\langle\mathcal{E}_{B B}\left(\omega-\omega_{L}, T_{e}(\rho)\right)\right\rangle_{z}$ provides a closer estimate of the exact PL .
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{6d130213-22d8-4a11-ae32-675e1fd064c5-25_899_1567_1097_268}
+\captionsetup{labelformat=empty}
+\caption{Figure 7: (Color online) The total PL calculated for the films using Eq. (9) (circles) and that using uniform field approximation (black continuous line) under CW illumination with $\lambda_{L}=488 \mathrm{~nm}$ and emission wavelengths of $\lambda=420 \mathrm{~nm}$ ((a) and (d)), $\lambda=680 \mathrm{~nm}$ ((b) and (e)) and $\lambda=950 \mathrm{~nm}$ ((c) and (f)). For these calculations, $p_{\text {sat }} \sim 1.2 \times 10^{25} \mathrm{~W} / \mathrm{m}^{3}$ and $I_{0}$ values are (a)-(c) $\quad 1.5 \mathrm{~kW} / \mathrm{cm}^{2}$ and (d)-(f) $\quad 1.5 \mathrm{MW} / \mathrm{cm}^{2}$. The dashed blue lines represent $\left\langle\alpha_{a b s}\left(\omega_{L}\right)\right\rangle_{z}\left\langle\alpha_{a b s}(\omega)\right\rangle_{z} h$ and the red dash-dot lines represent $\left\langle\mathcal{E}_{B B}\right\rangle$ at $\rho=0$. The gray dotted lines represent a $1 / h$ fit to the calculations for $h>30 \mathrm{~nm}$.}
+\end{center}
+\end{figure}
+
+Note that unlike the case of particles, the PL from the film decreases monotonically\\
+beyond the increase for small sizes. The reason for that is the absence of the resonances that occur for particles, into which the system is tuning in and out with the varying size.
+
+\subsection*{3.2.3 Comparison to experiments}
+As done above for single particles, we now compare the predictions of our simple analytic PL formula to recent experimental measurements. Specifically, we look at Figs. 3(a)-(c) and Figs. S20(a)-(b) of Bowman et al., ${ }^{29}$ which presents PL measurements from single crystal Au films of various thicknesses. Only a few film thicknesses were studied, but data is available for several emission frequencies (rather than for single frequencies, as for particles). The PL recorded for the individual films is shown in Fig. 8, alongside our calculations. To conform with the data of the original paper, our results for $\lambda_{L}=488 \mathrm{~nm}$ (Fig. 8(a) and (c)) are given in units of $\mathrm{nm}^{-1}$ (as in Figs. 3(a)-(c) of Ref. [29], multiplied by a constant factor of 8), while those for $\lambda_{L}=785 \mathrm{~nm}$ (Fig. 8(b) and (d)) are presented in arbitrary units (as in Fig. S20(a) of Ref. [29], and are normalized using a method analogous to that employed for the experimental results of spheres shown in Fig. 4(a). For 488 nm excitation, the calculated results tend to fall below the experimental data at shorter wavelengths. This discrepancy likely arises from the omission of interband contributions in our emission calculations.
+
+In order to remove the impact of instrumental noise and a substrate-related Raman peak, we follow Ref. [29] and show the PL ratio spectra for the same films (i.e., the PL data / difference normalized by the data from a thick film) which are presented in Fig. 3(c) and Fig. S20(b) from Bowman et al. ${ }^{29}$ in Fig. 9(a) and (c) and Fig. 9(b) and (d), respectively, along with our own theoretical prediction for films (Eq. (9)). For the 488 nm excitation, despite the differences observed at short wavelengths in Fig. 8(a) and (c), our calculations now closely match the theoretical results of Bowman et al. ${ }^{29}$ for all thicknesses studied (see results for the thicker films (see Fig. ??). A similar match can be observed for 785 nm excitation as well (see Fig. 9(b) and (d)). In fact, our theoretical predictions match the more sophisticated theory of Ref. [29] even in the parts of the spectra where the latter does not\\[0pt]
+match the experimental data well, leaving the discrepancies unexplained by either theoretical approach. This is remarkable, since the theory in Ref. [29] involved the summation of the individual dipole emissions, a treatment of the electron states as a discrete set in momentum space, and a detailed DFT-based calculation of the permittivity. Those we replaced by the local Kirchhoff Law, empiric permittivity data, and our simple analytic formula for the PL (Eq. (9)) based on a continuous set of energy states, along with standard macroscopic electromagnetic and thermal calculations. Thus, overall, the quantitative match for the normalized data implies that the contribution of interband transitions to the PL exhibits a size dependence very similar to the intraband transitions -based prediction.
+
+\section*{4 Discussion}
+In this work, we provide a unifying explanation for the dependence of the PL from metal nanostructures on their size. Specifically, using the experimentally-established expression for the non-equilibrium electron distribution in the conduction band, $40,41,43-45$ together with recent extension of the local Kirchhoff Law for light emission from metals characterized this non-equilibrium electron distribution, ${ }^{37}$ we provide a simple analytic form for the (intensity, temperature and) size-dependence of the PL. In particular, we show that the size-dependence of the Stokes emission (SE) is determined primarily by the size-dependence of the absorption (= emission) cross-section density (aka emissivity density) but that the aSE is much more sensitive to the structure size at high illumination intensities due to the exponential dependence of the Bose function $\left\langle\mathcal{E}_{B B}\left(\omega, T_{e}\right)\right\rangle$ on the electron temperature $T_{e}$.
+
+This behaviour is illustrated schematically in Fig. 10. As seen, generically, the PL from particles and films grows for small sizes as the volume / thickness, respectively, and then decreases due to the decrease of the average local field (or equivalently, of the emissivity). The size for which maximal PL is attained is found to be larger for particles than for films ( $\sim 30$ nm vs. $\sim 10 \mathrm{~nm}$, respectively, for illumination near resonance; the maximal size is higher for off-resonant illumination). This explains the seemingly contradicting trends observed in
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{6d130213-22d8-4a11-ae32-675e1fd064c5-28_1012_1112_623_468}
+\captionsetup{labelformat=empty}
+\caption{Figure 8: (Color online) The recorded PL signal (number of emitted photons, solid lines) per incident photon per emission wavelength for film thicknesses (a)-(b) $h=33.3 \mathrm{~nm}$ and (c)-(d) $h=13.4 \mathrm{~nm}$, taken from Fig. 3(a) and Fig. S20 (a) of Bowman et al. ${ }^{29}$, shown alongside our calculations (circles). Data of (a) and (c) is given in units $\mathrm{nm}^{-1}$ multiplied by a constant factor of 8 for excitation wavelength of $\lambda_{L}=488 \mathrm{~nm}$ with $I_{\text {in }}=0.162 \mathrm{~mW} / \mu \mathrm{m}^{2}$ and the data of (b) and (d) is given in arbitrary units multiplied by a constant factor of $6 \times 10^{13}$ for $\lambda_{L}=785 \mathrm{~nm}$ with $I_{\text {in }}=1.87 \mathrm{~mW} / \mu \mathrm{m}^{2}$. In these calculations, the PL is integrated over a solid angle with the emission angle ranging from 0 to $44^{\circ}$ corresponding to the numerical aperture of the objective lens used in the experiment.}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{6d130213-22d8-4a11-ae32-675e1fd064c5-29_989_1075_659_502}
+\captionsetup{labelformat=empty}
+\caption{Figure 9: (Color online) Corresponding PL ratios experimental (colored solid lines) and simulation (black solid lines) results for the PL from golds films of thickness (a)-(b) $h=33.3$ nm and (c)-(d) $h=13.4 \mathrm{~nm}$ to that of a thicker film ( $h=113 \mathrm{~nm}$ for (a) and (c) and $h=88$ nm for (b) and (d)), taken from Fig. 3(c) and Fig. S20(b) of Bowman et al. ${ }^{29}$. They are compared to our calculation (Eq. (9)) shown as blue circles. Panels (a) and (c) show the ratio $\frac{\mathrm{PL}(h)}{\mathrm{PL}(h=113 \mathrm{~nm})}$ as a function of emission wavelength, using excitation conditions of $\lambda_{L}=488 \mathrm{~nm}$, and panels (b) and (d) display the normalized difference $\frac{\mathrm{PL}(h)-\mathrm{PL}(h=88 \mathrm{~nm})}{\mathrm{PL}(h=25.8 \mathrm{~nm})-\mathrm{PL}(h=88 \mathrm{~nm})}$ at $\lambda_{L}=785$ nm .}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{6d130213-22d8-4a11-ae32-675e1fd064c5-30_1155_1125_743_485}
+\captionsetup{labelformat=empty}
+\caption{Figure 10: (Color online) Schematic summary of size dependence of the PL from the structures studied in this work.}
+\end{center}
+\end{figure}
+
+experiments (e.g., Ref. [17,24,25]) - they originate from the fact that measurements from thin films ${ }^{17,29}$ were so far performed only for films thicker than the size of maximal PL ( $>10$ nm ), most likely, because thinner films tend to be discontinuous (i.e., below the percolation limit). A similar behaviour was observed for rods. Once advanced fabrication of sub 10 nm thick films will be employed for (CW) PL studies (as, e.g., in Ref. [17]), the quantum effects predicted in Ref. [29] could be identified. Notably, the trends described in Fig. 10 apply both for spectrally-resolved and spectrally-integrated PL; moreover, the trends will be qualitatively similar also for different wavelengths, for higher temperatures/intensities and for the aSE, in which cases, the sensitivity to the size will be greater.
+
+Our predictions were shown to match well a range of experimental results of SE, including for cases that formally lie beyond the limits of validity of the analysis, including non-spherical particles and their arrays. The quantitative discrepancies observed in some cases may originate in differences in the underlying permittivity data, in subtleties associated with the significant field non-uniformity in this case, or in missing elements needed for a complete description of the PL, e.g., the inclusion of emission originating from inelastic electron scattering ${ }^{5}$, interband transitions and the subtle QM effects highlighted in Ref. [ 29]. Even better understanding of these discrepancies may be obtained by comparing to aSE measurements, which were so far done in the context of thermometry, ${ }^{6-9}$ but not done systematically as a function of the structure size.
+
+Our analytic approach provides a very simple alternative to the highly complicated rigorous (discrete $k$-space) calculations of the PL offered in some recent studies. ${ }^{29,30,33}$ In particular, the use of the extension of the local Kirchhoff Law to non-equilibrium electron distributions ${ }^{37}$ allows circumventing many of the detailed electromagnetic emission calculations done in Ref. [29] and validates the approximations we made, e.g., the neglect of the energy-dependence of the matrix elements and electron density of states; this finding is in line with the good agreement obtained when matching our theoretical approach to measurement
+
+\footnotetext{${ }^{5}$ According to Ref. [33], this contribution dominates the emission near the pump frequency.
+}
+of currents in molecular and current junctions. ${ }^{42-45}$ Moreover, while the analytic expression we provide accounts for only intraband transitions, it is found to yield good qualitative and sometimes even quantitative agreement with experimental data from Au nanostructures in regimes for which interband emission was shown to be significant ${ }^{6}$.
+
+Nevertheless, while both rigorous $k$-space approach and our approximate analytic approaches are capable of reproducing most aspects of the experimental observations, the current study highlights the ability of the more rigorous approaches to capture subtle aspects such as the determination of the conditions under which the emission is due to radiative recombination or inelastic scattering (see, e.g., discussions in Ref. [5,29,33,76-80]), emission from pre-scattered electrons, ${ }^{29}$ identifying subtle quantum mechanical effects that go beyond the standard quantum size effect (e.g., Ref. [81,82]) ${ }^{7}$ such as the thickness dependence of the CW PL from atomic flat metal films (see Fig. 4a of Ref. [29]) and in the future, maybe even the high sensitivity to the number of atomic levels observed in Ref. [17] for the PL due to pulsed illumination.
+
+While in the current work we focused on the PL from simple structures and noble metals, our approach can be applied also to more complicated structures for which the local electric field is even more non-uniform such as long rods, ${ }^{83}$ various particle dimers, ${ }^{33,83-85}$ trimers ${ }^{86}$ etc., or to other plasmonic materials, including low electron density Drude materials such as transparent conducting oxides. ${ }^{87,88}$ We also emphasize that the analysis in the current manuscript is limited to CW illumination, but could be extended also to pulsed illumination. ${ }^{10,11,17,21,89}$ In this scenario, which was studied more extensively in the past, the size-dependence of the temperature is different, and there is a dynamic transition between the non-thermal and thermal parts (see Ref. [35]), which entails further complexity. This class of experiments will be analyzed separately in future work. Ultimately, our work paves
+
+\footnotetext{${ }^{6}$ In this context, the modelling of the contribution of interband transitions to the PL in Ref. [18] should be questioned, especially since it is based on an unjustified 100-fold reduction of the electron-phonon coupling coefficient.\\
+${ }^{7}$ In comparison, the only quantum aspect of our theory is the use of the quantum version of the Boltzmann equation (see Ref. [40]), while the electron states themselves (and thus, the permittivity) and the photon properties do not involve quantization.
+}
+the way to simple optimization of the PL for practical purposes.
+
+Acknowledgements. I. K. and Y.S. were partially funded by Israel Science Foundation (ISF) grant no. 340/2020, a Lower-Saxony - Israel collaboration grant no. 76251-99-7/20 (ZN 3637) as well as a grant from the Bronitzki family. I.W.U. was funded by the Guangdong Natural Science Foundation (Grants No. 2024A1515011457).
+
+\section*{Supporting Information Available}
+The Supporting Information is available free of charge.\\
+Absorption cross-section of spheres, absorption characteristics across spectrum, thermal and non-thermal contribution to PL of sphere, PL of sphere excited off-resonance, PL calculated for higher order mode responses, the thermo-optic effect on absorption, PL calculation for films.
+
+\section*{References}
+(1) Wolfbeis, O. S. An overview of nanoparticles commonly used in fluorescent bioimaging. Chem. Soc. Rev. 2015, 44, 4743-4768.\\
+(2) He, H.; Xie, C.; Ren, J. Nonbleaching Fluorescence of Gold Nanoparticles and Its Applications in Cancer Cell Imaging. Anal. Chem. 2008, 80, 5951-5957.\\
+(3) Li, W.; Schierle, G. S. K.; Lei, B.; Liu, Y.; Kaminski, C. F. Fluorescent Nanoparticles for Super-Resolution Imaging. Chem. Rev. 2022, 122, 12495-12543.\\
+(4) Perkovic, M.; Kunz, M.; Endesfelder, U.; Bunse, S.; Wigge, C.; Yu, Z.; Hodirnau, V. V.; Scheffer, M. P.; Seybert, A.; Malkusch, S.; Schuman, E. M.; Heilemann, M.; Frangakis, A. S. Correlative Light- and Electron Microscopy with chemical tags. J. Struct. Bio. 2014, 186, 205-213.\\
+(5) Hugall, J. T.; Baumberg, J. J. Demonstrating Photoluminescence from Au is Electronic Inelastic Light Scattering of a Plasmonic Metal: The Origin of SERS Backgrounds. Nano Lett. 2015, 15, 2600-2604.\\
+(6) Xie, X.; Cahill, D. G. Thermometry of Plasmonic Nanostructures by Anti-Stokes Electronic Raman Scattering. Appl. Phys. Lett. 2016, 109, 183104.\\
+(7) Carattino, A.; Caldarola, M.; Orrit, M. Gold Nanoparticles as Absolute NanoThermometers. Nano Lett. 2018, 18, 874-880.\\
+(8) Jones, S.; André, D.; Karpinski, P.; Käll, M. Photothermal Heating of Plasmonic Nanoantennas: Influence on Trapped Particle Dynamics and Colloid Distribution. $A C S$ Photonics 2018, 5, 2878-2887.\\
+(9) Jollans, T.; Caldarola, M.; Sivan, Y.; Orrit, M. Effective Electron Temperature Measurement Using Time-Resolved Anti-Stokes Photoluminescence. J. Phys. Chem. A 2020, 124, 6968-6976.\\
+(10) Beversluis, M.; Bouhelier, A.; Novotny, L. Continuum Generation from Single Gold Nanostructures through Near-Field Mediated Intraband Transitions. Phys. Rev. B 2003, 68, 115433.\\
+(11) Roloff, L.; Klemm, P.; Gronwald, I.; Huber, R.; Lupton, J. M.; Bange, S. Light Emission from Gold Nanoparticles under Ultrafast Near-Infrared Excitation: Thermal Radiation, Inelastic Light Scattering, or Multiphoton Luminescence? Nano Lett. 2017, 17, 79147919.\\
+(12) Sivan, Y.; Dubi, Y. Theory of "Hot" Photoluminescence from Drude Metals. ACS Nano 2021, 15, 8724-8732.\\
+(13) Mooradian, A. Photoluminescence of Metals. Phys. Rev. Lett. 1969, 22, 185.\\
+(14) Boyd, G. T.; Yu, Z. H.; Shen, Y. R. Photoinduced Luminescence from the Noble Metals and Its Enhancement on Roughened Surfaces. Phys. Rev. B 1986, 33, 7923.\\
+(15) Ghenuche, P.; Cherukulappurath, S.; Taminiau, T. H.; van Hulst, N. F.; Quidant, R. Spectroscopic Mode Mapping of Resonant Plasmon Nanoantennas. Phys. Rev. Lett. 2008, 101, 116805.\\
+(16) Shahbazyan, T. V. Theory of Plasmon-Enhanced Metal Photoluminescence. Nano Lett. 2013, 13, 194-198.\\
+(17) Grossmann, S.; Friedrich, D.; Karolak, M.; Kullock, R.; Krauss, E.; Emmerling, M.; Sangiovanni, G.; Hecht, B. Nonclassical Optical Properties of Mesoscopic Gold. Phys. Rev. Lett. 2019, 122, 246802.\\
+(18) Lee, A.; Wu, S.; Yim, J. E.; Zhao, B.; Sheldon, M. T. Hot Electrons in a Steady State: Interband vs. Intraband Excitation of Plasmonic Gold. ACS Nano 2024, 18, 19077-19085.\\
+(19) Cai, Y.-Y.; Sung, E.; Zhang, R.; Tauzin, L. J.; Liu, J. G.; Ostovar, B.; Zhang, Y.; Chang, W.-S.; Nordlander, P.; Link, S. Anti-Stokes Emission from Hot Carriers in Gold Nanorods. Nano Lett. 2019, 19, 1067-1073.\\
+(20) Huang, J.; Wang, W.; Murphy, C. J.; Cahill, D. G. Resonant Secondary Light Emission from Plasmonic Au Nanostructures at High Electron Temperatures Created by PulsedLaser Excitation. Proc. Nat. Acad. Sci. U.S.A 2014, 111, 906-911.\\
+(21) Haug, T.; Klemm, P.; Bange, S.; Lupton, J. M. Hot-Electron Intraband Luminescence from Single Hot Spots in Noble-Metal Nanoparticle Films. Phys. Rev. Lett. 2015, 115, 067403.\\
+(22) Liu, J. G.; Zhang, H.; Link, S.; Nordlander, P. Relaxation of Plasmon-Induced Hot Carriers. ACS Photonics 2018, 5, 2584-2595.\\
+(23) Ai, Q.; Zhang, H.; Wang, J.; Giessen, H. Multiphoton Photoluminescence in Hybrid Plasmon-Fiber Cavities with Au and Au@Pd Nanobipyramids: Two-Photon vs. FourPhoton Processes and Rapid Quenching. ACS Photonics 2021, 8, 2088.\\
+(24) Dulkeith, E.; Niedereichholz, T.; Klar, T. A.; Feldmann, J.; von Plessen, G.; Gittins, D. I.; Mayya, K. S.; Caruso, F. Plasmon Emission in Photoexcited Gold Nanoparticles. Phys. Rev. B 2004, 70, 205424.\\
+(25) Gaiduk, A.; Yorulmaz, M.; Orrit, M. Correlated absorption and photoluminescence of single gold nanoparticles. Chem. Phys. Chem. 2011, 12, 1536-1541.\\
+(26) Hu, H.; Duan, H.; Yang, J. K. W.; Shen, Z. X. Plasmon-Modulated Photoluminescence of Individual Gold Nanostructures. ACS Nano 2012, 6, 10147-10155.\\
+(27) Zheng, J.; Zhou, C.; Yu, M.; Liu, J. Different sized luminescent gold nanoparticles. Nanoscale 2012, 4, 4073.\\
+(28) Lin, K.-Q.; Yi, J.; Hu, S.; Sun, J.-J.; Zheng, J.-T.; Wang, X.; Ren, B. Intraband Hot-Electron Photoluminescence from Single Silver Nanorods. ACS Photonics 2016, 3, 1248-1255.\\
+(29) Bowman, A. R.; Echarri, A. R.; Kiani, F.; Iyikanat, F.; Tsoulos, T. V.; Cox, J. D.; Sundararaman, R.; de Abajo, F. J. G.; Tagliabue, G. Quantum-mechanical effects in photoluminescence from thin crystalline gold films. Light: Science and Applications 2024, 13, 91.\\
+(30) Echarri, A. R.; Iyikanat, F.; Boroviks, S.; Mortensen, N. A.; Cox, J. D.; de Abajo, F. J. G. Nonlinear photoluminescence in gold thin films. ACS Photonics 2023, 10, 29182929.\\
+(31) Brown, A. M.; Sundararaman, R.; Narang, P.; Goddard, W. A.; Atwater, H. A. Nonra-\\
+diative Plasmon Decay and Hot Carrier Dynamics: Effects of Phonons, Surfaces, and Geometry. ACS Nano 2016, 10, 957-966.\\
+(32) Lee, S. A.; Kuhs, C. T.; Searles, E. K.; Everitt, H. O.; Landes, C. F.; Link, S. dBand Hole Dynamics in Gold Nanoparticles Measured with Time-Resolved Emission Upconversion Microscopy. Nano Lett. 2023, 23, 3501-3506.\\
+(33) Amoruso, A. B.; Boto, R. A.; Elliot, E.; de Nijs, B.; Esteban, R.; Földes, T.; AguilarGalindo, F.; Rosta, E.; Aizpurua, J.; Baumberg, J. J. Uncovering low-frequency vibrations in surface-enhanced Raman of organic molecules. Nature Comm. 2024, 15, 6733.\\
+(34) Koopman, W.; Stete, F.; Bargheer, M. Auger-excited Photoluminescence from Gold Nanoflowers. ChemRXiv 2024, \href{https://chemrxiv.org/engage/chemrxiv/articledetails/66a0b2b05101a2ffa8d10e89}{https://chemrxiv.org/engage/chemrxiv/articledetails/66a0b2b05101a2ffa8d10e89}.\\
+(35) Sivan, Y.; Un, I. W.; Kalyan, I.; Lin, K.; Lupton, J.; Bange, S. Crossover from nonthermal to thermal photoluminescence from metals excited by ultrashort light pulses. ACS Nano 2023, 17, 11439-11453.\\
+(36) Un, I. W.; Sivan, Y. Size-dependence of the Photothermal Response of a Single Metal Nanosphere. J. Appl. Phys. 2019, 126, 173103.\\
+(37) Loirette-Pelous, A.; Greffet, J.-J. Theory of photoluminescence by metallic structures. ACS Nano 2024, 18, 31823-31833.\\
+(38) Sivan, Y.; Chu, S.-W. Nonlinear Plasmonics at High Temperatures. Nanophotonics 2017, 6, 317-328.\\
+(39) Gurwich, I.; Sivan, Y. A Metal Nanosphere under Intense Continuous Wave Illumination - a Unique Case of Non-Perturbative Nonlinear Nanophotonics. Phys. Rev. E 2017, 96, 012212.\\
+(40) Dubi, Y.; Sivan, Y. "Hot" Electrons in Metallic Nanostructures - Non-Thermal Carriers or Heating? Light: Sci. Appl. 2019, 8, 89.\\
+(41) Sivan, Y.; Un, I. W.; Dubi, Y. Assistance of Plasmonic Nanostructures to Photocatalysis - Just a Regular Heat Source. Faraday Discuss. 2019, 214, 215-233.\\
+(42) Reddy, H.; Wang, K.; Kudyshev, Z.; Zhu, L.; Yan, S.; Vezzoli, A.; Higgins, S. J.; Gavini, V.; Boltasseva, A.; Reddy, P.; Shalaev, V. M.; Meyhofer, E. Determining plasmonic hot-carrier energy distributions via single-molecule transport measurements. Science 2020, 369, 423-426.\\
+(43) Dubi, Y.; Un, I. W.; Sivan, Y. Distinguishing thermal from non-thermal ("hot") carriers in illuminated molecular junctions. Nano Letters 2022, 5, 2127-2133.\\
+(44) Février, P.; Basset, J.; Estéve, J.; Aprili, M.; Gabelli, J. Role of optical rectification in photon-assisted tunneling current. Communications Physics 2023, 6, 29.\\
+(45) Lin, C.; Krecinic, F.; Yoshino, H.; Hammud, A.; Pan, A.; Wolf, M.; Müller, M.; Kumagai, T. Continuous-Wave Multiphoton-Induced Electron Transfer in Tunnel Junctions Driven by Intense Plasmonic Fields. ACS Photonics 2023, 10, 3637-3646.\\
+(46) Pietanza, L. D.; Colonna, G.; Longo, S.; Capitelli, M. Non-Equilibrium Electron and Phonon Dynamics in Metals under Femtosecond Laser Pulses. Eur. Phys. J. D 2007, 45, 369-389.\\
+(47) Saavedra, J. R. M.; Asenjo-García, A.; de Abajo, F. J. G. Hot-Electron Dynamics and Thermalization in Small Metallic Nanoparticles. ACS Photonics 2016, 3, 1637-1646.\\
+(48) Coleman, P. Introduction to many body physics; Cambridge University Press, Cambridge, 2015.\\
+(49) Greffet, J.-J.; Bouchon, P.; Brucoli, G.; Marquier, F. Light Emission by Nonequilibrium Bodies: Local Kirchhoff Law. Phys. Rev. X 2018, 8, 021008.\\
+(50) Bailly, E.; Chevrier, K.; de la Vega, C. R. P.; Hugonin, J.-P.; Wilde, Y. D.; Krachmalnicoff, V.; Vest, B.; Greffet, J.-J. Method to measure the refractive index for photoluminescence modelling. Optical Materials Express 2022, 12, 2772-2781.\\
+(51) Nguyen, A.; Greffet, J.-J. Efficiency optimization of mid-infrared incandescent sources with time-varying temperature. Optical Materials Express 2022, 12, 225-239.\\
+(52) Reif, F. Fundamentals of statistical and thermal physics; McGraw-Hill Science/Engineering/Math, 1965.\\
+(53) Lin, K.-Q.; Yi, J.; Zhong, J.-H.; Hu, S.; Liu, B.-J.; Liu, J.-Y.; Zong, C.; Lei, Z.C.; Wang, X.; Aizpurua, J.; Esteban, R.; Ren, B. Plasmonic photoluminescence for recovering native chemical information from surface-enhanced Raman scattering. Nat. Сотт. 2017, 8, 14891.\\
+(54) Khurgin, J. B.; Sun, G.; Soref, R. A. Enhancement of Luminescence Efficiency Using Surface Plasmon Polaritons: Figures of Merit. J. Opt. Soc. Am. B 2007, 24, 1968-1980.\\
+(55) Fatti, N. D.; Voisin, C.; Achermann, M.; Tzortzakis, S.; Christofilos, D.; Valleé, F. Nonequilibrium electron dynamics in noble metals. Phys. Rev. B 2000, 61, 1695616966.\\
+(56) Baffou, G.; Quidant, R. Thermo-plasmonics: Using metallic nanostructures as nanosources of heat. Laser Photon. Rev. 2013, 7, 171-187.\\
+(57) Block, A.; Liebel, M.; Yu, R.; Spector, M.; Sivan, Y.; de Abajo, J. G.; van Hulst, N. F. Tracking ultrafast hot-electron diffusion in space and time by ultrafast thermomodulation microscopy. Science Advances 2019, 5, eaav8965.\\
+(58) Sivan, Y.; Spector, M. Ultrafast dynamics of optically heat gratings in metals. ACS Photonics 2020, 7, 1271-1279.\\
+(59) Gao, G.; Jiang, L.; Xue, B.; Yang, F.; Wang, T.; Wan, Y.; Zhu, T. Unconventional Shrinkage of Hot Electron Distribution in Metal Directly Visualized by Ultrafast Imaging. Small Methods 2023, 2201260.\\
+(60) Block, A.; Yu, R.; Un, I. W.; Varghese, S.; Liebel, M.; van Hulst, N. F.; Fan, S.; Tielrooij, K. Y.; Sivan, Y. Observation of negative effective thermal diffusion in gold films. ACS Photonics 2023, 10, 1150-1158.\\
+(61) Karna, P.; Hoque, M. S. B.; Thakur, S.; Hopkins, P. E.; Giri, A. Direct Measurement of Ballistic and diffusive Electron Transport in Gold. Nano Lett. 2023, 23, 491-496.\\
+(62) Bernardi, M.; Mustafa, J.; Neaton, J. B.; Louie, S. G. Theory and computation of hot carriers generated by surface plasmon polaritons in noble metals. Nat. Commun. 2015, 6, 7044 .\\
+(63) Sivan, Y.; Un, I. W.; Sarkar, S. Ballistic vs. diffusive transport in metals. \href{https://arxiv.org/pdf/2402.15226}{https://arxiv.org/pdf/2402.15226} 2024,\\
+(64) Meng, L.; Yu, R.; Qiu, M.; de Abajo, F. J. G. Plasmonic Nano-Oven by Concatenation of Multishell Photothermal Enhancement. ACS Nano 2019, 11, 7915-7924.\\
+(65) Baffou, G.; Quidant, R.; de Abajo, F. J. G. Nanoscale Control of Optical Heating in Complex Plasmonic Systems. ACS Nano 2010, 4, 709-716.\\
+(66) Bohren, C. F.; Huffman, D. R. Absorption and scattering of light by small particles; Wiley \& Sons, 1983.\\
+(67) Un, I. W.; Sivan, Y. The Thermo-Optic Nonlinearity of Single Metal Nanoparticles under Intense Continuous-Wave Illumination. Phys. Rev. Mater. 2020, 4, 105201.\\
+(68) Boyd, R. W. Nonlinear Optics, 2nd ed.; Academic Press, San Diego, 2003.\\
+(69) Lee, H.; Im, S.; Lee, C.; Lee, H.; Chu, S.-W.; Ho-Pui, A.; Kim, H. D. Probing Temperature-Induced Plasmonic Nonlinearity: Unveiling Opto-Thermal Effects on Light Absorption and Near-Field Enhancement. Nano Letters 2024, 6, 3598-3605.\\
+(70) Reddy, H.; Guler, U.; Chaudhuri, K.; Dutta, A.; Kildishev, A. V.; Shalaev, V. M.; Boltasseva, A. Temperature-Dependent Optical Properties of Single Crystalline and Polycrystalline Silver Thin Films. ACS Photonics 2017, 4, 1083-1091.\\
+(71) Shen, P.-T.; Sivan, Y.; Lin, C.-W.; Liu, H.-L.; Chang, C.-W.; Chu, S.-W. Temperatureand -roughness dependent permittivity of annealed/unannealed gold films. Opt. Exp. 2016, 24, 19254.\\
+(72) Reddy, H.; Guler, U.; Kildishev, A. V.; Boltasseva, A.; Shalaev, V. M. Temperaturedependent optical properties of gold thin films. Optical Materials Express 2016, 6, 2776-2802.\\
+(73) Johnson, P. B.; Christy, R. W. Optical constants of noble metals. Phys. Rev. B 1972, 6, 4370-4379.\\
+(74) Aspnes, D. E.; Studna, A. A. Dielectric functions and optical parameters of Si, Ge, GaP, GaAs, GaSb, InP, InAs, and InSb from 1.5 to 6.0 eV . Phys. Rev. B 1983, 27, 985-1009.\\
+(75) Ohta, K.; Ishida, H. Matrix formalism for calculation of electric field intensity of light in stratified multilayered films. Applied Optics 1990, 29, 1952-1959.\\
+(76) Shen, Y. R. Distinction between Resonant Raman Scattering and Hot Luminescence. Phys. Rev. B 1974, 9, 622-626.\\
+(77) Klein, M. V. Equivalence of Resonance Raman Scattering in Solids with Absorption Followed by Luminescence. Phys. Rev. B 1973, 8, 919-921.\\
+(78) Solin, J. R.; Merkelo, H. Resonant Scattering or Absorption followed by Emission. Phys. Rev. B 1975, 12, 624-629.\\
+(79) Solin, J. R.; Merkelo, H. Reply to "Comment on 'Resonant Scattering or Absorption Followed by Emission'". Phys. Rev. B 1976, 14, 1775-1776.\\
+(80) Shen, Y. R. Comment on "Resonant Scattering or Absorption Followed by Emission". Phys. Rev. B 1976, 9, 1772-1774.\\
+(81) Kreibig, U.; Vollmer, M. Optical Properties of Metal Clusters; Springer: Berlin, 1995.\\
+(82) Alvarez, M. M.; Khoury, J. T.; Schaaff, T. G.; Shafigullin, M. N.; Vezmar, I.; Whetten, R. L. Optical Absorption Spectra of Nanocrystal Gold Molecules. J. Phys. Chem. 1997, 101, 3706-3712.\\
+(83) Agreda, A.; Sharma, D. K.; Viarbitskaya, S.; Hernandez, R.; Cluzel, B.; Demichel, O.; Weeber, J.-C.; des Francs, G. C.; Kumar, G.; Bouhelier, A. Spatial Distribution of the Nonlinear Photoluminescence in Au Nanowires. ACS Photonics 2019, 6, 1240-1247.\\
+(84) Huang, D.; Byers, C. P.; Wang, L.-Y.; Hoggard, A.; Hoener, B.; Dominguez-Medina, S.; Chen, S.; Chang, W.-S.; Landes, C. F.; Link, S. Photoluminescence of a Plasmonic Molecule. ACS Nano 2015, 97, 7072-7079.\\
+(85) Lemasters, R.; Manjare, M.; Freeman, R.; Wang, F.; Pierce, L. G.; Hua, G.; Urazhdin, S.; Harutyunyan, H. Non-thermal emission in gap-mode plasmon photoluminescence. Nature Communications 2024, 10, 4468.\\
+(86) Yin, T.; Dong, Z.; Jiang, L.; Zhang, L.; Hu, H.; Qiu, C.-W.; Yang, J. K. W.; Shen, Z. X. Anomalous Shift Behaviors in the Photoluminescence of Dolmen-Like Plasmonic Nanostructures. ACS Photonics 2016, 3, 979-984.\\
+(87) Kinsey, N.; DeVault, C.; Boltasseva, A.; Shalaev, V. M. Near-zero-index materials for photonics. Nat. Rev. Mater. 2019, 4, 742-760.\\
+(88) Un, I. W.; Sarkar, S.; Sivan, Y. An electronic-based model of the optical nonlinearity of low electron density Drude materials. Phys. Rev. Applied 2023, 19, 044043.\\
+(89) Suemoto, T.; Yamanaka, K.; Sugimoto, N. Observation of femtosecond infrared luminescence in gold. Phys. Rev. B 2019, 100, 125405.
+
+
+\end{document}

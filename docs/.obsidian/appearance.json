@@ -3,7 +3,7 @@
   "theme": "moonstone",
   "cssTheme": "AnuPpuccin",
   "baseFontSize": 18,
-  "textFontFamily": "Palatino,Tiempo,FiraCode Nerd Font,Palatino Linotype,ITC Garamond Std",
+  "textFontFamily": "PT Serif,Palatino,Tiempo,FiraCode Nerd Font,Palatino Linotype,ITC Garamond Std",
   "interfaceFontFamily": "Sathu,JetBrainsMono Nerd Font,SF Pro Display,SF Pro Rounded,Inter",
   "enabledCssSnippets": [
     "pictureCenter",
