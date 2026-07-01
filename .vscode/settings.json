@@ -6,10 +6,10 @@
     "**/.venv": true,
     "**/.obsidian": true,
     "**/.gitignore": true,
-    "**/README.md": true,
     "**/.cache": true,
     "**/__pycache__": true,
     "**/requirements.txt": true,
     "**/.claude": true,
+    "**/CLAUDE.md": true
   }
 }

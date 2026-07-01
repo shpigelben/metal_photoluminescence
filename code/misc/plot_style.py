@@ -2,7 +2,7 @@ from pathlib import Path
 import matplotlib as mpl
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-FIGURES_DIR = PROJECT_ROOT / "docs" / "figures"
+FIGURES_DIR = PROJECT_ROOT / "docs" / "4 Misc" / "Attachments"
 
 
 def apply_style() -> None:

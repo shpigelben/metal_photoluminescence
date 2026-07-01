@@ -103,7 +103,7 @@ $$
 
 appears in every stage through Eq. (4)–(7). Before quantifying approximation error, it is useful to visualize its support and characteristic energy scale as a function of $(\mathcal{E}_F,T,\hbar\omega)$.
 
-![center|700](../../figures/thermal_factor_distributions_default.png)
+![center|700](../../4 Misc/Attachments/thermal_factor_distributions_default.png)
 
 Figure 0.1: Default visualization of $f(\mathcal{E}+\hbar\omega)[1-f(\mathcal{E})]$ and its factors for a representative $(\mathcal{E}_F,T,\hbar\omega)$ setting.
 

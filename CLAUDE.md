@@ -51,6 +51,6 @@ This is a computational physics MSc project. The goal is computing the photolumi
 
 ## Canvas Workflow (`canvas reply`)
 
-When asked to run `canvas reply`, follow the full protocol in `AGENTS.md`: read `docs/notes/Outline & Questions/DeepDive.canvas` as JSON, find the active (leaf) question node, trace ancestor context, synthesize a math-first answer, then write a new node + edge back to the canvas. Placement must be collision-free (check all bounding boxes). Never move existing nodes.
+When asked to run `canvas reply`: read `docs/notes/Outline & Questions/DeepDive.canvas` as JSON, find the active (leaf) question node, trace ancestor context, synthesize a math-first answer, then write a new node + edge back to the canvas. Placement must be collision-free (check all bounding boxes). Never move existing nodes.
 
 Response style for canvas answers: math-first (Golden Rule, Kubo–Greenwood, matrix elements), state assumptions explicitly, cite primary literature (Rosei 1975, Christensen & Seraphin 1971, Johnson & Christy 1972) before internal vault notes.

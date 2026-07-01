@@ -119,5 +119,5 @@ $$ I(\hbar\omega) \approx \int \rho(\mathcal{E}_1)f(\mathcal{E}_1) \left[ \int_{
 
 where $\mathcal{E}' = \mathcal{E}_1 - \hbar\omega - u$. The parameters $M$ and $N$ allow tuning the balance between accuracy and computational cost.
 
-![gaussian_delta_double_integral](../../../figures/gaussian_delta_double_integral.png)
+![gaussian_delta_double_integral](../../4 Misc/Attachments/gaussian_delta_double_integral.png)
 

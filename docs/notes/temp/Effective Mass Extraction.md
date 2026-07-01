@@ -18,7 +18,7 @@ In **Christensen and Seraphin (1971)**, **Table III (page 3332)** lists the ener
 ### Effective Masses ($m^*$)
 The effective masses are extracted by calculating the **curvature** of the bands in the **Relativistic Band Structure (Figure 5, page 3330)** of C&S (1971). 
 
-![Figure 5: Relativistic Band Structure (Christensen & Seraphin 1971)](../../figures/CS1971_Figure5.png)
+![Figure 5: Relativistic Band Structure (Christensen & Seraphin 1971)](../../4 Misc/Attachments/CS1971_Figure5.png)
 
 The curvature is highly anisotropic at both points. While simplified 1D models often collapse these into single "effective" masses, the physically accurate 3D model requires both Longitudinal ($\parallel$) and Transverse ($\perp$) components.
 

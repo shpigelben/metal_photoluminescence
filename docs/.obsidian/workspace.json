@@ -6,59 +6,36 @@
       {
         "id": "4509724f8bf84da7",
         "type": "tabs",
-        "dimension": 51.464063886424135,
         "children": [
-          {
-            "id": "e7a7b303c61786dc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "references/REFERENCES.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "REFERENCES"
-            }
-          },
           {
             "id": "f794d5a5409d7895",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/Interband Absorption at X and L (Rosei's Notation).md",
+                "file": "notes/concepts/A1 - Derivation of the General Emission Integral.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Interband Absorption at X and L (Rosei's Notation)"
+              "title": "A1 - Derivation of the General Emission Integral"
             }
-          }
-        ],
-        "currentTab": 1
-      },
-      {
-        "id": "044940e5b45f5872",
-        "type": "tabs",
-        "dimension": 48.535936113575865,
-        "children": [
+          },
           {
             "id": "65edc6609fc45769",
             "type": "leaf",
             "state": {
               "type": "pdf",
               "state": {
-                "file": "references/PDFs/7 - Rosei.pdf"
+                "file": "notes/Rosei Equivalence Derivation/rosei_equivalence_derivation.pdf"
               },
               "icon": "lucide-file-text",
-              "title": "7 - Rosei"
+              "title": "rosei_equivalence_derivation"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -107,29 +84,20 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "notes/Rosei Equivalence Derivation/rosei_equivalence_derivation.pdf",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline"
-            }
-          },
-          {
-            "id": "a5369314a6c82fff",
-            "type": "leaf",
-            "state": {
-              "type": "bookmarks",
-              "state": {},
-              "icon": "lucide-bookmark",
-              "title": "Bookmarks"
+              "title": "Outline of rosei_equivalence_derivation"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 236.5
+    "width": 206.5
   },
   "right": {
     "id": "ff902569427872ea",
@@ -238,37 +206,48 @@
       "obsidian-stille:Toggle Stille": false
     }
   },
-  "active": "f794d5a5409d7895",
+  "active": "097b944a4aaf954b",
   "lastOpenFiles": [
-    "notes/Rosei Equivalence Derivation/page-7.png",
-    "notes/Rosei Equivalence Derivation/page-6.png",
-    "notes/Rosei Equivalence Derivation/page-5.png",
+    "4 Misc/Attachments/thermal_factor_distributions_default.png",
+    "4 Misc/Attachments/step_size_convergence.png",
+    "4 Misc/Attachments/stage_4_spectral_profile.png",
+    "4 Misc/Attachments/stage_4_sigma_convergence.png",
+    "4 Misc/Attachments/stage_3_rel_error_T300K.png",
+    "4 Misc/Attachments/stage_3_rel_error_nonthermal_heatmap.png",
+    "4 Misc/Attachments/stage_3_edos_vs_const_edos_heatmap.png",
+    "4 Misc/Attachments/stage_2_step_convergence_T300K.png",
+    "4 Misc/Attachments/stage_2_rel_error_grid.png",
+    "4 Misc/Attachments/stage_2_rel_error_grid_50x50.png",
+    "4 Misc/Attachments/stage_2_length_convergence_T300K.png",
+    "notes/concepts/A1 - Derivation of the General Emission Integral.md",
+    "notes/concepts/3 - Intraband Transitions.md",
+    "notes/log/3.1 - Numeric Convergence.md",
+    "notes/log/3.3 - Constant eDOS Approximation.md",
+    "notes/log/3.2 - Analytic Approximations.md",
+    "4 Misc/Excalidraw/Drawing 2026-04-27 18.16.23.excalidraw.md",
+    "4 Misc/Bases/project.base",
+    "4 Misc/Bases/thesis.base",
+    "4 Misc/Bases/appendices.base",
+    "4 Misc/Bases/working-notes.base",
+    "references/REFERENCES.md",
+    "notes/Interband Absorption at X and L (Rosei's Notation).md",
+    "notes/Rosei Equivalence Derivation/rosei_equivalence_derivation.pdf",
+    "notes/temp/Work Plan.md",
+    "notes/temp/Effective Mass Extraction.md",
+    "notes/temp/Dedications.md",
+    "notes/temp/Abstract.md",
+    "notes/temp/1 - Introduction.md",
+    "notes/temp/0 - Outline.md",
     "notes/Rosei Equivalence Derivation/pdflatex17084.fls",
     "notes/Rosei Equivalence Derivation/pdflatex17083.fls",
-    "notes/Rosei Equivalence Derivation/page-8.png",
-    "notes/Rosei Equivalence Derivation/page-4.png",
-    "notes/Rosei Equivalence Derivation/page-3.png",
-    "notes/Rosei Equivalence Derivation/page-2.png",
-    "notes/Rosei Equivalence Derivation/page-1.png",
     "notes/Rosei Equivalence Derivation/pdflatex17002.fls",
     "notes/Rosei Equivalence Derivation/pdflatex16888.fls",
     "notes/Rosei Equivalence Derivation/rosei_equivalence_derivation.out",
-    "notes/Rosei Equivalence Derivation/rosei_equivalence_derivation.pdf",
-    "notes/Rosei Equivalence Derivation/pdflatex16887.fls",
-    "notes/Rosei Equivalence Derivation/rosei_equivalence_derivation.log",
-    "notes/Rosei Equivalence Derivation/rosei_equivalence_derivation.fls",
-    "notes/Rosei Equivalence Derivation/pdflatex16875.fls",
     "Untitled.md",
-    "notes/Interband Absorption at X and L (Rosei's Notation).md",
     "notes/Equivalence of My Absorption Integral and Rosei's.md",
     "notes/Absorption Integral (Using Rosei's Notations).md",
-    "references/TEXs/7 - Rosei 1/images/dfe331d9-fc5a-453b-8575-91a380946592-6_729_607_333_311.jpg",
-    "references/TEXs/7 - Rosei 1/images/dfe331d9-fc5a-453b-8575-91a380946592-6_725_647_1632_1130.jpg",
-    "references/REFERENCES.md",
     "references/PDFs/Untitled.md",
     "references/PDFs/MOC.canvas",
-    "notes/log/3.1 - Numeric Convergence.md",
-    "notes/log/3.2 - Analytic Approximations.md",
     "references/1 - Hot PL/1 - Hot PL.md",
     "references/12 - Imon.md/6d130213-22d8-4a11-ae32-675e1fd064c5.md",
     "references/12 - Imon.md",
@@ -276,16 +255,6 @@
     "references/11 - Greffet.md",
     "references/10 - Mooridan.md/61a709aa-f744-4cc8-aa20-36a57c58807d.md",
     "references/10 - Mooridan.md",
-    "references/9 - Bowman.md/73169eec-5b48-47f1-9eff-fd9f4dccd667.md",
-    "references/9 - Bowman.md",
-    "references/8 - Marini.md/fedff7ea-fb9d-4a80-ac6f-348dbc7a5487.md",
-    "references/8 - Marini.md",
-    "references/7 - Rosei.md/dfe331d9-fc5a-453b-8575-91a380946592.md",
-    "references/7 - Rosei.md",
-    "references/6 - Novotny.md/0781daed-441b-41f1-a5d4-fc13c7f71e63.md",
-    "references/6 - Novotny.md",
-    "references/5 - Boltzmann Equation.md/1d0b0cec-18d9-476c-9c1d-acab43e995e5.md",
-    "references/5 - Boltzmann Equation.md",
     "MOC Canvas.canvas",
     "notes/Outline & Questions/emission integral tree.canvas",
     "notes/Outline & Questions/DeepDive.canvas",

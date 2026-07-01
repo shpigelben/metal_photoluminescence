@@ -1,5 +1,0 @@
-- [x] headroom
-    - [ ] after dealing with PDFs rewrite AI md files and \init with Claude Code 
-- [ ] ponytail?
-- [x] mathpix
-    - [ ] markdown translated articles with metadata & link to actual pdfs
