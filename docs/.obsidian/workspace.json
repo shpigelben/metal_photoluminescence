@@ -97,7 +97,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 206.5
+    "width": 287.5
   },
   "right": {
     "id": "ff902569427872ea",
@@ -206,7 +206,7 @@
       "obsidian-stille:Toggle Stille": false
     }
   },
-  "active": "097b944a4aaf954b",
+  "active": "65edc6609fc45769",
   "lastOpenFiles": [
     "4 Misc/Attachments/thermal_factor_distributions_default.png",
     "4 Misc/Attachments/step_size_convergence.png",

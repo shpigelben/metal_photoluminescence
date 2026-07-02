@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Advisor's Ledger — Metal Photoluminescence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IM+Fell+English+SC&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#3a2a18;
+    --ink-soft:#5c4630;
+    --ink-faint:#8a7355;
+    --parchment:#efe0bd;
+    --parchment-hi:#f6ecd2;
+    --parchment-lo:#e2cfa2;
+    --rule:#b09a6e;
+    --rule-soft:#cdbb90;
+    --wax-red:#8c2f22;
+    --wax-green:#4e5e33;
+    --wax-gold:#9a7328;
+    --accent:#6b4a1f;
+    font-size:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Cormorant Garamond','Iowan Old Style',Palatino,'Palatino Linotype',Georgia,serif;
+    color:var(--ink);
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(255,250,230,.55), transparent 55%),
+      radial-gradient(ellipse at 85% 90%, rgba(120,90,45,.28), transparent 60%),
+      radial-gradient(ellipse at 50% 50%, var(--parchment-hi), var(--parchment) 55%, var(--parchment-lo));
+    background-attachment:fixed;
+    line-height:1.62;
+    padding:2.2rem 1rem 4rem;
+  }
+  /* paper grain */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .sheet{
+    position:relative;z-index:1;max-width:1000px;margin:0 auto;
+    background:linear-gradient(175deg, rgba(255,252,240,.5), rgba(226,207,162,.25));
+    border:1px solid var(--rule);
+    outline:1px solid var(--rule-soft);
+    outline-offset:6px;
+    box-shadow:0 20px 60px rgba(60,40,15,.35), inset 0 0 120px rgba(120,90,45,.12);
+    padding:3rem clamp(1.2rem,5vw,4rem) 3rem;
+  }
+  /* ── header ─────────────────────────────── */
+  header{text-align:center;margin-bottom:2.2rem}
+  .over-title{
+    font-family:'IM Fell English',serif;font-style:italic;color:var(--ink-soft);
+    letter-spacing:.14em;font-size:.95rem;
+  }
+  h1{
+    font-family:'IM Fell English SC',serif;font-weight:400;
+    font-size:clamp(1.9rem,4.6vw,3rem);letter-spacing:.05em;line-height:1.15;
+    margin:.35rem 0 .4rem;
+  }
+  .subtitle{font-style:italic;color:var(--ink-soft);font-size:1.12rem}
+  .dateline{
+    margin-top:.8rem;font-family:'IM Fell English',serif;font-size:.92rem;
+    color:var(--ink-faint);letter-spacing:.08em;
+  }
+  .flourish{color:var(--rule);font-size:1.3rem;letter-spacing:.6em;margin-top:1rem;user-select:none}
+  /* ── section headings ───────────────────── */
+  h2{
+    font-family:'IM Fell English SC',serif;font-weight:400;font-size:1.55rem;
+    letter-spacing:.06em;text-align:center;margin:3rem 0 1.2rem;
+    display:flex;align-items:center;gap:1rem;
+  }
+  h2::before,h2::after{
+    content:"";flex:1;height:1px;
+    background:linear-gradient(90deg,transparent,var(--rule));
+  }
+  h2::after{background:linear-gradient(90deg,var(--rule),transparent)}
+  h3{
+    font-family:'IM Fell English',serif;font-weight:400;font-size:1.18rem;
+    color:var(--accent);margin-bottom:.35rem;letter-spacing:.03em;
+  }
+  p{margin-bottom:.8rem}
+  em{color:var(--ink-soft)}
+  code{
+    font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.78em;
+    background:rgba(120,90,45,.12);border:1px solid rgba(120,90,45,.18);
+    border-radius:3px;padding:.06em .35em;color:#4a3416;white-space:nowrap;
+  }
+  /* ── verdict box ────────────────────────── */
+  .verdict{
+    border:1px solid var(--rule);border-left:4px double var(--wax-gold);
+    background:linear-gradient(180deg, rgba(255,250,235,.55), rgba(230,210,165,.3));
+    padding:1.2rem 1.5rem;margin:0 0 .5rem;
+  }
+  .verdict p:first-of-type::first-letter{
+    font-family:'IM Fell English SC',serif;float:left;font-size:3.4em;line-height:.82;
+    padding:.06em .12em 0 0;color:var(--wax-red);
+  }
+  .verdict p:last-child{margin-bottom:0}
+  /* ── progress meter ─────────────────────── */
+  .meter-wrap{
+    display:flex;flex-direction:column;gap:.55rem;align-items:center;
+    margin:1.4rem 0 .4rem;
+  }
+  .meter-title{
+    font-family:'IM Fell English SC',serif;font-size:1.05rem;letter-spacing:.1em;
+    color:var(--ink-soft);
+  }
+  .meter{
+    width:100%;max-width:640px;height:26px;border:1px solid var(--rule);
+    background:rgba(255,252,240,.5);box-shadow:inset 0 2px 6px rgba(60,40,15,.2);
+    position:relative;
+  }
+  .meter-fill{
+    height:100%;width:0%;transition:width .5s ease;
+    background:linear-gradient(180deg,#c99b3f,#9a7328 55%,#7c5a1d);
+    box-shadow:inset 0 1px 0 rgba(255,240,200,.5);
+  }
+  .meter-label{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:'IM Fell English',serif;font-size:.95rem;color:var(--ink);
+    text-shadow:0 1px 0 rgba(255,250,230,.6);letter-spacing:.06em;
+  }
+  .meter-sub{font-style:italic;color:var(--ink-faint);font-size:.92rem}
+  /* ── quest steps ────────────────────────── */
+  .step{
+    border:1px solid var(--rule-soft);
+    background:linear-gradient(180deg, rgba(255,252,242,.45), rgba(232,213,170,.25));
+    margin-bottom:1.1rem;padding:1.05rem 1.3rem 1rem;position:relative;
+  }
+  .step-head{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;margin-bottom:.45rem}
+  .step-numeral{
+    font-family:'IM Fell English SC',serif;font-size:1.5rem;color:var(--wax-red);
+    min-width:1.4em;text-align:center;line-height:1;
+  }
+  .step-title{font-family:'IM Fell English',serif;font-size:1.22rem;color:var(--ink)}
+  .step-eta{font-style:italic;color:var(--ink-faint);font-size:.9rem;margin-left:auto}
+  .step-count{
+    font-family:'IM Fell English',serif;font-size:.9rem;color:var(--ink-soft);
+    border:1px solid var(--rule-soft);padding:.05em .55em;border-radius:9px;
+    background:rgba(255,250,235,.5);
+  }
+  ul.tasks{list-style:none;margin:.3rem 0 .5rem}
+  ul.tasks li{display:flex;gap:.65rem;align-items:flex-start;padding:.22rem 0}
+  ul.tasks input[type=checkbox]{
+    appearance:none;width:1.02em;height:1.02em;margin-top:.28em;flex:none;cursor:pointer;
+    border:1.5px solid var(--ink-soft);background:rgba(255,252,242,.65);
+    display:inline-grid;place-content:center;
+  }
+  ul.tasks input[type=checkbox]::before{
+    content:"✕";font-size:.78em;color:var(--wax-red);transform:scale(0);
+    transition:transform .12s ease;font-weight:700;line-height:1;
+  }
+  ul.tasks input[type=checkbox]:checked::before{transform:scale(1)}
+  ul.tasks label{cursor:pointer}
+  ul.tasks input:checked + label{color:var(--ink-faint)}
+  .accept{
+    font-style:italic;color:var(--ink-soft);font-size:.95rem;
+    border-top:1px dotted var(--rule-soft);padding-top:.45rem;margin-top:.35rem;
+  }
+  .accept b{font-style:normal;font-family:'IM Fell English SC',serif;font-weight:400;letter-spacing:.06em}
+  /* ── findings ───────────────────────────── */
+  .finding{display:flex;gap:.9rem;margin-bottom:1rem;align-items:flex-start}
+  .glyph{font-size:1.25rem;color:var(--wax-gold);flex:none;margin-top:.1rem}
+  .math{
+    font-family:'STIX Two Math','Cambria Math',Georgia,serif;font-style:italic;
+    white-space:nowrap;
+  }
+  /* ── seals / badges ─────────────────────── */
+  .seal{
+    display:inline-block;font-family:'IM Fell English SC',serif;font-size:.72rem;
+    letter-spacing:.1em;padding:.1em .6em;border-radius:999px;color:#f6ecd2;
+    box-shadow:0 1px 2px rgba(60,40,15,.35), inset 0 1px 0 rgba(255,255,255,.25);
+    white-space:nowrap;vertical-align:baseline;
+  }
+  .seal.keep{background:radial-gradient(circle at 30% 30%, #6a7d47, var(--wax-green))}
+  .seal.delete{background:radial-gradient(circle at 30% 30%, #b04a37, var(--wax-red))}
+  .seal.verified{background:radial-gradient(circle at 30% 30%, #c99b3f, var(--wax-gold))}
+  .seal.caution{background:radial-gradient(circle at 30% 30%, #8a7355, #6a563c)}
+  /* ── tables ─────────────────────────────── */
+  table{width:100%;border-collapse:collapse;margin:.6rem 0 1.2rem;font-size:.97rem}
+  th{
+    font-family:'IM Fell English SC',serif;font-weight:400;letter-spacing:.07em;
+    text-align:left;font-size:.92rem;color:var(--ink-soft);
+    border-bottom:2px solid var(--rule);padding:.4rem .6rem;
+  }
+  td{border-bottom:1px solid var(--rule-soft);padding:.45rem .6rem;vertical-align:top}
+  tr:nth-child(even) td{background:rgba(255,250,235,.35)}
+  /* ── horizons ───────────────────────────── */
+  ol.horizons{margin:.2rem 0 .6rem 1.4rem}
+  ol.horizons li{margin-bottom:.7rem;padding-left:.3rem}
+  ol.horizons li::marker{font-family:'IM Fell English SC',serif;color:var(--wax-red)}
+  /* ── footer ─────────────────────────────── */
+  footer{
+    margin-top:3rem;text-align:center;font-family:'IM Fell English',serif;
+    font-style:italic;color:var(--ink-faint);font-size:.95rem;
+  }
+  .reset-btn{
+    font-family:'IM Fell English',serif;font-size:.85rem;color:var(--ink-soft);
+    background:rgba(255,250,235,.6);border:1px solid var(--rule);border-radius:3px;
+    padding:.25em .9em;cursor:pointer;margin-top:.7rem;
+  }
+  .reset-btn:hover{background:rgba(120,90,45,.15)}
+  .divider{text-align:center;color:var(--rule);font-size:1.15rem;letter-spacing:.5em;margin:2.4rem 0;user-select:none}
+  @media print{
+    body{background:#fff;padding:0}
+    .sheet{box-shadow:none;outline:none}
+    .reset-btn{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header>
+    <div class="over-title">Ben-Gurion University of the Negev · Department of Physics</div>
+    <h1>The Advisor's Ledger</h1>
+    <div class="subtitle">Photoluminescence of Gold from First Principles — interband &amp; non-equilibrium extensions of Sivan&nbsp;&amp;&nbsp;Dubi (2021)</div>
+    <div class="dateline">Candidate: B. Shpigel &nbsp;·&nbsp; Compiled the 2<sup>nd</sup> of July, 2026</div>
+    <div class="flourish">❦ ❦ ❦</div>
+  </header>
+
+  <!-- ═══════════ VERDICT ═══════════ -->
+  <section class="verdict">
+    <p><b>The equivalence you sought is already proven, and it is correct.</b> The algebra of
+    <code>docs/notes/Equivalence of My Absorption Integral and Rosei's.md</code> was independently re-derived and verified this session:
+    the Jacobian, the curvature-determinant identity, the constant ratio, and the occupation-factor limit all hold.</p>
+    <p>Your difficulty in "getting to grips" with it was never a failure of understanding. The repository contains
+    <em>three AI-written derivation documents in three different band-sign conventions</em>, one of which
+    (<code>interband_derivation_v2.tex</code>) contradicts itself. You were reconciling AI documents against each other,
+    when the only reconciliation that matters is <em>your derivation against Guerrisi–Rosei–Winsemius (1975)</em>.
+    The campaign below closes that gap.</p>
+  </section>
+
+  <div class="meter-wrap">
+    <div class="meter-title">— Progress of the Campaign —</div>
+    <div class="meter"><div class="meter-fill" id="meterFill"></div><div class="meter-label" id="meterLabel">0 of 0 labours complete</div></div>
+    <div class="meter-sub">Your marks are remembered by this browser (localStorage) — tick tasks as you complete them.</div>
+  </div>
+
+  <!-- ═══════════ EXECUTION PLAN ═══════════ -->
+  <h2>The Execution Plan</h2>
+
+  <div class="step" data-step="0">
+    <div class="step-head">
+      <span class="step-numeral">0</span>
+      <span class="step-title">Fix Ground Truth Against the Primary Source</span>
+      <span class="step-count" data-count></span>
+      <span class="step-eta">half a day</span>
+    </div>
+    <ul class="tasks">
+      <li><input class="task" type="checkbox" id="s0a"><label for="s0a">Read GRW 1975 eqs (1)–(8) from the <em>PDF</em> (<code>docs/references/PDFs/7 - Rosei.pdf</code>), not the Mathpix export.</label></li>
+      <li><input class="task" type="checkbox" id="s0b"><label for="s0b">Write the one-page <em>convention table</em>: for X and L — curvature signs, masses, gaps, van Hove class (M₁ vs M₀), which integration edge is singular, which edge is geometric vs thermal.</label></li>
+      <li><input class="task" type="checkbox" id="s0c"><label for="s0c">Resolve the eq (6) OCR ambiguity (<span class="math">ħ²/2m</span> vs <span class="math">2m/ħ²</span>); patch <code>TEXs/7 - Rosei</code> and record the patch in <code>REFERENCES.md</code>.</label></li>
+      <li><input class="task" type="checkbox" id="s0d"><label for="s0d">Audit the integration bounds coded in <code>rosei_fit_gui.py</code> against the paper — they were written in a Copilot-assisted commit (<code>00433bb</code>).</label></li>
+    </ul>
+    <div class="accept"><b>Acceptance</b> — the table is consistent with <code>rosei_model_formulas.md</code> and with the bounds the GUI actually computes.</div>
+  </div>
+
+  <div class="step" data-step="1">
+    <div class="step-head">
+      <span class="step-numeral">I</span>
+      <span class="step-title">One Canonical Derivation, By Your Hand</span>
+      <span class="step-count" data-count></span>
+      <span class="step-eta">2–3 days</span>
+    </div>
+    <ul class="tasks">
+      <li><input class="task" type="checkbox" id="s1a"><label for="s1a">Derive <span class="math">k∥²(E, ħω) = (Ā/𝒟)·|E − E*(ω)|</span> by hand; obtain the integration windows and the singular edge for each critical point. <em>This two-page calculation is the only remaining mathematical gap.</em></label></li>
+      <li><input class="task" type="checkbox" id="s1b"><label for="s1b">Rewrite appendix A8 (X point) as the single canonical chain: Golden Rule → constant matrix element → cylindrical measure → Jacobian → <span class="math">𝒟 = (ħ²/2)² 𝓕⁻²</span> → constant <span class="math">16π³𝓕/ħ²</span> → occupation limit.</label></li>
+      <li><input class="task" type="checkbox" id="s1c"><label for="s1c">Rewrite A8.L in parallel-column form, highlighting the topological differences (M₀ ellipsoid vs M₁ saddle; singular edge; thermal cutoff).</label></li>
+      <li><input class="task" type="checkbox" id="s1d"><label for="s1d">Remove <code>interband_derivation.tex/.pdf</code> and <code>_v2</code> from <code>code/main/</code> — they are documents, not code, and v2 is internally inconsistent.</label></li>
+    </ul>
+    <div class="accept"><b>Acceptance</b> — every equation reproducible by you at a whiteboard; the equivalence stated as a boxed theorem with the constant explicit.</div>
+  </div>
+
+  <div class="step" data-step="2">
+    <div class="step-head">
+      <span class="step-numeral">II</span>
+      <span class="step-title">Numerical Proof of Equivalence</span>
+      <span class="step-count" data-count></span>
+      <span class="step-eta">1–2 days</span>
+    </div>
+    <ul class="tasks">
+      <li><input class="task" type="checkbox" id="s2a"><label for="s2a">Brute-force the δ-shell integral on a <span class="math">(k⊥, k∥)</span> grid and overlay against the analytic <span class="math">D<sub>l→u</sub></span> — reuse your momentum-space methodology from the intraband chapter. <em>This is what makes the equivalence yours.</em></label></li>
+      <li><input class="task" type="checkbox" id="s2b"><label for="s2b">Freeze the ε₂ overlay against digitised GRW Fig. 8 data (<code>a_e2_X.txt</code> … <code>d_e2_X_L_Drude.txt</code>) as a notebook figure with the fitted preset parameters.</label></li>
+      <li><input class="task" type="checkbox" id="s2c"><label for="s2c">Occupation-factor sensitivity: quantify the error of Rosei's <span class="math">f<sub>l</sub> → 1</span> at <span class="math">T<sub>e</sub></span> = 300 K vs 3000 K. <em>This figure motivates the entire thesis extension.</em></label></li>
+    </ul>
+    <div class="accept"><b>Acceptance</b> — ratio constant within numerical error; all figures committed inside <code>3_RoseiAnalysis.ipynb</code>.</div>
+  </div>
+
+  <div class="step" data-step="3">
+    <div class="step-head">
+      <span class="step-numeral">III</span>
+      <span class="step-title">Promote Absorption to Emission — the Pivot</span>
+      <span class="step-count" data-count></span>
+      <span class="step-eta">~1 week</span>
+    </div>
+    <ul class="tasks">
+      <li><input class="task" type="checkbox" id="s3a"><label for="s3a">Swap occupations to <span class="math">f(E)[1 − f(E − ħω)]</span> with the <em>same</em> 𝒥(E); multiply by the photonic LDOS factor.</label></li>
+      <li><input class="task" type="checkbox" id="s3b"><label for="s3b">Detailed-balance validation: at equilibrium, <span class="math">R<sub>em</sub>/R<sub>abs</sub> = e<sup>−ħω/k<sub>B</sub>T</sup></span> pointwise in E (van Roosbroeck–Shockley; ties directly to appendix A9, Kirchhoff).</label></li>
+    </ul>
+    <div class="accept"><b>Acceptance</b> — the parameter-free equilibrium check passes across the full spectral window.</div>
+  </div>
+
+  <div class="step" data-step="4">
+    <div class="step-head">
+      <span class="step-numeral">IV</span>
+      <span class="step-title">Non-Equilibrium — the New Physics</span>
+      <span class="step-count" data-count></span>
+      <span class="step-eta">the heart of the thesis</span>
+    </div>
+    <ul class="tasks">
+      <li><input class="task" type="checkbox" id="s4a"><label for="s4a">Insert <span class="math">f<sup> S</sup></span> (CW, Sivan–Dubi) into the interband emission integral.</label></li>
+      <li><input class="task" type="checkbox" id="s4b"><label for="s4b">Insert <span class="math">f<sup> P</sup></span> (pulsed excitation).</label></li>
+      <li><input class="task" type="checkbox" id="s4c"><label for="s4c">Compute the X/L emission-weight ratio vs <span class="math">T<sub>e</sub></span> and pump — the non-equilibrium thermometer.</label></li>
+      <li><input class="task" type="checkbox" id="s4d"><label for="s4d">Predict the anti-Stokes interband tail under pulsed pumping.</label></li>
+      <li><input class="task" type="checkbox" id="s4e"><label for="s4e">Compute the sub-gap M₁ emission-edge softening vs <span class="math">T<sub>e</sub></span> at the X point.</label></li>
+    </ul>
+    <div class="accept"><b>Acceptance</b> — at least one falsifiable, figure-ready prediction per item.</div>
+  </div>
+
+  <div class="step" data-step="5">
+    <div class="step-head">
+      <span class="step-numeral">V</span>
+      <span class="step-title">Repository Hygiene &amp; Provenance</span>
+      <span class="step-count" data-count></span>
+      <span class="step-eta">an afternoon</span>
+    </div>
+    <ul class="tasks">
+      <li><input class="task" type="checkbox" id="s5a"><label for="s5a">Delete <code>try1.py</code>, <code>try2.py</code>, <code>rosei_fit_gui_2.py</code> (git history preserves all).</label></li>
+      <li><input class="task" type="checkbox" id="s5b"><label for="s5b">Delete or quarantine <code>interband_derivation*.tex/.pdf</code> (→ <code>code/retired/ai_drafts/</code> if not deleting).</label></li>
+      <li><input class="task" type="checkbox" id="s5c"><label for="s5c">Add <code>AI_PROVENANCE.md</code> at the repo root with the evidence table below, commit hashes included.</label></li>
+      <li><input class="task" type="checkbox" id="s5d"><label for="s5d">Stamp "AI-drafted; verified by BS on ⟨date⟩" headers in kept AI-drafted files (<code>OVERVIEW.md</code>, A8.L note, first cell of <code>2_RoseiAnalysis.ipynb</code>) — only <em>after</em> Steps 0–II are done.</label></li>
+      <li><input class="task" type="checkbox" id="s5e"><label for="s5e">Update <code>CLAUDE.md</code> and <code>OVERVIEW.md</code> to acknowledge <code>3_RoseiAnalysis.ipynb</code> as the authoritative notebook.</label></li>
+    </ul>
+    <div class="accept"><b>Acceptance</b> — a stranger (or committee member) can tell at a glance what is yours, what is verified, and what was machine-drafted.</div>
+  </div>
+
+  <!-- ═══════════ FINDINGS ═══════════ -->
+  <h2>Advisor's Findings on the Equivalence</h2>
+
+  <div class="finding"><span class="glyph">✦</span><div>
+    <h3>Verified — the four-step chain <span class="seal verified">verified</span></h3>
+    <p>(i) Change of variables <span class="math">(k⊥, k∥) → (E, Δ)</span> gives <span class="math">|det J| = 4 k⊥ k∥ 𝒟</span> with
+    <span class="math">𝒟 = A<sub>u</sub>B<sub>l</sub> + A<sub>l</sub>B<sub>u</sub></span> — the <span class="math">k⊥</span> in the measure cancels the one in the Jacobian.
+    (ii) <span class="math">𝒟 = (ħ²/2)² 𝓕⁻²</span> bridges to Rosei's mass combination.
+    (iii) <span class="math">𝒥(E)/D<sub>l→u</sub> = 16π³𝓕/ħ²</span> — constant in E and ω, absorbed into the overall Scale; all spectral shape lives in <span class="math">k∥⁻¹(E, ħω)</span>.
+    (iv) Rosei's <span class="math">[1 − f(E)]</span> is the <span class="math">f(E<sub>l</sub>) → 1</span> limit of your <span class="math">f(E − ħω)[1 − f(E)]</span> — exact at equilibrium, wrong out of it. <em>That failure is your thesis.</em></p>
+  </div></div>
+
+  <div class="finding"><span class="glyph">✦</span><div>
+    <h3>Convention-robust</h3>
+    <p>Flipping the signs of both <span class="math">B<sub>u</sub></span> and <span class="math">B<sub>l</sub></span> leaves 𝒟 unchanged — the sign appears in one row element <em>and</em> in the difference band, and cancels. The "equivalence up to a constant" holds in any convention; only the <em>windows and singular edges</em> depend on the true geometry.</p>
+  </div></div>
+
+  <div class="finding"><span class="glyph">✦</span><div>
+    <h3>Root of the confusion <span class="seal caution">diagnosed</span></h3>
+    <p>Three documents, three conventions: the md note (bands rising along <span class="math">k∥</span>), <code>interband_derivation_v2.tex</code> (bands falling, <span class="math">B̄ = B<sub>v</sub> − B<sub>c</sub> &gt; 0</span>), and v1 (a third variant). v2 contradicts itself: with <span class="math">B̄ &gt; 0</span> the difference band is a minimum (M₀) and <span class="math">Δ ≥ E<sub>g</sub></span> strictly — yet the prose claims a saddle and a geometric sub-gap tail, which requires <span class="math">B̄ &lt; 0</span>. It also labels L as M₁ while your model treats L, correctly, as the M₀ ellipsoid.</p>
+  </div></div>
+
+  <div class="finding"><span class="glyph">✦</span><div>
+    <h3>The remaining gap — yours to close</h3>
+    <p>Derive <span class="math">k∥²(E, ħω)</span> explicitly (Step I). The sign of <span class="math">(E − E*)</span> and the conditions <span class="math">u ≥ 0, v ≥ 0</span> determine per critical point which edge is singular (<span class="math">1/k∥</span> diverges where <span class="math">k∥ → 0</span>), and whether the far edge is geometric or thermal — the origin of the <span class="math">−20 k<sub>B</sub>T</span> cutoff and of real sub-gap absorption at the M₁ point.</p>
+  </div></div>
+
+  <div class="divider">⁂</div>
+
+  <!-- ═══════════ TRIAGE ═══════════ -->
+  <h2>Triage of the Codebase</h2>
+  <table>
+    <thead><tr><th>Artifact</th><th>Verdict</th><th>Reasoning</th></tr></thead>
+    <tbody>
+      <tr><td><code>3_RoseiAnalysis.ipynb</code></td><td><span class="seal keep">keep</span></td><td><b>The authoritative Rosei notebook.</b> Created May 4, actively edited through June 14. CLAUDE.md/OVERVIEW.md don't yet know it exists — fix in Step V.</td></tr>
+      <tr><td><code>1_YonatanAnalysis.ipynb</code></td><td><span class="seal keep">keep</span></td><td>Intraband chapter; backs thesis §3.</td></tr>
+      <tr><td><code>2_RoseiAnalysis.ipynb</code></td><td><span class="seal keep">keep</span></td><td>Pedagogical audit companion to the GUI. Mark "superseded by 3 for the model" in its first cell, or fold its explanatory cells into 3 and delete.</td></tr>
+      <tr><td><code>rosei_fit_gui.py</code>, <code>data_cleaner_gui.py</code>, <code>rosei_presets.json</code>, <code>*_e2_*.txt</code>, <code>rosei_model_formulas.md</code></td><td><span class="seal keep">keep</span></td><td>Production fitting pipeline and its data. Audit GUI bounds in Step 0.</td></tr>
+      <tr><td><code>code/retired/</code></td><td><span class="seal keep">keep</span></td><td>Archive backing the §3 intraband figures in <code>docs/.LaTeX</code>. Correctly labeled; do not delete.</td></tr>
+      <tr><td><code>try1.py</code></td><td><span class="seal delete">delete</span></td><td>Copilot one-shot (commit <code>04458b9</code>); superseded by GUI + notebook 3.</td></tr>
+      <tr><td><code>try2.py</code></td><td><span class="seal delete">delete</span></td><td>Scratch fitting script; duplicates the GUI's job.</td></tr>
+      <tr><td><code>rosei_fit_gui_2.py</code></td><td><span class="seal delete">delete</span></td><td>Near-verbatim duplicate — its own docstring says "Run: python rosei_fit_gui.py".</td></tr>
+      <tr><td><code>interband_derivation.tex/.pdf</code>, <code>_v2.tex/.pdf</code></td><td><span class="seal delete">delete</span></td><td>Documents, not code; v2 internally inconsistent. Replaced by the canonical appendix (Step I). Quarantine to <code>code/retired/ai_drafts/</code> if deletion feels premature.</td></tr>
+      <tr><td><code>code/misc/notebook.py</code>, empty scripts (<code>4_quad_approx.py</code>, <code>5_delta_k_1d_convergence.py</code>)</td><td><span class="seal delete">delete</span></td><td>6 lines / 0 lines; trivially removable from the sandbox.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ═══════════ PROVENANCE ═══════════ -->
+  <h2>AI Provenance — Definite Signs Only</h2>
+  <table>
+    <thead><tr><th>Evidence</th><th>Commits</th><th>Files affected</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><code>Co-Authored-By: Copilot</code> trailer</td>
+        <td><code>c20d45d</code>, <code>04458b9</code>, <code>00433bb</code>, <code>999d349</code>, <code>d21ece8</code></td>
+        <td>Created <code>interband_derivation.tex/.pdf</code>, <code>try1.py</code>; major logic of <code>rosei_fit_gui.py</code> incl. integration bounds; expanded <code>3_RoseiAnalysis.ipynb</code>; edited <code>rosei_model_formulas.md</code> and the A8.L note.</td>
+      </tr>
+      <tr>
+        <td>Commit titled <em>"Enter Claude"</em></td>
+        <td><code>d382653</code> (Apr 27)</td>
+        <td>Created <code>OVERVIEW.md</code> (115 lines) and <code>A8.L — Interband Transitions at L (Rosei).md</code>; rewrote <code>2_RoseiAnalysis.ipynb</code> (−777/+566).</td>
+      </tr>
+      <tr>
+        <td>Session context (your own account)</td>
+        <td>—</td>
+        <td>The <em>Equivalence…</em> md note and <code>interband_derivation_v2.tex</code> originate from Claude sessions.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><em>Doctrine:</em> do not scatter production files — make provenance explicit and quarantine only dead weight. The verification labours of Steps 0–II are the mechanism by which machine-drafted mathematics becomes <em>yours</em>, which is what matters when you stand before the committee.</p>
+
+  <!-- ═══════════ HORIZONS ═══════════ -->
+  <h2>New Physics on the Horizon</h2>
+  <ol class="horizons">
+    <li><b>The X/L ratio as a non-equilibrium thermometer.</b> The two critical points sample the occupation function at different energies (<span class="math">E<sub>g</sub><sup>X</sup></span> = 1.94 eV vs <span class="math">E<sub>g</sub><sup>L</sup></span> = 2.45 eV) with different singular structures; under <span class="math">f<sup> S</sup></span>/<span class="math">f<sup> P</sup></span> their relative emission weight probes the non-thermal population directly — invisible to any Drude-only theory.</li>
+    <li><b>Anti-Stokes interband PL under pulsed pumping.</b> Emission above the pump energy, with a shape set by the pulsed non-equilibrium tail — quantitatively distinct from effective-temperature phenomenology.</li>
+    <li><b>The sub-gap M₁ tail in emission.</b> The thermal (not geometric) cutoff at X means the interband emission edge softens with <span class="math">T<sub>e</sub></span> in a computable, falsifiable way.</li>
+  </ol>
+
+  <footer>
+    <div>❧ &nbsp; Prepared by your advisor-in-residence, upon review of the full repository &nbsp; ☙</div>
+    <div>"Do the two-page derivation by hand, and the equivalence will stop being something you were told<br>and start being something you know."</div>
+    <button class="reset-btn" id="resetBtn">Clear all marks</button>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const KEY = 'mpl-progress-v1';
+  let state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e) {}
+
+  const boxes = Array.from(document.querySelectorAll('input.task'));
+  const fill  = document.getElementById('meterFill');
+  const label = document.getElementById('meterLabel');
+
+  function save(){ localStorage.setItem(KEY, JSON.stringify(state)); }
+
+  function update(){
+    const done = boxes.filter(b => b.checked).length;
+    const pct  = boxes.length ? Math.round(100 * done / boxes.length) : 0;
+    fill.style.width = pct + '%';
+    label.textContent = done + ' of ' + boxes.length + ' labours complete — ' + pct + '%';
+    document.querySelectorAll('.step').forEach(step => {
+      const t = step.querySelectorAll('input.task');
+      const d = step.querySelectorAll('input.task:checked');
+      const c = step.querySelector('[data-count]');
+      if (c) c.textContent = d.length + ' / ' + t.length;
+      step.style.opacity = (t.length && d.length === t.length) ? .62 : 1;
+    });
+  }
+
+  boxes.forEach(b => {
+    b.checked = !!state[b.id];
+    b.addEventListener('change', () => { state[b.id] = b.checked; save(); update(); });
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    if (!confirm('Clear all progress marks?')) return;
+    state = {}; save();
+    boxes.forEach(b => b.checked = false);
+    update();
+  });
+
+  update();
+})();
+</script>
+</body>
+</html>
