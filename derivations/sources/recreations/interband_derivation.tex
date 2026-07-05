@@ -1,0 +1,354 @@
+\documentclass[11pt,a4paper]{article}
+
+% ── Packages ──────────────────────────────────────────────────
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{booktabs}
+\usepackage{paracol}        % side-by-side columns
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks,linkcolor=blue!60!black,citecolor=blue!60!black]{hyperref}
+
+% ── Macros ────────────────────────────────────────────────────
+\newcommand{\E}{\mathcal{E}}              % energy
+\newcommand{\Ec}{\E_c}
+\newcommand{\Ev}{\E_v}
+\newcommand{\Eoc}{\E_{0c}}
+\newcommand{\Eov}{\E_{0v}}
+\newcommand{\Eg}{\E_g}
+\newcommand{\Emax}{\E_{\max}}
+\newcommand{\Emin}{\E_{\min}}
+\newcommand{\Abar}{\bar{A}}
+\newcommand{\Bbar}{\bar{B}}
+\newcommand{\kperp}{k_{\!\perp}}
+\newcommand{\kpar}{k_{\!\parallel}}
+\newcommand{\hw}{\hbar\omega}
+\newcommand{\dd}{\mathrm{d}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% ══════════════════════════════════════════════════════════════
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries Thermally-Weighted Interband JDOS \\[4pt]
+    at the X and L Critical Points of Gold}\\[12pt]
+  {\large Reduction of the 3D Emission Integral to One Dimension}\\[8pt]
+  {\itshape Following Guerrisi, Rosei \& Winsemius, Phys.\ Rev.\ B \textbf{12}, 557 (1975)}
+\end{center}
+\vspace{6pt}
+\hrule height 0.8pt
+\vspace{10pt}
+
+% ══════════════════════════════════════════════════════════════
+\section{Starting Point}
+
+The direct interband emission rate at photon energy $\hw$ is given by Fermi's golden rule,
+\begin{equation}\label{eq:golden}
+  \Gamma_{e}^{\mathrm{cv}}(\hw)
+  \;\propto\;
+  \int_{\mathrm{BZ}} \dd^{3}k \;
+  f\!\bigl(\Ec(\mathbf{k})\bigr)\,
+  \bigl[1-f\!\bigl(\Ev(\mathbf{k})\bigr)\bigr]\;
+  \delta\!\bigl(\Ec(\mathbf{k}) - \Ev(\mathbf{k}) - \hw\bigr),
+\end{equation}
+where $f(\E)=[\,1+e^{\E/k_BT}\,]^{-1}$ is the Fermi--Dirac distribution with energies measured from $E_F=0$. We assume direct transitions ($\mathbf{k}_1 \approx \mathbf{k}_2$) so both bands are evaluated at the same $\mathbf{k}$.
+
+\subsection{Band Dispersions}
+
+Near each critical point the bands are expanded to second order with cylindrical symmetry ($\kperp$ transverse to the symmetry axis, $\kpar$ along it):
+\begin{equation}\label{eq:bands}
+  \boxed{\;
+  \Ev(\mathbf{k}) = -\Eov - A_v\kperp^2 - B_v\kpar^2,
+  \qquad
+  \Ec(\mathbf{k}) = \Eoc + A_c\kperp^2 - B_c\kpar^2,
+  \;}
+\end{equation}
+with all coefficients $A_c,\,B_c,\,A_v,\,B_v > 0$. The conduction band is a \emph{saddle point} at both X and~L: it curves upward along~$\kperp$ and downward along~$\kpar$.
+
+\begin{table}[h]
+  \centering
+  \caption{Band parameters at the two critical points. Curvature coefficients $A=\hbar^2/(2m_\perp^*)$, $B=\hbar^2/(2m_\parallel^*)$ with $C\equiv\hbar^2/(2m_e)=3.81$ eV{\,$\cdot$}\AA$^2$.}\label{tab:params}
+  \smallskip
+  \begin{tabular}{@{}lccccc@{}}
+    \toprule
+    Point & $N$ & $\Eoc$ & $\Eg$ & Topology & Axes \\
+    \midrule
+    X ($\Delta$) & 6  & $0$ (ref.) & ${\sim}1.94$ eV & Saddle ($M_1$)
+      & $\kperp$: BZ face;\; $\kpar$: along $\Delta$ \\
+    L ($\Lambda$) & 8  & $\Eoc^L\neq 0$  & ${\sim}2.45$ eV & Saddle ($M_1$)
+      & $\kperp$: hex face;\; $\kpar$: along $\Lambda$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The derivation below is \textbf{carried out once in general form}. All expressions apply identically to both critical points---only the numerical values of $(A_c, B_c, A_v, B_v, \Eoc, \Eg, N)$ differ.
+
+% ══════════════════════════════════════════════════════════════
+\section{Change of Variables I: Cylindrical Symmetry}
+
+Exploiting the azimuthal symmetry around the symmetry axis,
+\begin{equation}
+  \dd^3 k = \dd k_x\,\dd k_y\,\dd k_z
+  \;\longrightarrow\;
+  \kperp\,\dd\kperp\,\dd\kpar\,\dd\phi
+  \;\longrightarrow\;
+  2\pi\,\kperp\,\dd\kperp\,\dd\kpar.
+\end{equation}
+
+% ══════════════════════════════════════════════════════════════
+\section{Change of Variables II: Linearization of Momenta}
+
+Define $u \equiv \kperp^2 \geq 0$ and $v \equiv \kpar^2 \geq 0$:
+\begin{equation}
+  \dd u = 2\kperp\,\dd\kperp, \qquad
+  \dd v = 2|\kpar|\,\dd\kpar
+  \;\;\Rightarrow\;\;
+  \dd\kpar = \frac{\dd v}{2\sqrt{v}}.
+\end{equation}
+The factor of~2 from the $\pm\kpar$ symmetry cancels the $1/2$, giving
+\begin{equation}\label{eq:measure-uv}
+  2\pi\,\kperp\,\dd\kperp\,\dd\kpar
+  \;\longrightarrow\;
+  \pi\,\frac{\dd u\,\dd v}{\sqrt{v}},
+  \qquad u\geq 0,\;\; v\geq 0.
+\end{equation}
+
+In these variables the dispersions are \emph{linear}:
+\begin{equation}\label{eq:lin-disp}
+  \Ec(u,v) = \Eoc + A_c u - B_c v,
+  \qquad
+  \Ev(u,v) = -\Eov - A_v u - B_v v.
+\end{equation}
+
+% ══════════════════════════════════════════════════════════════
+\section{Change of Variables III: Energy Space}
+
+We introduce two physically motivated variables:
+\begin{equation}\label{eq:E-Delta-def}
+  \E \;\equiv\; \Ec(u,v), \qquad
+  \Delta \;\equiv\; \Ec(u,v) - \Ev(u,v),
+\end{equation}
+so that
+\begin{align}
+  \E - \Eoc &= A_c\, u - B_c\, v, \label{eq:E-uv}\\
+  \Delta - \Eg &= \Abar\, u + \Bbar\, v, \label{eq:Delta-uv}
+\end{align}
+where
+\begin{equation}\label{eq:combined-params}
+  \boxed{\;
+    \Eg \equiv \Eoc + \Eov, \qquad
+    \Abar \equiv A_c + A_v, \qquad
+    \Bbar \equiv B_v - B_c.
+  \;}
+\end{equation}
+
+\subsection{Matrix Form and Jacobian}
+
+Equations \eqref{eq:E-uv}--\eqref{eq:Delta-uv} in matrix form:
+\begin{equation}\label{eq:M}
+  \begin{pmatrix} \E - \Eoc \\ \Delta - \Eg \end{pmatrix}
+  = \underbrace{\begin{pmatrix} A_c & -B_c \\ \Abar & \Bbar \end{pmatrix}}_{M}
+  \begin{pmatrix} u \\ v \end{pmatrix}.
+\end{equation}
+The Jacobian determinant is
+\begin{equation}\label{eq:D}
+  D \;\equiv\; \det M = A_c\Bbar + B_c\Abar
+  = A_c(B_v - B_c) + B_c(A_c + A_v)
+  = \boxed{\;A_c B_v + A_v B_c \;>\; 0.\;}
+\end{equation}
+Since all curvature coefficients are positive, $D>0$ always. No sign ambiguity arises.
+
+\subsection{Inverse Transformation}
+
+\begin{equation}\label{eq:inverse}
+  \begin{pmatrix} u \\ v \end{pmatrix}
+  = \frac{1}{D}
+  \begin{pmatrix} \Bbar & B_c \\ -\Abar & A_c \end{pmatrix}
+  \begin{pmatrix} \E - \Eoc \\ \Delta - \Eg \end{pmatrix},
+\end{equation}
+giving explicitly
+\begin{align}
+  u(\E, \Delta) &= \frac{1}{D}\Bigl[\Bbar\,(\E - \Eoc) + B_c\,(\Delta - \Eg)\Bigr], \label{eq:u-inv}\\[4pt]
+  v(\E, \Delta) &= \frac{1}{D}\Bigl[-\Abar\,(\E - \Eoc) + A_c\,(\Delta - \Eg)\Bigr]. \label{eq:v-inv}
+\end{align}
+
+% ══════════════════════════════════════════════════════════════
+\section{Integration Limits}\label{sec:limits}
+
+The physical constraints $u \geq 0$ and $v \geq 0$ with $D > 0$ yield:
+
+\medskip
+\textbf{From $v \geq 0$} \;(eq.~\ref{eq:v-inv}):
+\begin{equation}\label{eq:Emax}
+  \Abar\,(\E - \Eoc) \;\leq\; A_c\,(\Delta - \Eg)
+  \quad\Longrightarrow\quad
+  \boxed{\;
+    \E \;\leq\; \Eoc + \frac{A_c}{\Abar}\,(\Delta - \Eg)
+    \;\equiv\; \Emax(\Delta).
+  \;}
+\end{equation}
+
+\textbf{From $u \geq 0$} \;(eq.~\ref{eq:u-inv}):
+\begin{equation}\label{eq:Emin}
+  \Bbar\,(\E - \Eoc) \;\geq\; -B_c\,(\Delta - \Eg)
+  \quad\Longrightarrow\quad
+  \boxed{\;
+    \E \;\geq\; \Eoc - \frac{B_c}{\Bbar}\,(\Delta - \Eg)
+    \;\equiv\; \Emin(\Delta).
+  \;}
+\end{equation}
+
+\textit{Physical interpretation:}
+$\Emax$ corresponds to $v=0$ ($\kpar = 0$, the transverse circle); $\Emin$ corresponds to $u=0$ ($\kperp = 0$, the symmetry axis). The integration domain $\Emin \leq \E \leq \Emax$ is non-empty for $\Delta > \Eg$, i.e., for photon energies above the gap threshold.
+
+% ══════════════════════════════════════════════════════════════
+\section{Transformed Measure}
+
+From eq.~\eqref{eq:v-inv}, $v$ can be expressed in terms of $\Emax$:
+\begin{equation}\label{eq:v-Emax}
+  v(\E, \Delta) = \frac{\Abar}{D}\,\bigl(\Emax(\Delta) - \E\bigr),
+\end{equation}
+which is manifestly non-negative for $\E \leq \Emax$. Substituting into the measure~\eqref{eq:measure-uv} and including the $1/D$ Jacobian factor:
+\begin{equation}\label{eq:measure-final}
+  \pi\,\frac{\dd u\,\dd v}{\sqrt{v}}
+  \;\longrightarrow\;
+  \frac{\pi}{\sqrt{\Abar\,D}}\;
+  \frac{\dd\Delta\;\dd\E}{\sqrt{\Emax(\Delta) - \E}}.
+\end{equation}
+
+The integrable singularity $(\Emax - \E)^{-1/2}$ occurs at the \textbf{upper limit}, where $v=0$ (the transverse circle in $k$-space).
+
+% ══════════════════════════════════════════════════════════════
+\section{Resolving the Delta Function}
+
+Substituting eq.~\eqref{eq:measure-final} into eq.~\eqref{eq:golden} and using $\Ev = \E - \Delta$:
+\begin{equation}
+  \Gamma_e^{\mathrm{cv}}(\hw)
+  \propto
+  \frac{\pi}{\sqrt{\Abar\,D}}
+  \int\!\!\int
+  f(\E)\,\bigl[1-f(\E-\Delta)\bigr]\;
+  \delta(\Delta - \hw)\;
+  \frac{\dd\Delta\;\dd\E}{\sqrt{\Emax(\Delta) - \E}}.
+\end{equation}
+The $\delta$-function sets $\Delta = \hw$ and eliminates one integration, yielding the central result:
+
+\begin{equation}\label{eq:result}
+  \boxed{\;
+    \Gamma_e^{\mathrm{cv}}(\hw)
+    = \frac{\pi^2\,|\mu|^2}{\hbar\,\sqrt{\Abar\,D}}
+    \int_{\Emin(\hw)}^{\Emax(\hw)}
+    \frac{f(\E)\;\bigl[1 - f(\E - \hw)\bigr]}
+         {\sqrt{\Emax(\hw) - \E}}
+    \;\dd\E
+  \;}
+\end{equation}
+with
+\begin{equation}\label{eq:limits-final}
+  \Emax(\hw) = \Eoc + \frac{A_c}{\Abar}\,(\hw - \Eg),
+  \qquad
+  \Emin(\hw) = \Eoc - \frac{B_c}{\Bbar}\,(\hw - \Eg).
+\end{equation}
+
+\emph{For absorption} ($\varepsilon_2$), the Fermi factor becomes $f(\E - \hw)\,[1 - f(\E)]$; at equilibrium the two are related by detailed balance $\Gamma_{\mathrm{em}}/\Gamma_{\mathrm{abs}} = e^{-\beta\hw}$.
+
+% ══════════════════════════════════════════════════════════════
+\section{Numerical Regularization}
+
+The singularity at $\E = \Emax$ is integrable but inconvenient numerically. The substitution
+\begin{equation}
+  t = \sqrt{\Emax - \E}, \qquad \dd\E = -2t\,\dd t, \qquad \E = \Emax - t^2,
+\end{equation}
+transforms \eqref{eq:result} into a smooth integral:
+\begin{equation}\label{eq:regularized}
+  \Gamma_e^{\mathrm{cv}}(\hw)
+  = \frac{2\pi^2|\mu|^2}{\hbar\sqrt{\Abar\,D}}
+  \int_0^{\sqrt{\Emax - \Emin}}
+  f\!\bigl(\Emax - t^2\bigr)\;
+  \bigl[1 - f\!\bigl(\Emax - t^2 - \hw\bigr)\bigr]
+  \;\dd t,
+\end{equation}
+which is evaluated by Simpson quadrature on a uniform $t$-grid.
+
+% ══════════════════════════════════════════════════════════════
+\section{Verification: Zero-Temperature JDOS}
+
+At $T=0$ the Fermi functions become step functions, and for $\hw$ just above threshold:
+\begin{equation}
+  J(\hw) \propto \int_{\Emin}^{\Emax} \frac{\dd\E}{\sqrt{\Emax - \E}}
+  = 2\sqrt{\Emax - \Emin}
+  \;\propto\; \sqrt{\hw - \Eg},
+\end{equation}
+recovering the $M_0$-type onset ($\sqrt{\cdot}$ threshold). Note that while each individual band is a saddle ($M_1$), the \emph{energy-difference} surface $\Delta(u,v) = \Eg + \Abar u + \Bbar v$ is a minimum in $(u,v)$ space (both coefficients positive for $B_v > B_c$), giving $M_0$ onset for the JDOS.
+
+% ══════════════════════════════════════════════════════════════
+\section{Application to Gold: X vs.\ L Parameters}
+
+Since both critical points share the same saddle topology and identical integral structure~\eqref{eq:result}, the full interband $\varepsilon_2$ model is simply a weighted sum:
+\begin{equation}
+  \varepsilon_2(\omega) = \frac{S}{\omega^2}
+  \Bigl[\,\bigl|P_X/P_L\bigr|^2 N_X\, J_X(\omega,T)
+  \;+\; N_L\, J_L(\omega,T)\Bigr]
+  + \frac{A_D}{\omega^3},
+\end{equation}
+where $J_{X,L}$ are evaluated using \eqref{eq:regularized} with the respective parameters below.
+
+\begin{table}[h]
+  \centering
+  \caption{Derived quantities for the two critical points. All curvature coefficients $A_\alpha = C/m^*_{\alpha\perp}$, $B_\alpha = C/m^*_{\alpha\parallel}$.}\label{tab:derived}
+  \smallskip
+  \renewcommand{\arraystretch}{1.3}
+  \small
+  \begin{tabular}{@{}lcc@{}}
+    \toprule
+    Quantity & \textbf{X point} & \textbf{L point} \\
+    \midrule
+    Multiplicity $N$ & 6 & 8 \\[2pt]
+    $\Eoc$ & 0 (reference) & fitted ($\neq 0$) \\[2pt]
+    $\Eg$ & ${\sim}1.94$ eV & ${\sim}2.45$ eV \\[2pt]
+    $\Abar = A_c + A_v$ & $A_c^X + A_v^X$ & $A_c^L + A_v^L$ \\[2pt]
+    $\Bbar = B_v - B_c$ & $B_v^X - B_c^X$ & $B_v^L - B_c^L$ \\[2pt]
+    $D = A_cB_v + A_vB_c$ & $A_c^X B_v^X + A_v^X B_c^X$ & $A_c^L B_v^L + A_v^L B_c^L$ \\[2pt]
+    Singularity & $(\Emax - \E)^{-1/2}$ & $(\Emax - \E)^{-1/2}$ \\[2pt]
+    $\Emax(\hw)$ & \multicolumn{2}{c}{$\Eoc + \dfrac{A_c}{A_c+A_v}(\hw - \Eg)$} \\[8pt]
+    $\Emin(\hw)$ & \multicolumn{2}{c}{$\Eoc - \dfrac{B_c}{B_v-B_c}(\hw - \Eg)$} \\[6pt]
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The \textbf{only} differences between the X and L contributions are:
+\begin{enumerate}[nosep]
+  \item Different effective masses $(m^*_{c\perp},\, m^*_{c\parallel},\, m^*_{v\perp},\, m^*_{v\parallel})$.
+  \item Different gap energies $\Eg$.
+  \item $\Eoc^L \neq 0$ (whereas $\Eoc^X \equiv 0$ by convention).
+  \item Different BZ multiplicities ($N_X = 6$, $N_L = 8$).
+\end{enumerate}
+
+% ══════════════════════════════════════════════════════════════
+\section*{Summary of Transformations}
+
+\begin{equation*}
+  \underbrace{d^3k}_{\text{3D BZ}}
+  \xrightarrow{\;\text{cyl.}\;}
+  \underbrace{2\pi\kperp\,d\kperp\,d\kpar}_{\text{2D}}
+  \xrightarrow{\;u,v\;}
+  \underbrace{\pi\,\frac{du\,dv}{\sqrt{v}}}_{\text{linear}}
+  \xrightarrow{\;\E,\Delta\;}
+  \underbrace{\frac{\pi}{\sqrt{\Abar D}}\,
+  \frac{d\Delta\,d\E}{\sqrt{\Emax-\E}}}_{\text{energy space}}
+  \xrightarrow{\;\delta\;}
+  \underbrace{\text{1D}}_{\eqref{eq:result}}
+\end{equation*}
+
+\vfill
+\hrule height 0.8pt
+\smallskip
+{\footnotesize
+\textbf{References:}
+M.~Guerrisi, R.~Rosei, and P.~Winsemius, \textit{Phys.\ Rev.\ B} \textbf{12}, 557 (1975).\;
+N.~E.~Christensen and B.~O.~Seraphin, \textit{Phys.\ Rev.\ B} \textbf{4}, 3321 (1971).
+}
+
+\end{document}

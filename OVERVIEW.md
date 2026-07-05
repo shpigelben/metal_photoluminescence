@@ -1,3 +1,5 @@
+htig
+
 # Project Overview — Metal Photoluminescence
 
 ## Research Objective
@@ -20,28 +22,28 @@ The approach is:
 
 #### Theory & Derivations (docs/notes/)
 
-| Deliverable | Status | Location |
-|:---|:---:|:---|
-| General emission integral (FGR → 6D → factored form) | ✅ | A1, §2.1 |
-| Thermal factor identity ($f \cdot \bar{f}$ → Bose-Einstein) | ✅ | A2, A3 |
-| Free-electron eDOS | ✅ | A4 |
-| Numeric delta-function approximation | ✅ | A5 |
-| Boltzmann equation & non-equilibrium distribution | ✅ | A6 |
-| Intraband transitions (Rosei saddle band, eDOS derivation) | ✅ | A7 |
-| Interband transitions at X point (saddle topology) | ✅ | A8 |
-| Interband transitions at L point (ellipsoidal topology) | ✅ | A8.L |
-| Kirchhoff's law consistency proof | ✅ | A9 |
-| Effective mass extraction from C&S 1971 | ✅ | Effective Mass Extraction.md |
-| Intraband emission: numeric convergence | ✅ | §3.1 |
-| Intraband emission: analytic approximation accuracy | ✅ | §3.2 |
-| Intraband emission: constant eDOS error quantification | ✅ | §3.3 |
+| Deliverable                                                    | Status | Location                     |
+| :------------------------------------------------------------- | :----: | :--------------------------- |
+| General emission integral (FGR → 6D → factored form)         |   ✅   | A1, §2.1                    |
+| Thermal factor identity ($f \cdot \bar{f}$ → Bose-Einstein) |   ✅   | A2, A3                       |
+| Free-electron eDOS                                             |   ✅   | A4                           |
+| Numeric delta-function approximation                           |   ✅   | A5                           |
+| Boltzmann equation & non-equilibrium distribution              |   ✅   | A6                           |
+| Intraband transitions (Rosei saddle band, eDOS derivation)     |   ✅   | A7                           |
+| Interband transitions at X point (saddle topology)             |   ✅   | A8                           |
+| Interband transitions at L point (ellipsoidal topology)        |   ✅   | A8.L                         |
+| Kirchhoff's law consistency proof                              |   ✅   | A9                           |
+| Effective mass extraction from C&S 1971                        |   ✅   | Effective Mass Extraction.md |
+| Intraband emission: numeric convergence                        |   ✅   | §3.1                        |
+| Intraband emission: analytic approximation accuracy            |   ✅   | §3.2                        |
+| Intraband emission: constant eDOS error quantification         |   ✅   | §3.3                        |
 
 #### Code (code/main/)
 
-| Notebook | What it computes | Status |
-|:---|:---|:---:|
-| `1_YonatanAnalysis.ipynb` | Intraband emission: convergence, analytic approx, eDOS error | ✅ |
-| `2_RoseiAnalysis.ipynb` | Interband $\varepsilon_2$: X + L integrals, temperature dependence, emission vs absorption, Kirchhoff check | ✅ |
+| Notebook                    | What it computes                                                                                             | Status |
+| :-------------------------- | :----------------------------------------------------------------------------------------------------------- | :----: |
+| `1_YonatanAnalysis.ipynb` | Intraband emission: convergence, analytic approx, eDOS error                                                 |   ✅   |
+| `2_RoseiAnalysis.ipynb`   | Interband$\varepsilon_2$: X + L integrals, temperature dependence, emission vs absorption, Kirchhoff check |   ✅   |
 
 #### Key Results Established
 
@@ -55,23 +57,23 @@ The approach is:
 
 #### High Priority — Core Thesis Work
 
-| Task | Chapter | Depends On |
-|:---|:---:|:---|
-| **Interband emission** (not just absorption): compute $\Gamma_e^{cv}(\hbar\omega)$ for X and L at equilibrium | §4 | A8, A8.L — done |
-| **Non-equilibrium interband emission**: replace $f^T$ with $f^S$ (CW) and $f^P$ (pulsed) | §4, §5 | A6 distribution + interband integrals |
-| **Intraband with Rosei bands**: compute intraband emission using the anisotropic conduction band (not free-electron) | §3.5 | A7 — done |
-| **Total emission spectrum**: combine intraband + interband, equilibrium + non-equilibrium, compare | §5 | All above |
-| **Comparison to experiment**: overlay computed $\varepsilon_2$ with Johnson & Christy (1972) data | §4, §5 | Interband $\varepsilon_2$ — done |
+| Task                                                                                                                       | Chapter | Depends On                            |
+| :------------------------------------------------------------------------------------------------------------------------- | :------: | :------------------------------------ |
+| **Interband emission** (not just absorption): compute $\Gamma_e^{cv}(\hbar\omega)$ for X and L at equilibrium      |   §4   | A8, A8.L — done                      |
+| **Non-equilibrium interband emission**: replace $f^T$ with $f^S$ (CW) and $f^P$ (pulsed)                       | §4, §5 | A6 distribution + interband integrals |
+| **Intraband with Rosei bands**: compute intraband emission using the anisotropic conduction band (not free-electron) |  §3.5  | A7 — done                            |
+| **Total emission spectrum**: combine intraband + interband, equilibrium + non-equilibrium, compare                   |   §5   | All above                             |
+| **Comparison to experiment**: overlay computed $\varepsilon_2$ with Johnson & Christy (1972) data                  | §4, §5 | Interband$\varepsilon_2$ — done    |
 
 #### Medium Priority — Thesis Writing
 
-| Task | Notes |
-|:---|:---|
-| Expand **Introduction** (§1) | Currently ~30 lines; needs literature review, problem statement |
-| Expand **Theoretical Framework** (§2) | Currently ~30 lines; needs full narrative |
-| Write **Interband Transitions** chapter (§4) | Empty — results exist in notebook, need prose |
-| Write **Results & Discussion** (§5) | Not started |
-| Write **Conclusion** (§6) | Not started |
+| Task                                               | Notes                                                           |
+| :------------------------------------------------- | :-------------------------------------------------------------- |
+| Expand**Introduction** (§1)                 | Currently ~30 lines; needs literature review, problem statement |
+| Expand**Theoretical Framework** (§2)        | Currently ~30 lines; needs full narrative                       |
+| Write**Interband Transitions** chapter (§4) | Empty — results exist in notebook, need prose                  |
+| Write**Results & Discussion** (§5)          | Not started                                                     |
+| Write**Conclusion** (§6)                    | Not started                                                     |
 
 #### Open Questions for Advisor
 

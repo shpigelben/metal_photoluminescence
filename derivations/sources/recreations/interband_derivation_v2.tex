@@ -1,0 +1,496 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage[colorlinks,linkcolor=blue!60!black,citecolor=blue!60!black]{hyperref}
+
+\geometry{
+    top=1in,
+    bottom=1in,
+    left=1in,
+    right=1in
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% ── Macros ────────────────────────────────────────────────────
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\Ec}{\E_c}
+\newcommand{\Ev}{\E_v}
+\newcommand{\Eoc}{\E_{0c}}
+\newcommand{\Eov}{\E_{0v}}
+\newcommand{\Eg}{\E_g}
+\newcommand{\Emax}{\E_{\max}}
+\newcommand{\Emin}{\E_{\min}}
+\newcommand{\Abar}{\bar{A}}
+\newcommand{\Bbar}{\bar{B}}
+\newcommand{\kperp}{k_{\!\perp}}
+\newcommand{\kpar}{k_{\!\parallel}}
+\newcommand{\hw}{\hbar\omega}
+\newcommand{\dd}{\mathrm{d}}
+
+% ── Python style ──────────────────────────────────────────────
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4
+}
+\lstset{style=pystyle}
+
+% ══════════════════════════════════════════════════════════════
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Unified Derivation of Interband $\varepsilon_2(\hw)$}} \\[6pt]
+    {\large Reduction of the 3D Integral to One Dimension at the X and L Points} \\[6pt]
+    {\itshape Following Guerrisi, Rosei \& Winsemius, Phys.\ Rev.\ B \textbf{12}, 557 (1975)}
+\end{center}
+\vspace{4pt}
+\hrule height 0.8pt
+\vspace{10pt}
+
+% ══════════════════════════════════════════════════════════════
+\section{Starting Point: Fermi's Golden Rule}
+
+The imaginary part of the dielectric function for direct interband absorption is
+\begin{equation}\label{eq:golden}
+    \varepsilon_2(\hw) \;\propto\; \frac{|P|^2}{(\hw)^2}
+    \int_{\mathrm{BZ}} \dd^{3}k \;
+    f\!\bigl(\Ev(\mathbf{k})\bigr)\,
+    \bigl[1 - f\!\bigl(\Ec(\mathbf{k})\bigr)\bigr]\;
+    \delta\!\bigl(\Ec(\mathbf{k}) - \Ev(\mathbf{k}) - \hw\bigr),
+\end{equation}
+where $f(\E)=[1+e^{\E/k_BT}]^{-1}$ is the Fermi--Dirac distribution with energies measured from $E_F=0$, and $|P|^2$ is the (locally constant) optical dipole matrix element. We assume direct transitions ($\mathbf{k}_1 \approx \mathbf{k}_2$) so both bands are evaluated at the same~$\mathbf{k}$.
+
+\subsection{Band Dispersions (Saddle Point at Both X and L)}
+
+Near each critical point the bands are expanded to second order with cylindrical symmetry ($\kperp$ transverse to the symmetry axis, $\kpar$ along it):
+\begin{equation}\label{eq:bands}
+    \boxed{\;
+    \Ev(\mathbf{k}) = -\Eov - A_v\kperp^2 - B_v\kpar^2,
+    \qquad
+    \Ec(\mathbf{k}) = \Eoc + A_c\kperp^2 - B_c\kpar^2,
+    \;}
+\end{equation}
+with all coefficients $A_c, B_c, A_v, B_v > 0$. The conduction band is a \emph{saddle point} at both X and~L: it curves \textbf{upward} along $\kperp$ and \textbf{downward} along $\kpar$. Since the sign structure is identical at both critical points, the entire derivation proceeds in general form.
+
+\begin{table}[ht]
+    \centering
+    \caption{Critical-point parameters. Curvature coefficients $A_\alpha = C / m^*_{\alpha\perp}$, $B_\alpha = C / m^*_{\alpha\parallel}$ with $C \equiv \hbar^2/(2m_e) = 3.81\;\text{eV\,\AA}^2$.}\label{tab:params}
+    \smallskip
+    \begin{tabular}{@{}lccccl@{}}
+        \toprule
+        Point & $N$ & $\Eoc$ & $\Eg$ & Topology & Symmetry axis \\
+        \midrule
+        X ($\Delta$) & 6 & $0$ (reference) & ${\sim}1.94$ eV & Saddle ($M_1$) & $\kpar$ along $\Delta$ \\
+        L ($\Lambda$) & 8 & $\Eoc^L \neq 0$ & ${\sim}2.45$ eV & Saddle ($M_1$) & $\kpar$ along $\Lambda$ (toward $\Gamma$) \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+% ══════════════════════════════════════════════════════════════
+\section{Momentum-to-Energy Transformation}
+
+\subsection{Change of Variables I: Cylindrical Symmetry}
+
+Exploiting the azimuthal symmetry around the symmetry axis,
+\begin{equation}
+    \dd^3 k = \dd k_x\,\dd k_y\,\dd k_z
+    \;\longrightarrow\;
+    \kperp\,\dd\kperp\,\dd\kpar\,\dd\phi
+    \;\longrightarrow\;
+    2\pi\,\kperp\,\dd\kperp\,\dd\kpar.
+\end{equation}
+
+\subsection{Change of Variables II: Linearization of Momenta}
+
+Define $u \equiv \kperp^2 \geq 0$ and $v \equiv \kpar^2 \geq 0$:
+\begin{equation}
+    \dd u = 2\kperp\,\dd\kperp, \qquad
+    \dd v = 2|\kpar|\,\dd\kpar
+    \quad\Rightarrow\quad
+    \dd\kpar = \frac{\dd v}{2\sqrt{v}}.
+\end{equation}
+The factor of 2 from the $\pm\kpar$ symmetry cancels the $\tfrac{1}{2}$, giving
+\begin{equation}\label{eq:measure-uv}
+    2\pi\,\kperp\,\dd\kperp\,\dd\kpar
+    \;\longrightarrow\;
+    \pi\,\frac{\dd u\,\dd v}{\sqrt{v}},
+    \qquad u \geq 0,\;\; v \geq 0.
+\end{equation}
+In these variables the dispersions are \emph{linear}:
+\begin{equation}\label{eq:lin-disp}
+    \Ec(u,v) = \Eoc + A_c u - B_c v,
+    \qquad
+    \Ev(u,v) = -\Eov - A_v u - B_v v.
+\end{equation}
+
+\subsection{Change of Variables III: Energy Space}
+
+We introduce two physically motivated variables:
+\begin{equation}\label{eq:E-Delta-def}
+    \E \;\equiv\; \Ec(u,v), \qquad
+    \Delta \;\equiv\; \Ec(u,v) - \Ev(u,v),
+\end{equation}
+so that
+\begin{align}
+    \E - \Eoc &= A_c\, u - B_c\, v, \label{eq:E-uv}\\
+    \Delta - \Eg &= \Abar\, u + \Bbar\, v, \label{eq:Delta-uv}
+\end{align}
+where
+\begin{equation}\label{eq:combined-params}
+    \boxed{\;
+        \Eg \equiv \Eoc + \Eov, \qquad
+        \Abar \equiv A_c + A_v, \qquad
+        \Bbar \equiv B_v - B_c.
+    \;}
+\end{equation}
+
+\subsubsection*{Matrix Form and Jacobian}
+
+In matrix form:
+\begin{equation}\label{eq:M}
+    \begin{pmatrix} \E - \Eoc \\ \Delta - \Eg \end{pmatrix}
+    = \underbrace{\begin{pmatrix} A_c & -B_c \\ \Abar & \Bbar \end{pmatrix}}_{M}
+    \begin{pmatrix} u \\ v \end{pmatrix}.
+\end{equation}
+The Jacobian determinant is
+\begin{equation}\label{eq:D}
+    D \;\equiv\; \det M = A_c\Bbar + B_c\Abar
+    = A_c(B_v - B_c) + B_c(A_c + A_v)
+    = \boxed{\; A_c B_v + A_v B_c \;>\; 0. \;}
+\end{equation}
+Since all curvature coefficients are positive, $D > 0$ always. No sign ambiguity arises.
+
+\subsubsection*{Inverse Transformation}
+
+\begin{equation}\label{eq:inverse}
+    \begin{pmatrix} u \\ v \end{pmatrix}
+    = \frac{1}{D}
+    \begin{pmatrix} \Bbar & B_c \\ -\Abar & A_c \end{pmatrix}
+    \begin{pmatrix} \E - \Eoc \\ \Delta - \Eg \end{pmatrix},
+\end{equation}
+giving explicitly
+\begin{align}
+    u(\E, \Delta) &= \frac{1}{D}\Bigl[\Bbar\,(\E - \Eoc) + B_c\,(\Delta - \Eg)\Bigr], \label{eq:u-inv}\\[4pt]
+    v(\E, \Delta) &= \frac{1}{D}\Bigl[-\Abar\,(\E - \Eoc) + A_c\,(\Delta - \Eg)\Bigr]. \label{eq:v-inv}
+\end{align}
+
+% ══════════════════════════════════════════════════════════════
+\section{Integration Limits}\label{sec:limits}
+
+The physical constraints $u \geq 0$ and $v \geq 0$ with $D > 0$ yield:
+
+\medskip
+\textbf{From $v \geq 0$} (eq.~\ref{eq:v-inv}):
+\begin{equation}\label{eq:Emax}
+    \Abar\,(\E - \Eoc) \;\leq\; A_c\,(\Delta - \Eg)
+    \quad\Longrightarrow\quad
+    \boxed{\;
+        \E \;\leq\; \Eoc + \frac{A_c}{\Abar}\,(\Delta - \Eg)
+        \;\equiv\; \Emax(\Delta).
+    \;}
+\end{equation}
+
+\textbf{From $u \geq 0$} (eq.~\ref{eq:u-inv}):
+\begin{equation}\label{eq:Emin}
+    \Bbar\,(\E - \Eoc) \;\geq\; -B_c\,(\Delta - \Eg)
+    \quad\Longrightarrow\quad
+    \boxed{\;
+        \E \;\geq\; \Eoc - \frac{B_c}{\Bbar}\,(\Delta - \Eg)
+        \;\equiv\; \Emin(\Delta).
+    \;}
+\end{equation}
+
+\textit{Physical interpretation:}
+$\Emax$ corresponds to $v = 0$ ($\kpar = 0$, the transverse circle in $k$-space); $\Emin$ corresponds to $u = 0$ ($\kperp = 0$, along the symmetry axis). The integration domain $\Emin \leq \E \leq \Emax$ is non-empty for $\Delta > \Eg$, i.e., photon energies above the gap threshold.
+
+% ══════════════════════════════════════════════════════════════
+\section{Transformed Measure and Singularity Structure}
+
+From eq.~\eqref{eq:v-inv}, $v$ can be expressed in terms of $\Emax$:
+\begin{equation}\label{eq:v-Emax}
+    v(\E, \Delta) = \frac{\Abar}{D}\,\bigl(\Emax(\Delta) - \E\bigr),
+\end{equation}
+which is manifestly non-negative for $\E \leq \Emax$. Substituting into the measure~\eqref{eq:measure-uv} and including the $1/D$ Jacobian:
+\begin{equation}\label{eq:measure-final}
+    \pi\,\frac{\dd u\,\dd v}{\sqrt{v}}
+    \;\longrightarrow\;
+    \frac{\pi}{\sqrt{\Abar\,D}}\;
+    \frac{\dd\Delta\;\dd\E}{\sqrt{\Emax(\Delta) - \E}}.
+\end{equation}
+
+The integrable singularity $(\Emax - \E)^{-1/2}$ occurs at the \textbf{upper limit}, where $v = 0$ (the transverse circle). This upper-limit singularity is the hallmark of the saddle-point ($M_1$) topology and applies identically at both X and~L.
+
+% ══════════════════════════════════════════════════════════════
+\section{Resolution of the $\delta$-Function}
+
+Substituting eq.~\eqref{eq:measure-final} into eq.~\eqref{eq:golden} and using $\Ev = \E - \Delta$:
+\begin{equation}
+    \varepsilon_2(\hw)
+    \propto
+    \frac{|P|^2}{(\hw)^2\sqrt{\Abar\,D}}
+    \int\!\!\int
+    f(\E - \Delta)\,\bigl[1-f(\E)\bigr]\;
+    \delta(\Delta - \hw)\;
+    \frac{\dd\Delta\;\dd\E}{\sqrt{\Emax(\Delta) - \E}}.
+\end{equation}
+The $\delta$-function sets $\Delta = \hw$ and eliminates one integration, yielding the central result:
+\begin{equation}\label{eq:result}
+    \boxed{\;
+        \varepsilon_2(\hw)
+        = \frac{\mathcal{C}\,|P|^2}{(\hw)^2\,\sqrt{\Abar\,D}}
+        \int_{\Emin(\hw)}^{\Emax(\hw)}
+        \frac{f(\E - \hw)\;\bigl[1 - f(\E)\bigr]}
+             {\sqrt{\Emax(\hw) - \E}}
+        \;\dd\E,
+    \;}
+\end{equation}
+with
+\begin{equation}\label{eq:limits-final}
+    \Emax(\hw) = \Eoc + \frac{A_c}{\Abar}\,(\hw - \Eg),
+    \qquad
+    \Emin(\hw) = \Eoc - \frac{B_c}{\Bbar}\,(\hw - \Eg),
+\end{equation}
+where $\mathcal{C}$ absorbs the universal prefactor $8\pi^3 e^2\hbar^4 / (3m^2)$.
+
+\emph{For emission} (conduction $\to$ valence), the Fermi factor becomes $f(\E)\,[1 - f(\E - \hw)]$; at equilibrium the two are related by detailed balance: $\varepsilon_2^{\mathrm{em}} / \varepsilon_2^{\mathrm{abs}} = e^{-\beta\hw}$.
+
+% ══════════════════════════════════════════════════════════════
+\section{Physical Onset: X vs.\ L}
+
+Although the integral structure~\eqref{eq:result} is identical at both critical points, their physical behaviour near onset differs because of the position of $\Eoc$ relative to the Fermi level.
+
+\vspace{0.3cm}
+\noindent
+\begin{minipage}[t]{0.47\textwidth}
+\vspace{0pt}
+\subsection*{X-Point: Empty Conduction Band}
+
+At the X point, $\Eoc^X = 0$ (at $E_F$, by convention). The conduction band minimum sits at or above the Fermi level: the final states are \emph{empty}.
+
+\textbf{Geometric sub-gap tail.} The saddle topology permits momentum-conserving transitions even for $\hw < \Eg$, because the $-B_c v$ term allows $\Delta(\mathbf{k}) < \Eg$ at finite $v$. This generates a smooth sub-gap tail that decays exponentially as the final states are pushed deep below $E_F$, where $1 - f(\E) \to 0$.
+
+\textbf{Practical lower bound.} The geometric $\Emin$ lies far below $E_F$ where the Fermi factor exponentially suppresses the integrand. It is therefore replaced by a thermal cutoff:
+\begin{equation*}
+    \Emin^X \;\approx\; -20\,k_BT,
+\end{equation*}
+which safely truncates the integral without affecting physical accuracy.
+\end{minipage}%
+\hfill\vrule\hfill%
+\begin{minipage}[t]{0.47\textwidth}
+\vspace{0pt}
+\subsection*{L-Point: Submerged Minimum}
+
+At the L point, $\Eoc^L < 0$ --- the conduction band minimum is \emph{submerged below} the Fermi level due to the Fermi surface ``neck'' at the BZ boundary.
+
+\textbf{Pauli-blocked onset.} Although transitions are geometrically allowed for all $\hw > \Eg$, those near the geometric threshold terminate in states below $E_F$ that are already occupied. The physical onset occurs at the elevated energy $\hw_{\mathrm{onset}} \approx E_F - \Eov^L$ where final states emerge above $E_F$.
+
+\textbf{Practical lower bound.} The geometric $\Emin^L$ again lies deep below $E_F$ (even more so, since $\Eoc^L < 0$). The same thermal cutoff applies:
+\begin{equation*}
+    \Emin^L \;\approx\; -20\,k_BT,
+\end{equation*}
+and the onset shape is governed by the smooth sigmoidal form of $[1 - f(\E)]$ rather than by any geometric bound.
+\end{minipage}
+
+\vspace{0.8cm}
+
+In both cases, the onset is physically controlled by the Fermi--Dirac factor $[1 - f(\E)]$ rather than by the geometric integration limits. The sub-gap tail (X) and the Pauli-delayed onset (L) are both natural consequences of the same thermal weighting --- no piecewise bounds or \textit{ad hoc} broadening are needed.
+
+% ══════════════════════════════════════════════════════════════
+\section{Numerical Regularization}
+
+The singularity at $\E = \Emax$ is integrable but numerically inconvenient. The substitution
+\begin{equation}
+    t = \sqrt{\Emax - \E}, \qquad \dd\E = -2t\,\dd t, \qquad \E = \Emax - t^2,
+\end{equation}
+transforms \eqref{eq:result} into a smooth integral over a uniform $t$-grid:
+\begin{equation}\label{eq:regularized}
+    \boxed{\;
+    \varepsilon_2(\hw)
+    = \frac{2\,\mathcal{C}\,|P|^2}{(\hw)^2\sqrt{\Abar\,D}}
+    \int_0^{\sqrt{\Emax - \Emin}}
+    f\!\bigl(\Emax - t^2 - \hw\bigr)\;
+    \bigl[1 - f\!\bigl(\Emax - t^2\bigr)\bigr]
+    \;\dd t,
+    \;}
+\end{equation}
+evaluated by Simpson quadrature. This form is used for both X and L.
+
+% ══════════════════════════════════════════════════════════════
+\section{Verification: Zero-Temperature JDOS}
+
+At $T = 0$ the Fermi functions become step functions. For $\hw$ just above threshold:
+\begin{equation}
+    J(\hw) \propto \int_{\Emin}^{\Emax} \frac{\dd\E}{\sqrt{\Emax - \E}}
+    = 2\sqrt{\Emax - \Emin}
+    \;\propto\; \sqrt{\hw - \Eg},
+\end{equation}
+recovering the $M_0$-type onset ($\sqrt{\cdot}$ threshold). While each individual band is a saddle ($M_1$), the \emph{energy-difference} surface $\Delta(u,v) = \Eg + \Abar u + \Bbar v$ is a minimum in $(u,v)$ space (both $\Abar, \Bbar > 0$ for $B_v > B_c$), giving $M_0$ onset for the JDOS.
+
+% ══════════════════════════════════════════════════════════════
+\section{Full Model for Gold}
+
+Since both critical points share the same integral structure~\eqref{eq:regularized}, the full interband $\varepsilon_2$ is a weighted sum:
+\begin{equation}\label{eq:full-model}
+    \varepsilon_2(\omega) = \frac{S}{\omega^2}
+    \Bigl[\,\bigl|P_X/P_L\bigr|^2 N_X\, J_X(\omega,T)
+    \;+\; N_L\, J_L(\omega,T)\Bigr]
+    + \frac{A_D}{\omega^3},
+\end{equation}
+where $J_{X,L}$ are evaluated using \eqref{eq:regularized} with the respective parameters:
+
+\begin{table}[ht]
+    \centering
+    \caption{Derived quantities. The formulas are identical at both points; only the numerical values differ.}\label{tab:derived}
+    \smallskip
+    \renewcommand{\arraystretch}{1.3}
+    \small
+    \begin{tabular}{@{}lcc@{}}
+        \toprule
+        Quantity & \textbf{X point} & \textbf{L point} \\
+        \midrule
+        Multiplicity $N$ & 6 & 8 \\[2pt]
+        $\Eoc$ & 0 (reference) & fitted ($< 0$, submerged) \\[2pt]
+        $\Eg$ & ${\sim}1.94$ eV & ${\sim}2.45$ eV \\[2pt]
+        $\Abar = A_c + A_v$ & $A_c^X + A_v^X$ & $A_c^L + A_v^L$ \\[2pt]
+        $\Bbar = B_v - B_c$ & $B_v^X - B_c^X$ & $B_v^L - B_c^L$ \\[2pt]
+        $D = A_cB_v + A_vB_c$ & $> 0$ & $> 0$ \\[2pt]
+        Singularity & \multicolumn{2}{c}{$(\Emax - \E)^{-1/2}$ (upper limit)} \\[2pt]
+        $\Emax(\hw)$ & \multicolumn{2}{c}{$\Eoc + \dfrac{A_c}{A_c + A_v}(\hw - \Eg)$} \\[8pt]
+        $\Emin(\hw)$ & \multicolumn{2}{c}{$\approx -20\,k_BT$ (thermal cutoff)} \\[4pt]
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The \textbf{only} differences between X and L are:
+\begin{enumerate}
+    \item Different effective masses $(m^*_{c\perp}, m^*_{c\parallel}, m^*_{v\perp}, m^*_{v\parallel})$.
+    \item Different gap energies $\Eg$.
+    \item $\Eoc^L \neq 0$ (submerged below $E_F$), whereas $\Eoc^X = 0$ by convention.
+    \item Different BZ multiplicities ($N_X = 6$, $N_L = 8$).
+\end{enumerate}
+
+% ══════════════════════════════════════════════════════════════
+\section*{Summary of Transformations}
+
+\begin{equation*}
+    \underbrace{d^3k}_{\text{3D BZ}}
+    \xrightarrow{\;\text{cyl.}\;}
+    \underbrace{2\pi\kperp\,d\kperp\,d\kpar}_{\text{2D}}
+    \xrightarrow{\;u,v\;}
+    \underbrace{\pi\,\frac{du\,dv}{\sqrt{v}}}_{\text{linear}}
+    \xrightarrow{\;\E,\Delta\;}
+    \underbrace{\frac{\pi}{\sqrt{\Abar D}}\,
+    \frac{d\Delta\,d\E}{\sqrt{\Emax-\E}}}_{\text{energy space}}
+    \xrightarrow{\;\delta\;}
+    \underbrace{\text{1D}}_{\eqref{eq:result}}
+\end{equation*}
+
+% ══════════════════════════════════════════════════════════════
+\newpage
+\section{Python Implementation}
+
+The code below implements eq.~\eqref{eq:regularized} for both critical points using the $t$-substitution and Simpson quadrature. The Fermi weight uses the numerically stable log-sum-exp form.
+
+\begin{lstlisting}[language=Python, caption={Rosei interband $\varepsilon_2$ --- regularized Simpson integration}]
+import numpy as np
+from scipy.integrate import simpson
+
+kB    = 8.617e-5   # Boltzmann constant [eV/K]
+C     = 3.81       # hbar^2 / (2 m_e)  [eV*Ang^2]
+N_X   = 6          # X-point multiplicity
+N_L   = 8          # L-point multiplicity
+N_INT = 80         # Simpson quadrature points
+
+def fermi_weight(E, hw, T):
+    """Absorption weight f(E-hw)*[1-f(E)], numerically stable."""
+    if T == 0:
+        return ((E - hw) < 0).astype(float) * (E >= 0).astype(float)
+    beta = 1.0 / (kB * T)
+    return np.exp(
+        -np.logaddexp(0, beta * (E - hw))
+        -np.logaddexp(0, -beta * E)
+    )
+
+def compute_model(p, hw_grid):
+    """Return (e2_X, e2_L, e2_XL, e2_XLD) from parameter dict p."""
+    # Curvature coefficients from effective masses
+    Ac_X, Bc_X = C / p['mc_perp_X'], C / p['mc_par_X']
+    Av_X, Bv_X = C / p['mv_perp_X'], C / p['mv_par_X']
+    Ac_L, Bc_L = C / p['mc_perp_L'], C / p['mc_par_L']
+    Av_L, Bv_L = C / p['mv_perp_L'], C / p['mv_par_L']
+
+    # Both X and L: Ec = E0c + Ac*k_perp^2 - Bc*k_par^2  (saddle)
+    Abar_X = Ac_X + Av_X
+    D_X    = Ac_X * Bv_X + Av_X * Bc_X   # always > 0
+    Abar_L = Ac_L + Av_L
+    D_L    = Ac_L * Bv_L + Av_L * Bc_L   # always > 0
+
+    pf_X = 1.0 / np.sqrt(Abar_X * D_X)
+    pf_L = 1.0 / np.sqrt(Abar_L * D_L)
+
+    T     = p['T']
+    Eg_X  = p['Eg_X']
+    Eg_L  = p['Eg_L']
+    E0c_L = p['E0c_L']    # submerged below E_F (negative)
+
+    def jdos(w, Abar, Ac, pf, Eg, E0c):
+        """Regularized 1D integral via t = sqrt(E_max - E)."""
+        e_max = E0c + (Ac / Abar) * (w - Eg)
+        e_min = -20.0 * kB * T if T > 0 else -0.1
+        if e_max <= e_min:
+            return 0.0
+        t = np.linspace(0, np.sqrt(e_max - e_min), N_INT)
+        # E = e_max - t^2;  dE = 2t dt  =>  singularity cancelled
+        return pf * simpson(
+            2.0 * fermi_weight(e_max - t**2, w, T), x=t
+        )
+
+    S = p['Scale']
+    e2_X = S * np.array([
+        N_X * p['P_ratio_sq']
+        * jdos(w, Abar_X, Ac_X, pf_X, Eg_X, 0.0) / w**2
+        for w in hw_grid
+    ])
+    e2_L = S * np.array([
+        N_L * jdos(w, Abar_L, Ac_L, pf_L, Eg_L, E0c_L) / w**2
+        for w in hw_grid
+    ])
+    return e2_X, e2_L, e2_X + e2_L, \
+           e2_X + e2_L + p['A_drude'] / hw_grid**3
+\end{lstlisting}
+
+\vfill
+\hrule height 0.8pt
+\smallskip
+{\footnotesize
+\textbf{References:}
+M.~Guerrisi, R.~Rosei, and P.~Winsemius, \textit{Phys.\ Rev.\ B} \textbf{12}, 557 (1975).\;
+N.~E.~Christensen and B.~O.~Seraphin, \textit{Phys.\ Rev.\ B} \textbf{4}, 3321 (1971).
+}
+
+\end{document}

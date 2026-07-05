@@ -1,0 +1,710 @@
+% =====================================================================
+%  rosei_grw.tex
+%  Self-contained rederivation of the GRW interband epsilon_2 of gold
+%  IN ROSEI'S OWN SYMBOLS AND NOTATION, following my route (FGR in
+%  k-space + the (u,v)=(kperp^2,kpar^2) linearization), such that the
+%  numbered equations of Guerrisi, Rosei & Winsemius, PRB 12, 557
+%  (1975) are recreated one by one -- with the printed defects of
+%  Eqs. (4), (6) and (8) corrected and the corrected forms used.
+%
+%  Companion (SI units, convention-general sigma_c machinery,
+%  cross-repo dictionary): rosei_master.tex
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs}
+\usepackage{paracol}
+\usepackage{needspace}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=ForestGreen,urlcolor=MidnightBlue]{hyperref}
+
+\numberwithin{equation}{section}
+
+% ------------------------------ macros -------------------------------
+\newcommand{\hw}{\hbar\omega}
+\newcommand{\EgX}{\mathcal{E}_g^{X}}
+\newcommand{\EgL}{\mathcal{E}_g^{L}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\AX}{\bar{A}_X}
+\newcommand{\BX}{\bar{B}_X}
+\newcommand{\AL}{\bar{A}_L}
+\newcommand{\BL}{\bar{B}_L}
+\newcommand{\kperp}{k_{\perp}}
+\newcommand{\kpar}{k_{\parallel}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\rme}{\mathrm{e}}
+\newcommand{\wXsix}{\hbar\omega_{X_6^-}}
+\newcommand{\wXseven}{\hbar\omega_{X_7^+}}
+\newcommand{\wLsix}{\hbar\omega_{L_6^-}}
+\newcommand{\wLplus}{\hbar\omega_{L^+}}
+\newcommand{\grweq}[1]{\textbf{[GRW~(#1)]}}
+\newcommand{\grwfix}[1]{\textbf{[GRW~(#1) corrected]}}
+
+\newtheorem{remark}{Remark}[section]
+
+\title{\bfseries The Rosei Interband $\epsilon_2$ of Gold, Rederived in
+Rosei's Own Notation\\[4pt]
+\large A self-contained construction from Fermi's Golden Rule in
+$\mathbf{k}$-space that recreates Guerrisi--Rosei--Winsemius
+Eqs.~(1)--(10), with corrected (4$'$), (6$'$), (8$'$)}
+\author{Ben Shpigel\\ \small Department of Physics, Ben-Gurion University of the Negev}
+\date{July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+Starting from Fermi's Golden Rule (FGR) for Bloch electrons and the
+linearization $(u,v)=(\kperp^2,\kpar^2)$ of my notes, the interband
+$\epsilon_2(\hw,T)$ of gold is rebuilt \emph{in the exact symbols of
+Guerrisi, Rosei and Winsemius} [Phys.\ Rev.\ B \textbf{12}, 557
+(1975), ``GRW'']: the band pairs of their Eqs.~(1)--(2), the
+constant-energy-difference surface (CEDS) of Eq.~(3), the
+energy-distributed joint density of states (EDJDOS)
+$D_{l\to u}(E,\hw)$ of Eq.~(4), the mass parameter
+$\cF_{l\to u}$ of Eq.~(5), the surface parameterization $\kpar(E,\hw)$
+of Eq.~(6), the thermally weighted integral $\cI(\hw,T)$ of Eq.~(7),
+the limit $E_{\max}$ of Eq.~(8), the assembled $\epsilon_2$ of
+Eq.~(9), and the strengths $S=\cF|P|^2$ of Eq.~(10).  Three printed
+equations do not survive the reconstruction and are corrected here:
+(6) is dimensionally garbled, (8) has its $u\!\parallel$/$l\!\parallel$
+subscripts interchanged, and (4) --- this is a new finding --- is
+inconsistent with (9) for \emph{any} standard matrix-element
+convention; the FGR-exact replacement is
+$D_{l\to u}=\bigl(16\pi^2\cD_{l\to u}\kpar\bigr)^{-1}
+=\cF^2/(4\pi^2\hbar^4\kpar)$, a discrepancy that is constant per
+critical point and therefore invisibly absorbed by the fitted
+strengths.  The $L$ point, which GRW delegate to earlier papers, is
+derived with the same machinery.  The document closes with the
+photonic density of states and the spontaneous-emission spectrum in
+the same notation, verified by the exact closure
+$R(\hw)=(\omega^3/\pi^2\hbar c^3)\,\epsilon_2\,n_B$.
+Gaussian units throughout, as in the original paper; $E$ is measured
+from the Fermi level.
+\end{abstract}
+
+\tableofcontents
+
+% =====================================================================
+\section{Notation (Rosei's, fixed once)}\label{sec:notation}
+% =====================================================================
+
+\begin{center}
+\small
+\begin{tabular}{ll}
+\toprule
+$E$ & final-state (upper-band) energy, from $E_F=0$; $\hw$: photon energy\\
+$\wXsix,\ \wXseven$ & level distances from $E_F$ at $X$
+  ($X_6^-$ above, $X_7^+$ below); likewise $\wLsix,\ \wLplus$\\
+$\EgX,\ \EgL$ & direct gaps, $\EgX=\wXsix+\wXseven$,
+  $\EgL=\wLsix+\wLplus$\\
+$m_{u\perp},m_{u\parallel},m_{l\perp},m_{l\parallel}$ &
+  effective masses (positive; signs written explicitly)\\
+$A_i,\ B_i$ & $\hbar^2/2m_{i\perp}$,\ $\hbar^2/2m_{i\parallel}$
+  ($i=u,l$): curvature shorthands for derivations\\
+$\Omega_{lu}(\mathbf k)$ & transition energy
+  $\hbar\omega_u-\hbar\omega_l$\\
+$D_{l\to u},\ \cF_{l\to u},\ \cD_{l\to u}$ & EDJDOS, its mass
+  parameter, and the Jacobian determinant\\
+$\cI(\hw,T)$ & thermally weighted EDJDOS integral, GRW Eq.~(7)\\
+$|P|^2$ & $|\langle u|\hat{\bm\epsilon}\!\cdot\!\nabla|l\rangle|^2$
+  averaged (length$^{-2}$; Sec.~\ref{sec:fgr})\\
+$N_X=6,\ N_L=8$ & equivalent half-neighborhoods (GRW's counting)\\
+$f(E,T),\ n_B(\hw)$ & Fermi--Dirac and Bose--Einstein functions\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Gaussian units ($e^2$ has dimension energy$\times$length),
+matching the 1975 paper.
+
+% =====================================================================
+\section{Fermi's Golden Rule in $\mathbf k$-space}\label{sec:fgr}
+% =====================================================================
+
+Minimal coupling in the Coulomb gauge gives
+$\hat H_{\rm int}=(e/mc)\,\mathbf A\!\cdot\!\hat{\mathbf p}$ (the $A^2$
+term is interband-inert).  For a classical wave
+$\mathbf E=\hat{\bm\epsilon}E_0\cos\omega t$, i.e.\
+$\mathbf A=-(cE_0/\omega)\hat{\bm\epsilon}\sin\omega t$, the
+absorption half of $\hat H_{\rm int}$ has amplitude
+$(eE_0/2m\omega)\,\hat{\bm\epsilon}\!\cdot\!\hat{\mathbf p}$, and
+photon momentum is negligible on the zone scale, so transitions are
+vertical.  FGR per initial Bloch state, summed over $\mathbf k$
+(spin explicit), balanced against the Gaussian dissipation rate
+$\langle\dot U\rangle=\omega\epsilon_2E_0^2/8\pi$ per unit volume,
+yields the exact starting point
+\begin{equation}
+\epsilon_2(\omega)=\frac{4\pi^2e^2}{m^2\omega^2}\,
+\frac{2}{(2\pi)^3}\int_{\rm BZ}\!\dd^3k\;
+\bigl|\hat{\bm\epsilon}\!\cdot\!\mathbf p_{ul}(\mathbf k)\bigr|^{2}
+\,\delta\bigl(\hbar\omega_u(\mathbf k)-\hbar\omega_l(\mathbf k)-\hw\bigr)
+\,\bigl[f(\hbar\omega_l)-f(\hbar\omega_u)\bigr].
+\label{eq:eps2start}
+\end{equation}
+Near a critical point Rosei freezes the matrix element and averages
+over polarization.  Writing it, as in the older literature, as a
+matrix element of the gradient,
+$\mathbf p_{ul}=-i\hbar\langle u|\nabla|l\rangle$, and defining
+\begin{equation}
+|P|^2\equiv\bigl|\langle u|\nabla|l\rangle\bigr|^2
+\quad(\text{dimension }{\rm length}^{-2}),
+\qquad
+\overline{\bigl|\hat{\bm\epsilon}\!\cdot\!\mathbf p_{ul}\bigr|^2}
+=\frac{\hbar^2|P|^2}{3},
+\label{eq:Pconvention}
+\end{equation}
+equation \eqref{eq:eps2start} becomes, per critical-point family,
+\begin{equation}
+\epsilon_2(\hw,T)=\frac{4\pi^2e^2\hbar^2}{3m^2\omega^2}\cdot
+\frac{2}{(2\pi)^3}\,N\,|P|^2
+\int_{\text{half-nbhd}}\!\dd^3k\;
+\delta\bigl(\Omega_{lu}(\mathbf k)-\hw\bigr)\,
+\bigl[f(E-\hw)-f(E)\bigr]\Big|_{E=\hbar\omega_u(\mathbf k)} ,
+\label{eq:eps2CP}
+\end{equation}
+where $N$ counts equivalent \emph{half}-neighborhoods ($N_X=6$,
+$N_L=8$: each zone face carries half of a full CEDS; this convention
+must be paired with the half-space EDJDOS below, on pain of a silent
+factor 2).  The occupation factor is the full
+$f(E-\hw)-f(E)$; for $d$ bands sunk $\gtrsim1.5$ eV below $E_F$ it
+reduces to GRW's $[1-f(E,T)]$, and the general form is kept for the
+non-equilibrium extensions ($f^S$, $f^P$).
+
+% =====================================================================
+\section{The $X$ point}\label{sec:X}
+% =====================================================================
+
+\subsection{Bands and CEDS: GRW (1)--(3)}
+
+GRW's parabolic pair at $X$, in their exact form (energies from
+$E_F$; $\kpar$ along $\Delta=\Gamma X$, $\kperp$ in the zone face):
+\begin{align}
+E&=\hbar\omega_u(\mathbf k)
+=\wXsix+\frac{\hbar^2\kperp^2}{2m_{u\perp}}
+        -\frac{\hbar^2\kpar^2}{2m_{u\parallel}},
+&&\grweq{1}
+\label{eq:grw1}\\[2pt]
+E-\hw&=\hbar\omega_l(\mathbf k)
+=-\wXseven-\frac{\hbar^2\kperp^2}{2m_{l\perp}}
+          -\frac{\hbar^2\kpar^2}{2m_{l\parallel}},
+&&\grweq{2}
+\label{eq:grw2}
+\end{align}
+i.e.\ the upper $X_6^-$ band is a saddle (rises in the face, falls
+along $\Delta$) and the lower $X_7^+$ band is a maximum.  Vertical
+transitions of energy $\hw$ live on the constant-energy-difference
+surface
+\begin{equation}
+\Omega_{lu}(\mathbf k)-\hw=
+\hbar\omega_u(\mathbf k)-\hbar\omega_l(\mathbf k)-\hw=0 .
+\qquad\grweq{3}
+\label{eq:grw3}
+\end{equation}
+Subtracting \eqref{eq:grw2} from \eqref{eq:grw1}, with
+$A_i=\hbar^2/2m_{i\perp}$, $B_i=\hbar^2/2m_{i\parallel}$,
+\begin{equation}
+\Omega_{lu}=\EgX+\AX\,\kperp^2+\BX\,\kpar^2,
+\qquad
+\AX=A_u+A_l>0,\qquad
+\BX=B_l-B_u .
+\label{eq:OmegaX}
+\end{equation}
+GRW's own apparatus (open CEDS, sub-gap tail, the $-20k_BT$ floor of
+their Eq.~(7), the step-like $\sim$1.8 eV onset) requires
+$\boxed{\BX<0}$, i.e.\ $m_{u\parallel}<m_{l\parallel}$: the sp band
+falls along $\Delta$ \emph{faster} than the $d$ band --- the flat-$d$
+prior.  The main text follows GRW's branch; see
+Remark~\ref{rem:massfork} for the status of my own C\&S extraction,
+which currently has the opposite $\parallel$ assignment.
+
+\subsection{Linearization and the Jacobian}
+
+With $u=\kperp^2$, $v=\kpar^2$ ($u,v\ge0$), the two constraints
+--- final-state energy $E$ and transition energy $\hw$ --- are linear:
+\begin{equation}
+\begin{pmatrix} E-\wXsix\\[2pt] \hw-\EgX\end{pmatrix}
+=\begin{pmatrix} A_u & -B_u\\[2pt] \AX & \BX\end{pmatrix}
+\begin{pmatrix} u\\ v\end{pmatrix},
+\qquad
+\det=A_u\BX+B_u\AX=A_uB_l+A_lB_u\equiv\cD_X>0
+\label{eq:linX}
+\end{equation}
+--- note that $\cD_X$ is positive for \emph{either} sign of $\BX$.
+Inverting,
+\begin{equation}
+u=\frac{\BX\,(E-\wXsix)+B_u(\hw-\EgX)}{\cD_X},
+\qquad
+v=\kpar^2=\frac{A_u(\hw-\EgX)-\AX\,(E-\wXsix)}{\cD_X}.
+\label{eq:uvX}
+\end{equation}
+The second line, restored to GRW's mass symbols via
+$\cD_X=(\hbar^2/2)^2\cF^{-2}$ (Eq.~\eqref{eq:grw5} below), is their
+Eq.~(6):
+\begin{equation}
+\kpar^{2}
+=\frac{2\cF^{2}}{\hbar^{2}}\left[
+\frac{\hw-\wXseven-E}{m_{u\perp}}
++\frac{\wXsix-E}{m_{l\perp}}\right].
+\qquad\grwfix{6}
+\label{eq:grw6}
+\end{equation}
+As printed, (6) lacks the $1/m_{u\perp}$ on its first term, the
+overall $2\cF^2/\hbar^2$, and the square on $\kpar$ (it equates a
+wavevector to an energy); the three numerator slots of
+\eqref{eq:grw6} match the print term by term, so \eqref{eq:grw6} is
+the intended equation.
+
+\subsection{The EDJDOS: GRW (4)--(5), with (4) corrected}
+
+Rosei's central object is the number of $(l\to u)$ transition pairs
+per unit crystal volume, per unit final energy $E$, per unit
+transition energy $\hw$, for one half-neighborhood and one spin:
+\begin{equation}
+D_{l\to u}(E,\hw)\equiv\frac{1}{(2\pi)^3}
+\int_{\kpar>0}\!\dd^3k\;
+\delta\bigl(\hbar\omega_u(\mathbf k)-E\bigr)\,
+\delta\bigl(\Omega_{lu}(\mathbf k)-\hw\bigr).
+\label{eq:Ddef}
+\end{equation}
+Axial symmetry gives $\dd^3k=2\pi\kperp\dd\kperp\,\dd\kpar$; with
+$\dd u=2\kperp\dd\kperp$, $\dd v=2\kpar\dd\kpar$,
+\begin{equation}
+\int_{\kpar>0}\!\dd^3k
+=\frac{\pi}{2}\int_0^\infty\!\!\dd u\int_0^\infty\!\frac{\dd v}{\sqrt v},
+\end{equation}
+and the linear map \eqref{eq:linX} collapses both $\delta$'s with
+Jacobian $1/\cD_X$:
+\begin{equation}
+\boxed{\;
+D_{l\to u}(E,\hw)
+=\frac{1}{16\pi^2\,\cD_{l\to u}}\,\frac{1}{\kpar(E,\hw)}
+=\frac{\cF^2_{l\to u}}{4\pi^2\hbar^4}\,\frac{1}{\kpar(E,\hw)}
+\;}\qquad\grwfix{4}
+\label{eq:grw4}
+\end{equation}
+with $\kpar(E,\hw)$ from \eqref{eq:grw6}, supported on
+$u,v\ge0$, and
+\begin{equation}
+\cF_{l\to u}=\frac{\hbar^2}{2\sqrt{\cD_{l\to u}}}
+=\left[\frac{m_{l\perp}m_{u\parallel}+m_{l\parallel}m_{u\perp}}
+{m_{l\perp}m_{l\parallel}m_{u\perp}m_{u\parallel}}\right]^{-1/2}.
+\qquad\grweq{5}
+\label{eq:grw5}
+\end{equation}
+
+\begin{remark}[Correction of the printed (4)]\label{rem:eq4}
+GRW print $D_{l\to u}=(8\pi^2\hbar^2)^{-1}\cF/\kpar$.  No standard
+convention rescues it: with $|P|^2$ a squared $\nabla$ matrix element
+(or a squared momentum), the pair \{printed (4), printed (9)\} is
+dimensionally inconsistent, while
+\eqref{eq:grw4} --- which is forced by the definition
+\eqref{eq:Ddef} --- closes the FGR chain exactly
+(Sec.~\ref{sec:eps2}).  The two forms differ by the factor
+$2\cF/\hbar^2$, a \emph{constant for each critical point}: it cannot
+affect any line shape and is silently absorbed into the fitted
+strength $S=\cF|P|^2$ of GRW's Eq.~(10), which is why the defect has
+no observable consequence in their (or my) fits.  The first equality
+of \eqref{eq:grw4} already appears in my note
+\emph{Interband Absorption at $X$ and $L$}; the present derivation
+shows it is the only correct one.
+\end{remark}
+
+\subsection{Topology, integration limits, and GRW (7)--(8)}
+\label{sec:Xtopology}
+
+On GRW's branch $\BX<0$ the CEDS is an open hyperboloid for every
+$\hw$: transitions exist on both sides of $\EgX$, and along the CEDS
+$E$ decreases monotonically away from its top edge
+($\dd E\propto-\cD_X\,\dd v<0$), unboundedly.  The window is
+therefore cut from below by occupation alone, for which GRW adopt the
+practical floor $E_{\min}=-20k_BT$, and from above by the geometric
+edge $E_{\max}(\hw)$, which changes character at the gap:
+
+\medskip
+\noindent
+\emph{Above the gap} ($\hw\ge\EgX$): the edge is the $\kpar\to0$
+circle ($v=0$ in \eqref{eq:uvX}), where $D_{l\to u}$ of
+\eqref{eq:grw4} diverges as an inverse square root:
+\begin{equation}
+E_{\max}^{>}=\wXsix+\frac{A_u}{\AX}(\hw-\EgX)
+=\wXsix+\frac{m_{l\perp}}{m_{u\perp}+m_{l\perp}}\,\bigl(\hw-\EgX\bigr),
+\qquad
+\kpar^2=\frac{\AX}{\cD_X}\bigl(E_{\max}^{>}-E\bigr).
+\label{eq:EmaxAbove}
+\end{equation}
+
+\noindent
+\emph{Below the gap} ($\hw<\EgX$): the $\kpar=0$ circle no longer
+exists ($v>0$ everywhere on the CEDS); the edge is the
+$\kperp=0$ point ($u=0$ in \eqref{eq:uvX}), where $\kpar$ stays
+finite and $D_{l\to u}$ is \emph{finite}:
+\begin{equation}
+E_{\max}^{<}
+=\wXsix-\frac{B_u}{|\BX|}\,\bigl(\EgX-\hw\bigr)
+=\wXsix+\bigl(\EgX-\hw\bigr)\,
+\frac{m_{l\parallel}}{m_{u\parallel}-m_{l\parallel}} .
+\qquad\grwfix{8}
+\label{eq:grw8}
+\end{equation}
+The printed (8) carries
+$m_{u\parallel}/(m_{l\parallel}-m_{u\parallel})$: the
+$u\parallel/l\parallel$ subscripts are interchanged (one consistent
+swap; the subscripts of (6) are \emph{not} swapped, so the defect is
+specific to (8)).  As printed, (8) would place the sub-gap edge
+\emph{above} $\wXsix$, where the sub-gap CEDS has no states.
+
+The finite edge \eqref{eq:grw8} is what makes the $X$ onset
+\emph{step-like} (GRW's wording) rather than divergent: at $T=0$
+absorption begins when $E_{\max}^{<}$ crosses $E_F$,
+\begin{equation}
+\hw_{\rm on}
+=\EgX-\wXsix\,\frac{m_{l\parallel}-m_{u\parallel}}{m_{l\parallel}}
+\;\simeq\;1.94-0.17\times\frac{0.40-0.15}{0.40}
+=1.83\ \text{eV},
+\label{eq:onset}
+\end{equation}
+the piezomodulation threshold, with the famous low-energy tail
+filling $1.83$--$1.94$ eV geometrically (not by broadening).
+
+Finally the thermally weighted integral, exactly as GRW write it:
+\begin{equation}
+\cI(\hw,T)=\int_{E_{\min}}^{E_{\max}}
+D_{l\to u}(E,\hw)\,\bigl[1-f(E,T)\bigr]\,\dd E ,
+\qquad\grweq{7}
+\label{eq:grw7}
+\end{equation}
+with $D_{l\to u}$ from \eqref{eq:grw4}, $E_{\max}$ from
+\eqref{eq:EmaxAbove}/\eqref{eq:grw8}, $E_{\min}=-20k_BT$, and
+$[1-f]\to f(E-\hw)-f(E)$ in the general case.
+
+\begin{remark}[The mass fork at $X$]\label{rem:massfork}
+My extraction of the C\&S Fig.~5 curvatures assigns
+$m_{u\parallel}=0.40$, $m_{l\parallel}=0.15$ --- the \emph{opposite}
+$\parallel$ ordering, giving $\BX>0$: a closed window
+$\bigl[\wXsix-\tfrac{B_u}{\BX}(\hw-\EgX),\;E_{\max}^{>}\bigr]$,
+no geometric sub-gap tail, and a $\sqrt{\hw-\EgX}$ onset at
+$\EgX$ exactly.  Above the gap the two branches produce the
+\emph{same} line shape with the same singular edge
+\eqref{eq:EmaxAbove} --- the $\parallel$ masses enter only through
+$\cF_X$, which the fit absorbs into $S_X$ --- so optical fits cannot
+decide the branch; the sub-gap physics and the extracted $|P_X|^2$
+can.  Both $\perp$ and $\parallel$ orderings of my extraction make
+the $d$ band the \emph{lighter} one, against the flat-$d$ prior, so
+a transcription swap in my mass table is the likelier resolution;
+until C\&S Fig.~5 is re-measured, this document follows GRW
+($\BX<0$) and flags every place the branch matters.
+\end{remark}
+
+% =====================================================================
+\section{The $L$ point (delegated by GRW; same machinery)}\label{sec:L}
+% =====================================================================
+
+GRW cite earlier work for $L$; the identical linearization gives it
+in three lines.  The $L_6^-$ conduction band is a minimum in both
+local directions ($\kpar$ along $\Gamma L$), the top $d$ band a
+maximum:
+\begin{align}
+E&=\hbar\omega_u(\mathbf k)
+=\wLsix+\frac{\hbar^2\kperp^2}{2m_{u\perp}}
+       +\frac{\hbar^2\kpar^2}{2m_{u\parallel}},
+\label{eq:Lbands1}\\[2pt]
+E-\hw&=\hbar\omega_l(\mathbf k)
+=-\wLplus-\frac{\hbar^2\kperp^2}{2m_{l\perp}}
+         -\frac{\hbar^2\kpar^2}{2m_{l\parallel}} ,
+\label{eq:Lbands2}
+\end{align}
+so that
+\begin{equation}
+\Omega_{lu}=\EgL+\AL\kperp^2+\BL\kpar^2,
+\qquad \BL=B_u+B_l>0\ \ \text{unconditionally:}
+\end{equation}
+the CEDS is a closed ellipsoid, existing only for $\hw\ge\EgL$
+--- no sub-gap tail at $L$, whatever the masses.  The linear system
+is \eqref{eq:linX} with $-B_u\to+B_u$, $\BX\to\BL$, and
+\begin{equation}
+\cD_L=A_uB_l-A_lB_u,
+\qquad
+\cF_L=\frac{\hbar^2}{2\sqrt{|\cD_L|}}
+=\left[\frac{\bigl|m_{l\perp}m_{u\parallel}
+             -m_{l\parallel}m_{u\perp}\bigr|}
+{m_{l\perp}m_{l\parallel}m_{u\perp}m_{u\parallel}}\right]^{-1/2},
+\label{eq:DL}
+\end{equation}
+the difference (rather than sum) structure being the fingerprint of
+the ellipsoidal pairing.  For gold
+$m_{l\perp}m_{u\parallel}=0.70\times0.12=0.084
+<m_{l\parallel}m_{u\perp}=1.03\times0.24=0.247$, so
+$\boxed{\cD_L<0}$, and the inversion \eqref{eq:uvX} (with the sign of
+$\cD$ reversing both inequalities) yields
+\begin{equation}
+\kpar^2=\frac{\AL}{|\cD_L|}\bigl(E-E_{\min}\bigr),
+\qquad
+D_{l\to u}(E,\hw)
+=\frac{1}{16\pi^2|\cD_L|\,\kpar}
+=\frac{\cF_L^2}{4\pi^2\hbar^4\kpar},
+\label{eq:DLd}
+\end{equation}
+\begin{equation}
+E_{\min}=\wLsix+\frac{A_u}{\AL}(\hw-\EgL),
+\qquad
+E_{\max}=\wLsix+\frac{B_u}{\BL}(\hw-\EgL),
+\label{eq:Lwindow}
+\end{equation}
+with slopes $A_u/\AL=0.745$ and $B_u/\BL=0.896$ for Au.  The
+$\kpar\to0$ edge --- the inverse-square-root singularity of
+\eqref{eq:DLd} --- is now the \emph{lower} limit $E_{\min}$: exactly
+opposite to $X$, purely because $\cD_L<0$ while $\cD_X>0$.  The
+$L$ line shape is
+\begin{equation}
+\cI_L(\hw,T)=\int_{E_{\min}}^{E_{\max}}
+D_{l\to u}(E,\hw)\,[1-f(E,T)]\,\dd E ,
+\end{equation}
+whose integrable divergence sits on the onset edge itself: the $L$
+edge is sharp and strong, the $X$ edge soft and tailed --- GRW's
+``splitting of the interband absorption edge,'' now with both halves
+derived from one formula set.
+
+\begin{remark}[$L$ level scheme vs.\ the neck]
+The fitted levels ($\EgL=2.45$, $\wLplus=1.56\Rightarrow\wLsix=+0.89$
+eV) put the whole window \eqref{eq:Lwindow} above $E_F$, so the Fermi
+factor is inert at $L$ and the model's $L$ temperature dependence
+enters only through broadening and gap shift.  GRW's qualitative
+explanation of the $L$ singularity (onset CEDS tangent to the Fermi
+surface along the neck) instead needs $L_6^-$ \emph{below} $E_F$.
+Both statements cannot hold within one parabolic model; the fitted
+scheme is what the code implements, and the tension is recorded here
+deliberately.
+\end{remark}
+
+% =====================================================================
+\section{Assembly: GRW (9)--(10)}\label{sec:eps2}
+% =====================================================================
+
+Inserting the corrected EDJDOS \eqref{eq:grw4} into the FGR result
+\eqref{eq:eps2CP} --- note
+$\int\dd^3k\,\delta(\Omega-\hw)[\cdots]
+=(2\pi)^3\!\int\!\dd E\,D_{l\to u}(E,\hw)[\cdots]$ per
+half-neighborhood by the definition \eqref{eq:Ddef} --- the $(2\pi)^3$
+cancels and
+\begin{align}
+\epsilon_2(\hw,T)
+&=\frac{4\pi^2e^2\hbar^2}{3m^2\omega^2}\cdot2\cdot
+\sum_{i=X,L}N_i\,|P_i|^2\,\cI_i(\hw,T)
+\notag\\[2pt]
+&=\;
+\boxed{\;
+\frac{8\pi^2e^2\hbar^4}{3m^2(\hw)^2}
+\sum_{i=X,L}N_i\,|P_i|^2\,\cI_i(\hw,T)
+\;}\qquad\grweq{9}
+\label{eq:grw9}
+\end{align}
+--- GRW's Eq.~(9), recreated exactly: the printed prefactor
+$8\pi^2e^2\hbar^4/3m^2(\hw)^2$ emerges with no leftover constant once
+(i) $|P|^2$ is the squared $\nabla$ matrix element
+\eqref{eq:Pconvention}, (ii) $D_{l\to u}$ is the corrected
+\eqref{eq:grw4}, (iii) spin (the explicit 2) and the half-point
+counts $N_X=6$, $N_L=8$ are kept where shown.  (GRW leave $N_i$
+implicit; their fitted $|P_i|^2$ therefore means $N_i|P_i|^2$ up to
+normalization --- immaterial for the ratio they quote.)  The fitted
+quantities are the strengths
+\begin{equation}
+S_X=\cF_X|P_X|^2,\qquad S_L=\cF_L|P_L|^2,
+\qquad\grweq{10}
+\label{eq:grw10}
+\end{equation}
+with $|P_X/P_L|^2=0.370$ from their fit to Johnson--Christy.  Under
+the corrected (4$'$) the combination actually determined by the data
+is $N_i\cF_i^2|P_i|^2$; it maps onto GRW's printed $S_i$ through the
+constant $2\cF_i/\hbar^2$ of Remark~\ref{rem:eq4}, so all published
+numbers retain their meaning as strengths.
+
+\medskip
+\noindent\textbf{Parameters} (levels: GRW fit; masses: C\&S, with the
+$X$ row subject to Remark~\ref{rem:massfork}; $\cF$ in units of the
+free-electron mass):
+\begin{center}
+\begin{tabular}{lccccccc}
+\toprule
+ & $\mathcal{E}_g$ (eV) & upper level (eV) & lower level (eV)
+ & $m_{u\perp}$ & $m_{u\parallel}$ & $m_{l\perp}$ & $m_{l\parallel}$\\
+\midrule
+$X$ (GRW branch) & 1.94 & $\wXsix=0.17$ & $\wXseven=1.77$
+ & 0.19 & 0.15 & 0.31 & 0.40\\
+$L$ & 2.45 & $\wLsix=0.89$ & $\wLplus=1.56$
+ & 0.24 & 0.12 & 0.70 & 1.03\\
+\bottomrule
+\end{tabular}
+
+\medskip
+\begin{tabular}{lcccc}
+\toprule
+ & $\cD$ (units $(\hbar^2/2m)^2$) & $\cF/m$ & window slopes & singular edge\\
+\midrule
+$X$ & $+34.7$ & 0.170 & $E_{\max}^{>}$: 0.38--0.62$^{\dagger}$
+ & upper ($\kpar\to0$)\\
+$L$ & $-7.86$ & 0.357 & $E_{\min}$: 0.745,\ \ $E_{\max}$: 0.896
+ & lower ($\kpar\to0$)\\
+\bottomrule
+\end{tabular}
+\end{center}
+{\footnotesize $^{\dagger}$ $0.38$ with my $\perp$ assignment
+($m_{u\perp}=0.31$), $0.62$ with the fully $u\leftrightarrow l$
+swapped one ($m_{u\perp}=0.19$); $\cF_X$ is invariant under the full
+swap.  $\cD_X$ and $\cF_X$ quoted for the full-swap/GRW assignment;
+my assignment gives the same values by symmetry of \eqref{eq:grw5}.}
+
+\medskip
+\noindent\textbf{Scorecard for the recreation:}
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+GRW & here & status & defect as printed\\
+\midrule
+(1) & \eqref{eq:grw1} & recreated & ---\\
+(2) & \eqref{eq:grw2} & recreated & ---\\
+(3) & \eqref{eq:grw3} & recreated & ---\\
+(4) & \eqref{eq:grw4} & \textbf{corrected} &
+ prefactor $(8\pi^2\hbar^2)^{-1}\cF$ $\to$ $(4\pi^2\hbar^4)^{-1}\cF^2$;
+ off by $2\cF/\hbar^2$ (const.)\\
+(5) & \eqref{eq:grw5} & recreated & ---\\
+(6) & \eqref{eq:grw6} & \textbf{corrected} & dimensionally garbled\\
+(7) & \eqref{eq:grw7} & recreated & occupation generalized\\
+(8) & \eqref{eq:grw8} & \textbf{corrected} &
+ $u\parallel\leftrightarrow l\parallel$ swapped\\
+(9) & \eqref{eq:grw9} & recreated & $N_i$ made explicit\\
+(10) & \eqref{eq:grw10} & recreated & units note (Rem.~\ref{rem:eq4})\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% =====================================================================
+\section{Photonic density of states and the emission spectrum}
+\label{sec:photonic}
+% =====================================================================
+
+\subsection{Mode counting}
+
+Two transverse polarizations, $\omega=cq$, periodic quantization:
+\begin{equation}
+\rho(\omega)=\frac{2}{(2\pi)^3}\,4\pi q^2\frac{\dd q}{\dd\omega}
+=\boxed{\ \frac{\omega^2}{\pi^2c^3}\ }
+\label{eq:rho}
+\end{equation}
+modes per unit volume per unit angular frequency (in a host of index
+$n$, $c\to c/n$; in a structured environment $\rho\to$ the local
+density of states $\rho(\mathbf r,\omega)$ --- the photonic factor of
+the PL factorization).
+
+\subsection{Spontaneous emission of one pair}
+
+Quantizing $\mathbf A$ (mode amplitudes $\sqrt{2\pi\hbar c^2/\omega V}$
+in Gaussian units) and applying FGR at photon vacuum, with
+$\sum_\lambda\int\dd\Omega_q\,
+|\hat{\bm\epsilon}_\lambda\!\cdot\!\mathbf p_{ul}|^2
+=\tfrac{8\pi}{3}|\mathbf p_{ul}|^2$ and
+$|\mathbf p_{ul}|^2=\hbar^2|P|^2$:
+\begin{equation}
+W_{\rm sp}(\omega)
+=\frac{4e^2\hbar\,\omega\,|P|^2}{3m^2c^3}
+=\underbrace{\frac{4\pi^2 e^2\hbar\,|P|^2}{3m^2\omega}}_{\text{matter}}
+\;\times\;
+\underbrace{\frac{\omega^2}{\pi^2c^3}}_{\rho(\omega)} ,
+\label{eq:Wsp}
+\end{equation}
+the Einstein $A$ coefficient in the $\mathbf A\!\cdot\!\mathbf p$
+form, with the photonic density of states exhibited as an exact
+factor.  (The semiclassical field of Sec.~\ref{sec:fgr} can never
+produce \eqref{eq:Wsp}: it is the $+1$ of $\langle n+1\rangle$,
+i.e.\ a vacuum effect --- the answer to the question left open in
+note A1.)
+
+\subsection{The interband PL spectrum and the closure check}
+
+Summing over emitting pairs of one critical-point family (spin 2,
+$N$ half-neighborhoods, EDJDOS \eqref{eq:Ddef}):
+\begin{equation}
+\boxed{\;
+R(\hw)=\rho(\omega)\,
+\frac{4\pi^2e^2\hbar\,}{3m^2\omega}\,
+2N\,|P|^2
+\int\!\dd E\;
+f(E,T)\bigl[1-f(E-\hw,T)\bigr]\,D_{l\to u}(E,\hw)
+\;}
+\label{eq:PL}
+\end{equation}
+photons per unit time, volume and photon energy, with the same
+$D_{l\to u}$, windows and edges as in absorption --- only the
+occupation factor differs.  With the equilibrium identity
+$f(E)[1-f(E-\hw)]=n_B(\hw)\,[f(E-\hw)-f(E)]$ (notes A2/A3), every
+electronic factor maps onto \eqref{eq:grw9} and the constants cancel
+exactly:
+\begin{equation}
+\boxed{\;
+R(\hw)=\frac{\omega^3}{\pi^2\hbar c^3}\;
+\epsilon_2(\omega)\;n_B(\hw)
+=\frac{\omega\,\rho(\omega)}{\hbar}\,\epsilon_2(\omega)\,n_B(\hw)
+\;}
+\label{eq:vRS}
+\end{equation}
+--- the van Roosbroeck--Shockley relation, and Kirchhoff's law in the
+form $R_{\rm em}/R_{\rm abs}=\rme^{-\hw/k_BT}$ per mode.  That
+\eqref{eq:grw9} and \eqref{eq:PL}, assembled independently, satisfy
+\eqref{eq:vRS} with unit coefficient is the global consistency check
+of every prefactor in this document; it would fail by $2\cF/\hbar^2$
+if the printed (4) were used with any fixed matrix-element
+convention.  Out of equilibrium ($f\to f^S,f^P$) the identity breaks,
+and the deviation from \eqref{eq:vRS} is the non-equilibrium PL
+signal; in a nanostructure, $\rho(\omega)\to\rho(\mathbf r,\omega)$
+in \eqref{eq:PL}.
+
+% =====================================================================
+\appendix
+\section{Dimensional audit (Gaussian)}
+% =====================================================================
+
+$[e^2]={\rm erg\,cm}$, $[|P|^2]={\rm cm^{-2}}$,
+$[\cD]={\rm erg^2cm^4}$, $[\cF]={\rm g}$,
+$[D_{l\to u}]={\rm erg^{-2}cm^{-3}}$ (states per volume per
+energy$^2$), $[\cI]={\rm erg^{-1}cm^{-3}}$.
+\begin{itemize}
+\item \eqref{eq:grw4}:
+$\cF^2/\hbar^4\kpar\sim{\rm g^2}/({\rm erg^4s^4\,cm^{-1}})
+={\rm erg^{-2}cm^{-3}}$.\ \checkmark
+\item \eqref{eq:grw9}:
+$\dfrac{{\rm erg\,cm}\cdot{\rm erg^4s^4}}{{\rm g^2\,erg^2}}
+\cdot{\rm cm^{-2}}\cdot{\rm erg^{-1}cm^{-3}}
+={\rm erg^2s^4\,g^{-2}cm^{-4}}=1$.\ \checkmark
+\item \eqref{eq:Wsp}:
+$\dfrac{{\rm erg\,cm}\cdot{\rm erg\,s}\cdot{\rm s^{-1}}\cdot{\rm cm^{-2}}}
+{{\rm g^2\,cm^3s^{-3}}}={\rm s^{-1}}$.\ \checkmark
+\item \eqref{eq:PL}: $[\rho]\,[\cdot]\sim{\rm s\,cm^{-3}}\cdot
+{\rm s^{-1}}\cdot{\rm erg^{-1}}\cdot\ldots
+={\rm s^{-1}erg^{-1}cm^{-3}}$: photons/(s\,erg\,cm$^3$).\ \checkmark
+\item \eqref{eq:vRS}: $[\omega\rho/\hbar]
+={\rm s^{-1}}\cdot{\rm s\,cm^{-3}}\cdot{\rm erg^{-1}s^{-1}}$
+$={\rm erg^{-1}cm^{-3}s^{-1}}$.\ \checkmark
+\end{itemize}
+
+\section*{References}
+\begin{itemize}
+\item M.~Guerrisi, R.~Rosei, P.~Winsemius, Phys.\ Rev.\ B
+\textbf{12}, 557 (1975) --- the paper recreated here.
+\item R.~Rosei, Phys.\ Rev.\ B \textbf{10}, 474 (1974) --- the $L$
+machinery GRW delegate.
+\item N.~E.~Christensen, B.~O.~Seraphin, Phys.\ Rev.\ B \textbf{4},
+3321 (1971) --- band structure; source of the masses.
+\item P.~B.~Johnson, R.~W.~Christy, Phys.\ Rev.\ B \textbf{6}, 4370
+(1972) --- the data GRW fit.
+\item Companion document \texttt{rosei\_master.tex} --- SI units,
+convention-general $\sigma_c$ formulation, cross-repository
+conventions dictionary, full quantization details.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,939 @@
+% =====================================================================
+%  rosei_master.tex
+%  Master rederivation of Rosei's interband epsilon_2 for gold from
+%  Fermi's Golden Rule in k-space, with all prefactors, the X and L
+%  critical points treated per their topology (side by side where the
+%  derivations diverge), and the photonic density of states.
+%
+%  Consolidates and supersedes (see derivations/README.md):
+%    A1, A8, A8.L, "Absorption Integral (Using Rosei's Notations)",
+%    "Interband Absorption at X and L (Rosei's Notation)",
+%    "Equivalence of My Absorption Integral and Rosei's",
+%    "Effective Mass Extraction", rosei_model_formulas.md,
+%    interband_derivation{,_v2}.tex, rosei_equivalence_derivation.tex
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs}
+\usepackage{paracol}
+\usepackage{needspace}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=ForestGreen,urlcolor=MidnightBlue]{hyperref}
+
+\numberwithin{equation}{section}
+
+% ------------------------------ macros -------------------------------
+\newcommand{\hw}{\hbar\omega}
+\newcommand{\Eg}{\mathcal{E}_g}
+\newcommand{\EgX}{\mathcal{E}_g^{X}}
+\newcommand{\EgL}{\mathcal{E}_g^{L}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\Ab}{\bar{A}}
+\newcommand{\Bb}{\bar{B}}
+\newcommand{\kperp}{k_{\perp}}
+\newcommand{\kpar}{k_{\parallel}}
+\newcommand{\pcv}{\mathbf{p}_{cv}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\epsz}{\varepsilon_0}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\Ec}{E_c}
+\newcommand{\Ev}{E_v}
+\newcommand{\Ezc}{E_{0c}}
+\newcommand{\Ezv}{E_{0v}}
+\newcommand{\fFD}{f}
+\newcommand{\kB}{k_B}
+\newcommand{\rme}{\mathrm{e}}
+
+\newtheorem{remark}{Remark}[section]
+
+\title{\bfseries Interband Absorption in Gold from Fermi's Golden Rule:\\
+a first-principles rederivation of Rosei's $\eps_2$ at the $X$ and $L$
+critical points, with the photonic density of states}
+\author{Ben Shpigel\\ \small Department of Physics, Ben-Gurion University of the Negev}
+\date{July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+This document rederives, from first principles and with every prefactor
+tracked, the Rosei-model interband contribution to the imaginary part of
+the dielectric function of gold, $\eps_2(\hw,T)$, at the $X$ and $L$
+critical points [Guerrisi, Rosei \& Winsemius (GRW), Phys.\ Rev.\ B
+\textbf{12}, 557 (1975)].  The route is the one developed in my own
+notes: Fermi's Golden Rule (FGR) for Bloch states in $\mathbf{k}$-space,
+reduction of the six-dimensional transition sum to a one-dimensional
+energy integral through the linearization $(u,v)=(\kperp^2,\kpar^2)$,
+and resolution of the double $\delta$-constraint by a single
+$2\times2$ Jacobian.  The two critical points are treated strictly
+according to their band topology; where the derivations diverge, the
+two paths are displayed side by side.  The known transcription errors
+in GRW's printed Eqs.~(6) and (8) are corrected, and a genuine
+ambiguity in the assignment of the parallel effective masses at $X$
+--- which decides between a closed transition-energy window and GRW's
+open, sub-gap-tailed one --- is resolved into two clearly separated
+branches, together with the observation that the above-gap line
+\emph{shape} is blind to the choice.  Finally, the photonic density of
+states is derived by field quantization, the spontaneous-emission
+counterpart of the absorption integral is assembled, and the pair is
+shown to close exactly into the van Roosbroeck--Shockley/Kirchhoff
+relation, providing a global consistency check of all prefactors.
+\end{abstract}
+
+\tableofcontents
+
+% =====================================================================
+\section{Scope, sources and reading map}
+% =====================================================================
+
+Three families of documents about interband absorption coexist in this
+project:
+\begin{enumerate}
+\item \textbf{My derivation chain} (appendices A1, A8, A8.L and the
+      notes \emph{Absorption Integral}, \emph{Interband Absorption at
+      $X$ and $L$}, \emph{Equivalence of My Absorption Integral and
+      Rosei's}): FGR in $\mathbf{k}$-space, the $(u,v)$ linearization,
+      and the verified Jacobian bridge to Rosei's formulas.
+\item \textbf{Attempts at recreating Rosei's own derivation}
+      (\texttt{interband\_derivation.tex}, \texttt{v2},
+      \texttt{rosei\_equivalence\_derivation.tex}); these are
+      AI-drafted, mutually inconsistent in their band-sign
+      conventions, and are superseded by the present document.
+\item \textbf{The primary source}, GRW 1975, whose printed Eqs.~(6)
+      and (8) contain transcription defects (App.~\ref{app:grw}).
+\end{enumerate}
+This document keeps only what survives verification.  Section
+\ref{sec:fgr} builds the golden-rule machinery with all constants;
+Sec.~\ref{sec:reduction} performs the $\mathbf{k}$-space reduction in a
+form common to both critical points; Sec.~\ref{sec:XL} splits into the
+$X$ and $L$ columns; Sec.~\ref{sec:eps2} assembles $\eps_2$;
+Sec.~\ref{sec:photonic} derives the photonic density of states and the
+emission spectrum.  Appendices collect the GRW corrections, a
+dictionary of the conventions used across the repository, and a full
+dimensional audit.
+
+% =====================================================================
+\section{Conventions}\label{sec:conv}
+% =====================================================================
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Units & SI throughout; Gaussian equivalents given where GRW is quoted.\\
+Energy zero & Fermi level, $E_F=0$; all electron energies $E$ from $E_F$.\\
+Electron charge & $-e$, $e>0$; electron (bare) mass $m$.\\
+Spin & carried explicitly as a factor 2, never absorbed silently.\\
+Local axes & at each critical point, $\kpar$ along the $\Gamma X$
+             (resp.\ $\Gamma L$) axis, $\kperp$ radial in the\\
+           & perpendicular plane; $\mathbf{k}$ measured from the
+             critical point.\\
+Band coefficients & $A_i=\hbar^2/2m_{i\perp}$, $B_i=\hbar^2/2|m_{i\parallel}|$,
+                    $i=c,v$; all $A_i,B_i>0$,\\
+                  & signs of the dispersions carried by explicit $\pm$
+                    and by $\sigma_c=\pm1$ (Sec.~\ref{sec:bands}).\\
+Occupation & $\fFD(E)=\bigl[\rme^{E/\kB T}+1\bigr]^{-1}$
+             (equilibrium; non-equilibrium $f^S,f^P$ substitute).\\
+Photon & energy $\hw$, wavevector $\mathbf{q}$, polarization
+         $\hat{\bm{\eps}}_\lambda$.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% =====================================================================
+\section{Fermi's Golden Rule in $\mathbf{k}$-space}\label{sec:fgr}
+% =====================================================================
+
+\subsection{Minimal coupling}
+
+With the radiation field described by a vector potential $\mathbf{A}$
+in the Coulomb gauge ($\nabla\!\cdot\!\mathbf{A}=0$), the one-electron
+Hamiltonian is
+\begin{equation}
+\hat H=\frac{[\hat{\mathbf p}+e\mathbf A(\hat{\mathbf r},t)]^2}{2m}+V(\hat{\mathbf r})
+      =\underbrace{\frac{\hat p^2}{2m}+V}_{\hat H_0}
+       +\underbrace{\frac{e}{2m}\bigl(\mathbf A\!\cdot\!\hat{\mathbf p}
+        +\hat{\mathbf p}\!\cdot\!\mathbf A\bigr)}_{\hat H_{\rm int}}
+       +\underbrace{\frac{e^2A^2}{2m}}_{\text{dropped}} .
+\end{equation}
+In the Coulomb gauge $\hat{\mathbf p}\!\cdot\!\mathbf A
+=\mathbf A\!\cdot\!\hat{\mathbf p}$, so
+\begin{equation}
+\boxed{\;\hat H_{\rm int}=\frac{e}{m}\,\mathbf A\!\cdot\!\hat{\mathbf p}\;}
+\label{eq:Hint}
+\end{equation}
+(the factor $\tfrac12$ of the symmetrized form is consumed by the
+identity of the two terms; note A1 drops the $\tfrac12$ one line early
+but lands on the correct \eqref{eq:Hint}).  The $A^2$ term does not
+connect different bands to first order and is dropped.
+
+\subsection{Quantized field: absorption, stimulated and spontaneous emission}
+\label{sec:quantized}
+
+Expanding the field in a quantization volume $V$,
+\begin{equation}
+\mathbf A(\mathbf r)=\sum_{\mathbf q,\lambda}
+\sqrt{\frac{\hbar}{2\epsz\omega_q V}}\;\hat{\bm\eps}_\lambda
+\Bigl(\hat a_{\mathbf q\lambda}\,\rme^{i\mathbf q\cdot\mathbf r}
+     +\hat a^\dagger_{\mathbf q\lambda}\,\rme^{-i\mathbf q\cdot\mathbf r}\Bigr),
+\label{eq:Aquant}
+\end{equation}
+the matrix elements of $\hat H_{\rm int}$ between joint
+electron--photon states carry the boson factors
+\begin{equation}
+\bigl|\langle n_q-1|\hat a|n_q\rangle\bigr|^2=n_q
+\quad\text{(absorption)},\qquad
+\bigl|\langle n_q+1|\hat a^\dagger|n_q\rangle\bigr|^2=n_q+1
+\quad\text{(emission)} .
+\label{eq:bosefactors}
+\end{equation}
+The ``$+1$'' is the spontaneous channel: it survives at $n_q=0$ and is
+invisible to a purely classical $\mathbf A$.  This answers the
+footnote question left open in note A1: the semiclassical golden rule
+gives absorption and \emph{stimulated} emission only; spontaneous
+emission requires \eqref{eq:bosefactors}, and its mode sum is what
+produces the photonic density of states in Sec.~\ref{sec:photonic}.
+
+\subsection{Bloch states and vertical transitions}
+
+For Bloch states $\psi_{n\mathbf k}=\rme^{i\mathbf k\cdot\mathbf r}
+u_{n\mathbf k}(\mathbf r)/\sqrt V$, the matrix element of
+$\rme^{\pm i\mathbf q\cdot\mathbf r}\,\hat{\bm\eps}\!\cdot\!\hat{\mathbf p}$
+enforces crystal-momentum conservation
+$\mathbf k'=\mathbf k\pm\mathbf q$.  At optical frequencies
+$q\sim\omega/c\sim10^{-3}\,$\AA$^{-1}$ is negligible on the scale of
+the Brillouin zone, so transitions are vertical
+($\mathbf k'=\mathbf k$, dipole approximation) and
+\begin{equation}
+M_{cv}(\mathbf k)\equiv
+\langle c\,\mathbf k|\,\hat{\bm\eps}\!\cdot\!\hat{\mathbf p}\,|v\,\mathbf k\rangle,
+\qquad
+\bigl|\langle f|\hat H_{\rm int}|i\rangle\bigr|^2
+=\Bigl(\frac{e}{m}\Bigr)^{2}\frac{\hbar}{2\epsz\omega V}\,
+ |M_{cv}(\mathbf k)|^{2}\times\{n_q\text{ or }n_q+1\}.
+\label{eq:MEsq}
+\end{equation}
+
+\subsection{Golden-rule rates and $\eps_2$}\label{sec:eps2def}
+
+FGR for one photon mode, then summing over $\mathbf k$ (factor 2 for
+spin, $\sum_{\mathbf k}\to V\!\int\!\dd^3k/(2\pi)^3$) with Pauli
+blocking, gives the net photon absorption rate.  Equating the absorbed
+power to the electromagnetic dissipation rate
+$P_{\rm abs}=\tfrac12\epsz\,\eps_2(\omega)\,\omega|\mathbf E_0|^2 V$
+of a classical field $\mathbf E=\mathbf E_0\cos\omega t$
+(equivalently $A_0=E_0/\omega$) yields the standard exact result
+\begin{equation}
+\boxed{\;
+\eps_2(\omega)=\frac{\pi e^2}{\epsz m^2\omega^2}\,
+\frac{2}{(2\pi)^3}\int_{\rm BZ}\!\dd^3k\;
+\bigl|M_{cv}(\mathbf k)\bigr|^{2}\,
+\delta\!\bigl(\Ec(\mathbf k)-\Ev(\mathbf k)-\hw\bigr)\,
+\bigl[\fFD(\Ev)-\fFD(\Ec)\bigr]\; }
+\label{eq:eps2exact}
+\end{equation}
+per pair of bands (Gaussian form: replace $e^2/\epsz\to4\pi e_G^2$,
+i.e.\ prefactor $4\pi^2e_G^2/m^2\omega^2$).  The factor
+$[\fFD(\Ev)-\fFD(\Ec)]$ is the \emph{net} of absorption minus
+stimulated emission; GRW's $[1-\fFD(E)]$ is its limit for a fully
+occupied lower band, cf.\ Sec.~\ref{sec:occupation}.
+
+Near a critical point the interband momentum matrix element varies
+slowly; following Rosei we freeze it and average over polarization,
+\begin{equation}
+|M_{cv}|^2\;\longrightarrow\;
+\overline{|\hat{\bm\eps}\!\cdot\!\pcv|^2}=\tfrac13|P|^2,
+\qquad |P|^2\equiv|\pcv|^2\ \ \text{(SI momentum$^2$)} .
+\label{eq:Pdef}
+\end{equation}
+
+% =====================================================================
+\section{Reduction of the $\mathbf{k}$-integral: the common machinery}
+\label{sec:reduction}
+% =====================================================================
+
+\subsection{The Rosei two-band model}\label{sec:bands}
+
+Both critical points of gold are described by axially symmetric
+parabolic pairs.  With the conventions of Sec.~\ref{sec:conv} and the
+\emph{topology switch} $\sigma_c$,
+\begin{equation}
+\boxed{\;
+\begin{aligned}
+\Ec(\mathbf k)&=\Ezc+A_c\kperp^{2}+\sigma_c B_c\kpar^{2},
+&\qquad \sigma_c^{X}&=-1\ \ \text{(conduction saddle)},\\[2pt]
+\Ev(\mathbf k)&=-\hbar\omega_v-A_v\kperp^{2}-B_v\kpar^{2},
+&\qquad \sigma_c^{L}&=+1\ \ \text{(conduction minimum)},
+\end{aligned}\;}
+\label{eq:bands}
+\end{equation}
+where $\Ezc>0$ is the empty level at the critical point
+($\hbar\omega_{X_6^-}$ or $\hbar\omega_{L_6^-}$), $\hbar\omega_v>0$
+the occupied $d$ level below $E_F$
+($\hbar\omega_{X_7^+}$ or $\hbar\omega_{L^+}$), and the valence band is
+a local maximum in both directions at both points (all four C\&S
+curvatures negative).  The vertical transition energy is
+\begin{equation}
+\Omega(\mathbf k)\equiv\Ec-\Ev
+=\Eg+\Ab\,\kperp^{2}+\Bb\,\kpar^{2},
+\qquad
+\Eg=\Ezc+\hbar\omega_v,\quad
+\Ab=A_c+A_v,\quad
+\boxed{\Bb=B_v+\sigma_cB_c}
+\label{eq:Omega}
+\end{equation}
+--- the entire topological difference between $X$ and $L$ is carried
+by $\sigma_c$ through $\Bb$ (and through the determinant $\cD$ below).
+
+\medskip
+\noindent\textbf{Gold parameters} (levels from GRW's fit; masses in
+units of $m$, extracted from Christensen \& Seraphin 1971, Fig.~5 ---
+see the branch discussion in Sec.~\ref{sec:fork} for the starred
+entries):
+\begin{center}
+\begin{tabular}{lcccccccc}
+\toprule
+ & $\Eg$ (eV) & $\Ezc$ (eV) & $\hbar\omega_v$ (eV)
+ & $m_{c\perp}$ & $m_{c\parallel}$ & $m_{v\perp}$ & $m_{v\parallel}$ & $N$ \\
+\midrule
+$X$ & 1.94 & 0.17 & 1.77 & 0.31 & $-0.40^{\ast}$ & $-0.19$ & $-0.15^{\ast}$
+ & 3 (=6 halves)\\
+$L$ & 2.45 & 0.89 & 1.56 & 0.24 & $+0.12$ & $-0.70$ & $-1.03$
+ & 4 (=8 halves)\\
+\bottomrule
+\end{tabular}
+\end{center}
+$N$ counts \emph{full} inequivalent critical points; GRW count
+half-neighborhoods (6 $X$-faces, 8 $L$-faces), which is equivalent
+because the reduction below integrates over the full $\pm\kpar$
+neighborhood of each of the $N$ points.  Getting this factor wrong is
+a silent factor-2 error; here it is pinned explicitly.
+
+\subsection{Linearization $(u,v)=(\kperp^2,\kpar^2)$}
+
+This is the step where my derivation departs from (and simplifies)
+Rosei's geometric construction.  On the quadrant
+$u,v\ge0$ the two constraints of \eqref{eq:eps2exact} --- fixing the
+final-state energy $E$ and the transition energy $\Omega=\hw$ --- are
+\emph{linear}:
+\begin{equation}
+\begin{pmatrix} E-\Ezc\\[2pt] \hw-\Eg\end{pmatrix}
+=\underbrace{\begin{pmatrix} A_c & \sigma_cB_c\\[2pt] \Ab & \Bb\end{pmatrix}}_{\textstyle M}
+\begin{pmatrix} u\\[2pt] v\end{pmatrix},
+\qquad
+\cD\equiv\det M=A_cB_v-\sigma_c\,A_vB_c .
+\label{eq:linsys}
+\end{equation}
+Hence
+\begin{equation}
+\boxed{\;
+u=\frac{\Bb\,(E-\Ezc)-\sigma_cB_c(\hw-\Eg)}{\cD},
+\qquad
+v=\kpar^{2}=\frac{A_c(\hw-\Eg)-\Ab\,(E-\Ezc)}{\cD}
+\;}
+\label{eq:uv}
+\end{equation}
+and the physical window is exactly $\{u\ge0\}\cap\{v\ge0\}$.
+Note the two point-specific determinants:
+\begin{equation}
+\cD_X=A_cB_v+A_vB_c>0\ \ \text{always},
+\qquad
+\cD_L=A_cB_v-A_vB_c\ \ \text{(either sign; $<0$ for Au)} .
+\label{eq:Ds}
+\end{equation}
+
+\subsection{Resolving the double $\delta$: the kernel $K(E,\hw)$}
+\label{sec:kernel}
+
+Define the double-constrained $\mathbf k$-space measure (per critical
+point, full $\pm\kpar$ neighborhood, no spin):
+\begin{equation}
+K(E,\hw)\equiv\int\!\dd^3k\;
+\delta\bigl(\Ec(\mathbf k)-E\bigr)\,
+\delta\bigl(\Omega(\mathbf k)-\hw\bigr).
+\end{equation}
+With axial symmetry, $\dd^3k=2\pi\kperp\,\dd\kperp\,\dd\kpar$ over
+$\kpar\in(-\infty,\infty)$; substituting
+$\dd u=2\kperp\dd\kperp$ and, on each half-line,
+$\dd v=2\kpar\dd\kpar$,
+\begin{equation}
+\int\!\dd^3k
+=2\pi\cdot\tfrac12\int_0^\infty\!\!\dd u
+ \cdot 2\cdot\tfrac12\int_0^\infty\!\frac{\dd v}{\sqrt v}
+=\pi\int_0^\infty\!\!\dd u\int_0^\infty\!\frac{\dd v}{\sqrt v},
+\end{equation}
+where the explicit ``$2$'' counts the two hyperbola branches
+$\pm\kpar$ (this factor was implicit --- and halved --- in the
+\emph{Equivalence} note, which parameterized only $\kpar>0$; the
+convention here matches the $N$ counting of Sec.~\ref{sec:bands}).
+The linear map \eqref{eq:linsys} collapses both $\delta$'s with
+Jacobian $1/|\cD|$:
+\begin{equation}
+\boxed{\;
+K(E,\hw)=\frac{\pi}{|\cD|\,\kpar(E,\hw)}
+=\frac{4\pi\,\cF^{2}}{\hbar^{4}\,\kpar(E,\hw)},
+\qquad
+\cF\equiv\frac{\hbar^{2}}{2\sqrt{|\cD|}}
+\;}
+\label{eq:kernel}
+\end{equation}
+supported on the window $u,v\ge0$, with $\kpar=\sqrt v$ from
+\eqref{eq:uv}.  Equivalently, in the $(\kperp,\kpar)$ variables the
+same result follows from
+$|\det J|=4\kperp\kpar|\cD|$ with
+$J=\partial(\Ec,\Omega)/\partial(\kperp,\kpar)$
+--- the form verified in the \emph{Equivalence} note.
+
+The mass form of $\cF$ reproduces GRW Eq.~(5) at $X$ and its
+$L$ analogue:
+\begin{equation}
+\cF_X=\Bigl[\frac{m_{v\perp}m_{c\parallel}+m_{v\parallel}m_{c\perp}}
+{m_{v\perp}m_{v\parallel}m_{c\perp}m_{c\parallel}}\Bigr]^{-1/2},
+\qquad
+\cF_L=\Bigl[\frac{\bigl|m_{v\perp}m_{c\parallel}-m_{v\parallel}m_{c\perp}\bigr|}
+{m_{v\perp}m_{v\parallel}m_{c\perp}m_{c\parallel}}\Bigr]^{-1/2},
+\label{eq:Fmass}
+\end{equation}
+(masses as magnitudes; the sum/difference structure is exactly the
+$\sigma_c=\mp1$ dichotomy of \eqref{eq:Ds}).  GRW's energy-distributed
+joint density of states (their Eq.~(4)) is
+$D_{l\to u}(E,\hw)=(8\pi^2\hbar^2)^{-1}\cF/\kpar$; it differs from the
+honest measure \eqref{eq:kernel} by the constant
+$K/D_{l\to u}=32\pi^3\cF/\hbar^2$, a normalization GRW absorb into
+their $|P|^2$ (see App.~\ref{app:dict}); only the fitted strength
+$S=\cF|P|^2_{\rm GRW}$ is observable.
+
+\subsection{Occupation factors}\label{sec:occupation}
+
+Resolving the $\mathbf k$-sum through the final-state energy $E$
+(upper-band energy; the initial state then sits at $E-\hw$), the
+thermal weights are
+\begin{equation}
+\text{absorption:}\ \ \Delta f=\fFD(E-\hw)-\fFD(E),
+\qquad
+\text{emission:}\ \ \fFD(E)\bigl[1-\fFD(E-\hw)\bigr].
+\label{eq:occup}
+\end{equation}
+For the noble-metal $d$ bands, $E-\hw\lesssim-1.5\,$eV${}\ll-\kB T$,
+so $\fFD(E-\hw)\simeq1$ and $\Delta f\to[1-\fFD(E)]$: GRW's factor.
+The full form \eqref{eq:occup} is kept because the non-equilibrium
+extension replaces $\fFD$ by $f^S$ or $f^P$, for which the lower-band
+occupation is no longer saturated.
+
+% =====================================================================
+\section{The two critical points, side by side}\label{sec:XL}
+% =====================================================================
+
+Everything so far is common.  The topology now forks the derivation
+through two signs only: $\sigma_c$ (shape of $\Bb$) and
+$\mathrm{sign}(\cD)$ (which window edge is singular).  The columns
+below use the C\&S-signed masses of Sec.~\ref{sec:bands}; the
+alternative $X$ branch implied by GRW's own model is treated in
+Sec.~\ref{sec:fork}.
+
+\columnratio{0.5}
+\setlength{\columnseprule}{0.4pt}
+\Needspace{8\baselineskip}
+\begin{paracol}{2}
+
+\begin{leftcolumn}
+\subsection*{$X$ point\quad ($\sigma_c=-1$)}
+
+\textbf{Bands.} Conduction $X_6^-$: saddle
+(up along $\kperp$, down along $\kpar$); valence $X_7^+$: maximum.
+\begin{align*}
+\Ec&=\Ezc+A_c\kperp^2-B_c\kpar^2,\\
+\Ev&=-\hbar\omega_{X_7^+}-A_v\kperp^2-B_v\kpar^2 .
+\end{align*}
+
+\textbf{Transition surface.}
+\[
+\Omega=\EgX+\Ab_X\kperp^2+\Bb_X\kpar^2,\quad
+\Bb_X=B_v-B_c .
+\]
+With the C\&S-signed masses $m_{v\parallel}\!=\!0.15<m_{c\parallel}\!=\!0.40$:
+$B_v>B_c$, so $\Bb_X>0$: $\Omega$ has a \emph{minimum} at $X$ despite
+the conduction band being a saddle.  CEDS exists only for
+$\hw\ge\EgX$ and is \emph{closed} (an ellipse in the $(u,v)$
+quadrant's boundary sense: a segment).
+
+\textbf{Determinant.}
+\[
+\cD_X=A_cB_v+A_vB_c>0 .
+\]
+
+\textbf{Window.}  From $v\ge0$ with $\cD_X>0$: upper edge; from
+$u\ge0$: lower edge:
+\begin{align*}
+E^{+}_X&=\Ezc+\frac{A_c}{\Ab_X}(\hw-\EgX),\\
+E^{-}_X&=\Ezc-\frac{B_c}{\Bb_X}(\hw-\EgX).
+\end{align*}
+Slopes for Au: $A_c/\Ab_X=0.38$, $B_c/\Bb_X=0.60$.  The window dips
+\emph{below} $E_F$ once $\hw>\EgX+\Ezc\Bb_X/B_c\simeq2.22$ eV --- the
+conduction saddle drags final states under the Fermi sea, which is
+what makes $X$ thermally active.
+
+\textbf{Singular edge.}  From \eqref{eq:uv},
+\[
+\kpar^{2}=\frac{\Ab_X}{\cD_X}\,\bigl(E^{+}_X-E\bigr),
+\]
+so $K\propto1/\kpar$ diverges at the \emph{upper} limit
+($\kpar\to0$ circle of the CEDS):
+\[
+\frac{1}{\kpar(E)}=\sqrt{\frac{\cD_X}{\Ab_X}}\;
+\frac{1}{\sqrt{E^{+}_X-E}} .
+\]
+
+\textbf{1D line-shape integral.}
+\[
+J_X(\hw,T)=\int_{E^{-}_X}^{E^{+}_X}
+\frac{\Delta f(E)\;\dd E}{\sqrt{E^{+}_X-E}} .
+\]
+Onset at $T=0$: $\hw=\EgX$ exactly, with
+$J_X\propto\sqrt{\hw-\EgX}$ (M$_0$-type onset of the closed window).
+\end{leftcolumn}
+
+\begin{rightcolumn}
+\subsection*{$L$ point\quad ($\sigma_c=+1$)}
+
+\textbf{Bands.} Conduction $L_6^-$: minimum in both directions;
+valence $L^+$ ($d$ top): maximum.
+\begin{align*}
+\Ec&=\Ezc+A_c\kperp^2+B_c\kpar^2,\\
+\Ev&=-\hbar\omega_{L^+}-A_v\kperp^2-B_v\kpar^2 .
+\end{align*}
+
+\textbf{Transition surface.}
+\[
+\Omega=\EgL+\Ab_L\kperp^2+\Bb_L\kpar^2,\quad
+\Bb_L=B_v+B_c>0
+\]
+unconditionally: $\Omega$ is an M$_0$ minimum for \emph{any} masses.
+CEDS exists only for $\hw\ge\EgL$ and is closed (ellipsoid).
+
+\textbf{Determinant.}
+\[
+\cD_L=A_cB_v-A_vB_c<0\ \ \text{for Au}
+\]
+($m_{v\perp}m_{c\parallel}=0.084<m_{c\perp}m_{v\parallel}=0.247$).
+
+\textbf{Window.}  Same algebra, but $\cD_L<0$ \emph{reverses both
+inequalities}: $v\ge0$ now gives the \emph{lower} edge, $u\ge0$ the
+upper:
+\begin{align*}
+E^{-}_L&=\Ezc+\frac{A_c}{\Ab_L}(\hw-\EgL),\\
+E^{+}_L&=\Ezc+\frac{B_c}{\Bb_L}(\hw-\EgL).
+\end{align*}
+Slopes for Au: $A_c/\Ab_L=0.745$, $B_c/\Bb_L=0.896$.  The whole
+window rides \emph{upward} from $\Ezc=0.89$ eV: in this
+parameterization the $L$ absorption never touches the Fermi sea for
+$\hw\ge\EgL$ (see Remark~\ref{rem:neck}).
+
+\textbf{Singular edge.}  From \eqref{eq:uv} with $\cD_L<0$,
+\[
+\kpar^{2}=\frac{\Ab_L}{|\cD_L|}\,\bigl(E-E^{-}_L\bigr),
+\]
+so $K\propto1/\kpar$ diverges at the \emph{lower} limit:
+\[
+\frac{1}{\kpar(E)}=\sqrt{\frac{|\cD_L|}{\Ab_L}}\;
+\frac{1}{\sqrt{E-E^{-}_L}} .
+\]
+
+\textbf{1D line-shape integral.}
+\[
+J_L(\hw,T)=\int_{E^{-}_L}^{E^{+}_L}
+\frac{\Delta f(E)\;\dd E}{\sqrt{E-E^{-}_L}} .
+\]
+Onset at $T=0$: $\hw=\EgL$ exactly, with
+$J_L\propto\sqrt{\hw-\EgL}$; the inverse-square-root weight sits at
+the onset edge itself, which is why the $L$ edge is sharp and strong.
+\end{rightcolumn}
+
+\end{paracol}
+
+\medskip
+\noindent
+Both points share the M$_0$-type $\sqrt{\hw-\Eg}$ JDOS onset; the
+\emph{only} structural difference in the final integrals is which edge
+carries the $1/\sqrt{\;}$ singularity --- upper at $X$
+($\cD_X>0$), lower at $L$ ($\cD_L<0$).  This reconciles the apparent
+contradiction between the repository documents that call both onsets
+``M$_0$'' and those that emphasize the $X$/$L$ asymmetry.
+
+\begin{remark}[The $L$ level and the Fermi-surface neck]\label{rem:neck}
+GRW's qualitative discussion attributes the strength of the $L$
+singularity to the onset CEDS being tangent to the Fermi surface along
+the neck.  A neck requires the $L_6^-$ ($L_{2'}$) level \emph{below}
+$E_F$, whereas the fitted level scheme
+($\EgL=2.45$, $\hbar\omega_{L^+}=1.56\Rightarrow\Ezc^L=+0.89$ eV)
+places the model window entirely above $E_F$, making the $L$ channel
+temperature-inert through the Fermi factor.  Both statements cannot
+hold in one parabolic model; the fitted scheme is what the code
+implements, and the tension should be flagged in the thesis rather
+than silently resolved.
+\end{remark}
+
+% ---------------------------------------------------------------------
+\subsection{The $X$ fork: sign of $\Bb_X$ (closed window vs.\ GRW's
+open CEDS)}\label{sec:fork}
+% ---------------------------------------------------------------------
+
+The starred $X$ masses in Sec.~\ref{sec:bands} are the crux of a real
+discrepancy between my C\&S extraction and GRW's operational model.
+Everything above the gap is common; the fork concerns
+$m_{c\parallel}$ vs $m_{v\parallel}$, i.e.\ the sign of
+$\Bb_X=B_v-B_c$:
+
+\begin{paracol}{2}
+\begin{leftcolumn}
+\subsubsection*{Branch A: $\Bb_X>0$ (my extraction)}
+$m_{c\parallel}=0.40$, $m_{v\parallel}=0.15$
+($d$ band \emph{steeper} than sp along $\Delta$).
+
+\begin{itemize}
+\item Closed window $[E^-_X,E^+_X]$ as derived above.
+\item \textbf{No geometric sub-gap transitions}: at $T=0$,
+      $\eps_2^X$ vanishes below $\EgX$; the observed tail under
+      $1.94$ eV must come entirely from lifetime broadening and
+      thermal smearing.
+\item GRW's $-20\kB T$ lower cutoff is \emph{not} the true limit; the
+      geometric floor $E^-_X$ lies above it, and integrating below
+      $E^-_X$ adds (numerically tiny at 300 K, growing with $T$)
+      unphysical weight.  The GUI formula sheet currently
+      mixes this branch's masses with Branch B's window ---
+      the ``chimera'' flagged in the repo manifest.
+\end{itemize}
+\end{leftcolumn}
+
+\begin{rightcolumn}
+\subsubsection*{Branch B: $\Bb_X<0$ (GRW's model)}
+$m_{c\parallel}=0.15$, $m_{v\parallel}=0.40$
+(sp light, $d$ heavy along $\Delta$ --- the physical prior for flat
+$d$ bands).
+
+\begin{itemize}
+\item $\Omega$ is a genuine saddle: the CEDS is an \emph{open}
+      hyperboloid for all $\hw$; transitions exist also for
+      $\hw<\EgX$ (real sub-gap tail).
+\item No geometric lower limit: the $E$ integral is cut by occupation
+      alone; GRW's practical floor $E_{\min}=-20\kB T$.
+\item Upper limit is piecewise:
+      \begin{align*}
+      \hw\ge\EgX:\quad E^{+}&=\Ezc+\tfrac{A_c}{\Ab}(\hw-\EgX),\\
+      \hw<\EgX:\quad E^{+}&=\Ezc-\tfrac{B_c}{|\Bb_X|}(\EgX-\hw),
+      \end{align*}
+      singular ($\kpar\!\to\!0$) above the gap; the finite
+      $\kperp\!=\!0$ edge below it $\Rightarrow$ \emph{step-like
+      onset}.  At $T=0$ absorption starts when $E^+$ crosses $E_F$:
+      \[
+      \hw_{\rm on}=\EgX-\Ezc\,\frac{B_c-B_v}{B_c}\simeq1.83\ \text{eV}
+      \]
+      --- the piezomodulation threshold.
+\end{itemize}
+\end{rightcolumn}
+\end{paracol}
+
+\begin{remark}[Fit degeneracy]\label{rem:degeneracy}
+Above the gap, the two branches give the \emph{same functional form}
+$\Delta f/\sqrt{E^+_X-E}$ with the same $E^+_X$ (which depends only on
+perpendicular masses); the parallel masses enter only through
+$\cF_X\,{=}\,\hbar^2/2\sqrt{\cD_X}$
+($\cF_X^{A}=0.170\,m$, $\cF_X^{B}=0.152\,m$), which is absorbed into
+the fitted strength $S_X=\cF_X|P_X|^2$.  A fit to $\eps_2$ above
+$1.94$ eV therefore \emph{cannot} distinguish the branches; they
+differ below the gap (geometric tail vs broadening-only) and in the
+extracted $|P_X|^2$.  \textbf{Action}: re-measure the two $\Delta$-axis
+slopes in C\&S Fig.~5 to fix the branch; until then, results should
+quote the branch used.
+\end{remark}
+
+% =====================================================================
+\section{Assembled $\eps_2$ for gold}\label{sec:eps2}
+% =====================================================================
+
+Inserting \eqref{eq:kernel} and \eqref{eq:Pdef} into
+\eqref{eq:eps2exact}, with $N$ full critical points,
+\begin{equation}
+\eps_2^{(i)}(\hw,T)
+=\frac{\pi e^2}{\epsz m^2\omega^2}\cdot\frac{2}{(2\pi)^3}\cdot
+\frac{N_i|P_i|^2}{3}\int\!\dd E\;\Delta f(E)\,K_i(E,\hw)
+=\frac{e^2N_i|P_i|^2}{12\pi\,\epsz m^2\omega^2\,|\cD_i|}
+\int\!\frac{\Delta f(E)\,\dd E}{\kpar(E,\hw)} ,
+\end{equation}
+i.e., with the explicit kernels of Sec.~\ref{sec:XL},
+\begin{equation}
+\boxed{\;
+\begin{aligned}
+\eps_2^{X}(\hw,T)&=\frac{e^2\,N_X|P_X|^2}
+{12\pi\,\epsz m^2\omega^2\sqrt{\Ab_X\cD_X}}
+\int_{E^-_X}^{E^+_X}
+\frac{\bigl[\fFD(E-\hw)-\fFD(E)\bigr]\dd E}{\sqrt{E^+_X-E}},\\[6pt]
+\eps_2^{L}(\hw,T)&=\frac{e^2\,N_L|P_L|^2}
+{12\pi\,\epsz m^2\omega^2\sqrt{\Ab_L|\cD_L|}}
+\int_{E^-_L}^{E^+_L}
+\frac{\bigl[\fFD(E-\hw)-\fFD(E)\bigr]\dd E}{\sqrt{E-E^-_L}},
+\end{aligned}\;}
+\label{eq:eps2final}
+\end{equation}
+with windows and slopes from Sec.~\ref{sec:XL} (Branch A) or
+Sec.~\ref{sec:fork} (Branch B at $X$), and
+$\eps_2^{\rm inter}=\eps_2^X+\eps_2^L$.  Every constant is now
+explicit; the dimensional audit is in App.~\ref{app:dim}.  Fitted
+ratio (GRW): $|P_X/P_L|^2=0.370$; absolute strengths are set by one
+overall scale against Johnson \& Christy.
+
+Equation \eqref{eq:eps2final} is equivalent to GRW Eq.~(9)
+[$\eps_2=\tfrac{8\pi^2e_G^2\hbar^4}{3m^2(\hw)^2}\sum_i|P_i|^2_{\rm GRW}
+\,\mathcal{I}_i$] under the dictionary of App.~\ref{app:dict}.
+
+% =====================================================================
+\section{Photonic density of states and the emission counterpart}
+\label{sec:photonic}
+% =====================================================================
+
+\subsection{Mode counting}
+
+Periodic quantization in volume $V$: allowed wavevectors
+$\mathbf q=\tfrac{2\pi}{L}(n_x,n_y,n_z)$, two transverse polarizations,
+$\omega=cq$:
+\begin{equation}
+\rho(\omega)\,\dd\omega
+=\frac{2}{V}\,\frac{V}{(2\pi)^3}\,4\pi q^2\,\dd q
+\quad\Longrightarrow\quad
+\boxed{\;\rho(\omega)=\frac{\omega^2}{\pi^2c^3}\;}
+\label{eq:rhophot}
+\end{equation}
+modes per unit volume per unit angular frequency (per unit photon
+energy: $\rho(\omega)/\hbar$).  In a transparent host of index $n$,
+$c\to c/n$ gives $\rho=n^3\omega^2/\pi^2c^3$ (with dispersion,
+$n^2(n+\omega\,\dd n/\dd\omega)$); in a structured environment the
+role of $\rho$ is played by the \emph{local} density of states
+$\rho(\mathbf r,\omega)$ (Novotny \& Hecht), which is precisely the
+photonic factor of the PL factorization used in this thesis.
+
+\subsection{Spontaneous emission rate of one pair}
+
+FGR with the quantized field \eqref{eq:Aquant} at $n_q=0$, summed over
+modes:
+\begin{equation}
+W=\frac{2\pi}{\hbar}\sum_{\mathbf q,\lambda}
+\Bigl(\frac{e}{m}\Bigr)^2\frac{\hbar}{2\epsz\omega_qV}
+\bigl|\hat{\bm\eps}_\lambda\!\cdot\!\pcv\bigr|^2
+\delta(\Omega-\hbar\omega_q).
+\end{equation}
+Using $\sum_\lambda\int\dd\Omega_q
+|\hat{\bm\eps}_\lambda\!\cdot\!\pcv|^2=\tfrac{8\pi}{3}|\pcv|^2$ and
+$\sum_{\mathbf q}\to V\!\int\!q^2\dd q\,\dd\Omega_q/(2\pi)^3$,
+\begin{equation}
+\boxed{\;
+W_{\rm sp}(\omega)
+=\frac{e^2\,\omega\,|P|^2}{3\pi\epsz\hbar m^2c^3}
+=\underbrace{\frac{\pi e^2|P|^2}{3\epsz\hbar m^2\omega}}_{\text{matter}}
+\times\underbrace{\frac{\omega^2}{\pi^2c^3}}_{\rho(\omega)}
+\;}
+\label{eq:Wsp}
+\end{equation}
+--- the vacuum Einstein-$A$ rate in the $\mathbf A\!\cdot\!\mathbf p$
+form (equivalently $e^2\omega^3|\langle\mathbf r\rangle_{cv}|^2/
+3\pi\epsz\hbar c^3$, via $|\pcv|=m\omega|\langle\mathbf r\rangle_{cv}|$).  The
+factorization into a matter part times $\rho(\omega)$ is exact and is
+the microscopic origin of the LDOS $\times$ electronic split assumed
+in Chapter 2.
+
+\subsection{The interband PL spectrum and the Kirchhoff check}
+
+Summing \eqref{eq:Wsp} over occupied-upper/empty-lower pairs of one
+critical point (spin 2, $N$ points):
+\begin{equation}
+\boxed{\;
+R(\hw)=\rho(\omega)\,\frac{\pi e^2}{3\epsz\hbar m^2\omega}\,
+\frac{N|P|^2}{4\pi^3}\int\!\dd E\;
+\fFD(E)\bigl[1-\fFD(E-\hw)\bigr]\,K(E,\hw)
+\;}
+\label{eq:PL}
+\end{equation}
+photons per unit time, volume and photon energy, with the same kernels
+and windows as in \eqref{eq:eps2final} (only the occupation factor
+differs).  Using the thermal identity (notes A2/A3)
+\begin{equation}
+\fFD(E)\bigl[1-\fFD(E-\hw)\bigr]
+=n_B(\hw)\,\bigl[\fFD(E-\hw)-\fFD(E)\bigr],
+\qquad n_B(x)=\frac{1}{\rme^{x/\kB T}-1},
+\end{equation}
+every electronic factor of \eqref{eq:PL} maps onto \eqref{eq:eps2final}
+and the constants collapse \emph{exactly}:
+\begin{equation}
+\boxed{\;
+R(\hw)=\frac{\omega^3}{\pi^2\hbar c^3}\;\eps_2(\omega)\;n_B(\hw)
+=\frac{\omega\,\rho(\omega)}{\hbar}\,\eps_2(\omega)\,n_B(\hw)
+\;}
+\label{eq:vRS}
+\end{equation}
+--- the van Roosbroeck--Shockley relation.  Emission over (stimulated)
+absorption per thermal photon is $n_B/(n_B{+}1)=\rme^{-\hw/\kB T}$:
+Kirchhoff's law, consistent with note A9 and with the selective
+(non-Planckian) emissivity found for gold.  That \eqref{eq:eps2final}
+and \eqref{eq:PL}, derived independently, satisfy \eqref{eq:vRS} with
+no leftover constant is the strongest global check that all prefactors
+in this document are right.
+
+Out of equilibrium, replace $\fFD$ in \eqref{eq:PL} by $f^S$ (CW) or
+$f^P$ (pulsed); \eqref{eq:vRS} then no longer holds and the deviation
+\emph{is} the non-equilibrium PL signal this thesis is after.  In a
+structured photonic environment, $\rho(\omega)\to\rho(\mathbf r,\omega)$
+in \eqref{eq:PL}.
+
+% =====================================================================
+\appendix
+% =====================================================================
+\section{Corrections to GRW's printed Eqs.\ (6) and (8)}\label{app:grw}
+
+\textbf{Eq.\ (6).}  As printed (and as OCR'd), the right-hand side is
+dimensionally inconsistent (an energy under a square root equated to a
+wavevector).  Solving \eqref{eq:linsys} for $v=\kpar^2$ in GRW's
+variables gives the intended equation:
+\begin{equation}
+\kpar^{2}
+=\frac{2\cF_X^{2}}{\hbar^{2}}\Bigl[
+\frac{\hw-\hbar\omega_{X_7^+}-E}{m_{c\perp}}
++\frac{\hbar\omega_{X_6^-}-E}{m_{v\perp}}\Bigr]
+=\frac{A_c(\hw-\EgX)-\Ab_X(E-\Ezc)}{\cD_X},
+\tag{6$'$}
+\end{equation}
+whose three numerator terms match the printed fragments slot by slot
+(the print lost the $1/m_{c\perp}$ on the first term, the global
+$2\cF^2/\hbar^2$, and the square on $\kpar$).
+
+\medskip
+\textbf{Eq.\ (8).}  Printed:
+$E_{\max}=\hbar\omega_{X_6^-}
++(\EgX-\hw)\,m_{u\parallel}/(m_{l\parallel}-m_{u\parallel})$.
+Solving the model \eqref{eq:bands} for the $\kperp=0$ edge gives
+\begin{equation}
+E_{\kperp=0}
+=\hbar\omega_{X_6^-}
++(\EgX-\hw)\,\frac{m_{l\parallel}}{m_{u\parallel}-m_{l\parallel}},
+\tag{8$'$}
+\end{equation}
+i.e.\ the printed equation has the subscripts $u\parallel$ and
+$l\parallel$ interchanged (a single consistent swap; Eq.~(6)'s
+subscripts are \emph{not} swapped, so this is specific to (8)).
+On GRW's Branch B ($m_{u\parallel}=0.15<m_{l\parallel}=0.40$),
+(8$'$) is the finite $\kperp\!=\!0$ top edge of the \emph{sub-gap}
+CEDS --- the correct upper integration limit for $\hw<\EgX$ and the
+origin of the step-like $1.83$ eV onset.  On Branch A
+($\Bb_X>0$), the same algebraic edge is instead the \emph{lower}
+window limit $E^-_X$; the earlier repo diagnosis
+(\texttt{rosei\_equivalence\_derivation.tex}: ``(8) should contain
+perpendicular masses'') implicitly assumed Branch A above the gap,
+where the binding upper edge is indeed the $\kperp$-mass expression
+$E^+_X$.  The branch-resolved statement above supersedes both.
+
+\section{Dictionary of conventions across the repository}\label{app:dict}
+
+\begin{center}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lllll}
+\toprule
+Document & upper band & lower band & $\Bb$ & status\\
+\midrule
+GRW 1975; \emph{X/L note}; this doc ($X$) &
+$+A_u\kperp^2-B_u\kpar^2$ & $-A_l\kperp^2-B_l\kpar^2$ &
+$B_l-B_u$ & canonical\\
+\emph{Equivalence} note ($X$) &
+$+A_u\kperp^2+B_u\kpar^2$ & $-A_l\kperp^2+B_l\kpar^2$ &
+$B_u-B_l$ & same $\cD$ (sign-robust)\\
+A8 / A8.L &
+$+A_c u-B_c v$ & $-A_v u-B_v v$ & $B_v-B_c$ &
+A8 ok$^{(a)}$; A8.L wrong at $L$$^{(b)}$\\
+\texttt{interband\_derivation\_v2} & mixed & mixed & --- &
+internally inconsistent$^{(c)}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+{\footnotesize
+$^{(a)}$ A8's $\mathcal{E}_{\min}$ denominator $(B_v{+}B_c)$ is the
+$\sigma_c{=}{+}1$ formula; for its own $X$ conventions it should be
+$\Bb=B_v{-}B_c$.\quad
+$^{(b)}$ A8.L models the $L$ conduction band as a saddle ($-B_c$);
+C\&S give $m_{c\parallel}^L=+0.12$: it is a minimum, $\sigma_c=+1$.\quad
+$^{(c)}$ v2 asserts $\Bb>0$ \emph{and} a geometric sub-gap tail
+(requires $\Bb<0$), and labels $L$ as M$_1$.}
+
+\medskip
+\noindent\textbf{EDJDOS normalizations.}  With
+$K$ from \eqref{eq:kernel} (this doc), $\mathcal J$ from the
+\emph{Equivalence} note ($\kpar>0$ half only: $\mathcal J=K/2$), and
+GRW's $D=(8\pi^2\hbar^2)^{-1}\cF/\kpar$:
+\begin{equation}
+K=2\,\mathcal J=\frac{32\pi^3\cF}{\hbar^2}\,D .
+\end{equation}
+Matching \eqref{eq:eps2final} to GRW Eq.~(9) fixes GRW's
+matrix-element convention:
+\begin{equation}
+|P|^2_{\rm GRW}=\frac{4N\cF}{\hbar^4}\,|P|^2_{\rm SI}
+=\frac{N}{\cF\,\cD}\,|P|^2_{\rm SI},
+\end{equation}
+which carries dimension $[p^2]\,[{\rm mass}]\,[\hbar]^{-4}$: GRW's
+$|P|^2$ is not a bare momentum-squared, and only the combination
+$S=\cF|P|^2_{\rm GRW}$ (their Eq.~(10)) is observable --- consistent
+with their choice to fit $S_X,S_L$ rather than $|P|^2$ alone.
+
+\section{Dimensional audit}\label{app:dim}
+
+All checks in SI; $[\,e^2/\epsz\,]={\rm J\,m}$,
+$[\,|P|^2\,]={\rm kg^2m^2s^{-2}}$, $[\,A_i\,]=[\,B_i\,]={\rm J\,m^2}$,
+$[\,\cD\,]={\rm J^2m^4}$, $[\,\cF\,]={\rm kg}$.
+\begin{itemize}
+\item \eqref{eq:kernel}:
+$[K]=1/([{\rm J^2m^4}][{\rm m^{-1}}])={\rm J^{-2}m^{-3}}$ ---
+states per volume per (energy)$^2$, as a double-$\delta$ measure must be.
+\item \eqref{eq:eps2final}:
+$[\Ab\cD]^{1/2}={\rm J^{3/2}m^3}$; the integral gives
+${\rm J^{1/2}}$;
+$\dfrac{{\rm J\,m}\cdot{\rm kg^2m^2s^{-2}}\cdot{\rm J^{1/2}}}
+{{\rm kg^2s^{-2}}\cdot{\rm J^{3/2}m^3}}=1$. \checkmark
+\item \eqref{eq:rhophot}: $[\rho]={\rm s\,m^{-3}}$
+(modes per volume per $\dd\omega$). \checkmark
+\item \eqref{eq:Wsp}:
+$\dfrac{{\rm J\,m}\cdot{\rm s^{-1}}\cdot{\rm kg^2m^2s^{-2}}}
+{{\rm J\,s}\cdot{\rm kg^2}\cdot{\rm m^3s^{-3}}}={\rm s^{-1}}$. \checkmark
+\item \eqref{eq:PL}: $[W_{\rm sp}]\cdot[K]\cdot{\rm J}
+={\rm s^{-1}J^{-1}m^{-3}}$ --- photons per time, volume and photon
+energy. \checkmark
+\item \eqref{eq:vRS}: $[\omega\rho/\hbar]
+={\rm s^{-1}\,s\,m^{-3}\,J^{-1}\,}$$=$ ${\rm J^{-1}m^{-3}s^{-1}}$,
+times dimensionless $\eps_2n_B$. \checkmark
+\end{itemize}
+
+\section*{References}
+\begin{itemize}
+\item M.~Guerrisi, R.~Rosei, P.~Winsemius,
+\emph{Splitting of the interband absorption edge in Au},
+Phys.\ Rev.\ B \textbf{12}, 557 (1975).
+\item R.~Rosei, \emph{Temperature modulation of the optical
+transitions involving the Fermi surface in Ag: theory},
+Phys.\ Rev.\ B \textbf{10}, 474 (1974).
+\item N.~E.~Christensen, B.~O.~Seraphin,
+\emph{Relativistic band calculation and the optical properties of
+gold}, Phys.\ Rev.\ B \textbf{4}, 3321 (1971).
+\item P.~B.~Johnson, R.~W.~Christy,
+\emph{Optical constants of the noble metals},
+Phys.\ Rev.\ B \textbf{6}, 4370 (1972).
+\item Y.~Sivan, Y.~Dubi, non-equilibrium electron distributions and
+metal photoluminescence (2021), and refs.\ therein.
+\item L.~Novotny, B.~Hecht, \emph{Principles of Nano-Optics},
+2nd ed., Cambridge (2012) --- LDOS.
+\item Vault notes consolidated here: A1--A4, A8, A8.L,
+\emph{Absorption Integral (Using Rosei's Notations)},
+\emph{Interband Absorption at X and L (Rosei's Notation)},
+\emph{Equivalence of My Absorption Integral and Rosei's},
+\emph{Effective Mass Extraction}, \texttt{rosei\_model\_formulas.md}.
+\end{itemize}
+
+\end{document}
