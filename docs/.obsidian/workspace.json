@@ -11,43 +11,13 @@
             "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
-              "type": "pdf",
-              "state": {
-                "file": "notes/Rosei Equivalence Derivation/rosei_equivalence_derivation.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "rosei_equivalence_derivation"
-            }
-          },
-          {
-            "id": "a6a8e1f341fceea8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/concepts/Non-equilibrium Emission in Metals.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Non-equilibrium Emission in Metals"
-            }
-          },
-          {
-            "id": "ac677c0a66a23589",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "references/PDFs/7 - Rosei.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "7 - Rosei"
+              "title": "New tab"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -103,6 +73,16 @@
               },
               "icon": "lucide-list",
               "title": "Outline of 7 - Rosei"
+            }
+          },
+          {
+            "id": "b99f8394952ba4dd",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
@@ -218,12 +198,12 @@
       "obsidian-stille:Toggle Stille": false
     }
   },
-  "active": "ac677c0a66a23589",
+  "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "references/PDFs/7 - Rosei.pdf",
     "notes/concepts/Non-equilibrium Emission in Metals.md",
     "notes/Rosei Equivalence Derivation/rosei_equivalence_derivation.pdf",
     "notes/concepts/X & L Dispersion Relations.md",
-    "references/PDFs/7 - Rosei.pdf",
     "notes/concepts/Lifetime Broadening.md",
     "notes/concepts/2 - Theoretical Framework.md",
     "notes/log/Log.md",
