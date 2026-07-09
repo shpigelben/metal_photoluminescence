@@ -4,11 +4,10 @@
 %  Same math, same equation numbering / labels / citations / outline;
 %  the prose is rewritten to read like my own notes (for my advisor),
 %  the X vs L split is made explicit (what Rosei derived here vs. what
-%  he borrowed from earlier papers), the three printed equations of
-%  GRW that don't survive the rederivation -- Eqs. (4), (6), (8),
-%  most likely typos -- are shown next to their fixes in red callout
-%  boxes, and GRW's headline results (7) and (9) are stated up front
-%  as an orientation. No abstract.
+%  he borrowed from earlier papers), three printed equations that look
+%  like typos -- Eqs. (4), (6), (8) -- are flagged in red callout boxes
+%  with a suggested correction beside each, and GRW's headline results
+%  (7) and (9) are stated up front as an orientation. No abstract.
 %
 %  Companions in this folder: rosei_grw.tex (terser sibling),
 %  rosei_master.tex (SI units, convention-general machinery).
@@ -68,15 +67,15 @@
 \newcommand{\wLsix}{\hbar\omega_{L_6^-}}
 \newcommand{\wLplus}{\hbar\omega_{L^+}}
 \newcommand{\grweq}[1]{\textbf{[GRW~(#1)]}}
-\newcommand{\grwfix}[1]{\textbf{[GRW~(#1) corrected]}}
+\newcommand{\grwfix}[1]{\textbf{[GRW~(#1), suggested fix]}}
 \newtheorem{remark}{Remark}[section]
 \surroundwithmdframed[style=remarkstyle]{remark}
 
 \title{\bfseries Rebuilding Rosei's Interband $\epsilon_2$ of Gold in
 His Own Notation\\[4pt]
 \large From Fermi's Golden Rule in $\mathbf{k}$-space --- recreating
-Guerrisi--Rosei--Winsemius Eqs.~(1)--(10), \\ and fixing the three
-printed ones that are wrong: \textcolor{BrickRed}{(4), (6), (8)}}
+Guerrisi--Rosei--Winsemius Eqs.~(1)--(10), \\ with suggested
+corrections to three apparent typos: \textcolor{BrickRed}{(4), (6), (8)}}
 \author{Ben Shpigel\\ \small Department of Physics, Ben-Gurion University of the Negev}
 \date{July 2026}
 
@@ -84,32 +83,25 @@ printed ones that are wrong: \textcolor{BrickRed}{(4), (6), (8)}}
 \maketitle
 
 % =====================================================================
-\section*{Before the algebra: what this note is, and where it goes}
+\section*{Introduction}
 % =====================================================================
 
 This note rebuilds Rosei's interband $\epsilon_2(\hw,T)$ of gold from
-the ground up --- starting at Fermi's Golden Rule, in Rosei's own
-symbols --- so that every one of the ten numbered equations in
-Guerrisi, Rosei \& Winsemius (``GRW'', \emph{Phys.\ Rev.\ B}
-\textbf{12}, 557 (1975)) drops out of a single, continuous derivation.
-I wrote it this way because I wanted one place where the whole chain is
-visible, and because along the way three of GRW's printed equations
-turn out to be wrong; I would rather fix them out in the open than
-quietly use corrected forms.
-
-Four things to keep in your head before any algebra:
+Fermi's Golden Rule, in his own notation, so that the ten numbered
+equations of Guerrisi, Rosei \& Winsemius (``GRW'', \emph{Phys.\ Rev.\
+B} \textbf{12}, 557 (1975)) all come out of one derivation. A few
+things worth flagging before we start.
 
 \medskip
-\noindent\textbf{1. Where we are heading.} GRW's two headline results
-are their Eq.~(7) and their Eq.~(9). Everything else in the paper
-(and in this note) exists only to feed these two. Eq.~(7) is the
-thermally weighted, energy-integrated joint density of states,
+\noindent\emph{Where it goes.} Everything feeds two equations, GRW's
+(7) and (9). Eq.~(7) is the thermally weighted, energy-integrated joint
+density of states,
 \begin{equation*}
 \cJ_{l\to u}(\hw,T)=\int_{E_{\min}}^{E_{\max}}
 D_{l\to u}(E,\hw)\,\bigl[1-f(E,T)\bigr]\,\dd E ,
 \tag{GRW~7}
 \end{equation*}
-and Eq.~(9) turns that into the measurable quantity,
+and Eq.~(9) turns it into the measurable $\epsilon_2$,
 \begin{equation*}
 \epsilon_2(\hw,T)=\frac{8\pi^2 e^2\hbar^4}{3m^2(\hw)^2}
 \Bigl[\,|P_X(l\to u)|^2\,g_X(\hw,T)
@@ -117,48 +109,30 @@ and Eq.~(9) turns that into the measurable quantity,
 \qquad g_i=N_i\,\cJ_i .
 \tag{GRW~9}
 \end{equation*}
-So the plan is: build $D_{l\to u}$ (the density of transitions),
-integrate it against occupation to get $\cJ$ (Eq.~7), and slot that
-into $\epsilon_2$ (Eq.~9). If you only remember two equations from
-Rosei, remember these.
+The plan is just: build the density of transitions $D_{l\to u}$,
+integrate it against occupation to get $\cJ$ (Eq.~7), and drop that
+into $\epsilon_2$ (Eq.~9).
 
 \medskip
-\noindent\textbf{2. What Rosei actually derives here, and what he
-just borrows.} This matters, and it is easy to miss.
-\emph{In this 1975 paper Rosei genuinely works out only the $X$
-point} --- the saddle, and its unusual sub-gap tail; that is the new
-physics of the paper. \emph{The $L$ point he does not derive at all}:
-in his fitting section he writes, in so many words, that ``the
-procedure for obtaining the JDOS for transitions at $L$ has been
-presented in a number of papers and will not be repeated here,''
-pointing back to his own earlier work (his Refs.~10 and 12, i.e.\
-Rosei 1974). Even the \emph{general recipe} for the density of
-transitions --- his Eq.~(4) --- he introduces with ``following the
-procedure outlined in Ref.~10.'' So the split is: $X$ is the fresh
-work of this paper; $L$ and the EDJDOS machinery are inherited.
-I re-derive $L$ here anyway, with the same tools, so that both
-absorption edges live in one self-contained framework rather than
-scattered across three papers.
+\noindent\emph{$X$ vs.\ $L$.} In this 1975 paper Rosei really only
+works out the $X$ point --- the saddle and its sub-gap tail, the new
+physics here. The $L$ point he takes from his earlier papers (Refs.~10
+and 12, i.e.\ Rosei 1974): he says outright that the $L$ procedure
+``will not be repeated here.'' I redo $L$ anyway with the same tools,
+so both edges sit in one place.
 
 \medskip
-\noindent\textbf{3. Three of GRW's printed equations don't survive the
-rederivation, and I fix them --- most likely they are just typos in
-the 1975 print.} Two --- Eqs.~(6) and (8) --- are plainly transcription
-slips: (6) is dimensionally impossible as printed, and (8) has two
-subscripts interchanged. The third, Eq.~(4), is subtler: its prefactor
-comes out off by a constant factor for \emph{any} sensible
-matrix-element convention. Each is flagged in a
-\textcolor{BrickRed}{red callout box} at the point it comes up, with
-the printed form shown next to the correction so you can see exactly
-what changed.
+\noindent\emph{Three equations that look off.} Working through the
+algebra I found that three of the printed equations --- (4), (6) and
+(8) --- don't come out as written; most likely they are typos in the
+1975 print. I flag each in a \textcolor{BrickRed}{red box} where it
+comes up, show the printed form, and suggest the corrected version.
 
 \medskip
-\noindent\textbf{4. Conventions.} Gaussian units throughout (as in the
-1975 paper); $E$ is measured from the Fermi level, $E_F=0$. And one
-point that trips people up, spelled out in Sec.~\ref{sec:notation}
-below: \emph{every energy level and every effective mass in this note
-is a positive number} --- a magnitude --- with all the signs written
-out explicitly in front of the terms.
+\noindent\emph{Conventions.} Gaussian units (as in the paper); $E$
+measured from $E_F=0$; and --- see Sec.~\ref{sec:notation} --- every
+level and every mass is a positive number, with all signs written out
+in front.
 
 \tableofcontents
 
@@ -187,58 +161,35 @@ $\cJ(\hw,T)$ & thermally weighted EDJDOS integral, GRW Eq.~(7)\\
 $|P|^2$ & $|\langle u|\hat{\bm\epsilon}\!\cdot\!\nabla|l\rangle|^2$
   averaged (length$^{-2}$; Sec.~\ref{sec:fgr})\\
 $N_X=6,\ N_L=8$ & equivalent half-neighborhoods (GRW's counting)\\
-$f(E,T),\ n_B(\hw)$ & Fermi--Dirac and Bose--Einstein functions\\
+$f(E,T)$ & Fermi--Dirac occupation\\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\noindent Gaussian units ($e^2$ has dimension energy$\times$length),
-matching the 1975 paper.
+\noindent Gaussian units, matching the 1975 paper.
 
 \medskip
-\noindent\textbf{Are the level energies and masses ``absolute
-values''? Yes --- and this is worth pinning down before we write a
-single dispersion relation.} Every level energy here
---- $\wXsix,\wXseven,\wLsix,\wLplus$ --- is a \emph{positive number},
-a distance from the Fermi level. Every effective mass ---
-$m_{u\perp},m_{u\parallel},m_{l\perp},m_{l\parallel}$ --- is likewise
-a \emph{positive number}, a magnitude. There are no signed masses and
-no signed levels anywhere in this note. All the physics of
-\emph{which way a band curves} and \emph{on which side of $E_F$ a
-level sits} is carried by the explicit $\pm$ written in front of each
-term, never hidden inside the symbol. So in Eq.~\eqref{eq:grw1}
-below, the leading $+\wXsix$ says the upper level is \emph{above}
-$E_F$, and the $-\hbar^2\kpar^2/2m_{u\parallel}$ term says the band
-\emph{falls} along $\Delta$ --- with $m_{u\parallel}$ itself a
-plain positive number.
-
-One place this can cause confusion: the Christensen \& Seraphin (C\&S)
-mass table I extract the curvatures from lists some masses \emph{with}
-a minus sign --- e.g.\ the $X$ $sp$-band longitudinal curvature as
-$m_{u\parallel}\simeq-0.40$. That minus is just C\&S's shorthand for
-``this band curves downward here.'' In the present notation the same
-curvature is a positive $m_{u\parallel}=0.40$ with the minus pulled
-out into the explicit operator sign of Eq.~\eqref{eq:grw1}. Same
-physics, sign bookkeeping moved from the symbol to the term.
+\noindent\textbf{Signs and magnitudes.} Every level
+($\wXsix,\wXseven,\wLsix,\wLplus$) and every mass
+($m_{u\perp},m_{u\parallel},m_{l\perp},m_{l\parallel}$) here is a
+\emph{positive number}. Which way a band curves, and which side of
+$E_F$ a level sits on, is set entirely by the explicit $\pm$ in front
+of each term --- never by a sign hidden in the symbol. (The C\&S table
+I read curvatures off writes some masses with a minus, e.g.\
+$m_{u\parallel}\simeq-0.40$; that only records a downward curvature,
+and here it becomes a positive $m_{u\parallel}=0.40$ with the minus
+moved out in front, as in Eq.~\eqref{eq:grw1}.)
 
 % =====================================================================
 \section{Fermi's Golden Rule in $\mathbf k$-space}\label{sec:fgr}
 % =====================================================================
 
-We start where any optical-absorption calculation in a solid starts.
-Minimal coupling in the Coulomb gauge gives the light--matter
-interaction $\hat H_{\rm int}=(e/mc)\,\mathbf A\!\cdot\!\hat{\mathbf p}$
-(the $A^2$ term drives no interband transition and is dropped). For a
-classical wave $\mathbf E=\hat{\bm\epsilon}E_0\cos\omega t$, i.e.\
-$\mathbf A=-(cE_0/\omega)\hat{\bm\epsilon}\sin\omega t$, the
-absorption half of $\hat H_{\rm int}$ has amplitude
-$(eE_0/2m\omega)\,\hat{\bm\epsilon}\!\cdot\!\hat{\mathbf p}$. Photon
-momentum is negligible on the scale of the zone, so transitions are
-\emph{vertical} (same $\mathbf k$ up and down). Apply FGR per initial
-Bloch state, sum over $\mathbf k$ (keeping spin explicit), and set the
-result equal to the average dissipated power
-$\langle\dot U\rangle=\omega\epsilon_2E_0^2/8\pi$ per unit volume.
-That balance gives the exact starting point,
+Standard starting point. Minimal coupling in the Coulomb gauge gives
+$\hat H_{\rm int}=(e/mc)\,\mathbf A\!\cdot\!\hat{\mathbf p}$ (the $A^2$
+term is interband-inert). Photon momentum is negligible on the zone
+scale, so transitions are vertical. FGR summed over $\mathbf k$ (spin
+explicit), set equal to the dissipated power
+$\omega\epsilon_2E_0^2/8\pi$ per unit volume, gives
 \begin{equation}
 \epsilon_2(\omega)=\frac{4\pi^2e^2}{m^2\omega^2}\,
 \frac{2}{(2\pi)^3}\int_{\rm BZ}\!\dd^3k\;
@@ -247,10 +198,9 @@ That balance gives the exact starting point,
 \,\bigl[f(\hbar\omega_l)-f(\hbar\omega_u)\bigr].
 \label{eq:eps2start}
 \end{equation}
-Near a critical point Rosei freezes the matrix element (it barely
-varies over the tiny active region) and averages over polarization.
-Writing the momentum matrix element in the older gradient form,
-$\mathbf p_{ul}=-i\hbar\langle u|\nabla|l\rangle$, and defining
+Near a critical point Rosei freezes the matrix element and averages
+over polarization. With the gradient form
+$\mathbf p_{ul}=-i\hbar\langle u|\nabla|l\rangle$ and
 \begin{equation}
 |P|^2\equiv\bigl|\langle u|\nabla|l\rangle\bigr|^2
 \quad(\text{dimension }{\rm length}^{-2}),
@@ -259,7 +209,7 @@ $\mathbf p_{ul}=-i\hbar\langle u|\nabla|l\rangle$, and defining
 =\frac{\hbar^2|P|^2}{3},
 \label{eq:Pconvention}
 \end{equation}
-Eq.~\eqref{eq:eps2start} becomes, per critical-point family,
+this becomes, per critical-point family,
 \begin{equation}
 \epsilon_2(\hw,T)=\frac{4\pi^2e^2\hbar^2}{3m^2\omega^2}\cdot
 \frac{2}{(2\pi)^3}\,N\,|P|^2
@@ -269,14 +219,11 @@ Eq.~\eqref{eq:eps2start} becomes, per critical-point family,
 \label{eq:eps2CP}
 \end{equation}
 where $N$ counts equivalent \emph{half}-neighborhoods ($N_X=6$,
-$N_L=8$: each zone face carries half of a full constant-energy-
-difference surface). Keep this half-counting paired with the
-half-space density of states below, or you silently pick up a factor
-of 2. The occupation factor is the full $f(E-\hw)-f(E)$; for $d$ bands
-sitting $\gtrsim1.5$ eV below $E_F$ it collapses to GRW's
-$[1-f(E,T)]$, but I keep the general form so the same expression
-survives into the non-equilibrium extensions ($f^S$ for CW, $f^P$ for
-pulsed).
+$N_L=8$), which must be paired with the half-space density of states
+below or a factor of 2 goes missing. The occupation factor is the full
+$f(E-\hw)-f(E)$; for the deep $d$ bands it reduces to GRW's $[1-f]$,
+but I keep the general form for the non-equilibrium case ($f^S$,
+$f^P$).
 
 % =====================================================================
 \section{The $X$ point --- the part Rosei actually derives}\label{sec:X}
@@ -416,11 +363,39 @@ meant --- most likely just a typo, but a disabling one, since the
 printed formula is unusable as written.
 \end{printfix}
 
-\subsection{The energy-distributed JDOS: GRW (4)--(5), with (4) corrected}
+\subsection{The energy-distributed JDOS: GRW (4)--(5), with a suggested fix to (4)}
 
-Rosei's central object is the number of $l\to u$ transition pairs, per
-unit crystal volume, per unit final energy $E$, per unit transition
-energy $\hw$, for one half-neighborhood and one spin:
+Now the central object, and I want to build it rather than drop it on
+you. Look again at the Golden-Rule expression \eqref{eq:eps2CP}:
+inside the $k$-integral there is already \emph{one} $\delta$-function
+--- energy conservation, $\delta(\Omega_{lu}(\mathbf k)-\hw)$ ---
+together with the occupation factor $[f(E-\hw)-f(E)]$, which has to be
+read at the final-state energy $E=\hbar\omega_u(\mathbf k)$ and so
+drifts from point to point across the surface. That final energy is
+where the temperature gets in (it is the argument of $f$), so before
+touching any geometry I want to \emph{sort the transitions by their
+final energy $E$}. The clean way to do that is to slip the identity
+\begin{equation}
+1=\int\dd E\;\delta\bigl(\hbar\omega_u(\mathbf k)-E\bigr)
+\label{eq:Eresolve}
+\end{equation}
+into \eqref{eq:eps2CP}. This new $\delta$ does nothing but \emph{label}
+each $\mathbf k$ by its upper-band energy; it lets me carry the
+occupation outside the $k$-integral as a plain function of $E$,
+\[
+\int_{\kpar>0}\!\dd^3k\;\delta(\Omega_{lu}-\hw)\,
+\bigl[f(E-\hw)-f(E)\bigr]\big|_{E=\hbar\omega_u}
+=\int\!\dd E\;\bigl[f(E-\hw)-f(E)\bigr]
+\underbrace{\int_{\kpar>0}\!\dd^3k\;
+\delta(\hbar\omega_u-E)\,\delta(\Omega_{lu}-\hw)}
+_{\textstyle(2\pi)^3\,D_{l\to u}(E,\hw)} .
+\]
+The purely geometric inner integral --- now carrying \emph{both}
+$\delta$'s: the energy-conservation one that was already there, and the
+final-energy one I just inserted --- is Rosei's central object, the
+number of $l\to u$ transition pairs per unit crystal volume, per unit
+final energy $E$, and per unit transition energy $\hw$ (one
+half-neighborhood, one spin):
 \begin{equation}
 D_{l\to u}(E,\hw)\equiv\frac{1}{(2\pi)^3}
 \int_{\kpar>0}\!\dd^3k\;
@@ -428,6 +403,12 @@ D_{l\to u}(E,\hw)\equiv\frac{1}{(2\pi)^3}
 \delta\bigl(\Omega_{lu}(\mathbf k)-\hw\bigr).
 \label{eq:Ddef}
 \end{equation}
+So the two $\delta$'s aren't pulled from a hat: the second is just the
+energy-conservation $\delta$ already sitting in \eqref{eq:eps2CP}, and
+the first is the resolution of identity \eqref{eq:Eresolve} that bins
+transitions by their final energy $E$. That binning is what makes this
+an \emph{energy-distributed} JDOS, and it is what later lets $\cJ$
+(Eq.~7) weight each energy $E$ by its own occupation $[1-f(E,T)]$.
 Let me do this reduction all the way, because it is where both
 $\cD_X$ \emph{and} Rosei's $\cF$ actually come from. Axial symmetry
 about $\Gamma X$ gives $\dd^3k=2\pi\kperp\dd\kperp\,\dd\kpar$; in the
@@ -549,32 +530,27 @@ $E_{\min}=-20k_BT$, below which $[1-f]\to0$ kills the integrand. The
 upper edge $E_{\max}(\hw)$ is geometric, and it changes character at
 the gap:
 
-\medskip
-\noindent
-\emph{Above the gap} ($\hw\ge\EgX$): the edge is the $\kpar\to0$
-circle ($v=0$ in \eqref{eq:uvX}), where $D_{l\to u}$ of
-\eqref{eq:grw4} diverges like an inverse square root:
+The upper edge $E_{\max}(\hw)$ changes character at the gap. Above it
+($\hw\ge\EgX$) the edge is the $\kpar\to0$ circle ($v=0$ in
+\eqref{eq:uvX}), where $D_{l\to u}$ diverges like an inverse square
+root. Below it ($\hw<\EgX$) that circle no longer exists ($v>0$
+everywhere on the CEDS), and the edge is instead the $\kperp=0$ point
+($u=0$), where $\kpar$ stays finite and $D_{l\to u}$ is finite. Writing
+both cases in one piece,
 \begin{equation}
-E_{\max}^{>}=\wXsix+\frac{A_u}{\AX}(\hw-\EgX)
-=\wXsix+\frac{m_{l\perp}}{m_{u\perp}+m_{l\perp}}\,\bigl(\hw-\EgX\bigr),
-\qquad
-\kpar^2=\frac{\AX}{\cD_X}\bigl(E_{\max}^{>}-E\bigr).
-\label{eq:EmaxAbove}
-\end{equation}
-
-\noindent
-\emph{Below the gap} ($\hw<\EgX$): now the $\kpar=0$ circle simply
-does not exist ($v>0$ everywhere on the CEDS); the edge is instead the
-$\kperp=0$ point ($u=0$ in \eqref{eq:uvX}), where $\kpar$ stays
-finite and $D_{l\to u}$ is \emph{finite}:
-\begin{equation}
-E_{\max}^{<}
-=\wXsix-\frac{B_u}{|\BX|}\,\bigl(\EgX-\hw\bigr)
-=\wXsix+\bigl(\EgX-\hw\bigr)\,
-\frac{m_{l\parallel}}{m_{u\parallel}-m_{l\parallel}} .
+E_{\max}(\hw)=\wXsix+
+\begin{cases}
+\ \dfrac{A_u}{\AX}\,(\hw-\EgX)
+=\dfrac{m_{l\perp}}{m_{u\perp}+m_{l\perp}}\,(\hw-\EgX),
+& \hw\ge\EgX,\\[12pt]
+-\dfrac{B_u}{|\BX|}\,(\EgX-\hw)
+=\dfrac{m_{l\parallel}}{m_{u\parallel}-m_{l\parallel}}\,(\EgX-\hw),
+& \hw<\EgX,
+\end{cases}
 \qquad\grwfix{8}
 \label{eq:grw8}
 \end{equation}
+whose lower line (the sub-gap edge) is GRW's Eq.~(8).
 
 \begin{printfix}{The printed Eq.~(8) has two subscripts interchanged
 --- again, most likely a typo.}
@@ -594,14 +570,14 @@ so it isn't the same slip repeated.) The tell here is physical, not
 just algebraic. On the $\BX<0$ branch $m_{u\parallel}<m_{l\parallel}$,
 so the printed denominator $m_{l\parallel}-m_{u\parallel}>0$ makes
 $E_{\max}$ climb \emph{above} $\wXsix$ as $\hw$ drops below the gap ---
-but the sub-gap CEDS has \emph{no states} up there. The corrected
+but the sub-gap CEDS has \emph{no states} up there. The suggested form
 \eqref{eq:grw8} instead puts the sub-gap edge sensibly \emph{below}
 $\wXsix$, which is what makes the tail work.
 \end{printfix}
 
 That finite sub-gap edge \eqref{eq:grw8} is exactly why the $X$ onset
 is \emph{step-like} (GRW's own word) instead of a sharp divergence: at
-$T=0$ absorption switches on when $E_{\max}^{<}$ crosses $E_F$,
+$T=0$ absorption switches on when the sub-gap edge crosses $E_F$,
 \begin{equation}
 \hw_{\rm on}
 =\EgX-\wXsix\,\frac{m_{l\parallel}-m_{u\parallel}}{m_{l\parallel}}
@@ -623,7 +599,7 @@ D_{l\to u}(E,\hw)\,\bigl[1-f(E,T)\bigr]\,\dd E ,
 \label{eq:grw7}
 \end{equation}
 with $D_{l\to u}$ from \eqref{eq:grw4}, $E_{\max}$ from
-\eqref{eq:EmaxAbove}/\eqref{eq:grw8}, $E_{\min}=-20k_BT$, and
+\eqref{eq:grw8}, $E_{\min}=-20k_BT$, and
 $[1-f]\to f(E-\hw)-f(E)$ once we go out of equilibrium.
 
 \begin{remark}[The one mass assignment I'm not sure of at $X$]
@@ -632,11 +608,11 @@ Honesty check, because it changes a sign. My extraction of the C\&S
 Fig.~5 curvatures assigns $m_{u\parallel}=0.40$,
 $m_{l\parallel}=0.15$ --- the \emph{opposite} $\parallel$ ordering to
 GRW's branch --- which gives $\BX>0$: a \emph{closed} window
-$\bigl[\wXsix-\tfrac{B_u}{\BX}(\hw-\EgX),\;E_{\max}^{>}\bigr]$, no
+$\bigl[\wXsix-\tfrac{B_u}{\BX}(\hw-\EgX),\;E_{\max}\bigr]$, no
 geometric sub-gap tail, and a $\sqrt{\hw-\EgX}$ onset sitting exactly
 at $\EgX$. The catch is that \emph{above} the gap both branches give
 the \emph{same} line shape with the same singular edge
-\eqref{eq:EmaxAbove} --- the $\parallel$ masses enter only through
+\eqref{eq:grw8} --- the $\parallel$ masses enter only through
 $\cF_X$, which the fit absorbs into $S_X$ --- so an optical fit alone
 \emph{cannot} tell the two branches apart. Only the sub-gap physics
 and the extracted $|P_X|^2$ can. Both orderings of my extraction
@@ -750,7 +726,7 @@ tension here rather than paper over it.
 \section{Putting it together: GRW (9)--(10)}\label{sec:eps2}
 % =====================================================================
 
-Now we cash in. Insert the corrected EDJDOS \eqref{eq:grw4} into the
+Now we cash in. Insert the revised EDJDOS \eqref{eq:grw4} into the
 FGR result \eqref{eq:eps2CP}. The bridge is the definition
 \eqref{eq:Ddef} itself, which says
 $\int\dd^3k\,\delta(\Omega-\hw)[\cdots]
@@ -772,7 +748,7 @@ half-neighborhood; the $(2\pi)^3$ cancels, and
 \emph{no leftover constant}. That clean landing is the payoff, and it
 happens only if three things are all true at once: (i) $|P|^2$ is the
 squared $\nabla$ matrix element \eqref{eq:Pconvention}; (ii)
-$D_{l\to u}$ is the \emph{corrected} \eqref{eq:grw4}, not the printed
+$D_{l\to u}$ is the \emph{revised} \eqref{eq:grw4}, not the printed
 one; and (iii) spin (the explicit 2) and the half-point counts
 $N_X=6$, $N_L=8$ are kept where shown. (GRW leave the $N_i$ implicit,
 so their fitted $|P_i|^2$ really means $N_i|P_i|^2$ up to
@@ -784,7 +760,7 @@ S_X=\cF_X|P_X|^2,\qquad S_L=\cF_L|P_L|^2,
 \label{eq:grw10}
 \end{equation}
 with $|P_X/P_L|^2=0.370$ from their fit to Johnson--Christy. Under the
-corrected (4$'$) the combination the data really pin down is
+revised (4) the combination the data really pin down is
 $N_i\cF_i^2|P_i|^2$; it maps onto GRW's printed $S_i$ through exactly
 the constant $2\cF_i/\hbar^2$ of Remark~\ref{rem:eq4}, so --- to say it
 one more time --- all the published numbers keep their meaning.
@@ -811,7 +787,7 @@ $L$ & 2.45 & $\wLsix=0.89$ & $\wLplus=1.56$
 \toprule
  & $\cD$ (units $(\hbar^2/2m)^2$) & $\cF/m$ & window slopes & singular edge\\
 \midrule
-$X$ & $+34.7$ & 0.170 & $E_{\max}^{>}$: 0.38--0.62$^{\dagger}$
+$X$ & $+34.7$ & 0.170 & $E_{\max}$ (above gap): 0.38--0.62$^{\dagger}$
  & upper ($\kpar\to0$)\\
 $L$ & $-7.86$ & 0.357 & $E_{\min}$: 0.745,\ \ $E_{\max}$: 0.896
  & lower ($\kpar\to0$)\\
@@ -827,22 +803,22 @@ my assignment gives the same values by the symmetry of
 
 \medskip
 \noindent\textbf{Scorecard --- the ten GRW equations, one by one}
-(the three corrected rows are the ones to watch):
+(the three flagged rows are the ones to watch):
 \begin{center}
 \begin{tabular}{llll}
 \toprule
-GRW & here & status & defect as printed\\
+GRW & here & status & issue as printed\\
 \midrule
 (1) & \eqref{eq:grw1} & recreated & ---\\
 (2) & \eqref{eq:grw2} & recreated & ---\\
 (3) & \eqref{eq:grw3} & recreated & ---\\
-(4) & \eqref{eq:grw4} & \textbf{\textcolor{BrickRed}{corrected}} &
+(4) & \eqref{eq:grw4} & \textbf{\textcolor{BrickRed}{suggested fix}} &
  prefactor $(8\pi^2\hbar^2)^{-1}\cF$ $\to$ $(4\pi^2\hbar^4)^{-1}\cF^2$;
  off by $2\cF/\hbar^2$ (const.)\\
 (5) & \eqref{eq:grw5} & recreated & ---\\
-(6) & \eqref{eq:grw6} & \textbf{\textcolor{BrickRed}{corrected}} & dimensionally impossible as printed\\
+(6) & \eqref{eq:grw6} & \textbf{\textcolor{BrickRed}{suggested fix}} & dimensionally impossible as printed\\
 (7) & \eqref{eq:grw7} & recreated & occupation generalized\\
-(8) & \eqref{eq:grw8} & \textbf{\textcolor{BrickRed}{corrected}} &
+(8) & \eqref{eq:grw8} & \textbf{\textcolor{BrickRed}{suggested fix}} &
  $u\parallel\leftrightarrow l\parallel$ subscripts swapped\\
 (9) & \eqref{eq:grw9} & recreated & $N_i$ made explicit\\
 (10) & \eqref{eq:grw10} & recreated & units note (Rem.~\ref{rem:eq4})\\
@@ -859,97 +835,10 @@ ratio of the two is $2\cF/\hbar^2$, a pure constant per critical
 point. It therefore cannot touch any line shape and is absorbed once
 and for all into the fitted strength $S=\cF|P|^2$ of
 Eq.~\eqref{eq:grw10}. That is exactly why the discrepancy is so easy
-to miss and why it costs nothing physically --- but the FGR chain only
-closes to \eqref{eq:grw9} with unit coefficient if the corrected form
-is used, which is the independent check in Sec.~\ref{sec:photonic}.
+to miss and why it costs nothing physically --- but the assembly only
+reproduces GRW's Eq.~\eqref{eq:grw9} with no leftover constant if the
+revised form is used (Sec.~\ref{sec:eps2}).
 \end{remark}
-
-% =====================================================================
-\section{Photonic density of states and the emission spectrum}
-\label{sec:photonic}
-% =====================================================================
-
-This last section is not part of GRW --- it is the bridge to the PL
-problem I actually care about, and it doubles as a global check on
-every prefactor above.
-
-\subsection{Mode counting}
-
-Two transverse polarizations, $\omega=cq$, periodic quantization:
-\begin{equation}
-\rho(\omega)=\frac{2}{(2\pi)^3}\,4\pi q^2\frac{\dd q}{\dd\omega}
-=\boxed{\ \frac{\omega^2}{\pi^2c^3}\ }
-\label{eq:rho}
-\end{equation}
-modes per unit volume per unit angular frequency (in a host of index
-$n$, $c\to c/n$; in a structured environment $\rho\to$ the local
-density of states $\rho(\mathbf r,\omega)$ --- which is the photonic
-factor of the PL factorization).
-
-\subsection{Spontaneous emission of one pair}
-
-Quantize $\mathbf A$ (mode amplitudes $\sqrt{2\pi\hbar c^2/\omega V}$
-in Gaussian units) and apply FGR at photon vacuum, using
-$\sum_\lambda\int\dd\Omega_q\,
-|\hat{\bm\epsilon}_\lambda\!\cdot\!\mathbf p_{ul}|^2
-=\tfrac{8\pi}{3}|\mathbf p_{ul}|^2$ and
-$|\mathbf p_{ul}|^2=\hbar^2|P|^2$:
-\begin{equation}
-W_{\rm sp}(\omega)
-=\frac{4e^2\hbar\,\omega\,|P|^2}{3m^2c^3}
-=\underbrace{\frac{4\pi^2 e^2\hbar\,|P|^2}{3m^2\omega}}_{\text{matter}}
-\;\times\;
-\underbrace{\frac{\omega^2}{\pi^2c^3}}_{\rho(\omega)} ,
-\label{eq:Wsp}
-\end{equation}
-the Einstein $A$ coefficient in the $\mathbf A\!\cdot\!\mathbf p$
-form, with the photonic density of states sitting there as an exact
-factor. (Note the semiclassical field of Sec.~\ref{sec:fgr} can never
-produce \eqref{eq:Wsp}: it is the $+1$ in $\langle n+1\rangle$ ---
-a genuine vacuum effect, which is why spontaneous emission needs the
-quantized field and cannot fall out of the classical calculation.)
-
-\subsection{The interband PL spectrum, and the closure check}
-
-Sum over emitting pairs of one critical-point family (spin 2, $N$
-half-neighborhoods, the same EDJDOS \eqref{eq:Ddef}):
-\begin{equation}
-\boxed{\;
-R(\hw)=\rho(\omega)\,
-\frac{4\pi^2e^2\hbar\,}{3m^2\omega}\,
-2N\,|P|^2
-\int\!\dd E\;
-f(E,T)\bigl[1-f(E-\hw,T)\bigr]\,D_{l\to u}(E,\hw)
-\;}
-\label{eq:PL}
-\end{equation}
-photons per unit time, volume and photon energy --- \emph{same}
-$D_{l\to u}$, same windows and edges as absorption; only the
-occupation factor is different. Now use the equilibrium identity
-$f(E)[1-f(E-\hw)]=n_B(\hw)\,[f(E-\hw)-f(E)]$: every
-electronic factor maps back onto \eqref{eq:grw9}, the constants cancel
-\emph{exactly}, and
-\begin{equation}
-\boxed{\;
-R(\hw)=\frac{\omega^3}{\pi^2\hbar c^3}\;
-\epsilon_2(\omega)\;n_B(\hw)
-=\frac{\omega\,\rho(\omega)}{\hbar}\,\epsilon_2(\omega)\,n_B(\hw)
-\;}
-\label{eq:vRS}
-\end{equation}
---- the van Roosbroeck--Shockley relation, i.e.\ Kirchhoff's law in
-the per-mode form $R_{\rm em}/R_{\rm abs}=\rme^{-\hw/k_BT}$.
-\textbf{This is the global check I promised.} Equations \eqref{eq:grw9}
-and \eqref{eq:PL} were assembled independently, yet they satisfy
-\eqref{eq:vRS} with coefficient exactly one --- which pins down every
-prefactor in the document at a stroke. And it would fail, by exactly
-that constant $2\cF/\hbar^2$, if the printed (4) were used with any
-fixed matrix-element convention: so the (4) correction is not a matter
-of taste, it is what makes this identity close. Out of equilibrium
-($f\to f^S,f^P$) the identity breaks, and the \emph{deviation} from
-\eqref{eq:vRS} is precisely the non-equilibrium PL signal I am after;
-in a nanostructure, $\rho(\omega)\to\rho(\mathbf r,\omega)$ in
-\eqref{eq:PL}.
 
 % =====================================================================
 \appendix
@@ -968,15 +857,6 @@ $\cF^2/\hbar^4\kpar\sim{\rm g^2}/({\rm erg^4s^4\,cm^{-1}})
 $\dfrac{{\rm erg\,cm}\cdot{\rm erg^4s^4}}{{\rm g^2\,erg^2}}
 \cdot{\rm cm^{-2}}\cdot{\rm erg^{-1}cm^{-3}}
 ={\rm erg^2s^4\,g^{-2}cm^{-4}}=1$.\ \checkmark
-\item \eqref{eq:Wsp}:
-$\dfrac{{\rm erg\,cm}\cdot{\rm erg\,s}\cdot{\rm s^{-1}}\cdot{\rm cm^{-2}}}
-{{\rm g^2\,cm^3s^{-3}}}={\rm s^{-1}}$.\ \checkmark
-\item \eqref{eq:PL}: $[\rho]\,[\cdot]\sim{\rm s\,cm^{-3}}\cdot
-{\rm s^{-1}}\cdot{\rm erg^{-1}}\cdot\ldots
-={\rm s^{-1}erg^{-1}cm^{-3}}$: photons/(s\,erg\,cm$^3$).\ \checkmark
-\item \eqref{eq:vRS}: $[\omega\rho/\hbar]
-={\rm s^{-1}}\cdot{\rm s\,cm^{-3}}\cdot{\rm erg^{-1}s^{-1}}$
-$={\rm erg^{-1}cm^{-3}s^{-1}}$.\ \checkmark
 \end{itemize}
 
 \section*{References}

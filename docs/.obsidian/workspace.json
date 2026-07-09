@@ -11,10 +11,15 @@
             "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "notes/derivations/master/Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes"
             }
           }
         ]
@@ -66,23 +71,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "references/PDFs/7 - Rosei.pdf",
+                "file": "notes/derivations/master/Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 7 - Rosei"
-            }
-          },
-          {
-            "id": "b99f8394952ba4dd",
-            "type": "leaf",
-            "state": {
-              "type": "bookmarks",
-              "state": {},
-              "icon": "lucide-bookmark",
-              "title": "Bookmarks"
+              "title": "Outline of Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes"
             }
           }
         ]
@@ -104,9 +99,11 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {},
+              "state": {
+                "file": "notes/derivations/master/Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes.md"
+              },
               "icon": "lucide-info",
-              "title": "File properties"
+              "title": "File properties for Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes"
             }
           },
           {
@@ -150,6 +147,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "notes/derivations/master/Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -159,7 +157,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes"
             }
           },
           {
@@ -200,9 +198,33 @@
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
-    "references/PDFs/7 - Rosei.pdf",
+    "notes/derivations/master/rosei_grw_v2.md",
+    "notes/derivations/master/Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes.md",
+    "notes/derivations/master/rosei_grw.pdf",
+    "notes/derivations/sources/mine/rosei_model_formulas.md",
+    "notes/derivations/sources/mine/X & L Dispersion Relations.md",
+    "notes/derivations/sources/mine/Interband Absorption at X and L (Rosei's Notation).md",
+    "notes/derivations/sources/mine/Integration Limits of X & L Points vs the Center of BZ.md",
+    "notes/derivations/sources/mine/First Order TDM.md",
+    "notes/derivations/sources/mine/Equivalence of My Absorption Integral and Rosei's.md",
+    "notes/derivations/sources/mine/Effective Mass Extraction.md",
+    "notes/derivations/sources/mine/Absorption Integral (Using Rosei's Notations).md",
+    "notes/derivations/sources/mine/A8.L - Interband Transitions at L (Rosei).md",
+    "notes/derivations/sources/mine/A8 - Interband Transitions (Rosei).md",
+    "notes/derivations/sources/mine/A3 - Thermal Factor Energy Space.md",
+    "notes/derivations/sources/mine/A2 - Derivation of Analytic Approximation.md",
+    "notes/derivations/sources/mine/A1 - Derivation of the General Emission Integral.md",
+    "notes/derivations/sources/reference/7 - Rosei.tex",
+    "notes/derivations/sources/reference/7 - Rosei.pdf",
+    "notes/derivations/sources/recreations/interband_derivation.tex",
+    "notes/derivations/sources/recreations/rosei_equivalence_derivation.pdf",
+    "notes/derivations/sources/recreations/rosei_equivalence_derivation.tex",
+    "notes/derivations/sources/recreations/interband_derivation_v2.tex",
+    "notes/derivations/sources/recreations/interband_derivation_v2.pdf",
+    "notes/derivations/sources/recreations/interband_derivation.pdf",
+    "notes/derivations/sources/mine",
+    "notes/derivations/README.md",
     "notes/concepts/Non-equilibrium Emission in Metals.md",
-    "notes/Rosei Equivalence Derivation/rosei_equivalence_derivation.pdf",
     "notes/concepts/X & L Dispersion Relations.md",
     "notes/concepts/Lifetime Broadening.md",
     "notes/concepts/2 - Theoretical Framework.md",
@@ -222,30 +244,7 @@
     "notes/concepts/A1 - Derivation of the General Emission Integral.md",
     "notes/concepts/3 - Intraband Transitions.md",
     "notes/log/3.1 - Numeric Convergence.md",
-    "notes/log/3.3 - Constant eDOS Approximation.md",
-    "notes/log/3.2 - Analytic Approximations.md",
-    "4 Misc/Excalidraw/Drawing 2026-04-27 18.16.23.excalidraw.md",
-    "4 Misc/Bases/project.base",
-    "4 Misc/Bases/thesis.base",
-    "4 Misc/Bases/appendices.base",
-    "4 Misc/Bases/working-notes.base",
-    "references/REFERENCES.md",
-    "notes/Interband Absorption at X and L (Rosei's Notation).md",
-    "notes/temp/Work Plan.md",
-    "notes/temp/Effective Mass Extraction.md",
-    "notes/temp/Dedications.md",
-    "notes/temp/Abstract.md",
-    "notes/temp/1 - Introduction.md",
-    "notes/temp/0 - Outline.md",
-    "notes/Rosei Equivalence Derivation/pdflatex17084.fls",
-    "notes/Rosei Equivalence Derivation/pdflatex17083.fls",
-    "notes/Rosei Equivalence Derivation/pdflatex17002.fls",
-    "notes/Rosei Equivalence Derivation/pdflatex16888.fls",
-    "Untitled.md",
-    "references/PDFs/Untitled.md",
     "references/PDFs/MOC.canvas",
-    "references/1 - Hot PL/1 - Hot PL.md",
-    "references/12 - Imon.md/6d130213-22d8-4a11-ae32-675e1fd064c5.md",
     "MOC Canvas.canvas",
     "notes/Outline & Questions/emission integral tree.canvas",
     "notes/Outline & Questions/DeepDive.canvas",
