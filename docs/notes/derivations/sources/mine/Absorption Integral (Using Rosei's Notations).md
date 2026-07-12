@@ -45,7 +45,7 @@ And the energy gap at the X point defined as  $\hbar\omega_{X} = \hbar\omega_{X_
 Under a proper change of variables, the integral becomes
 
 $$
-\epsilon''(\omega) \propto \iint f(E-\Delta)\Big[ 1-f(E) \Big] \cdot \delta \big( \Delta - \hbar \omega \big) \ \frac{2\pi k_{\perp}}{|\det(J)|}\ dE \ d\Delta
+\epsilon''(\omega) \propto \iint f(E-\Delta)\Big[ 1-f(E) \Big] \cdot \delta \big( \Delta - \hbar \omega \big) \ \frac{2\pi k_{\perp}}{|\det(M)|}\ dE \ d\Delta
 $$
 
 And since the integration variables are now explicit with regards to the arguments of the delta function it further simplifies into

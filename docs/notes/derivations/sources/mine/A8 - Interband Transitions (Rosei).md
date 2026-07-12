@@ -13,7 +13,7 @@ $$
 Our starting point is the interband emission integral given by Fermi's golden rule for the transition from an initial momentum state $\mathbf{k}_{1}$ to a final state $\mathbf{k}_{2}$
 
 $$
-\Gamma_{e}^{\text{cv}}(\hbar\omega) \propto\int\limits_{\text{BZ}} d^{3}k_{1} \int\limits_{\text{BZ}} d^{3}k_{2} \; f(\mathcal{E}_{c}(\mathbf{k}_{1})) \Big[1-f(\mathcal{E}_{v}(\mathbf{k}_{2}))\Big] \; \delta\Big(\mathcal{E}_{c}(\mathbf{k}_{1}) - \mathcal{E}_{v}(\mathbf{k}_{2}) - \hbar\omega  \Big)
+\epsilon_{2}(\hbar\omega) \propto\int\limits_{\text{BZ}} d^{3}k_{1} \int\limits_{\text{BZ}} d^{3}k_{2} \; f(\mathcal{E}_{c}(\mathbf{k}_{1})) \Big[1-f(\mathcal{E}_{v}(\mathbf{k}_{2}))\Big] \; \delta\Big(\mathcal{E}_{c}(\mathbf{k}_{1}) - \mathcal{E}_{v}(\mathbf{k}_{2}) - \hbar\omega  \Big)
 $$
 
 We consider only direct interband transitions $\mathbf{k}_{1}\approx\mathbf{k}_{2}$. The integral loses three degrees of freedom and the transition effectively takes place at a single $\mathbf{k}$ in phase space, giving
@@ -30,7 +30,7 @@ $$
 dk_{x}dk_{y} dk_{z}\to k_{\perp}dk_{\perp}dk_{\parallel}dk_{\phi}\to 2\pi k_{\perp} dk_{\perp} dk_{\parallel}
 $$
 
-# Linearization of Momenta
+# First Change of Variables
 Next, we linearize the dispersion relation by performing yet another change of variables
 
 $$

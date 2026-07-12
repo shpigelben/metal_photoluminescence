@@ -8,21 +8,46 @@
         "type": "tabs",
         "children": [
           {
+            "id": "a6a481ee70a8721a",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "references/PDFs/7 - Rosei.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "7 - Rosei"
+            }
+          },
+          {
             "id": "e7a7b303c61786dc",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "notes/derivations/master/rosei_master.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "rosei_master"
+            }
+          },
+          {
+            "id": "f037680cdc76c472",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/derivations/master/Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes.md",
+                "file": "Roise - Point Agnostic Derivation.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes"
+              "title": "Roise - Point Agnostic Derivation"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -71,20 +96,21 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "notes/derivations/master/Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes.md",
+                "file": "notes/derivations/master/rosei_master.pdf",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes"
+              "title": "Outline of rosei_master"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 347.5
+    "width": 347.5,
+    "collapsed": true
   },
   "right": {
     "id": "ff902569427872ea",
@@ -100,10 +126,10 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "notes/derivations/master/Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes.md"
+                "file": "notes/derivations/master/rosei_master.pdf"
               },
               "icon": "lucide-info",
-              "title": "File properties for Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes"
+              "title": "File properties for rosei_master"
             }
           },
           {
@@ -147,7 +173,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/derivations/master/Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes.md",
+                "file": "notes/derivations/master/rosei_master.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -157,7 +183,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes"
+              "title": "Backlinks for rosei_master"
             }
           },
           {
@@ -198,9 +224,25 @@
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "notes/derivations/master/rosei_master.synctex(busy)",
+    "notes/derivations/master/pdflatex53600.fls",
+    "notes/derivations/master/pdflatex53597.fls",
+    "notes/derivations/master/rosei_master.synctex.gz",
+    "notes/derivations/master/rosei_master.toc",
+    "notes/derivations/master/rosei_master.out",
+    "notes/derivations/master/rosei_master.log",
+    "notes/derivations/master/rosei_master.fls",
+    "notes/derivations/master/pdflatex53564.fls",
+    "notes/derivations/master/rosei_master.fdb_latexmk",
+    "notes/derivations/master/rosei_master.aux",
     "notes/derivations/master/rosei_grw_v2.md",
     "notes/derivations/master/Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes.md",
-    "notes/derivations/master/rosei_grw.pdf",
+    "Roise - Point Agnostic Derivation.md",
+    "notes/derivations/sources/mine/A8 - Interband Transitions (Rosei).md",
+    "notes/derivations/sources/mine/A8.L - Interband Transitions at L (Rosei).md",
+    "notes/derivations/sources/mine/Absorption Integral (Using Rosei's Notations).md",
+    "notes/derivations/sources/mine/A1 - Derivation of the General Emission Integral.md",
+    "references/REFERENCES.md",
     "notes/derivations/sources/mine/rosei_model_formulas.md",
     "notes/derivations/sources/mine/X & L Dispersion Relations.md",
     "notes/derivations/sources/mine/Interband Absorption at X and L (Rosei's Notation).md",
@@ -208,21 +250,8 @@
     "notes/derivations/sources/mine/First Order TDM.md",
     "notes/derivations/sources/mine/Equivalence of My Absorption Integral and Rosei's.md",
     "notes/derivations/sources/mine/Effective Mass Extraction.md",
-    "notes/derivations/sources/mine/Absorption Integral (Using Rosei's Notations).md",
-    "notes/derivations/sources/mine/A8.L - Interband Transitions at L (Rosei).md",
-    "notes/derivations/sources/mine/A8 - Interband Transitions (Rosei).md",
     "notes/derivations/sources/mine/A3 - Thermal Factor Energy Space.md",
     "notes/derivations/sources/mine/A2 - Derivation of Analytic Approximation.md",
-    "notes/derivations/sources/mine/A1 - Derivation of the General Emission Integral.md",
-    "notes/derivations/sources/reference/7 - Rosei.tex",
-    "notes/derivations/sources/reference/7 - Rosei.pdf",
-    "notes/derivations/sources/recreations/interband_derivation.tex",
-    "notes/derivations/sources/recreations/rosei_equivalence_derivation.pdf",
-    "notes/derivations/sources/recreations/rosei_equivalence_derivation.tex",
-    "notes/derivations/sources/recreations/interband_derivation_v2.tex",
-    "notes/derivations/sources/recreations/interband_derivation_v2.pdf",
-    "notes/derivations/sources/recreations/interband_derivation.pdf",
-    "notes/derivations/sources/mine",
     "notes/derivations/README.md",
     "notes/concepts/Non-equilibrium Emission in Metals.md",
     "notes/concepts/X & L Dispersion Relations.md",
@@ -241,9 +270,6 @@
     "4 Misc/Attachments/stage_2_step_convergence_T300K.png",
     "4 Misc/Attachments/stage_2_rel_error_grid.png",
     "4 Misc/Attachments/stage_2_rel_error_grid_50x50.png",
-    "notes/concepts/A1 - Derivation of the General Emission Integral.md",
-    "notes/concepts/3 - Intraband Transitions.md",
-    "notes/log/3.1 - Numeric Convergence.md",
     "references/PDFs/MOC.canvas",
     "MOC Canvas.canvas",
     "notes/Outline & Questions/emission integral tree.canvas",
