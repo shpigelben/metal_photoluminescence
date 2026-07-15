@@ -47,7 +47,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -96,21 +96,20 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "notes/derivations/master/rosei_master.pdf",
+                "file": "Roise - Point Agnostic Derivation.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of rosei_master"
+              "title": "Outline of Roise - Point Agnostic Derivation"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 347.5,
-    "collapsed": true
+    "width": 347.5
   },
   "right": {
     "id": "ff902569427872ea",
@@ -126,10 +125,10 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "notes/derivations/master/rosei_master.pdf"
+                "file": "Roise - Point Agnostic Derivation.md"
               },
               "icon": "lucide-info",
-              "title": "File properties for rosei_master"
+              "title": "File properties for Roise - Point Agnostic Derivation"
             }
           },
           {
@@ -173,7 +172,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/derivations/master/rosei_master.pdf",
+                "file": "Roise - Point Agnostic Derivation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -183,7 +182,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for rosei_master"
+              "title": "Backlinks for Roise - Point Agnostic Derivation"
             }
           },
           {
@@ -222,19 +221,20 @@
       "obsidian-stille:Toggle Stille": false
     }
   },
-  "active": "e7a7b303c61786dc",
+  "active": "f037680cdc76c472",
   "lastOpenFiles": [
-    "notes/derivations/master/rosei_master.synctex(busy)",
-    "notes/derivations/master/pdflatex53600.fls",
-    "notes/derivations/master/pdflatex53597.fls",
+    "notes/derivations/master/rosei_master.md",
+    "notes/derivations/master/tex_md_sync.py",
+    "Untitled.md",
+    "notes/derivations/master/rosei_master.pdf",
+    "notes/derivations/master/pdflatex84524.fls",
+    "notes/derivations/master/pdflatex84522.fls",
+    "references/PDFs/7 - Rosei.pdf",
+    "notes/derivations/master/pdflatex74007.fls",
     "notes/derivations/master/rosei_master.synctex.gz",
-    "notes/derivations/master/rosei_master.toc",
-    "notes/derivations/master/rosei_master.out",
-    "notes/derivations/master/rosei_master.log",
-    "notes/derivations/master/rosei_master.fls",
-    "notes/derivations/master/pdflatex53564.fls",
-    "notes/derivations/master/rosei_master.fdb_latexmk",
-    "notes/derivations/master/rosei_master.aux",
+    "notes/derivations/master/rosei_master.synctex(busy)",
+    "notes/derivations/master/pdflatex74002.fls",
+    "notes/derivations/master/pdflatex73764.fls",
     "notes/derivations/master/rosei_grw_v2.md",
     "notes/derivations/master/Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes.md",
     "Roise - Point Agnostic Derivation.md",
@@ -259,7 +259,6 @@
     "notes/concepts/2 - Theoretical Framework.md",
     "notes/log/Log.md",
     "notes/Equivalence of My Absorption Integral and Rosei's.md",
-    "notes/Absorption Integral (Using Rosei's Notations).md",
     "4 Misc/Attachments/thermal_factor_distributions_default.png",
     "4 Misc/Attachments/step_size_convergence.png",
     "4 Misc/Attachments/stage_4_spectral_profile.png",

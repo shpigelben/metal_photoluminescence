@@ -1,3 +1,4 @@
+<!-- TEX-PREAMBLE (verbatim; edit macros/packages here, not below) -->
 % =====================================================================
 %  rosei_master.tex
 %  Master rederivation of Rosei's interband epsilon_2 for gold from
@@ -73,6 +74,38 @@ critical points, in Rosei's own notation}
 \date{July 2026}
 
 \begin{document}
+<!-- END-TEX-PREAMBLE -->
+
+<!-- MACROS-FOR-OBSIDIAN-PREVIEW-START -->
+$$
+\gdef\hw{\hbar\omega}
+\gdef\Eg{\mathcal{E}_g}
+\gdef\EgX{\mathcal{E}_g^{X}}
+\gdef\EgL{\mathcal{E}_g^{L}}
+\gdef\Elu{\mathcal{E}_{lu}}
+\gdef\cD{\mathcal{D}}
+\gdef\cF{\mathcal{F}}
+\gdef\cJ{\mathcal{J}}
+\gdef\Ab{\bar{A}}
+\gdef\Bb{\bar{B}}
+\gdef\kperp{k_{\perp}}
+\gdef\pul{\mathbf{p}_{ul}}
+\gdef\eps{\varepsilon}
+\gdef\dd{\mathrm{d}}
+\gdef\Dlu{D_{l\to u}}
+\gdef\wXu{\hbar\omega_{X_6^-}}
+\gdef\wXl{\hbar\omega_{X_7^+}}
+\gdef\wLu{\hbar\omega_{L_6^-}}
+\gdef\wLl{\hbar\omega_{L^+}}
+\gdef\wuz{\hbar\omega_{u0}}
+\gdef\wlz{\hbar\omega_{l0}}
+\gdef\fFD{f}
+\gdef\kB{k_B}
+\gdef\rme{\mathrm{e}}
+$$
+*(live-preview macros only, mirrors the .tex preamble; stripped on reconversion -- edit macros there, not here)*
+<!-- MACROS-FOR-OBSIDIAN-PREVIEW-END -->
+
 \maketitle
 
 \begin{abstract}
@@ -103,7 +136,7 @@ groundwork for the numerical implementation.
 \tableofcontents
 
 % =====================================================================
-\section{Scope \& sources}\label{sec:scope}
+# Scope \& sources {{label:sec:scope}}
 % =====================================================================
 
 Everything below is self-contained: it is built from Fermi's Golden
@@ -152,10 +185,10 @@ Sec.~\ref{sec:numerics} & $\kpar$ quadrature for the implementation & ---\\
 \end{center}
 
 % =====================================================================
-\section{Fermi's Golden Rule in $\mathbf{k}$-space}\label{sec:fgr}
+# Fermi's Golden Rule in $\mathbf{k}$-space {{label:sec:fgr}}
 % =====================================================================
 
-\subsection{Minimal coupling}
+## Minimal coupling
 
 With the radiation field described by a vector potential $\mathbf{A}$
 in the Coulomb gauge ($\nabla\!\cdot\!\mathbf{A}=0$), the one-electron
@@ -178,7 +211,7 @@ In the Coulomb gauge $\hat{\mathbf p}\!\cdot\!\mathbf A
 the two terms).  The $A^2$ term does not connect different bands to
 first order and is dropped.
 
-\subsection{Quantized field: absorption, stimulated and spontaneous emission}
+## Quantized field: absorption, stimulated and spontaneous emission
 \label{sec:quantized}
 
 Expanding the field in a quantization volume $V$,
@@ -204,7 +237,7 @@ rule gives absorption and \emph{stimulated} emission only; spontaneous
 emission requires \eqref{eq:bosefactors}, and its mode sum produces the
 photonic density of states in Sec.~\ref{sec:photonic}.
 
-\subsection{Bloch states and vertical transitions}
+## Bloch states and vertical transitions
 
 For Bloch states $\psi_{n\mathbf k}=\rme^{i\mathbf k\cdot\mathbf r}
 u_{n\mathbf k}(\mathbf r)/\sqrt V$, the matrix element of
@@ -222,7 +255,7 @@ M_{ul}(\mathbf k)\equiv
 \label{eq:MEsq}
 \end{equation}
 
-\subsection{Golden-rule rate, $\eps_2$, and the origin of the $1/\omega^2$}
+## Golden-rule rate, $\eps_2$, and the origin of the $1/\omega^2$
 \label{sec:eps2def}
 
 FGR for one photon mode, then summing over $\mathbf k$ (factor 2 for
@@ -295,7 +328,7 @@ with the interband energy $\Elu\equiv\hbar\omega_u-\hbar\omega_l$
 (Sec.~\ref{sec:bands} connects it to Rosei's $\Omega_{lu}$) and $N$
 the half-neighborhood count of App.~\ref{sec:conv}.
 
-\subsection{Occupation factor: Rosei's $[1-f]$}\label{sec:occupation}
+## Occupation factor: Rosei's $[1-f]$ {{label:sec:occupation}}
 
 The exact net weight of \eqref{eq:eps2exact} --- absorption minus
 stimulated emission --- is the difference
@@ -313,11 +346,11 @@ which is used throughout this document, exactly as Rosei uses it.
 difference --- and is derived in Sec.~\ref{sec:photonic}.)
 
 % =====================================================================
-\section{Reduction of the $\mathbf{k}$-integral: the common machinery}
+# Reduction of the $\mathbf{k}$-integral: the common machinery
 \label{sec:reduction}
 % =====================================================================
 
-\subsection{The Rosei two-band model}\label{sec:bands}
+## The Rosei two-band model {{label:sec:bands}}
 
 Both critical points are axially symmetric parabolic pairs.  The
 parabolic dispersion relations are the primary sources': at $X$ they
@@ -378,7 +411,7 @@ apart: $\Elu$ is a function on $\mathbf k$-space; Rosei's Eq.~(3),
 $\Omega_{lu}=0$, picks out the surface.  The gold parameters are
 collected in the tables of Sec.~\ref{sec:eps2}.
 
-\subsection{Sorting transitions by final energy}
+## Sorting transitions by final energy
 \label{sec:sort}
 
 The occupation in \eqref{eq:star} depends on $\mathbf k$ only through
@@ -410,7 +443,7 @@ are accounted for: energy conservation was already in \eqref{eq:star};
 the second is the inserted identity, and it is what lets $\cJ$ weight
 each $E$ by its own occupation.
 
-\subsection{Change of variables $(u,v)=(\kperp^2,\kpar^2)$}\label{sec:linear}
+## Change of variables $(u,v)=(\kperp^2,\kpar^2)$ {{label:sec:linear}}
 
 This is the step where the present derivation simplifies Rosei's
 geometric construction --- and the form of \eqref{eq:sort} itself
@@ -450,7 +483,7 @@ The two point-specific determinants:
 \label{eq:Ds}
 \end{equation}
 
-\subsection{The EDJDOS: general derivation for both $X$ and $L$}
+## The EDJDOS: general derivation for both $X$ and $L$
 \label{sec:kernel}
 
 Now reduce the inner integral of \eqref{eq:sort} all the way --- this
@@ -520,7 +553,7 @@ shape, and it is absorbed into the fitted strength $S=\cF|P|^2$ of
 Eq.~(10) --- which is why the slip is invisible in the published
 numbers.  Details in Sec.~\ref{sec:grw}.
 
-\subsection{The thermally weighted JDOS: Rosei's Eq.\ (7)}
+## The thermally weighted JDOS: Rosei's Eq.\ (7)
 
 With $\Dlu$ in hand, the outer integral of \eqref{eq:sort} is,
 verbatim as Rosei writes it,
@@ -537,7 +570,7 @@ with the windows $[E_{\min},E_{\max}]$ set by the geometry
 occupation itself --- next section.
 
 % =====================================================================
-\section{The two critical points, side by side}\label{sec:XL}
+# The two critical points, side by side {{label:sec:XL}}
 % =====================================================================
 
 Everything so far is common.  The topology forks the derivation
@@ -729,7 +762,7 @@ the tension is recorded here rather than papered over.
 \end{remark}
 
 % ---------------------------------------------------------------------
-\subsection{The $X$ mass fork: sign of $\Bb_X$}\label{sec:fork}
+## The $X$ mass fork: sign of $\Bb_X$ {{label:sec:fork}}
 % ---------------------------------------------------------------------
 
 One assignment at $X$ I am not sure of, flagged because it flips a
@@ -771,7 +804,7 @@ document follows Rosei's branch ($\Bb_X<0$) everywhere, and quotes the
 branch wherever it matters.}
 
 % =====================================================================
-\section{Assembled $\eps_2$}
+# Assembled $\eps_2$
 \label{sec:eps2}
 % =====================================================================
 
@@ -936,7 +969,7 @@ $m_{u\parallel}\leftrightarrow m_{l\parallel}$ subscripts swapped\\
 \end{center}
 
 % ---------------------------------------------------------------------
-\subsection{Discrepancies \& suggested corrections}\label{sec:grw}
+## Discrepancies \& suggested corrections {{label:sec:grw}}
 % ---------------------------------------------------------------------
 
 \noindent\textbf{At issue: the printed Eqs.~(4), (6) and (8) of the
@@ -1011,7 +1044,7 @@ work.  On the alternative branch of Sec.~\ref{sec:fork}
 window limit.
 
 % ---------------------------------------------------------------------
-\subsection{The Drude term: completing $\eps_2$}\label{sec:drude}
+## The Drude term: completing $\eps_2$ {{label:sec:drude}}
 % ---------------------------------------------------------------------
 
 Everything above is interband.  The measured $\eps_2$ of gold also
@@ -1047,11 +1080,11 @@ region it is a smooth declining background, and the temperature
 dependence of the edge sits entirely in the $\cJ_i$.
 
 % =====================================================================
-\section{Photonic density of states and the emission counterpart}
+# Photonic density of states and the emission counterpart
 \label{sec:photonic}
 % =====================================================================
 
-\subsection{Mode counting}
+## Mode counting
 
 Periodic quantization in volume $V$: two transverse polarizations,
 $\omega=cq$:
@@ -1068,7 +1101,7 @@ $\rho\to\rho(\mathbf r,\omega)$, the \emph{local} density of states
 (Novotny \& Hecht) --- precisely the photonic factor of the PL
 factorization used in this thesis.
 
-\subsection{Spontaneous emission rate of one pair}
+## Spontaneous emission rate of one pair
 
 FGR with the quantized field \eqref{eq:Aquant} at $n_q=0$, summed over
 modes, using
@@ -1105,7 +1138,7 @@ $\rho(\omega)\propto\omega^2$.  In short: same vertex, different
 yardstick --- absorption is measured against $E_0^2$ (two powers),
 emission against the vacuum fluctuation of one mode (one power).
 
-\subsection{The interband PL spectrum and the Kirchhoff check}
+## The interband PL spectrum and the Kirchhoff check
 
 The emission weight is not a difference but a \emph{product}: the
 upper level must be filled and the lower empty,
@@ -1157,7 +1190,7 @@ signal away.  In a structured environment,
 $\rho(\omega)\to\rho(\mathbf r,\omega)$ in \eqref{eq:PL}.
 
 % =====================================================================
-\section{Numerics: evaluate in $\kpar$, not in $E$}\label{sec:numerics}
+# Numerics: evaluate in $\kpar$, not in $E$ {{label:sec:numerics}}
 % =====================================================================
 
 Groundwork for the implementation.  The $1/\sqrt{\;}$ edges of (11)
@@ -1306,7 +1339,7 @@ $n_{\rm eff}(E,\hw)\to n_B(\hw)$ independent of $E$
 % =====================================================================
 \appendix
 % =====================================================================
-\section{Conventions}\label{sec:conv}
+# Conventions {{label:sec:conv}}
 
 Fixed once here, used silently throughout the document.
 
@@ -1345,7 +1378,7 @@ Photon & energy $\hw$, wavevector $\mathbf{q}$, polarization
 \end{tabular}
 \end{center}
 
-\section{Dictionary of conventions across the repository}\label{app:dict}
+# Dictionary of conventions across the repository {{label:app:dict}}
 
 \begin{center}
 \footnotesize
@@ -1397,7 +1430,7 @@ $S=\cF|P|^2$ of Eq.~(10) are fixed by the data (the printed-(4)
 constant reshuffles $\Dlu$, $\cF$, $|P|^2$ among themselves without
 touching $S$).
 
-\section{Dimensional audit (Gaussian)}\label{app:dim}
+# Dimensional audit (Gaussian) {{label:app:dim}}
 
 $[\,e^2\,]={\rm erg\,cm}$, $[\,|P|^2\,]={\rm cm^{-2}}$,
 $[\,A_i\,]=[\,B_i\,]={\rm erg\,cm^2}$, $[\,\cD\,]={\rm erg^2cm^4}$,
@@ -1427,7 +1460,7 @@ energy. \checkmark
 $\eps_2n_B$. \checkmark
 \end{itemize}
 
-\section*{References}
+# References {{starred}}
 \begin{itemize}
 \item M.~Guerrisi, R.~Rosei, P.~Winsemius,
 \emph{Splitting of the interband absorption edge in Au},
@@ -1452,4 +1485,7 @@ metal photoluminescence (2021), and refs.\ therein.
 2nd ed., Cambridge (2012) --- LDOS.
 \end{itemize}
 
+<!-- TEX-FOOTER (verbatim) -->
 \end{document}
+
+<!-- END-TEX-FOOTER -->
