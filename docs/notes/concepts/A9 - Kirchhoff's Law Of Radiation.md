@@ -5,7 +5,7 @@ Kirchhoff showed that the ratio between specular emission and absorption is alwa
 $$
 \frac{E(\omega)}{\alpha(\omega)} = B_{\scriptsize T} (\omega)
 $$
-Plank came later to show what $B_{\scriptsize T}(\omega)$ is and solved the ultraviolet catastrophy
+Plank came later to show what $B_{\scriptsize T}(\omega)$ is and solved the ultraviolet catastrophe
 ___
 In thermodynamics equilibrium (TDE) a material body emits according to the expression
 $$
@@ -14,9 +14,7 @@ $$
 
 The Planck Blackbody law is composed of two distinct parts:
 $$u_{\small \text{BB}}(\omega)= \underbrace{\frac{\hbar\omega^3}{\pi^2 c^3}}_{\text{Photonic}} \times \underbrace{\frac{1}{e^{\hbar\omega/k_B T} - 1}}_{\text{Statistical}}$$
-**The Photonic Part ($\omega^3$)** Comes from the ratio of vacuum modes to material absorption cross-section **The Statistical Part ($e^x - 1$)** Comes exactly from the ratio of the Fermi factors.
-
-Here is the mathematical proof that your Fermi factors generate the Bose-Einstein statistics necessary for Kirchhoff's Law.
+**The Photonic Part ($\omega^3$)** Comes from the ratio of vacuum modes to material absorption cross-section **The Statistical Part ($e^x - 1$)** Comes exactly from the ratio of the Fermi factors. Here is the mathematical proof that your Fermi factors generate the Bose-Einstein statistics necessary for Kirchhoff's Law.
 
 ### From Fermi-Dirac to Bose-Einstein
 
@@ -94,16 +92,8 @@ Both are required to perfectly reproduce the Planck law from microscopic princip
     
 
 It is worth noting that this derivation fails to produce the Planck law if **stimulated emission** is neglected. If we were to compare spontaneous emission directly to absorption (ignoring the stimulated term in the denominator), the ratio would simplify to:
-    
-
-
-    
 
 $\text{Ratio} = \frac{\Gamma_{sp}}{\Gamma_{abs, \text{total}}} = \frac{f(U)[1-f(L)]}{f(L)[1-f(U)]} = e^{-\hbar\omega/k_B T}$
-    
-
-
-    
 
 This result is known as **Wien's approximation**. While it correctly describes the high-energy (exponential decay) tail of the spectrum, it fails at low energies because it misses the "$-1$" in the denominator. 
     

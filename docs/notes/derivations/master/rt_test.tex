@@ -1,4 +1,3 @@
-<!-- TEX-PREAMBLE (verbatim; edit macros/packages here, not below) -->
 % =====================================================================
 %  rosei_master.tex
 %  Master rederivation of Rosei's interband epsilon_2 for gold from
@@ -74,49 +73,49 @@ critical points, in Rosei's own notation}
 \date{July 2026}
 
 \begin{document}
-<!-- END-TEX-PREAMBLE -->
-
 \maketitle
 
-> [!abstract]
-> \noindent
-> This document rederives, from first principles and with every prefactor
-> tracked, the Rosei-model interband ${\varepsilon}_2({\hbar\omega},T)$ of gold at the $X$
-> and $L$ critical points [Guerrisi, Rosei \& Winsemius, Phys.\ Rev.\ B
-> **12**, 557 (1975); hereafter simply ``Rosei''], written
-> throughout in Rosei's own notation, so that the paper's ten numbered
-> equations emerge explicitly from one derivation.  The route runs from
-> Fermi's Golden Rule (FGR) for Bloch states in $\mathbf{k}$-space,
-> through the reduction of the transition sum to a one-dimensional
-> energy integral by the change of variables $(u,v)=({k_{\perp}}^2,{k_{\parallel}}^2)$,
-> to the resolution of the double $\delta$-constraint by a single
-> $2\times2$ Jacobian.  Seven of the ten equations are recreated
-> verbatim; the printed Eqs.~(4), (6) and (8) do not come out as
-> written, and for each the failure is stated in one line and the
-> corrected form derived (Sec.~\ref{sec:grw}).  The photonic density of
-> states is derived by field quantization, the spontaneous-emission
-> counterpart is assembled, and the pair is shown to close exactly into
-> the detailed-balance relation between emission and absorption (van
-> Roosbroeck--Shockley/Kirchhoff) --- the global consistency check of
-> all prefactors.  A final section gives the ${k_{\parallel}}$ quadrature scheme
-> that evaluates the model without touching its edge singularities: the
-> groundwork for the numerical implementation.
-
+\begin{abstract}
+\noindent
+This document rederives, from first principles and with every prefactor
+tracked, the Rosei-model interband ${\varepsilon}_2({\hbar\omega},T)$ of gold at the $X$
+and $L$ critical points [Guerrisi, Rosei \& Winsemius, Phys.\ Rev.\ B
+\textbf{12}, 557 (1975); hereafter simply ``Rosei''], written
+throughout in Rosei's own notation, so that the paper's ten numbered
+equations emerge explicitly from one derivation.  The route runs from
+Fermi's Golden Rule (FGR) for Bloch states in $\mathbf{k}$-space,
+through the reduction of the transition sum to a one-dimensional
+energy integral by the change of variables $(u,v)=({k_{\perp}}^2,{k_{\parallel}}^2)$,
+to the resolution of the double $\delta$-constraint by a single
+$2\times2$ Jacobian.  Seven of the ten equations are recreated
+verbatim; the printed Eqs.~(4), (6) and (8) do not come out as
+written, and for each the failure is stated in one line and the
+corrected form derived (Sec.~\ref{sec:grw}).  The photonic density of
+states is derived by field quantization, the spontaneous-emission
+counterpart is assembled, and the pair is shown to close exactly into
+the detailed-balance relation between emission and absorption (van
+Roosbroeck--Shockley/Kirchhoff) --- the global consistency check of
+all prefactors.  A final section gives the ${k_{\parallel}}$ quadrature scheme
+that evaluates the model without touching its edge singularities: the
+groundwork for the numerical implementation.
+\end{abstract}
 \tableofcontents
 
 % =====================================================================
-# Scope \& sources {{label:sec:scope}}
+\section{Scope \& sources}\label{sec:scope}
 % =====================================================================
 
 Everything below is self-contained: it is built from Fermi's Golden
 Rule and four primary sources.
-- **Rosei 1975** (Guerrisi, Rosei \& Winsemius; ``Rosei'' from here on) --- the paper recreated.  Only the $X$ point is actually derived there, and the printed Eqs.~(4), (6), (8) have defects --- fixed in Sec.~\ref{sec:grw}.
-- **Rosei 1974** --- the EDJDOS recipe and the $L$-point machinery (``will not be repeated here''; it is repeated here).
-- **Christensen \& Seraphin 1971** --- the band structure: levels and masses.  Rosei's own source as well (his Ref.~4).
-- **Johnson \& Christy 1972** --- the optical data the model is fitted to.
+\begin{itemize}
+\item \textbf{Rosei 1975} (Guerrisi, Rosei \& Winsemius; ``Rosei'' from here on) --- the paper recreated.  Only the $X$ point is actually derived there, and the printed Eqs.~(4), (6), (8) have defects --- fixed in Sec.~\ref{sec:grw}.
+\item \textbf{Rosei 1974} --- the EDJDOS recipe and the $L$-point machinery (``will not be repeated here''; it is repeated here).
+\item \textbf{Christensen \& Seraphin 1971} --- the band structure: levels and masses.  Rosei's own source as well (his Ref.~4).
+\item \textbf{Johnson \& Christy 1972} --- the optical data the model is fitted to.
+\end{itemize}
 Notation is Rosei's: bands are $u$ (upper) and $l$ (lower), all levels
 and masses are positive numbers with every sign written explicitly,
-and an equation tagged **($n$)** is Rosei's Eq.~($n$) recreated
+and an equation tagged \textbf{($n$)} is Rosei's Eq.~($n$) recreated
 --- primes, as in ($6'$), mark corrected forms.  The rest of the
 conventions live in App.~\ref{sec:conv}.
 
@@ -128,71 +127,76 @@ self-contained:
 \begin{center}
 \small
 \renewcommand{\arraystretch}{1.3}
-<!--colspec:@{}lll@{}-->
-| where | what happens | leans on |
-| --- | --- | --- |
-| Sec.~\ref{sec:fgr} | golden-rule machinery, every constant tracked | --- |
-| **Sec.~\ref{sec:reduction}** | **$\mathbf k$-space reduction $\to$ Eqs.~($4'$), (5), (7)** | **Rosei 1975/1974** |
-| **Sec.~\ref{sec:XL}** | **$X$ and $L$, side by side $\to$ Eqs.~($6'$), ($8'$)** | **Rosei 1975/1974** |
-| **Sec.~\ref{sec:eps2}** | **${\varepsilon}_2$ assembled $\to$ (9)--(11); scorecard; corrections; Drude** | **C\&S; J\&C** |
-| Sec.~\ref{sec:photonic} | photonic DOS, emission, detailed balance | Novotny--Hecht |
-| Sec.~\ref{sec:numerics} | ${k_{\parallel}}$ quadrature for the implementation | --- |
-\end{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+where & what happens & leans on \\
+\midrule
+Sec.~\ref{sec:fgr} & golden-rule machinery, every constant tracked & --- \\
+\rowcolor{corerow}
+Sec.~\ref{sec:reduction} & $\mathbf k$-space reduction $\to$ Eqs.~($4'$), (5), (7) & Rosei 1975/1974 \\
+\rowcolor{corerow}
+Sec.~\ref{sec:XL} & $X$ and $L$, side by side $\to$ Eqs.~($6'$), ($8'$) & Rosei 1975/1974 \\
+\rowcolor{corerow}
+Sec.~\ref{sec:eps2} & ${\varepsilon}_2$ assembled $\to$ (9)--(11); scorecard; corrections; Drude & C\&S; J\&C \\
+Sec.~\ref{sec:photonic} & photonic DOS, emission, detailed balance & Novotny--Hecht \\
+Sec.~\ref{sec:numerics} & ${k_{\parallel}}$ quadrature for the implementation & --- \\
+\bottomrule
+\end{tabular}\end{center}
 
 % =====================================================================
-# Fermi's Golden Rule in $\mathbf{k}$-space {{label:sec:fgr}}
+\section{Fermi's Golden Rule in $\mathbf{k}$-space}\label{sec:fgr}
 % =====================================================================
 
-## Minimal coupling
+\subsection{Minimal coupling}
 
 With the radiation field described by a vector potential $\mathbf{A}$
 in the Coulomb gauge ($\nabla\!\cdot\!\mathbf{A}=0$), the one-electron
 Hamiltonian is
-$$
+\begin{equation}
 \hat H=\frac{[\hat{\mathbf p}+\tfrac{e}{c}\mathbf A(\hat{\mathbf r},t)]^2}{2m}
        +V(\hat{\mathbf r})
       =\underbrace{\frac{\hat p^2}{2m}+V}_{\hat H_0}
        +\underbrace{\frac{e}{2mc}\bigl(\mathbf A\!\cdot\!\hat{\mathbf p}
         +\hat{\mathbf p}\!\cdot\!\mathbf A\bigr)}_{\hat H_{\rm int}}
        +\underbrace{\frac{e^2A^2}{2mc^2}}_{\text{dropped}} .
-$$
+\end{equation}
 In the Coulomb gauge $\hat{\mathbf p}\!\cdot\!\mathbf A
 =\mathbf A\!\cdot\!\hat{\mathbf p}$, so
-$$
+\begin{equation}
 \boxed{\;\hat H_{\rm int}=\frac{e}{mc}\,\mathbf A\!\cdot\!\hat{\mathbf p}\;}
-$$
-<!--\label{eq:Hint}-->
+\label{eq:Hint}
+\end{equation}
 (the $\tfrac12$ of the symmetrized form is consumed by the identity of
 the two terms).  The $A^2$ term does not connect different bands to
 first order and is dropped.
 
-## Quantized field: absorption, stimulated and spontaneous emission
+\subsection{Quantized field: absorption, stimulated and spontaneous emission}
 \label{sec:quantized}
 
 Expanding the field in a quantization volume $V$,
-$$
+\begin{equation}
 \mathbf A(\mathbf r)=\sum_{\mathbf q,\lambda}
 \sqrt{\frac{2\pi\hbar c^2}{\omega_q V}}\;\hat{\bm{\varepsilon}}_\lambda
 \Bigl(\hat a_{\mathbf q\lambda}\,{\mathrm{e}}^{i\mathbf q\cdot\mathbf r}
      +\hat a^\dagger_{\mathbf q\lambda}\,{\mathrm{e}}^{-i\mathbf q\cdot\mathbf r}\Bigr),
-$$
-<!--\label{eq:Aquant}-->
+\label{eq:Aquant}
+\end{equation}
 the matrix elements of $\hat H_{\rm int}$ between joint
 electron--photon states carry the boson factors
-$$
+\begin{equation}
 \bigl|\langle n_q-1|\hat a|n_q\rangle\bigr|^2=n_q
 \quad\text{(absorption)},\qquad
 \bigl|\langle n_q+1|\hat a^\dagger|n_q\rangle\bigr|^2=n_q+1
 \quad\text{(emission)} .
-$$
-<!--\label{eq:bosefactors}-->
+\label{eq:bosefactors}
+\end{equation}
 The ``$+1$'' is the spontaneous channel: it survives at $n_q=0$ and is
 invisible to a purely classical $\mathbf A$.  The semiclassical golden
-rule gives absorption and *stimulated* emission only; spontaneous
+rule gives absorption and \emph{stimulated} emission only; spontaneous
 emission requires \eqref{eq:bosefactors}, and its mode sum produces the
 photonic density of states in Sec.~\ref{sec:photonic}.
 
-## Bloch states and vertical transitions
+\subsection{Bloch states and vertical transitions}
 
 For Bloch states $\psi_{n\mathbf k}={\mathrm{e}}^{i\mathbf k\cdot\mathbf r}
 u_{n\mathbf k}(\mathbf r)/\sqrt V$, the matrix element of
@@ -200,17 +204,17 @@ ${\mathrm{e}}^{\pm i\mathbf q\cdot\mathbf r}\,\hat{\bm{\varepsilon}}\!\cdot\!\ha
 enforces $\mathbf k'=\mathbf k\pm\mathbf q$.  At optical frequencies
 $q\sim\omega/c\sim10^{-3}\,$\AA$^{-1}$ is negligible on the zone scale,
 so transitions are vertical ($\mathbf k'=\mathbf k$) and
-$$
+\begin{equation}
 M_{ul}(\mathbf k)\equiv
 \langle u\,\mathbf k|\,\hat{\bm{\varepsilon}}\!\cdot\!\hat{\mathbf p}\,|l\,\mathbf k\rangle,
 \qquad
 \bigl|\langle f|\hat H_{\rm int}|i\rangle\bigr|^2
 =\Bigl(\frac{e}{mc}\Bigr)^{2}\frac{2\pi\hbar c^2}{\omega V}\,
  |M_{ul}(\mathbf k)|^{2}\times\{n_q\text{ or }n_q+1\}.
-$$
-<!--\label{eq:MEsq}-->
+\label{eq:MEsq}
+\end{equation}
 
-## Golden-rule rate, ${\varepsilon}_2$, and the origin of the $1/\omega^2$
+\subsection{Golden-rule rate, ${\varepsilon}_2$, and the origin of the $1/\omega^2$}
 \label{sec:eps2def}
 
 FGR for one photon mode, then summing over $\mathbf k$ (factor 2 for
@@ -219,24 +223,24 @@ blocking, gives the photon absorption rate.  Equating the absorbed
 power to the electromagnetic dissipation rate
 $P_{\rm abs}=\tfrac{1}{8\pi}\,\omega\,{\varepsilon}_2(\omega)\,|\mathbf E_0|^2 V$
 of a classical field $\mathbf E=\mathbf E_0\cos\omega t$ yields
-$$
+\begin{equation}
 \boxed{\;
 {\varepsilon}_2(\omega)=\frac{4\pi^2 e^2}{m^2\omega^2}\,
 \frac{2}{(2\pi)^3}\int_{\rm BZ}\!{\mathrm{d}}^3k\;
 \bigl|M_{ul}(\mathbf k)\bigr|^{2}\,
 \delta\!\bigl(\hbar\omega_u(\mathbf k)-\hbar\omega_l(\mathbf k)-{\hbar\omega}\bigr)\,
 \bigl[1-{f}\bigl(\hbar\omega_u(\mathbf k)\bigr)\bigr]\; }
-$$
-<!--\label{eq:eps2exact}-->
+\label{eq:eps2exact}
+\end{equation}
 per pair of bands (SI: replace $4\pi e^2\to e^2/{\varepsilon}_0$).  The
 occupation factor is Rosei's, discussed in Sec.~\ref{sec:occupation}.
 
 Where does the $1/\omega^2$ up front come from?  It is fixed before
 any band structure enters --- and it is worth watching, because
-emission will carry a *different* power
+emission will carry a \emph{different} power
 (Sec.~\ref{sec:photonic}).  Unpack \eqref{eq:eps2exact} into its three
 $\omega$-carrying pieces, marking the net power each one contributes:
-$$
+\begin{equation}
 {\varepsilon}_2=\frac{8\pi\,P_{\rm abs}/V}
 {\underbrace{\textstyle\omega}_{-1}\;E_0^{2}},
 \qquad
@@ -246,8 +250,8 @@ P_{\rm abs}=\underbrace{\textstyle{\hbar\omega}}_{+1}\times\ \text{rate},
 \Bigl(\frac{eA_0}{mc}\Bigr)^{\!2}
 =\frac{e^{2}E_0^{2}}{m^{2}}\,
 \underbrace{\frac{1}{\omega^{2}}}_{-2}\ \ (A_0=cE_0/\omega).
-$$
-<!--\label{eq:wcount}-->
+\label{eq:wcount}
+\end{equation}
 The $+1$ (one quantum per event) cancels the $-1$ (the $\omega$ in the
 definition of dissipation); the $-2$ of the vertex is all that
 survives.  It is the price of writing the
@@ -260,52 +264,52 @@ identically.)
 Near a critical point the interband matrix element varies slowly;
 following Rosei we freeze it and average over polarization, in his
 gradient convention:
-$$
+\begin{equation}
 |P|^2\equiv\bigl|\langle u|\nabla|l\rangle\bigr|^2
 \ \ (\text{length}^{-2}),
 \qquad
 \overline{|M_{ul}|^2}
 =\overline{\bigl|\hat{\bm{\varepsilon}}\!\cdot\!{\mathbf{p}_{ul}}\bigr|^2}
 =\frac{\hbar^2|P|^2}{3} .
-$$
-<!--\label{eq:Pdef}-->
+\label{eq:Pdef}
+\end{equation}
 Per critical-point family this turns \eqref{eq:eps2exact} into the
 working form
-$$
+\begin{equation}
 {\varepsilon}_2({\hbar\omega},T)=\frac{4\pi^2e^2\hbar^2}{3m^2\omega^2}\cdot
 \frac{2}{(2\pi)^3}\,N\,|P|^2
 \int_{\text{half-nbhd}}\!\!{\mathrm{d}}^3k\;
 \delta\bigl({\mathcal{E}_{lu}}(\mathbf k)-{\hbar\omega}\bigr)\,
 \bigl[1-{f}(E)\bigr]\Bigr|_{E=\hbar\omega_u(\mathbf k)},
-$$
-<!--\label{eq:star}-->
+\label{eq:star}
+\end{equation}
 with the interband energy ${\mathcal{E}_{lu}}\equiv\hbar\omega_u-\hbar\omega_l$
 (Sec.~\ref{sec:bands} connects it to Rosei's $\Omega_{lu}$) and $N$
 the half-neighborhood count of App.~\ref{sec:conv}.
 
-## Occupation factor: Rosei's $[1-f]$ {{label:sec:occupation}}
+\subsection{Occupation factor: Rosei's $[1-f]$}\label{sec:occupation}
 
 The exact net weight of \eqref{eq:eps2exact} --- absorption minus
 stimulated emission --- is the difference
 ${f}(E-{\hbar\omega})-{f}(E)$ read at the final-state energy
 $E=\hbar\omega_u(\mathbf k)$.  For the noble-metal $d$ bands the
 initial state sits at $E-{\hbar\omega}\lesssim-1.5\,$eV${}\ll-{k_B} T$, so
-${f}(E-{\hbar\omega})=1$ to machine precision and the difference *is*
+${f}(E-{\hbar\omega})=1$ to machine precision and the difference \emph{is}
 Rosei's factor,
-$$
+\begin{equation}
 {f}(E-{\hbar\omega})-{f}(E)\;\longrightarrow\;\bigl[1-{f}(E,T)\bigr],
-$$
-<!--\label{eq:occup}-->
+\label{eq:occup}
+\end{equation}
 which is used throughout this document, exactly as Rosei uses it.
-(The *emission* weight is a different object --- a product, not a
+(The \emph{emission} weight is a different object --- a product, not a
 difference --- and is derived in Sec.~\ref{sec:photonic}.)
 
 % =====================================================================
-# Reduction of the $\mathbf{k}$-integral: the common machinery
+\section{Reduction of the $\mathbf{k}$-integral: the common machinery}
 \label{sec:reduction}
 % =====================================================================
 
-## The Rosei two-band model {{label:sec:bands}}
+\subsection{The Rosei two-band model}\label{sec:bands}
 
 Both critical points are axially symmetric parabolic pairs.  The
 parabolic dispersion relations are the primary sources': at $X$ they
@@ -318,8 +322,8 @@ connects exactly those two energies, so the occupation factors can be
 read off directly at the final energy $E$.  With the positive
 levels/masses of App.~\ref{sec:conv}, generic levels ${\hbar\omega_{u0}}>0$ (empty,
 above $E_F$) and ${\hbar\omega_{l0}}>0$ (occupied $d$ level below $E_F$), and the
-*topology switch* $s$,
-$$
+\emph{topology switch} $s$,
+\begin{equation}
 \boxed{\;
 \begin{aligned}
 E=\hbar\omega_u(\mathbf k)&=+{\hbar\omega_{u0}}+A_u{k_{\perp}}^{2}+s\,B_u{k_{\parallel}}^{2},
@@ -327,20 +331,20 @@ E=\hbar\omega_u(\mathbf k)&=+{\hbar\omega_{u0}}+A_u{k_{\perp}}^{2}+s\,B_u{k_{\pa
 E-{\hbar\omega}=\hbar\omega_l(\mathbf k)&=-{\hbar\omega_{l0}}-A_l{k_{\perp}}^{2}-B_l{k_{\parallel}}^{2},
 &\qquad s_{L}&=+1\ \ \text{(minimum)},
 \end{aligned}\;}
-$$
-<!--\label{eq:bands}-->
+\label{eq:bands}
+\end{equation}
 where $({\hbar\omega_{u0}},{\hbar\omega_{l0}})=({\hbar\omega_{X_6^-}},{\hbar\omega_{X_7^+}})$ at $X$ and $({\hbar\omega_{L_6^-}},{\hbar\omega_{L^+}})$ at $L$; the
 lower band is a local maximum in both directions at both points.  The
 interband energy is then
-$$
+\begin{equation}
 {\mathcal{E}_{lu}}(\mathbf k)
 ={\mathcal{E}_g}+{\bar{A}}\,{k_{\perp}}^{2}+{\bar{B}}\,{k_{\parallel}}^{2},
 \qquad
 {\mathcal{E}_g}={\hbar\omega_{u0}}+{\hbar\omega_{l0}},\quad
 {\bar{A}}=A_u+A_l>0,\quad
 \boxed{{\bar{B}}=B_l+s\,B_u}
-$$
-<!--\label{eq:Omega}-->
+\label{eq:Omega}
+\end{equation}
 --- the entire topological difference between $X$ and $L$ is carried
 by $s$ through ${\bar{B}}$ (and the determinant ${\mathcal{D}}$ below).
 
@@ -353,28 +357,28 @@ instead (the photon-energy range) is quantified after the window table
 of Sec.~\ref{sec:eps2}.
 
 A note on symbols: Rosei's own $\Omega_{lu}$ is not this energy but
-the *constraint* built from it,
-$$
+the \emph{constraint} built from it,
+\begin{equation}
 \Omega_{lu}(\mathbf k)\equiv
 \hbar\omega_u-\hbar\omega_l-{\hbar\omega}={\mathcal{E}_{lu}}(\mathbf k)-{\hbar\omega}=0,
 \tag{3}
-$$
-<!--\label{eq:CEDS}-->
+\label{eq:CEDS}
+\end{equation}
 whose zero set is the constant-energy-difference surface (CEDS) ---
 the surface on which everything below happens.  We keep the two
 apart: ${\mathcal{E}_{lu}}$ is a function on $\mathbf k$-space; Rosei's Eq.~(3),
 $\Omega_{lu}=0$, picks out the surface.  The gold parameters are
 collected in the tables of Sec.~\ref{sec:eps2}.
 
-## Sorting transitions by final energy
+\subsection{Sorting transitions by final energy}
 \label{sec:sort}
 
 The occupation in \eqref{eq:star} depends on $\mathbf k$ only through
 the final energy $E=\hbar\omega_u(\mathbf k)$ --- that is where
-temperature enters --- so before any geometry we *sort the
-transitions by $E$*, by slipping the identity
+temperature enters --- so before any geometry we \emph{sort the
+transitions by $E$}, by slipping the identity
 $1=\int{\mathrm{d}} E\;\delta(\hbar\omega_u(\mathbf k)-E)$ into \eqref{eq:star}:
-$$
+\begin{equation}
 \begin{aligned}
 \int_{{k_{\parallel}}>0}\!\!{\mathrm{d}}^3k\;\delta({\mathcal{E}_{lu}}-{\hbar\omega})\,[1-{f}]
 &=\int_{E_{\min}}^{E_{\max}}\!\!{\mathrm{d}} E\;[1-{f}(E)]
@@ -383,62 +387,62 @@ $$
 \delta\bigl({\mathcal{E}_{lu}}-{\hbar\omega}\bigr)}_{(2\pi)^3\,{D_{l\to u}}(E,{\hbar\omega})}\\[2pt]
 &\equiv(2\pi)^3\,{\mathcal{J}}_{l\to u}({\hbar\omega},T) .
 \end{aligned}
-$$
-<!--\label{eq:sort}-->
+\label{eq:sort}
+\end{equation}
 The limits $[E_{\min},E_{\max}]$ are simply where the double-$\delta$
 has support; they are worked out per critical point in
 Sec.~\ref{sec:XL}.  Read \eqref{eq:sort} from the outside in: the
 outer object ${\mathcal{J}}_{l\to u}$ is already Rosei's thermally weighted JDOS
 --- his Eq.~(7), waiting only for its integrand --- and that integrand,
 the inner integral, is his central object: the
-*energy-distributed joint density of states* (EDJDOS),
+\emph{energy-distributed joint density of states} (EDJDOS),
 transitions per unit crystal volume, per unit final energy, per unit
 transition energy (one half-neighborhood, one spin).  Both $\delta$'s
 are accounted for: energy conservation was already in \eqref{eq:star};
 the second is the inserted identity, and it is what lets ${\mathcal{J}}$ weight
 each $E$ by its own occupation.
 
-## Change of variables $(u,v)=({k_{\perp}}^2,{k_{\parallel}}^2)$ {{label:sec:linear}}
+\subsection{Change of variables $(u,v)=({k_{\perp}}^2,{k_{\parallel}}^2)$}\label{sec:linear}
 
 This is the step where the present derivation simplifies Rosei's
 geometric construction --- and the form of \eqref{eq:sort} itself
 dictates it.  The two $\delta$-functions in \eqref{eq:sort} have
 arguments $\hbar\omega_u(\mathbf k)-E$ and ${\mathcal{E}_{lu}}(\mathbf k)-{\hbar\omega}$, and
-by \eqref{eq:bands} and \eqref{eq:Omega} both are *affine in the
-squared coordinates* ${k_{\perp}}^2$ and ${k_{\parallel}}^2$.  A $\delta$-function of
+by \eqref{eq:bands} and \eqref{eq:Omega} both are \emph{affine in the
+squared coordinates} ${k_{\perp}}^2$ and ${k_{\parallel}}^2$.  A $\delta$-function of
 a linear argument collapses trivially; so choose the variables in
-which the constraints *are* linear.  On the quadrant $u,v\ge0$
+which the constraints \emph{are} linear.  On the quadrant $u,v\ge0$
 with $(u,v)=({k_{\perp}}^2,{k_{\parallel}}^2)$, fixing the final energy $E$ and the
 interband energy ${\mathcal{E}_{lu}}={\hbar\omega}$ reads
-$$
+\begin{equation}
 \begin{pmatrix} E-{\hbar\omega_{u0}}\\[2pt] {\hbar\omega}-{\mathcal{E}_g}\end{pmatrix}
 =\underbrace{\begin{pmatrix} A_u & s\,B_u\\[2pt] {\bar{A}} & {\bar{B}}\end{pmatrix}}_{\textstyle M}
 \begin{pmatrix} u\\[2pt] v\end{pmatrix},
 \qquad
 {\mathcal{D}}\equiv\det M=A_uB_l-s\,A_lB_u .
-$$
-<!--\label{eq:linsys}-->
-Stacking the two constraints *is* the construction of the
+\label{eq:linsys}
+\end{equation}
+Stacking the two constraints \emph{is} the construction of the
 transition matrix $M$; its determinant is the Jacobian that will
 collapse the two $\delta$-functions below.  Inverting,
-$$
+\begin{equation}
 \boxed{\;
 u=\frac{{\bar{B}}\,(E-{\hbar\omega_{u0}})-s\,B_u({\hbar\omega}-{\mathcal{E}_g})}{{\mathcal{D}}},
 \qquad
 v={k_{\parallel}}^{2}=\frac{A_u({\hbar\omega}-{\mathcal{E}_g})-{\bar{A}}\,(E-{\hbar\omega_{u0}})}{{\mathcal{D}}}
 \;}
-$$
-<!--\label{eq:uv}-->
+\label{eq:uv}
+\end{equation}
 and the physical window is exactly $\{u\ge0\}\cap\{v\ge0\}$.
 The two point-specific determinants:
-$$
+\begin{equation}
 {\mathcal{D}}_X=A_uB_l+A_lB_u>0\ \ \text{always (either sign of ${\bar{B}}_X$)},
 \qquad
 {\mathcal{D}}_L=A_uB_l-A_lB_u\ \ (<0\ \text{for Au}) .
-$$
-<!--\label{eq:Ds}-->
+\label{eq:Ds}
+\end{equation}
 
-## The EDJDOS: general derivation for both $X$ and $L$
+\subsection{The EDJDOS: general derivation for both $X$ and $L$}
 \label{sec:kernel}
 
 Now reduce the inner integral of \eqref{eq:sort} all the way --- this
@@ -446,57 +450,57 @@ is where ${\mathcal{D}}$ and ${\mathcal{F}}$ come from.
 Axial symmetry gives ${\mathrm{d}}^3k=2\pi{k_{\perp}}{\mathrm{d}}{k_{\perp}}\,{\mathrm{d}}{k_{\parallel}}$; in the
 squared variables ${k_{\perp}}{\mathrm{d}}{k_{\perp}}=\tfrac12{\mathrm{d}} u$,
 ${\mathrm{d}}{k_{\parallel}}={\mathrm{d}} v/(2\sqrt v)$:
-$$
+\begin{equation}
 \frac{1}{(2\pi)^3}\int_{{k_{\parallel}}>0}\!\!{\mathrm{d}}^3k
 =\frac{1}{(2\pi)^3}\,\frac{\pi}{2}
 \int_0^\infty\!\!{\mathrm{d}} u\int_0^\infty\!\frac{{\mathrm{d}} v}{\sqrt v}
 =\frac{1}{16\pi^2}\int_0^\infty\!\!{\mathrm{d}} u\int_0^\infty\!\frac{{\mathrm{d}} v}{\sqrt v}.
-$$
+\end{equation}
 The two $\delta$'s are exactly the two rows of $M$ in
 \eqref{eq:linsys}; linear $\delta$'s collapse onto the unique solution
 \eqref{eq:uv} divided by $|\det M|=|{\mathcal{D}}|$, and $\sqrt{v_*}={k_{\parallel}}(E,{\hbar\omega})$:
-$$
+\begin{equation}
 {D_{l\to u}}(E,{\hbar\omega})=\frac{1}{16\pi^2\,|{\mathcal{D}}|}\,\frac{1}{{k_{\parallel}}(E,{\hbar\omega})} .
-$$
-<!--\label{eq:Draw}-->
-**This is the whole result of the reduction: it contains only
-${\mathcal{D}}$ and ${k_{\parallel}}$ --- no ${\mathcal{F}}$ yet.**  Rosei's ${\mathcal{F}}_{l\to u}$ is not an
+\label{eq:Draw}
+\end{equation}
+\textbf{This is the whole result of the reduction: it contains only
+${\mathcal{D}}$ and ${k_{\parallel}}$ --- no ${\mathcal{F}}$ yet.}  Rosei's ${\mathcal{F}}_{l\to u}$ is not an
 independent input but a repackaging of ${\mathcal{D}}$, manufactured here.
 Expanding ${\mathcal{D}}_X$ in the masses,
-$$
+\begin{equation}
 {\mathcal{D}}_X=A_uB_l+A_lB_u
 =\Bigl(\frac{\hbar^2}{2}\Bigr)^{2}
 \frac{m_{l\perp}m_{u\parallel}+m_{l\parallel}m_{u\perp}}
 {m_{l\perp}m_{l\parallel}m_{u\perp}m_{u\parallel}},
-$$
+\end{equation}
 and defining ${\mathcal{F}}_{l\to u}\equiv\hbar^2/(2\sqrt{|{\mathcal{D}}|})$ as pure
 shorthand, the $\hbar^2/2$ cancels and Rosei's Eq.~(5) falls out ---
 derived, not assumed --- together with its $L$ analogue:
-$$
+\begin{equation}
 {\mathcal{F}}_X=\left[\frac{m_{l\perp}m_{u\parallel}+m_{l\parallel}m_{u\perp}}
 {m_{l\perp}m_{l\parallel}m_{u\perp}m_{u\parallel}}\right]^{-1/2},
 \qquad
 {\mathcal{F}}_L=\left[\frac{\bigl|m_{l\perp}m_{u\parallel}-m_{l\parallel}m_{u\perp}\bigr|}
 {m_{l\perp}m_{l\parallel}m_{u\perp}m_{u\parallel}}\right]^{-1/2}
 \tag{5}
-$$
-<!--\label{eq:Fmass}-->
+\label{eq:Fmass}
+\end{equation}
 (the sum/difference structure is the $s=\mp1$ dichotomy of
 \eqref{eq:Ds}).  Reading the shorthand backwards,
 $|{\mathcal{D}}|=\hbar^4/4{\mathcal{F}}^2$, and \eqref{eq:Draw} becomes the EDJDOS in
 Rosei's own symbols:
-$$
+\begin{equation}
 \boxed{\;
 {D_{l\to u}}(E,{\hbar\omega})=\frac{1}{16\pi^2\,|{\mathcal{D}}|}\,\frac{1}{{k_{\parallel}}(E,{\hbar\omega})}
 =\frac{{\mathcal{F}}_{l\to u}^{2}}{4\pi^2\hbar^{4}}\,\frac{1}{{k_{\parallel}}(E,{\hbar\omega})}
 \;}
 \tag{4$'$}
-$$
-<!--\label{eq:D4p}-->
+\label{eq:D4p}
+\end{equation}
 supported on $u,v\ge0$, with ${k_{\parallel}}$ from \eqref{eq:uv}.
 
 \medskip
-\noindent**Where the printed (4) falls.**  Rosei prints
+\noindent\textbf{Where the printed (4) falls.}  Rosei prints
 ${D_{l\to u}}=(8\pi^2\hbar^2)^{-1}{\mathcal{F}}/{k_{\parallel}}$.  With $|P|^2$ the squared
 gradient matrix element of \eqref{eq:Pdef}, the pair \{printed (4),
 printed (9)\} does not balance dimensionally, whereas ($4'$) ---
@@ -508,24 +512,24 @@ shape, and it is absorbed into the fitted strength $S={\mathcal{F}}|P|^2$ of
 Eq.~(10) --- which is why the slip is invisible in the published
 numbers.  Details in Sec.~\ref{sec:grw}.
 
-## The thermally weighted JDOS: Rosei's Eq.\ (7)
+\subsection{The thermally weighted JDOS: Rosei's Eq.\ (7)}
 
 With ${D_{l\to u}}$ in hand, the outer integral of \eqref{eq:sort} is,
 verbatim as Rosei writes it,
-$$
+\begin{equation}
 \boxed{\;
 {\mathcal{J}}_{l\to u}({\hbar\omega},T)=\int_{E_{\min}}^{E_{\max}}
 {D_{l\to u}}(E,{\hbar\omega})\,\bigl[1-{f}(E,T)\bigr]\,{\mathrm{d}} E
 \;}
 \tag{7}
-$$
-<!--\label{eq:J7}-->
+\label{eq:J7}
+\end{equation}
 with the windows $[E_{\min},E_{\max}]$ set by the geometry
 ($u,v\ge0$) and, where the geometry leaves an edge open, by the
 occupation itself --- next section.
 
 % =====================================================================
-# The two critical points, side by side {{label:sec:XL}}
+\section{The two critical points, side by side}\label{sec:XL}
 % =====================================================================
 
 Everything so far is common.  The topology forks the derivation
@@ -540,17 +544,80 @@ Sec.~\ref{sec:fork}); his equations then pop out directly.
 \setlength{\columnsep}{22pt}
 \columnratio{0.5}
 \setlength{\columnseprule}{0.4pt}
-<!--paracol-->
-| Step | **$X$ point$\quad$ ($s=-1$)** | **$L$ point$\quad$ ($s=+1$)** |
-| --- | --- | --- |
-| **Bands** | $\begin{aligned}E&=+{\hbar\omega_{X_6^-}}+\frac{\hbar^2{k_{\perp}}^2}{2m_{u\perp}} -\frac{\hbar^2{k_{\parallel}}^2}{2m_{u\parallel}},\\ E-{\hbar\omega}&=-{\hbar\omega_{X_7^+}}-\frac{\hbar^2{k_{\perp}}^2}{2m_{l\perp}} -\frac{\hbar^2{k_{\parallel}}^2}{2m_{l\parallel}} .\end{aligned}$<br><br>Rosei's Eqs.\ (1)--(2) verbatim: the $X_6^-$ ($sp$) band curves up in the face, down along $\Delta$ --- a saddle; $X_7^+$ ($d$) is a maximum. | $\begin{aligned}E&=+{\hbar\omega_{L_6^-}}+\frac{\hbar^2{k_{\perp}}^2}{2m_{u\perp}} +\frac{\hbar^2{k_{\parallel}}^2}{2m_{u\parallel}},\\ E-{\hbar\omega}&=-{\hbar\omega_{L^+}}-\frac{\hbar^2{k_{\perp}}^2}{2m_{l\perp}} -\frac{\hbar^2{k_{\parallel}}^2}{2m_{l\parallel}} .\end{aligned}$<br><br>Not derived in the 1975 paper (borrowed from Rosei 1974); rederived here with the same tools.  $L_6^-$ is a *minimum* in both directions; $L^+$ ($d$ top) a maximum.  The only change from $X$ is the sign of the upper ${k_{\parallel}}^2$ term; that one flip cascades through everything below. |
-| **Transition surface (CEDS)** | ${\mathcal{E}_{lu}}={\mathcal{E}_g^{X}}+{\bar{A}}_X{k_{\perp}}^2+{\bar{B}}_X{k_{\parallel}}^2,\quad {\bar{B}}_X=B_l-B_u<0$<br><br>on Rosei's branch ($m_{u\parallel}<m_{l\parallel}$: the $sp$ band falls along $\Delta$ faster than the $d$ band).  The CEDS is an *open* hyperboloid at every ${\hbar\omega}$: transitions exist on both sides of ${\mathcal{E}_g^{X}}$ --- a real sub-gap tail. | ${\mathcal{E}_{lu}}={\mathcal{E}_g^{L}}+{\bar{A}}_L{k_{\perp}}^2+{\bar{B}}_L{k_{\parallel}}^2,\quad {\bar{B}}_L=B_l+B_u>0$<br><br>unconditionally: a closed ellipsoid, existing only for ${\hbar\omega}\ge{\mathcal{E}_g^{L}}$. *No sub-gap tail at $L$* --- the sharp-vs-tailed contrast of the two edges is baked in right here. |
-| **Determinant** | ${\mathcal{D}}_X=A_uB_l+A_lB_u>0\ \ \text{(either branch)} .$ | ${\mathcal{D}}_L=A_uB_l-A_lB_u<0\ \ \text{for Au}$<br><br>($m_{l\perp}m_{u\parallel}=0.084<m_{l\parallel}m_{u\perp}=0.247$). |
-| **Constrained ${k_{\parallel** | }$}<br><br>${k_{\parallel}}^{2} =\frac{2{\mathcal{F}}_X^{2}}{\hbar^{2}}\Bigl[ \frac{{\hbar\omega}-{\hbar\omega_{X_7^+}}-E}{m_{u\perp}} +\frac{{\hbar\omega_{X_6^-}}-E}{m_{l\perp}}\Bigr].$<br><br>Rosei's Eq.\ (6), corrected --- called ($6'$) throughout; see Sec.~\ref{sec:grw}. | }$}<br><br>${k_{\parallel}}^{2} =\frac{2{\mathcal{F}}_L^{2}}{\hbar^{2}}\Bigl[ \frac{E-({\hbar\omega}-{\hbar\omega_{L^+}})}{m_{u\perp}} +\frac{E-{\hbar\omega_{L_6^-}}}{m_{l\perp}}\Bigr].$<br><br>Same inversion, ${\mathcal{D}}_L<0$ reversing both inequalities. |
-| **Window** | $E$ decreases without bound along the CEDS (${\mathrm{d}} E\propto-{\mathcal{D}}_X{\mathrm{d}} v<0$): no geometric floor.  The integral is cut by occupation alone --- Rosei's practical floor $E_{\min}=-20{k_B} T$.  The ceiling is geometric and changes character at the gap:<br><br>$E_{\max}={\hbar\omega_{X_6^-}}+ \begin{cases} \dfrac{A_u}{{\bar{A}}_X}({\hbar\omega}-{\mathcal{E}_g^{X}}), & {\hbar\omega}\ge{\mathcal{E}_g^{X}},\\[10pt] -\dfrac{B_u}{\vert{}{\bar{B}}_X\vert{}}({\mathcal{E}_g^{X}}-{\hbar\omega}), & {\hbar\omega}<{\mathcal{E}_g^{X}}, \end{cases}$<br><br>the lower line being Rosei's Eq.\ (8), corrected --- ($8'$), Sec.~\ref{sec:grw}. | Both edges geometric ($v\ge0$ now gives the \emph{lower} edge, $u\ge0$ the upper):<br><br>$\begin{aligned}E_{\min}&={\hbar\omega_{L_6^-}}+\frac{A_u}{{\bar{A}}_L}({\hbar\omega}-{\mathcal{E}_g^{L}}),\\ E_{\max}&={\hbar\omega_{L_6^-}}+\frac{B_u}{{\bar{B}}_L}({\hbar\omega}-{\mathcal{E}_g^{L}}),\end{aligned}$<br><br>slopes $0.745$ and $0.896$ for Au.  The whole window rides upward from ${\hbar\omega_{L_6^-}}=0.89$ eV (Remark~\ref{rem:neck}). |
-| {{pagebreak}} **Singular edge** | Above the gap the ceiling is the ${k_{\parallel}}\to0$ circle, where ${D_{l\to u}}\propto1/{k_{\parallel}}$ diverges:<br><br>$\frac{1}{{k_{\parallel}}(E)}=\sqrt{\frac{{\mathcal{D}}_X}{{\bar{A}}_X}}\; \frac{1}{\sqrt{E_{\max}-E}} .$<br><br>Below the gap the ceiling is the finite ${k_{\perp}}=0$ point: no divergence. | From \eqref{eq:uv} with ${\mathcal{D}}_L<0$,<br><br>${k_{\parallel}}^{2}=\frac{{\bar{A}}_L}{\vert{}{\mathcal{D}}_L\vert{}}\,\bigl(E-E_{\min}\bigr),$<br><br>so ${D_{l\to u}}\propto1/{k_{\parallel}}$ diverges at the \emph{lower} limit:<br><br>$\frac{1}{{k_{\parallel}}(E)}=\sqrt{\frac{\vert{}{\mathcal{D}}_L\vert{}}{{\bar{A}}_L}}\; \frac{1}{\sqrt{E-E_{\min}}} .$ |
-| **Onset** | At $T=0$ absorption starts when $E_{\max}$ crosses $E_F$:<br><br>${\hbar\omega}_{\rm on}={\mathcal{E}_g^{X}}-{\hbar\omega_{X_6^-}}\,\frac{m_{l\parallel}-m_{u\parallel}} {m_{l\parallel}}\simeq1.83\ \text{eV},$<br><br>the piezomodulation threshold; the tail $1.83$--$1.94$ eV is purely geometric, and the onset is \emph{step-like} (Rosei's word), not divergent. | At ${\hbar\omega}={\mathcal{E}_g^{L}}$ exactly, with ${\mathcal{J}}_L\propto\sqrt{{\hbar\omega}-{\mathcal{E}_g^{L}}}$; the inverse-square-root weight sits on the onset edge itself, which is why the $L$ edge is sharp and strong. |
-
+\begin{paracol}{2}
+\begin{center}\underline{{\Large\bfseries $X$ point\quad ($s=-1$)}}\end{center}
+\switchcolumn
+\begin{center}\underline{{\Large\bfseries $L$ point\quad ($s=+1$)}}\end{center}
+\switchcolumn*
+\colstep{Bands}
+\begin{align*}
+E&=+{\hbar\omega_{X_6^-}}+\frac{\hbar^2{k_{\perp}}^2}{2m_{u\perp}} -\frac{\hbar^2{k_{\parallel}}^2}{2m_{u\parallel}},\\ E-{\hbar\omega}&=-{\hbar\omega_{X_7^+}}-\frac{\hbar^2{k_{\perp}}^2}{2m_{l\perp}} -\frac{\hbar^2{k_{\parallel}}^2}{2m_{l\parallel}} .
+\end{align*}
+Rosei's Eqs.\ (1)--(2) verbatim: the $X_6^-$ ($sp$) band curves up in the face, down along $\Delta$ --- a saddle; $X_7^+$ ($d$) is a maximum.
+\switchcolumn
+\colstep{Bands}
+\begin{align*}
+E&=+{\hbar\omega_{L_6^-}}+\frac{\hbar^2{k_{\perp}}^2}{2m_{u\perp}} +\frac{\hbar^2{k_{\parallel}}^2}{2m_{u\parallel}},\\ E-{\hbar\omega}&=-{\hbar\omega_{L^+}}-\frac{\hbar^2{k_{\perp}}^2}{2m_{l\perp}} -\frac{\hbar^2{k_{\parallel}}^2}{2m_{l\parallel}} .
+\end{align*}
+Not derived in the 1975 paper (borrowed from Rosei 1974); rederived here with the same tools.  $L_6^-$ is a \emph{minimum} in both directions; $L^+$ ($d$ top) a maximum.  The only change from $X$ is the sign of the upper ${k_{\parallel}}^2$ term; that one flip cascades through everything below.
+\switchcolumn*
+\colstep{Transition surface (CEDS)}
+\[{\mathcal{E}_{lu}}={\mathcal{E}_g^{X}}+{\bar{A}}_X{k_{\perp}}^2+{\bar{B}}_X{k_{\parallel}}^2,\quad {\bar{B}}_X=B_l-B_u<0\]
+on Rosei's branch ($m_{u\parallel}<m_{l\parallel}$: the $sp$ band falls along $\Delta$ faster than the $d$ band).  The CEDS is an \emph{open} hyperboloid at every ${\hbar\omega}$: transitions exist on both sides of ${\mathcal{E}_g^{X}}$ --- a real sub-gap tail.
+\switchcolumn
+\colstep{Transition surface (CEDS)}
+\[{\mathcal{E}_{lu}}={\mathcal{E}_g^{L}}+{\bar{A}}_L{k_{\perp}}^2+{\bar{B}}_L{k_{\parallel}}^2,\quad {\bar{B}}_L=B_l+B_u>0\]
+unconditionally: a closed ellipsoid, existing only for ${\hbar\omega}\ge{\mathcal{E}_g^{L}}$. \emph{No sub-gap tail at $L$} --- the sharp-vs-tailed contrast of the two edges is baked in right here.
+\switchcolumn*
+\colstep{Determinant}
+\[{\mathcal{D}}_X=A_uB_l+A_lB_u>0\ \ \text{(either branch)} .\]
+\switchcolumn
+\colstep{Determinant}
+\[{\mathcal{D}}_L=A_uB_l-A_lB_u<0\ \ \text{for Au}\]
+($m_{l\perp}m_{u\parallel}=0.084<m_{l\parallel}m_{u\perp}=0.247$).
+\switchcolumn*
+\colstep{Constrained ${k_{\parallel}
+}$}
+\[{k_{\parallel}}^{2} =\frac{2{\mathcal{F}}_X^{2}}{\hbar^{2}}\Bigl[ \frac{{\hbar\omega}-{\hbar\omega_{X_7^+}}-E}{m_{u\perp}} +\frac{{\hbar\omega_{X_6^-}}-E}{m_{l\perp}}\Bigr].\]
+Rosei's Eq.\ (6), corrected --- called ($6'$) throughout; see Sec.~\ref{sec:grw}.
+\switchcolumn
+\colstep{Constrained ${k_{\parallel}
+}$}
+\[{k_{\parallel}}^{2} =\frac{2{\mathcal{F}}_L^{2}}{\hbar^{2}}\Bigl[ \frac{E-({\hbar\omega}-{\hbar\omega_{L^+}})}{m_{u\perp}} +\frac{E-{\hbar\omega_{L_6^-}}}{m_{l\perp}}\Bigr].\]
+Same inversion, ${\mathcal{D}}_L<0$ reversing both inequalities.
+\switchcolumn*
+\colstep{Window}
+$E$ decreases without bound along the CEDS (${\mathrm{d}} E\propto-{\mathcal{D}}_X{\mathrm{d}} v<0$): no geometric floor.  The integral is cut by occupation alone --- Rosei's practical floor $E_{\min}=-20{k_B} T$.  The ceiling is geometric and changes character at the gap:
+\[E_{\max}={\hbar\omega_{X_6^-}}+ \begin{cases} \dfrac{A_u}{{\bar{A}}_X}({\hbar\omega}-{\mathcal{E}_g^{X}}), & {\hbar\omega}\ge{\mathcal{E}_g^{X}},\\[10pt] -\dfrac{B_u}{\vert{}{\bar{B}}_X\vert{}}({\mathcal{E}_g^{X}}-{\hbar\omega}), & {\hbar\omega}<{\mathcal{E}_g^{X}}, \end{cases}\]
+the lower line being Rosei's Eq.\ (8), corrected --- ($8'$), Sec.~\ref{sec:grw}.
+\switchcolumn
+\colstep{Window}
+Both edges geometric ($v\ge0$ now gives the \emph{lower} edge, $u\ge0$ the upper):
+\begin{align*}
+E_{\min}&={\hbar\omega_{L_6^-}}+\frac{A_u}{{\bar{A}}_L}({\hbar\omega}-{\mathcal{E}_g^{L}}),\\ E_{\max}&={\hbar\omega_{L_6^-}}+\frac{B_u}{{\bar{B}}_L}({\hbar\omega}-{\mathcal{E}_g^{L}}),
+\end{align*}
+slopes $0.745$ and $0.896$ for Au.  The whole window rides upward from ${\hbar\omega_{L_6^-}}=0.89$ eV (Remark~\ref{rem:neck}).
+\switchcolumn*
+\newpage
+\colstep{Singular edge}
+Above the gap the ceiling is the ${k_{\parallel}}\to0$ circle, where ${D_{l\to u}}\propto1/{k_{\parallel}}$ diverges:
+\[\frac{1}{{k_{\parallel}}(E)}=\sqrt{\frac{{\mathcal{D}}_X}{{\bar{A}}_X}}\; \frac{1}{\sqrt{E_{\max}-E}} .\]
+Below the gap the ceiling is the finite ${k_{\perp}}=0$ point: no divergence.
+\switchcolumn
+\colstep{Singular edge}
+From \eqref{eq:uv} with ${\mathcal{D}}_L<0$,
+\[{k_{\parallel}}^{2}=\frac{{\bar{A}}_L}{\vert{}{\mathcal{D}}_L\vert{}}\,\bigl(E-E_{\min}\bigr),\]
+so ${D_{l\to u}}\propto1/{k_{\parallel}}$ diverges at the \emph{lower} limit:
+\[\frac{1}{{k_{\parallel}}(E)}=\sqrt{\frac{\vert{}{\mathcal{D}}_L\vert{}}{{\bar{A}}_L}}\; \frac{1}{\sqrt{E-E_{\min}}} .\]
+\switchcolumn*
+\colstep{Onset}
+At $T=0$ absorption starts when $E_{\max}$ crosses $E_F$:
+\[{\hbar\omega}_{\rm on}={\mathcal{E}_g^{X}}-{\hbar\omega_{X_6^-}}\,\frac{m_{l\parallel}-m_{u\parallel}} {m_{l\parallel}}\simeq1.83\ \text{eV},\]
+the piezomodulation threshold; the tail $1.83$--$1.94$ eV is purely geometric, and the onset is \emph{step-like} (Rosei's word), not divergent.
+\switchcolumn
+\colstep{Onset}
+At ${\hbar\omega}={\mathcal{E}_g^{L}}$ exactly, with ${\mathcal{J}}_L\propto\sqrt{{\hbar\omega}-{\mathcal{E}_g^{L}}}$; the inverse-square-root weight sits on the onset edge itself, which is why the $L$ edge is sharp and strong.
+\end{paracol}
 \vspace{1em}
 \bigskip
 \noindent
@@ -564,18 +631,18 @@ a geometric sub-gap tail. One interband edge that is really two ---
 soft at $X$, sharp half an eV above it at $L$ --- and that is exactly
 the ``splitting of the interband absorption edge'' of the 1975 title.
 
-> [!note] Remark: The $L$ level and the Fermi-surface neck {{label:rem:neck}}
-> Rosei's qualitative discussion attributes the strength of the $L$
-> singularity to the onset CEDS being tangent to the Fermi surface along
-> the neck --- which requires $L_6^-$ \emph{below} $E_F$.  The fitted
-> scheme (${\mathcal{E}_g^{L}}=2.45$, ${\hbar\omega_{L^+}}=1.56\Rightarrow{\hbar\omega_{L_6^-}}=+0.89$ eV) puts the
-> whole $L$ window \emph{above} $E_F$, making the $L$ channel inert
-> through the Fermi factor.  Both statements cannot hold in one
-> parabolic model; the fitted scheme is what the code implements, and
-> the tension is recorded here rather than papered over.
-
+\begin{remark}[The $L$ level and the Fermi-surface neck]\label{rem:neck}
+Rosei's qualitative discussion attributes the strength of the $L$
+singularity to the onset CEDS being tangent to the Fermi surface along
+the neck --- which requires $L_6^-$ \emph{below} $E_F$.  The fitted
+scheme (${\mathcal{E}_g^{L}}=2.45$, ${\hbar\omega_{L^+}}=1.56\Rightarrow{\hbar\omega_{L_6^-}}=+0.89$ eV) puts the
+whole $L$ window \emph{above} $E_F$, making the $L$ channel inert
+through the Fermi factor.  Both statements cannot hold in one
+parabolic model; the fitted scheme is what the code implements, and
+the tension is recorded here rather than papered over.
+\end{remark}
 % ---------------------------------------------------------------------
-## The $X$ mass fork: sign of ${\bar{B}}_X$ {{label:sec:fork}}
+\subsection{The $X$ mass fork: sign of ${\bar{B}}_X$}\label{sec:fork}
 % ---------------------------------------------------------------------
 
 One assignment at $X$ I am not sure of, flagged because it flips a
@@ -597,15 +664,17 @@ and the onset is a $\sqrt{{\hbar\omega}-{\mathcal{E}_g^{X}}}$ rise sitting exact
 the $-20{k_B} T$ floor would overshoot the true, geometric one).
 
 Two facts keep the fork contained:
-- Above the gap the branches are \emph{indistinguishable}: same line shape, same singular edge.  The $\parallel$ masses enter only through ${\mathcal{F}}_X$, and the fit lumps ${\mathcal{F}}_X$ into $S_X={\mathcal{F}}_X|P_X|^2$ --- so no fit to ${\varepsilon}_2$ data can tell the branches apart; only sub-gap behaviour or the extracted $|P_X|^2$ could.  (The above-gap window slope $A_u/{\bar{A}}_X$ --- $0.62$ on Rosei's assignment, $0.38$ on mine --- is set by the $\perp$ masses, a separate assignment.)
-- Either ordering makes the $d$ band the \emph{lighter} one along $\Delta$, which goes against the flat-$d$ prior --- so the likeliest culprit is a transcription swap in my own mass table, not new physics.
+\begin{itemize}
+\item Above the gap the branches are \emph{indistinguishable}: same line shape, same singular edge.  The $\parallel$ masses enter only through ${\mathcal{F}}_X$, and the fit lumps ${\mathcal{F}}_X$ into $S_X={\mathcal{F}}_X|P_X|^2$ --- so no fit to ${\varepsilon}_2$ data can tell the branches apart; only sub-gap behaviour or the extracted $|P_X|^2$ could.  (The above-gap window slope $A_u/{\bar{A}}_X$ --- $0.62$ on Rosei's assignment, $0.38$ on mine --- is set by the $\perp$ masses, a separate assignment.)
+\item Either ordering makes the $d$ band the \emph{lighter} one along $\Delta$, which goes against the flat-$d$ prior --- so the likeliest culprit is a transcription swap in my own mass table, not new physics.
+\end{itemize}
 
 \noindent\textbf{Bottom line: until C\&S Fig.~5 is re-measured, this
 document follows Rosei's branch (${\bar{B}}_X<0$) everywhere, and quotes the
 branch wherever it matters.}
 
 % =====================================================================
-# Assembled ${\varepsilon}_2$
+\section{Assembled ${\varepsilon}_2$}
 \label{sec:eps2}
 % =====================================================================
 
@@ -613,10 +682,10 @@ Insert the EDJDOS ($4'$) into the FGR form \eqref{eq:star}.  The
 bridge is the definition of ${D_{l\to u}}$ itself, Eq.~\eqref{eq:sort}: the
 $(2\pi)^3$ cancels, and with spin (the explicit 2) and the
 half-neighborhood counts $N_X=6$, $N_L=8$,
- MATH23 
+${\varepsilon}_2$
 which tidies to Rosei's second headline equation, with no leftover
 constant:
- MATH24 
+$\to$
 <!--\label{eq:eps9}-->
 (Rosei leaves the $N_i$ implicit, so the fitted $|P_i|^2$ really means
 $N_i|P_i|^2$ up to normalization --- harmless for the quoted ratio).
@@ -624,7 +693,7 @@ That clean landing needs three things at once: $|P|^2$ is the squared
 gradient element \eqref{eq:Pdef}; ${D_{l\to u}}$ is ($4'$), not the printed
 (4); spin and $N_i$ are kept where shown.  The quantities the data
 actually fix are the strengths
- MATH25 
+${k_{\parallel}}$
 <!--\label{eq:S10}-->
 with $|P_X/P_L|^2=0.370$ from the fit to Johnson--Christy; under the
 corrected ($4'$) the fitted combination maps onto the printed $S_i$
@@ -633,21 +702,23 @@ Sec.~\ref{sec:kernel} --- every published number keeps its meaning.
 
 Fully substituted --- the explicit integral a computer evaluates ---
 ($4'$) into (9), the $\hbar^4$'s cancelling:
- MATH26 
+$\mathbf{k}$
 <!--\label{eq:eps11}-->
 with ${k_{\parallel}}^{X}$ from ($6'$), ${k_{\parallel}}^{L}$ from its $L$ twin (same
 bracket, every slot sign-reversed), and windows:
 
 \begin{center}
 \small
-<!--colspec:lccl-->
-|  | $E_{\min}$ | $E_{\max}$ | edge behaviour |
-| --- | --- | --- | --- |
-| $X$, ${\hbar\omega}\ge{\mathcal{E}_g^{X}}$ | $-20{k_B} T$ (occupation) | ${\hbar\omega_{X_6^-}}+\frac{A_u}{{\bar{A}}_X}({\hbar\omega}-{\mathcal{E}_g^{X}})$ | $1/\sqrt{\;}$ at $E_{\max}$ |
-| $X$, ${\hbar\omega}<{\mathcal{E}_g^{X}}$ | $-20{k_B} T$ (occupation) | sub-gap line of ($8'$) | finite everywhere |
-| $L$, ${\hbar\omega}\ge{\mathcal{E}_g^{L}}$ | ${\hbar\omega_{L_6^-}}+\frac{A_u}{{\bar{A}}_L}({\hbar\omega}-{\mathcal{E}_g^{L}})$ | ${\hbar\omega_{L_6^-}}+\frac{B_u}{{\bar{B}}_L}({\hbar\omega}-{\mathcal{E}_g^{L}})$ | $1/\sqrt{\;}$ at $E_{\min}$ |
-| $L$, ${\hbar\omega}<{\mathcal{E}_g^{L}}$ | --- | --- | no states |
-\end{center}
+\begin{tabular}{lccl}
+\toprule
+ & $E_{\min}$ & $E_{\max}$ & edge behaviour \\
+\midrule
+$X$, ${\hbar\omega}\ge{\mathcal{E}_g^{X}}$ & $-20{k_B} T$ (occupation) & ${\hbar\omega_{X_6^-}}+\frac{A_u}{{\bar{A}}_X}({\hbar\omega}-{\mathcal{E}_g^{X}})$ & $1/\sqrt{\;}$ at $E_{\max}$ \\
+$X$, ${\hbar\omega}<{\mathcal{E}_g^{X}}$ & $-20{k_B} T$ (occupation) & sub-gap line of ($8'$) & finite everywhere \\
+$L$, ${\hbar\omega}\ge{\mathcal{E}_g^{L}}$ & ${\hbar\omega_{L_6^-}}+\frac{A_u}{{\bar{A}}_L}({\hbar\omega}-{\mathcal{E}_g^{L}})$ & ${\hbar\omega_{L_6^-}}+\frac{B_u}{{\bar{B}}_L}({\hbar\omega}-{\mathcal{E}_g^{L}})$ & $1/\sqrt{\;}$ at $E_{\min}$ \\
+$L$, ${\hbar\omega}<{\mathcal{E}_g^{L}}$ & --- & --- & no states \\
+\bottomrule
+\end{tabular}\end{center}
 
 \medskip
 \noindent\textbf{Domain of validity --- where is $k_{\max}$?}
@@ -666,8 +737,10 @@ counting transitions twice and of a breakdown of our approximations''
 higher photon energies''.  The numbers behind that policy, with the
 parameters below ($a_{\rm Au}=4.08$~\AA, so
 $\pi/4a=0.19$~\AA$^{-1}$):
-- \emph{$L$ is safely local}: the CEDS ellipsoid lies entirely inside $|\mathbf k|\le\pi/4a$ for ${\hbar\omega}-{\mathcal{E}_g^{L}}\le{\bar{A}}_L(\pi/4a)^2\simeq0.79$ eV, i.e.\ up to ${\hbar\omega}\simeq3.2$ eV --- the whole fit range (inside $\pi/10a$ only for ${\hbar\omega}\lesssim2.6$ eV).
-- \emph{$X$ is marginal by construction}: the occupied edge of the window ($E\simeq E_F$, where the Fermi step sits) lies at $|\mathbf k|\simeq(0.8\text{--}1.5)\times\pi/4a$ for ${\hbar\omega}=2.0$--$2.7$ eV --- several times the strict constant-$|P|^2$ radius, and exactly the scale of Rosei's own figures.  The $-20{k_B} T$ floor is an \emph{occupation} cutoff, not a locality one --- it maps to $|\mathbf k|$ up to ${\sim}1.9\times\pi/4a$ --- but in equilibrium everything beyond the Fermi step carries $[1-{f}]\approx0$, so the occupation acts as the de facto $k$-cutoff.  Nothing in the model \emph{checks} this.
+\begin{itemize}
+\item \emph{$L$ is safely local}: the CEDS ellipsoid lies entirely inside $|\mathbf k|\le\pi/4a$ for ${\hbar\omega}-{\mathcal{E}_g^{L}}\le{\bar{A}}_L(\pi/4a)^2\simeq0.79$ eV, i.e.\ up to ${\hbar\omega}\simeq3.2$ eV --- the whole fit range (inside $\pi/10a$ only for ${\hbar\omega}\lesssim2.6$ eV).
+\item \emph{$X$ is marginal by construction}: the occupied edge of the window ($E\simeq E_F$, where the Fermi step sits) lies at $|\mathbf k|\simeq(0.8\text{--}1.5)\times\pi/4a$ for ${\hbar\omega}=2.0$--$2.7$ eV --- several times the strict constant-$|P|^2$ radius, and exactly the scale of Rosei's own figures.  The $-20{k_B} T$ floor is an \emph{occupation} cutoff, not a locality one --- it maps to $|\mathbf k|$ up to ${\sim}1.9\times\pi/4a$ --- but in equilibrium everything beyond the Fermi step carries $[1-{f}]\approx0$, so the occupation acts as the de facto $k$-cutoff.  Nothing in the model \emph{checks} this.
+\end{itemize}
 Operationally: trust the model where Rosei did, ${\hbar\omega}\lesssim2.7$ eV;
 above that, locality and single-counting fail together.  Out of
 equilibrium the occupation excuse at $X$ weakens --- see the locality
@@ -680,42 +753,48 @@ units of the free-electron mass $m$; ${\mathcal{D}}$ in units $(\hbar^2/2m)^2$):
 
 \begin{center}
 \small
-<!--colspec:lccccccc-->
-|  | ${\mathcal{E}_g}$ (eV) | upper level (eV) | lower level (eV) | $m_{u\perp}$ | $m_{u\parallel}$ | $m_{l\perp}$ | $m_{l\parallel}$ |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| $X$ | 1.94 | ${\hbar\omega_{X_6^-}}=0.17$ | ${\hbar\omega_{X_7^+}}=1.77$ | 0.19 | 0.15 | 0.31 | 0.40 |
-| $L$ | 2.45 | ${\hbar\omega_{L_6^-}}=0.89$ | ${\hbar\omega_{L^+}}=1.56$ | 0.24 | 0.12 | 0.70 | 1.03 |
-
+\begin{tabular}{lccccccc}
+\toprule
+ & ${\mathcal{E}_g}$ (eV) & upper level (eV) & lower level (eV) & $m_{u\perp}$ & $m_{u\parallel}$ & $m_{l\perp}$ & $m_{l\parallel}$ \\
+\midrule
+$X$ & 1.94 & ${\hbar\omega_{X_6^-}}=0.17$ & ${\hbar\omega_{X_7^+}}=1.77$ & 0.19 & 0.15 & 0.31 & 0.40 \\
+$L$ & 2.45 & ${\hbar\omega_{L_6^-}}=0.89$ & ${\hbar\omega_{L^+}}=1.56$ & 0.24 & 0.12 & 0.70 & 1.03 \\
+\bottomrule
+\end{tabular}
 \medskip
-<!--colspec:lcccc-->
-|  | ${\mathcal{D}}$ | ${\mathcal{F}}/m$ | window slopes | singular edge |
-| --- | --- | --- | --- | --- |
-| $X$ | $+34.7$ | 0.170 | $E_{\max}$ (above gap): 0.62 | upper (${k_{\parallel}}\to0$) |
-| $L$ | $-7.86$ | 0.357 | $E_{\min}$: 0.745,\ $E_{\max}$: 0.896 | lower (${k_{\parallel}}\to0$) |
-\end{center}
+\begin{tabular}{lcccc}
+\toprule
+ & ${\mathcal{D}}$ & ${\mathcal{F}}/m$ & window slopes & singular edge \\
+\midrule
+$X$ & $+34.7$ & 0.170 & $E_{\max}$ (above gap): 0.62 & upper (${k_{\parallel}}\to0$) \\
+$L$ & $-7.86$ & 0.357 & $E_{\min}$: 0.745,\ $E_{\max}$: 0.896 & lower (${k_{\parallel}}\to0$) \\
+\bottomrule
+\end{tabular}\end{center}
 
 \medskip
 \noindent\textbf{Scorecard --- the ten equations, one by one:}
 
 \begin{center}
 \small
-<!--colspec:llll-->
-| Rosei | here | status | issue as printed |
-| --- | --- | --- | --- |
-| (1) | (1) | recreated | --- |
-| (2) | (2) | recreated | --- |
-| (3) | (3) | recreated | --- |
-| (4) | ($4'$) | \textbf{suggested fix} | prefactor $(8\pi^2\hbar^2)^{-1}{\mathcal{F}}\to(4\pi^2\hbar^4)^{-1}{\mathcal{F}}^2$; off by const.\ $2{\mathcal{F}}/\hbar^2$ |
-| (5) | (5) | recreated | --- |
-| (6) | ($6'$) | \textbf{suggested fix} | dimensionally impossible as printed |
-| (7) | (7) | recreated | --- |
-| (8) | ($8'$) | \textbf{suggested fix} | $m_{u\parallel}\leftrightarrow m_{l\parallel}$ subscripts swapped |
-| (9) | (9) | recreated | $N_i$ made explicit |
-| (10) | (10) | recreated | absorbs the (4) constant; see App.~\ref{app:dict} |
-\end{center}
+\begin{tabular}{llll}
+\toprule
+Rosei & here & status & issue as printed \\
+\midrule
+(1) & (1) & recreated & --- \\
+(2) & (2) & recreated & --- \\
+(3) & (3) & recreated & --- \\
+(4) & ($4'$) & \textbf{suggested fix} & prefactor $(8\pi^2\hbar^2)^{-1}{\mathcal{F}}\to(4\pi^2\hbar^4)^{-1}{\mathcal{F}}^2$; off by const.\ $2{\mathcal{F}}/\hbar^2$ \\
+(5) & (5) & recreated & --- \\
+(6) & ($6'$) & \textbf{suggested fix} & dimensionally impossible as printed \\
+(7) & (7) & recreated & --- \\
+(8) & ($8'$) & \textbf{suggested fix} & $m_{u\parallel}\leftrightarrow m_{l\parallel}$ subscripts swapped \\
+(9) & (9) & recreated & $N_i$ made explicit \\
+(10) & (10) & recreated & absorbs the (4) constant; see App.~\ref{app:dict} \\
+\bottomrule
+\end{tabular}\end{center}
 
 % ---------------------------------------------------------------------
-## Discrepancies \& suggested corrections {{label:sec:grw}}
+\subsection{Discrepancies \& suggested corrections}\label{sec:grw}
 % ---------------------------------------------------------------------
 
 \noindent\textbf{At issue: the printed Eqs.~(4), (6) and (8) of the
@@ -733,7 +812,7 @@ Sec.~\ref{sec:kernel} gives $(16\pi^2|{\mathcal{D}}|)^{-1}{k_{\parallel}}^{-1}
 convention for $|P|^2$ only ($4'$) makes \{(4),(9)\} dimensionally
 consistent and lands (9) with no leftover constant.  The printed form
 is off by
- MATH27 
+$\mathbf{A}$
 a pure constant per critical point --- it cannot bend a line shape,
 and it is absorbed once and for all into the fitted $S={\mathcal{F}}|P|^2$ of
 Eq.~(10).  That is why the slip is easy to miss and costs nothing
@@ -741,7 +820,7 @@ physically; but the assembly only closes into (9) if ($4'$) is used.
 
 \medskip
 \textbf{Eq.\ (6).}  Printed:
- MATH28 
+$\nabla\!\cdot\!\mathbf{A}=0$
 \emph{Why it fails:} a wavevector is set equal to the square root of a
 sum of \emph{energies}, and inside the bracket a bare energy is added
 to $(\hbar^2/2m)\times$energy terms --- mismatched units throughout;
@@ -750,7 +829,8 @@ the bracket to come out as length$^{-2}$.  Three small fixes turn it
 into ($6'$): square the left-hand side; invert the coefficients and
 pull out the overall $2{\mathcal{F}}^2/\hbar^2$; restore the missing
 $1/m_{u\perp}$ on the first term.  The three numerator slots of
- MATH29 
+$\hat{\mathbf p}\!\cdot\!\mathbf A
+=\mathbf A\!\cdot\!\hat{\mathbf p}$
 then line up with the print term by term --- confirmation that ($6'$)
 is what was meant: a typo, but a disabling one, since the printed
 formula is unusable as written.
@@ -759,7 +839,7 @@ formula is unusable as written.
 \textbf{Eq.\ (8).}  Printed:
 $E_{\max}={\hbar\omega_{X_6^-}}+({\mathcal{E}_g^{X}}-{\hbar\omega})\,m_{u\parallel}/(m_{l\parallel}-m_{u\parallel})$.
 Solving the model for the ${k_{\perp}}=0$ edge gives
- MATH30 
+$\tfrac12$
 i.e.\ the printed equation has $m_{u\parallel}$ and $m_{l\parallel}$
 interchanged --- one consistent swap, specific to (8): the subscripts
 of (6) are \emph{not} swapped, so it is not the same slip repeated.
@@ -773,7 +853,7 @@ work.  On the alternative branch of Sec.~\ref{sec:fork}
 window limit.
 
 % ---------------------------------------------------------------------
-## The Drude term: completing ${\varepsilon}_2$ {{label:sec:drude}}
+\subsection{The Drude term: completing ${\varepsilon}_2$}\label{sec:drude}
 % ---------------------------------------------------------------------
 
 Everything above is interband.  The measured ${\varepsilon}_2$ of gold also
@@ -781,7 +861,7 @@ contains the free-carrier (intraband) response, which the Rosei model
 deliberately leaves out --- so to compare with data, or to fit, it has
 to be added back.  The Drude dielectric function
 ${\varepsilon}(\omega)={\varepsilon}_\infty-\omega_p^2/[\omega(\omega+i\gamma)]$ gives
- MATH31 
+$A^2$
 <!--\label{eq:drude}-->
 and in the optical window the high-frequency limit is all that is
 needed: for Au, $\hbar\omega_p\simeq9.0$ eV and
@@ -789,7 +869,7 @@ $\hbar\gamma\simeq0.07$ eV, so $\omega\gg\gamma$ holds everywhere
 above $\sim\!1$ eV (the fit code implements exactly this
 $A_{\rm D}/\omega^3$ form, $A_{\rm D}=\omega_p^2\gamma\simeq5.7$
 eV$^3$).  The total is a plain sum of channels:
- MATH32 
+$V$
 <!--\label{eq:total}-->
 The Drude part falls as $\omega^{-3}$ and carries no interband
 structure: below the $X$ onset it \emph{is} ${\varepsilon}_2$, through the edge
@@ -797,15 +877,15 @@ region it is a smooth declining background, and the temperature
 dependence of the edge sits entirely in the ${\mathcal{J}}_i$.
 
 % =====================================================================
-# Photonic density of states and the emission counterpart
+\section{Photonic density of states and the emission counterpart}
 \label{sec:photonic}
 % =====================================================================
 
-## Mode counting
+\subsection{Mode counting}
 
 Periodic quantization in volume $V$: two transverse polarizations,
 $\omega=cq$:
- MATH33 
+$\hat H_{\rm int}$
 <!--\label{eq:rhophot}-->
 modes per unit volume per unit angular frequency.  In a transparent
 host of index $n$, $c\to c/n$; in a structured environment
@@ -813,13 +893,13 @@ $\rho\to\rho(\mathbf r,\omega)$, the \emph{local} density of states
 (Novotny \& Hecht) --- precisely the photonic factor of the PL
 factorization used in this thesis.
 
-## Spontaneous emission rate of one pair
+\subsection{Spontaneous emission rate of one pair}
 
 FGR with the quantized field \eqref{eq:Aquant} at $n_q=0$, summed over
 modes, using
 $\sum_\lambda\int{\mathrm{d}}\Omega_q|\hat{\bm{\varepsilon}}_\lambda\!\cdot\!{\mathbf{p}_{ul}}|^2
 =\tfrac{8\pi}{3}|{\mathbf{p}_{ul}}|^2$ and $|{\mathbf{p}_{ul}}|^2=\hbar^2|P|^2$:
- MATH34 
+$+1$
 <!--\label{eq:Wsp}-->
 --- the vacuum Einstein-$A$ rate in the
 $\mathbf A\!\cdot\!\mathbf p$ form.  The factorization into a matter
@@ -843,25 +923,26 @@ $\rho(\omega)\propto\omega^2$.  In short: same vertex, different
 yardstick --- absorption is measured against $E_0^2$ (two powers),
 emission against the vacuum fluctuation of one mode (one power).
 
-## The interband PL spectrum and the Kirchhoff check
+\subsection{The interband PL spectrum and the Kirchhoff check}
 
 The emission weight is not a difference but a \emph{product}: the
 upper level must be filled and the lower empty,
 ${f}(E)[1-{f}(E-{\hbar\omega})]$.  Summing \eqref{eq:Wsp} over pairs (spin 2,
 $N$ half-neighborhoods, same ${D_{l\to u}}$ and windows as in absorption):
- MATH35 
+$n_q=0$
 <!--\label{eq:PL}-->
 photons per unit time, volume and photon energy.  In equilibrium the
 Fermi identity $[1-{f}]/{f}={\mathrm{e}}^{(E-\mu)/{k_B} T}$, applied at both
 levels, collapses the product (detailed balance; only the
 \emph{transition} energy survives):
- MATH36 
+$\mathbf A$
 <!--\label{eq:BEcollapse}-->
 and since $[{f}(E-{\hbar\omega})-{f}(E)]$ is Rosei's $[1-{f}(E)]$ in the same
 deep-$d$-band limit used throughout (Sec.~\ref{sec:occupation}), every
 electronic factor of \eqref{eq:PL} maps onto (11) and the constants
 collapse \emph{exactly}:
- MATH37 
+$\psi_{n\mathbf k}={\mathrm{e}}^{i\mathbf k\cdot\mathbf r}
+u_{n\mathbf k}(\mathbf r)/\sqrt V$
 <!--\label{eq:vRS}-->
 --- the van Roosbroeck--Shockley relation; per thermal photon,
 emission over absorption is ${\mathrm{e}}^{-{\hbar\omega}/{k_B} T}$: Kirchhoff.  That
@@ -880,7 +961,7 @@ signal away.  In a structured environment,
 $\rho(\omega)\to\rho(\mathbf r,\omega)$ in \eqref{eq:PL}.
 
 % =====================================================================
-# Numerics: evaluate in ${k_{\parallel}}$, not in $E$ {{label:sec:numerics}}
+\section{Numerics: evaluate in ${k_{\parallel}}$, not in $E$}\label{sec:numerics}
 % =====================================================================
 
 Groundwork for the implementation.  The $1/\sqrt{\;}$ edges of (11)
@@ -899,33 +980,35 @@ of ${k_{\parallel}}$ alone, Eq.~\eqref{eq:Eofk} below --- ${k_{\perp}}$ is
 eliminated by the $\delta$-constraint, not set to zero.)  Then $E$ is
 affine in $k^2$, so ${\mathrm{d}} E=\mp(\mu_{i\perp}\hbar^2/{\mathcal{F}}_i^2)\,k\,{\mathrm{d}} k$
 while ${D_{l\to u}}\propto1/k$ --- the factors of $k$ cancel identically,
- MATH38 
+${\mathrm{e}}^{\pm i\mathbf q\cdot\mathbf r}\,\hat{\bm{\varepsilon}}\!\cdot\!\hat{\mathbf p}$
 i.e.\ ${k_{\parallel}}$ is (up to constants) the cumulative count of the
 EDJDOS: integrating in ${k_{\parallel}}$ \emph{is} integrating in $E$ with the
 known weight ${D_{l\to u}}$ absorbed exactly into the node placement.
 Eq.~(7) flattens to
- MATH39 
+$\mathbf k'=\mathbf k\pm\mathbf q$
 <!--\label{eq:k12}-->
- MATH40 
+$q\sim\omega/c\sim10^{-3}\,$
 <!--\label{eq:Eofk}-->
 valid on both sides of the $X$ gap --- all the branch logic lives in
 the limits.  These are the $u=0$/$v=0$ endpoints of
 Sec.~\ref{sec:XL}, written out since an implementation touches them
 first.  At $X$ (Rosei's branch):
- MATH41 
+$^{-1}$
 with $E_{\rm floor}=-20{k_B} T$ in equilibrium; for a pumped
 distribution take $E_{\rm floor}=-(\hbar\omega_{\rm pump}+20{k_B} T)$
 --- generosity is cheap, since below the true floor the integrand is
 ${\approx}\,0$.  At $L$ both limits are geometric:
- MATH42 
+$\mathbf k'=\mathbf k$
 
 No singularity survives: the integrand of (12) is a bounded, smooth
 occupation profile whose only feature is the Fermi step of width
 $\sim{k_B} T$.  \textbf{Recipe} (composite Simpson on a uniform grid is
 entirely adequate):
-1. $k=\mathrm{linspace}(k_1({\hbar\omega}),\,k_2({\hbar\omega}),\,N)$, $N$ odd;
-2. integrand $1-{f}(E_i(k))$ --- Fermi--Dirac in equilibrium, interpolation of a tabulated non-equilibrium distribution otherwise (use a \emph{monotone} interpolant, e.g.\ PCHIP, to avoid overshoot at the distribution's kinks);
-3. \texttt{simpson(y, x=k)}, times $\mu_{i\perp}/4\pi^2\hbar^2$; then into (9).
+\begin{enumerate}
+\item $k=\mathrm{linspace}(k_1({\hbar\omega}),\,k_2({\hbar\omega}),\,N)$, $N$ odd;
+\item integrand $1-{f}(E_i(k))$ --- Fermi--Dirac in equilibrium, interpolation of a tabulated non-equilibrium distribution otherwise (use a \emph{monotone} interpolant, e.g.\ PCHIP, to avoid overshoot at the distribution's kinks);
+\item \texttt{simpson(y, x=k)}, times $\mu_{i\perp}/4\pi^2\hbar^2$; then into (9).
+\end{enumerate}
 Measured accuracy (equilibrium, ${\hbar\omega}=2.4$ eV, against a converged
 reference): $X$ reaches $5\times10^{-10}$ relative error at $N=101$
 and machine precision by $N=201$; the $L$ integrand in equilibrium is
@@ -941,13 +1024,15 @@ the correct quadrature variable.  Hence the division of labor:
 
 \vspace{1em}
 \textbf{Practical points.}
-- \emph{Resolve the step}: the only feature sits at $k_{\rm step}=k(E{=}0)$, trivially located since $E_i(k)$ is affine in $k^2$; at low $T$ either raise $N$ or split the interval there and Simpson each panel.
-- \emph{Respect the kinks} of a pumped distribution: slope discontinuities at $E_F\pm\hbar\omega_{\rm pump}$ are \emph{distribution} features no variable change removes --- put panel boundaries at their images $k(E_F\pm\hbar\omega_{\rm pump})$.
-- \emph{Vectorize over ${\hbar\omega}$}: build $k=k_1[:,\!None]+(k_2-k_1)[:,\!None]\,\xi[None,:]$ with $\xi$ uniform on $[0,1]$ and Simpson along the last axis --- the whole spectrum in one call.  Gauss--Legendre with 48--64 nodes does the same job with fewer points if node count matters.
-- \emph{Cache the geometry}: $k_{1,2}$, $E_i(k)$ and the grid depend on $({\hbar\omega})$ only --- not on $T$ or on the distribution --- so precompute them once and sweep temperatures/pump powers cheaply (this is what makes fitting fast).
-- \emph{Locality guard}: nothing in (12) knows where the parabolic neighbourhood ends --- compare $k_2({\hbar\omega})$ with $\pi/4a\simeq0.19$~\AA$^{-1}$ (Sec.~\ref{sec:eps2}).  In equilibrium the $X$ integrand dies of occupation before locality does; a pumped distribution re-weights exactly those deep-window nodes, and the generous floor pushes $k_2$ to ${\sim}2\times\pi/4a$.  Report the fraction of (12) accrued at $k>\pi/4a$ and distrust spectra where it is not small.
-- \emph{Error control}: recompute at $2N$ and compare (one doubling).
-- \emph{Emission}: the PL integrand \eqref{eq:PL} swaps $[1-{f}]\to {f}(E)[1-{f}(E-{\hbar\omega})]$ in the same quadrature --- geometry, windows and nodes unchanged.
+\begin{itemize}
+\item \emph{Resolve the step}: the only feature sits at $k_{\rm step}=k(E{=}0)$, trivially located since $E_i(k)$ is affine in $k^2$; at low $T$ either raise $N$ or split the interval there and Simpson each panel.
+\item \emph{Respect the kinks} of a pumped distribution: slope discontinuities at $E_F\pm\hbar\omega_{\rm pump}$ are \emph{distribution} features no variable change removes --- put panel boundaries at their images $k(E_F\pm\hbar\omega_{\rm pump})$.
+\item \emph{Vectorize over ${\hbar\omega}$}: build $k=k_1[:,\!None]+(k_2-k_1)[:,\!None]\,\xi[None,:]$ with $\xi$ uniform on $[0,1]$ and Simpson along the last axis --- the whole spectrum in one call.  Gauss--Legendre with 48--64 nodes does the same job with fewer points if node count matters.
+\item \emph{Cache the geometry}: $k_{1,2}$, $E_i(k)$ and the grid depend on $({\hbar\omega})$ only --- not on $T$ or on the distribution --- so precompute them once and sweep temperatures/pump powers cheaply (this is what makes fitting fast).
+\item \emph{Locality guard}: nothing in (12) knows where the parabolic neighbourhood ends --- compare $k_2({\hbar\omega})$ with $\pi/4a\simeq0.19$~\AA$^{-1}$ (Sec.~\ref{sec:eps2}).  In equilibrium the $X$ integrand dies of occupation before locality does; a pumped distribution re-weights exactly those deep-window nodes, and the generous floor pushes $k_2$ to ${\sim}2\times\pi/4a$.  Report the fraction of (12) accrued at $k>\pi/4a$ and distrust spectra where it is not small.
+\item \emph{Error control}: recompute at $2N$ and compare (one doubling).
+\item \emph{Emission}: the PL integrand \eqref{eq:PL} swaps $[1-{f}]\to {f}(E)[1-{f}(E-{\hbar\omega})]$ in the same quadrature --- geometry, windows and nodes unchanged.
+\end{itemize}
 
 \textbf{Built-in checks.}
 (i) \emph{Empty-window arithmetic}: wherever the occupation factor is
@@ -966,45 +1051,49 @@ $n_{\rm eff}(E,{\hbar\omega})\to n_B({\hbar\omega})$ independent of $E$
 % =====================================================================
 \appendix
 % =====================================================================
-# Conventions {{label:sec:conv}}
+\section{Conventions}\label{sec:conv}
 
 Fixed once here, used silently throughout the document.
 
 \begin{center}
-<!--colspec:ll-->
-| Units | Gaussian throughout (Rosei's system); SI conversions noted where useful. |
-| --- | --- |
-| Energy zero | Fermi level, $E_F=0$; all electron energies $E$ from $E_F$. |
-| Bands | $u$ = upper (conduction), $l$ = lower ($d$); Rosei's subscripts. |
-| Levels \& masses | ${\hbar\omega_{X_6^-}},{\hbar\omega_{X_7^+}},{\hbar\omega_{L_6^-}},{\hbar\omega_{L^+}}$ and $m_{u\perp},m_{u\parallel}, m_{l\perp},m_{l\parallel}$ are all |
-|  | \emph{positive numbers}; curvature directions and the side of $E_F$ are carried |
-|  | only by explicit $\pm$ signs, never hidden in a symbol. |
-| Band coefficients | $A_i=\hbar^2/2m_{i\perp}$, $B_i=\hbar^2/2m_{i\parallel}$, $i=u,l$; all $A_i,B_i>0$. |
-| Interband energy | ${\mathcal{E}_{lu}}(\mathbf k)\equiv\hbar\omega_u-\hbar\omega_l$; Rosei's $\Omega_{lu}={\mathcal{E}_{lu}}-{\hbar\omega}$, the CEDS being $\Omega_{lu}=0$. |
-| Local axes | ${k_{\parallel}}$ along $\Gamma X$ (resp.\ $\Gamma L$), ${k_{\perp}}$ radial in the perpendicular plane; |
-|  | $\mathbf{k}$ measured from the critical point. |
-| Spin | carried explicitly as a factor 2, never absorbed silently. |
-| Counting | $N$ counts equivalent \emph{half}-neighborhoods ($N_X=6$ faces, $N_L=8$), |
-|  | paired with the half-space ${D_{l\to u}}$ below --- or a factor 2 goes missing. |
-| Occupation | Rosei's $[1-{f}(E,T)]$, ${f}(E)=[{\mathrm{e}}^{E/{k_B} T}+1]^{-1}$; see Sec.~\ref{sec:occupation}. |
-| Matrix element | $\vert{}P\vert{}^2\equiv\vert{}\langle u\vert{}\nabla\vert{}l\rangle\vert{}^2$ (dimension length$^{-2}$), Rosei's convention; |
-|  | momentum form $\vert{}{\mathbf{p}_{ul}}\vert{}^2=\hbar^2\vert{}P\vert{}^2$. |
-| Photon | energy ${\hbar\omega}$, wavevector $\mathbf{q}$, polarization $\hat{\bm{{\varepsilon}}}_\lambda$. |
-\end{center}
+\begin{tabular}{ll}
+\toprule
+Units & Gaussian throughout (Rosei's system); SI conversions noted where useful. \\
+\midrule
+Energy zero & Fermi level, $E_F=0$; all electron energies $E$ from $E_F$. \\
+Bands & $u$ = upper (conduction), $l$ = lower ($d$); Rosei's subscripts. \\
+Levels \& masses & ${\hbar\omega_{X_6^-}},{\hbar\omega_{X_7^+}},{\hbar\omega_{L_6^-}},{\hbar\omega_{L^+}}$ and $m_{u\perp},m_{u\parallel}, m_{l\perp},m_{l\parallel}$ are all \\
+ & \emph{positive numbers}; curvature directions and the side of $E_F$ are carried \\
+ & only by explicit $\pm$ signs, never hidden in a symbol. \\
+Band coefficients & $A_i=\hbar^2/2m_{i\perp}$, $B_i=\hbar^2/2m_{i\parallel}$, $i=u,l$; all $A_i,B_i>0$. \\
+Interband energy & ${\mathcal{E}_{lu}}(\mathbf k)\equiv\hbar\omega_u-\hbar\omega_l$; Rosei's $\Omega_{lu}={\mathcal{E}_{lu}}-{\hbar\omega}$, the CEDS being $\Omega_{lu}=0$. \\
+Local axes & ${k_{\parallel}}$ along $\Gamma X$ (resp.\ $\Gamma L$), ${k_{\perp}}$ radial in the perpendicular plane; \\
+ & $\mathbf{k}$ measured from the critical point. \\
+Spin & carried explicitly as a factor 2, never absorbed silently. \\
+Counting & $N$ counts equivalent \emph{half}-neighborhoods ($N_X=6$ faces, $N_L=8$), \\
+ & paired with the half-space ${D_{l\to u}}$ below --- or a factor 2 goes missing. \\
+Occupation & Rosei's $[1-{f}(E,T)]$, ${f}(E)=[{\mathrm{e}}^{E/{k_B} T}+1]^{-1}$; see Sec.~\ref{sec:occupation}. \\
+Matrix element & $\vert{}P\vert{}^2\equiv\vert{}\langle u\vert{}\nabla\vert{}l\rangle\vert{}^2$ (dimension length$^{-2}$), Rosei's convention; \\
+ & momentum form $\vert{}{\mathbf{p}_{ul}}\vert{}^2=\hbar^2\vert{}P\vert{}^2$. \\
+Photon & energy ${\hbar\omega}$, wavevector $\mathbf{q}$, polarization $\hat{\bm{{\varepsilon}}}_\lambda$. \\
+\bottomrule
+\end{tabular}\end{center}
 
-# Dictionary of conventions across the repository {{label:app:dict}}
+\section{Dictionary of conventions across the repository}\label{app:dict}
 
 \begin{center}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
-<!--colspec:lllll-->
-| Document | upper band | lower band | ${\bar{B}}$ | status |
-| --- | --- | --- | --- | --- |
-| Rosei 1975; this doc ($X$) | $+A_u{k_{\perp}}^2-B_u{k_{\parallel}}^2$ | $-A_l{k_{\perp}}^2-B_l{k_{\parallel}}^2$ | $B_l-B_u$ | canonical |
-| \emph{Equivalence} note ($X$) | $+A_u{k_{\perp}}^2+B_u{k_{\parallel}}^2$ | $-A_l{k_{\perp}}^2+B_l{k_{\parallel}}^2$ | $B_u-B_l$ | same ${\mathcal{D}}$ (sign-robust) |
-| A8 / A8.L | $+A_c u-B_c v$ | $-A_v u-B_v v$ | $B_v-B_c$ | A8 ok$^{(a)}$; A8.L wrong at $L$$^{(b)}$ |
-| \texttt{interband\_derivation\_v2} | mixed | mixed | --- | internally inconsistent$^{(c)}$ |
-\end{center}
+\begin{tabular}{lllll}
+\toprule
+Document & upper band & lower band & ${\bar{B}}$ & status \\
+\midrule
+Rosei 1975; this doc ($X$) & $+A_u{k_{\perp}}^2-B_u{k_{\parallel}}^2$ & $-A_l{k_{\perp}}^2-B_l{k_{\parallel}}^2$ & $B_l-B_u$ & canonical \\
+\emph{Equivalence} note ($X$) & $+A_u{k_{\perp}}^2+B_u{k_{\parallel}}^2$ & $-A_l{k_{\perp}}^2+B_l{k_{\parallel}}^2$ & $B_u-B_l$ & same ${\mathcal{D}}$ (sign-robust) \\
+A8 / A8.L & $+A_c u-B_c v$ & $-A_v u-B_v v$ & $B_v-B_c$ & A8 ok$^{(a)}$; A8.L wrong at $L$$^{(b)}$ \\
+\texttt{interband\_derivation\_v2} & mixed & mixed & --- & internally inconsistent$^{(c)}$ \\
+\bottomrule
+\end{tabular}\end{center}
 {\footnotesize
 $^{(a)}$ A8's $\mathcal{E}_{\min}$ denominator $(B_v{+}B_c)$ is the
 $s{=}{+}1$ formula; for its own $X$ conventions it should be
@@ -1020,7 +1109,7 @@ full-neighborhood, no-$(2\pi)^3$ kernel
 $K(E,{\hbar\omega})=\int{\mathrm{d}}^3k\,\delta\delta$ and the half-line measure
 $\mathcal J_{\rm eq}$ of the \emph{Equivalence} note; with ${D_{l\to u}}$ from
 ($4'$),
- MATH43 
+${\varepsilon}_2$
 Matrix elements: Rosei's $|P|^2$ is the squared \emph{gradient}
 element, related to the SI momentum element by
 $|{\mathbf{p}_{ul}}|^2=\hbar^2|P|^2$.  With these two conventions --- ($4'$) and
@@ -1030,29 +1119,30 @@ $S={\mathcal{F}}|P|^2$ of Eq.~(10) are fixed by the data (the printed-(4)
 constant reshuffles ${D_{l\to u}}$, ${\mathcal{F}}$, $|P|^2$ among themselves without
 touching $S$).
 
-# Dimensional audit (Gaussian) {{label:app:dim}}
+\section{Dimensional audit (Gaussian)}\label{app:dim}
 
 $[\,e^2\,]={\rm erg\,cm}$, $[\,|P|^2\,]={\rm cm^{-2}}$,
 $[\,A_i\,]=[\,B_i\,]={\rm erg\,cm^2}$, $[\,{\mathcal{D}}\,]={\rm erg^2cm^4}$,
 $[\,{\mathcal{F}}\,]={\rm g}$, $[\,{D_{l\to u}}\,]={\rm erg^{-2}cm^{-3}}$,
 $[\,{\mathcal{J}}\,]={\rm erg^{-1}cm^{-3}}$.
-- ($4'$): ${\mathcal{F}}^2/\hbar^4{k_{\parallel}}\sim {\rm g^2}/({\rm erg^4s^4\,cm^{-1}})={\rm erg^{-2}cm^{-3}}$ --- states per volume per (energy)$^2$, as a double-$\delta$ measure must be. \checkmark
-- (9): $\dfrac{{\rm erg\,cm}\cdot{\rm erg^4s^4}} {{\rm g^2}\,{\rm erg^2}}\cdot{\rm cm^{-2}}\cdot {\rm erg^{-1}cm^{-3}}=1$ (using ${\rm erg\,s^2=g\,cm^2}$). \checkmark
-- (12): $\mu_\perp/\hbar^2\times[k]\sim {\rm g\,cm^{-1}}/{\rm erg^2s^2}={\rm erg^{-1}cm^{-3}}=[{\mathcal{J}}]$. \checkmark
-- \eqref{eq:rhophot}: $[\rho]={\rm s\,cm^{-3}}$. \checkmark
-- \eqref{eq:Wsp}: $\dfrac{{\rm erg\,cm}\cdot{\rm s^{-1}}\cdot {\rm erg\,s}\cdot{\rm cm^{-2}}}{{\rm g^2\,cm^3s^{-3}}} ={\rm erg^2\,cm^{-1}}/({\rm g^2cm^3s^{-3}}\,{\rm s}) ={\rm s^{-1}}$. \checkmark
-- \eqref{eq:PL}: $[\rho]\cdot[\text{matter}]\cdot[{\mathcal{J}}] ={\rm s\,cm^{-3}}\cdot{\rm cm^3s^{-2}}\cdot{\rm erg^{-1}cm^{-3}} ={\rm erg^{-1}cm^{-3}s^{-1}}$ --- photons per time, volume and photon energy. \checkmark
-- \eqref{eq:vRS}: $[\omega\rho/\hbar] ={\rm erg^{-1}cm^{-3}s^{-1}}$, times dimensionless ${\varepsilon}_2n_B$. \checkmark
+\begin{itemize}
+\item ($4'$): ${\mathcal{F}}^2/\hbar^4{k_{\parallel}}\sim {\rm g^2}/({\rm erg^4s^4\,cm^{-1}})={\rm erg^{-2}cm^{-3}}$ --- states per volume per (energy)$^2$, as a double-$\delta$ measure must be. \checkmark
+\item (9): $\dfrac{{\rm erg\,cm}\cdot{\rm erg^4s^4}} {{\rm g^2}\,{\rm erg^2}}\cdot{\rm cm^{-2}}\cdot {\rm erg^{-1}cm^{-3}}=1$ (using ${\rm erg\,s^2=g\,cm^2}$). \checkmark
+\item (12): $\mu_\perp/\hbar^2\times[k]\sim {\rm g\,cm^{-1}}/{\rm erg^2s^2}={\rm erg^{-1}cm^{-3}}=[{\mathcal{J}}]$. \checkmark
+\item \eqref{eq:rhophot}: $[\rho]={\rm s\,cm^{-3}}$. \checkmark
+\item \eqref{eq:Wsp}: $\dfrac{{\rm erg\,cm}\cdot{\rm s^{-1}}\cdot {\rm erg\,s}\cdot{\rm cm^{-2}}}{{\rm g^2\,cm^3s^{-3}}} ={\rm erg^2\,cm^{-1}}/({\rm g^2cm^3s^{-3}}\,{\rm s}) ={\rm s^{-1}}$. \checkmark
+\item \eqref{eq:PL}: $[\rho]\cdot[\text{matter}]\cdot[{\mathcal{J}}] ={\rm s\,cm^{-3}}\cdot{\rm cm^3s^{-2}}\cdot{\rm erg^{-1}cm^{-3}} ={\rm erg^{-1}cm^{-3}s^{-1}}$ --- photons per time, volume and photon energy. \checkmark
+\item \eqref{eq:vRS}: $[\omega\rho/\hbar] ={\rm erg^{-1}cm^{-3}s^{-1}}$, times dimensionless ${\varepsilon}_2n_B$. \checkmark
+\end{itemize}
 
-# References {{starred}}
-- M.~Guerrisi, R.~Rosei, P.~Winsemius, \emph{Splitting of the interband absorption edge in Au}, Phys.\ Rev.\ B \textbf{12}, 557 (1975) --- the paper recreated here ($X$ derived, $L$ delegated); source of the $X$-point dispersion relations, Eqs.~(1)--(2).
-- R.~Rosei, \emph{Temperature modulation of the optical transitions involving the Fermi surface in Ag: theory}, Phys.\ Rev.\ B \textbf{10}, 474 (1974) --- the $L$ machinery (and the EDJDOS recipe) the 1975 paper borrows; source of the $L$-point dispersion relations.
-- N.~E.~Christensen, B.~O.~Seraphin, *Relativistic band calculation and the optical properties of gold*, Phys.\ Rev.\ B **4**, 3321 (1971) --- source of the levels and masses (Rosei's Ref.~4).
-- P.~B.~Johnson, R.~W.~Christy, *Optical constants of the noble metals*, Phys.\ Rev.\ B **6**, 4370 (1972) --- the data the fit targets.
-- Y.~Sivan, Y.~Dubi, non-equilibrium electron distributions and metal photoluminescence (2021), and refs.\ therein.
-- L.~Novotny, B.~Hecht, *Principles of Nano-Optics*, 2nd ed., Cambridge (2012) --- LDOS.
+\section*{References}
+\begin{itemize}
+\item M.~Guerrisi, R.~Rosei, P.~Winsemius, \emph{Splitting of the interband absorption edge in Au}, Phys.\ Rev.\ B \textbf{12}, 557 (1975) --- the paper recreated here ($X$ derived, $L$ delegated); source of the $X$-point dispersion relations, Eqs.~(1)--(2).
+\item R.~Rosei, \emph{Temperature modulation of the optical transitions involving the Fermi surface in Ag: theory}, Phys.\ Rev.\ B \textbf{10}, 474 (1974) --- the $L$ machinery (and the EDJDOS recipe) the 1975 paper borrows; source of the $L$-point dispersion relations.
+\item N.~E.~Christensen, B.~O.~Seraphin, \emph{Relativistic band calculation and the optical properties of gold}, Phys.\ Rev.\ B \textbf{4}, 3321 (1971) --- source of the levels and masses (Rosei's Ref.~4).
+\item P.~B.~Johnson, R.~W.~Christy, \emph{Optical constants of the noble metals}, Phys.\ Rev.\ B \textbf{6}, 4370 (1972) --- the data the fit targets.
+\item Y.~Sivan, Y.~Dubi, non-equilibrium electron distributions and metal photoluminescence (2021), and refs.\ therein.
+\item L.~Novotny, B.~Hecht, \emph{Principles of Nano-Optics}, 2nd ed., Cambridge (2012) --- LDOS.
+\end{itemize}
 
-<!-- TEX-FOOTER (verbatim) -->
 \end{document}
-
-<!-- END-TEX-FOOTER -->
