@@ -1,0 +1,223 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+% ---- shorthand for repeated notation ----------------------------------
+\newcommand{\kperp}{k_{\perp}}
+\newcommand{\kpar}{k_{\parallel}}
+\newcommand{\hw}{\hbar\omega}
+\newcommand{\Dc}{\mathcal{D}}
+\newcommand{\Jc}{\mathcal{J}}
+\newcommand{\Fc}{\mathcal{F}}
+
+% ---- plain callout boxes for the Obsidian NOTE / WARNING blocks -------
+\newtcolorbox{notebox}[1][Note]{
+  breakable, colback=black!3, colframe=black!50, boxrule=0.5pt, arc=1pt,
+  left=6pt,right=6pt,top=4pt,bottom=4pt,
+  fonttitle=\bfseries, title=#1}
+\newtcolorbox{warnbox}[1][Warning]{
+  breakable, colback=black!3, colframe=black!70, boxrule=0.8pt, arc=1pt,
+  left=6pt,right=6pt,top=4pt,bottom=4pt,
+  fonttitle=\bfseries, title=#1}
+
+\title{Interband Absorption in Gold}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\textit{EDJDOS}:
+\begin{itemize}
+  \item \textit{DOS}: density of states -- how many electron $\mathbf{k}$ states exist for a given energy
+  \item \textit{j}: joint -- we're counting transitions of similar momenta $\mathbf{k}_{i}=\mathbf{k}_{f}=\mathbf{k}$
+  \item \textit{ED}: energy distribution -- per-energy \textit{JDOS}, not yet integrated over all energies
+\end{itemize}
+
+\begin{align*}
+\varepsilon_2(\omega) &= \frac{4\pi^2 e^2}{m^2\omega^2}\,
+\frac{2}{(2\pi)^3}\int\limits_{\rm BZ}\mathrm{d}^3k\;
+\bigl|M_{ul}(\mathbf{k})\bigr|^{2}\,
+\delta\bigl(E_u(\mathbf{k})-E_l(\mathbf{k})-\hw\bigr)\,
+f\bigl(E_{l}(\mathbf{k})\bigr)\Bigl[1-f\bigl(E_u(\mathbf{k})\bigr)\Bigr] \\
+&= \frac{4\pi^2 e^2}{m^2\omega^2}\,
+\frac{2}{(2\pi)^3}\, \frac{N|P|^{2}}{3} \int\limits_{\rm BZ} \mathrm{d}^{3}k \;
+\delta\bigl(\Delta(\mathbf{k})-\hw\bigr)\, f\bigl(E(\mathbf{k})-\Delta(\mathbf{k})\bigr)\Bigl[1-f\bigl(E(\mathbf{k})\bigr)\Bigr] \\
+&= \frac{4\pi^2 e^2}{m^2\omega^2}\,
+\frac{2}{(2\pi)^3} \frac{N|P|^{2}}{3} \iint\limits_{E,\Delta} \mathrm{d}E\,\mathrm{d}\Delta \;
+\Dc(E,\Delta)\, \delta(\Delta-\hw)\, f(E-\Delta)\bigl[1-f(E)\bigr] \\
+&= \frac{4\pi^2 e^2}{m^2\omega^2}\,
+\frac{2}{(2\pi)^3} \frac{N|P|^{2}}{3} \int\limits_{E_{\rm min}(\hw)}^{E_{\rm max}(\hw)} \mathrm{d}E \;
+\Dc(E, \hw)\, f(E-\hw)\bigl[1-f(E)\bigr] \\
+&= \frac{4\pi^2 e^2}{m^2\omega^2}\,
+\frac{2}{(2\pi)^3} \frac{N|P|^{2}}{3} \; \Jc(\hw)
+\end{align*}
+
+The objective is finding the \textit{EDJDOS}, $\Dc(E,\hw)$, and integration limits $E_{\mathrm{min}}(\hw)$ and $E_{\mathrm{max}}(\hw)$.
+
+\section*{I. EDJDOS \& Integration Limits}
+
+Azimuthal symmetry allows us to integrate over $k_{\phi}$ and remain with only two integration variables.
+\begin{equation}
+\mathrm{d}k_{x}\,\mathrm{d}k_{y}\,\mathrm{d}k_{z}\to \kperp\,\mathrm{d}\kperp\,\mathrm{d}\kpar\,\mathrm{d}k_{\phi}\to 2\pi \kperp\, \mathrm{d}\kperp\, \mathrm{d}\kpar
+\tag{1.1}
+\end{equation}
+For convenience, we orient the z, and $\parallel$ axes in the direction pointing to BZ center such that the positive part of $\kpar$ is inside BZ, and the negative is outside. We care only about what's inside the first BZ, and therefore our integration limits in the remaining two variables are:
+\begin{align*}
+\kperp &>0 \\
+\kpar &> 0
+\end{align*}
+
+Next, we change to variables for which the dispersion relation is linear, and for whom the integration range remains similar:
+\begin{align}
+\kperp^{2} &\to x && x>0 \notag\\
+\kpar^{2} &\to y && y>0
+\tag{1.2}
+\end{align}
+The measure is as follows:
+\begin{equation}
+2\pi \kperp\, \mathrm{d}\kperp\, \mathrm{d}\kpar \to \pi\, \frac{\mathrm{d}x\,\mathrm{d}y}{\sqrt{y}}
+\tag{1.3}
+\end{equation}
+As a final transformation, we define the new energy variables $E$ and $\Delta$ inspired by the quadratic dispersion relations (see below)
+\begin{align}
+E &\to E_{u}(x,y) &&= E_{u_{0}}+A_{u}\cdot x + sB_{u}\cdot y \notag\\
+\Delta &\to E_{u}(x,y) - E_{l}(x,y) &&= E_{g} \ + \ \overline{A}\cdot x \ + \ \overline{B}_{s}\cdot y
+\tag{1.4}
+\end{align}
+
+\begin{notebox}[Energy Bands \& Notations]
+The upper and lower quadratically approximated bands are given by:
+\begin{align}
+E_{u}(\mathbf{k}) &= +E_{u_{0}}+A_{u}\cdot k_{\perp}^{2} + sB_{u}\cdot k_{\parallel}^{2}\notag\\
+E_{l}(\mathbf{k}) &= -E_{l_{0}}- \ A_{l}\cdot k_{\perp}^{2} \ - \ B_{l}\cdot k_{\parallel}^{2}\notag
+\end{align}
+\begin{equation}
+\qquad s = \begin{cases} -1 & \text{X point} \\ +1 & \text{L point} \end{cases}
+\tag{1.5}
+\end{equation}
+where the following are denoted for clarity
+\begin{align}
+A_{j} = \frac{\hbar^{2}}{2m_{j\perp}} && B_{j} = \frac{\hbar^{2}}{2m_{j\parallel}} \notag\\
+\overline{A}= A_{l}+A_{u} && \overline{B}_{s}=B_{l}+sB_{u}
+\tag{1.6}
+\end{align}
+\end{notebox}
+
+We can write this in a matrix notation and identify the jacobian matrix
+\begin{equation}
+\begin{pmatrix} E \\ \Delta \end{pmatrix} = \begin{pmatrix} E_{u_{0}} \\ E_{g} \end{pmatrix}
++ \underbrace{\begin{pmatrix} A_{u} & sB_{u} \\ \overline{A} & \overline{B}_{s} \end{pmatrix}}_{J_{s}}
+\begin{pmatrix} x \\ y \end{pmatrix}
+\tag{1.7}
+\end{equation}
+The integration measure is therefore
+\begin{equation}
+\mathrm{d}x\,\mathrm{d}y = \frac{1}{|D_{s}|}\, \mathrm{d}E\,\mathrm{d}\Delta \qquad D_{s} = \det J_{s} = A_{u}B_{l} - sB_{u}A_{l}
+\tag{1.8}
+\end{equation}
+
+\begin{notebox}[Connection to Rosei's $\Fc_{l\to u}$]
+\begin{align}
+D_{s} &= \frac{\hbar^{4}}{4}\left(\frac{1}{m_{u\perp}m_{l\parallel}}-\frac{s}{m_{u\parallel}m_{l\perp}}\right) \notag\\
+&= \left(\frac{\hbar^{2}}{2}\right)^{2}\left(\frac{m_{u\parallel}m_{l\perp}-s\cdot m_{u\perp}m_{l\parallel}}{m_{u\parallel}m_{l\perp}m_{u\perp}m_{l\parallel}}\right)
+= \left(\frac{\hbar^{2}}{2\Fc_{s}}\right)^{2}
+\tag{1.9}
+\end{align}
+\end{notebox}
+
+The inverse transformation, allows us to find\ldots
+\begin{equation}
+\begin{pmatrix} x_{s} \\ y_{s} \end{pmatrix}
+= \underbrace{\frac{1}{D_{s}}\begin{pmatrix} \overline{B}_{s} & -sB_u \\ -\overline{A} & A_u \end{pmatrix}}_{J_{s}^{-1}}
+\begin{pmatrix} E - E_{u_0} \\ \Delta - E_g \end{pmatrix}
+\tag{1.10}
+\end{equation}
+The $s$ subscript in the new variables is just for the sake of clarity regarding the dependence of their form on the transition point in k-space.
+\begin{align}
+x_{s}(E,\Delta) &= \frac{\overline{B_{s}}(E-E_{u_{0}})+sB_{u}(E_{g}-\Delta)}{D_{s}} \notag\\
+y_{s}(E,\Delta) &= \frac{\overline{A}(E_{u_{0}}-E)+A_{u}(\Delta-E_{g})}{D_{s}}
+\tag{1.11}
+\end{align}
+From (3.8) and (2.3) we find the integration bounds in $E$
+\begin{align}
+x_{s}&\geq 0 &&\to \quad E \geq \overbrace{E_{u_{0}} - s \frac{B_{u}}{\overline{B}_{s}}(E_{g}-\Delta)}^{E_{min}^{s}(\Delta)} \notag\\
+y_{s}&\geq 0 &&\to \quad E \leq \underbrace{E_{u_{0}} + \frac{A_{u}}{\overline{A}}(\Delta-E_{g})}_{E_{max}(\Delta)}
+\tag{1.12}
+\end{align}
+We use the new bounds defined in the above to write (3.8) more neatly
+\begin{align}
+x_{s}(E,\Delta) &= \frac{\overline{B}_{s}}{D_{s}}\Big[E-E_{\text{min}}^{s}(\Delta)\Big] \notag\\
+y_{s}(E,\Delta) &= \frac{\overline{A}}{D_{s}}\Big[E_{\text{max}}(\Delta)-E\Big]
+\tag{1.13}
+\end{align}
+
+Finally, the EDJDOS can be spotted to be
+\begin{equation}
+\mathrm{d}^{3}k \to 2\pi \kperp\, \mathrm{d}\kperp\, \mathrm{d}\kpar \to \pi\, \frac{\mathrm{d}x\,\mathrm{d}y}{\sqrt{y}} \to
+\underbrace{\frac{\pi}{|D_{s}|\sqrt{y_{s}(E,\Delta)}}}_{\Dc_{s}(E,\Delta)}\, \mathrm{d}E\,\mathrm{d}\Delta
+\tag{1.14}
+\end{equation}
+or more explicitly, using Rosei's $\Fc$:
+\begin{equation}
+\boxed{\Dc_{s}(E,\hw) = \frac{4\pi \Fc_{s}^{2}}{\hbar^{4}\sqrt{y_{s}(E,\hw)}}}
+\tag{1.15}
+\end{equation}
+
+\section*{II. Discrepancies}
+\begin{enumerate}
+  \item Integration limits (explicit (units))
+  \item $E_{\text{min}}$ difference due to saddle\textbackslash min (C\&S)
+  \item EDJDOS factor
+\end{enumerate}
+
+\begin{warnbox}[Discrepancy \#1 -- Parallel Momentum]
+Rosei's expression for the parallel wave-vector is given by equation (6) in the paper:
+$$k_{\parallel} = \left(\hw - \hbar\omega_{X_{7^{+}}} + \frac{\hbar^{2}}{2m_{l\perp}}(\hbar\omega_{X_{6^{-}}} - E) - \frac{\hbar^{2}}{2m_{u\perp}}E\right)^{1/2}$$
+Before drawing the comparison two issues become evidently clear
+\begin{enumerate}
+  \item there's an inconsistent addition of units in the brackets
+  \item this expression is not dimensionally equivalent to $1/L$ as one would expect
+\end{enumerate}
+Looking at our expression
+$$k_{\parallel} = \sqrt{y_{s}(E,\hw)} = \left(\frac{\overline{A}(E_{u_{0}}-E)+A_{u}(\hw-E_{g})}{D_{s}}\right)^{1/2}$$
+A quick check reveals that it is equivalent to one over length, and needless to say that there is no weird addition of different units. There is clearly (hopefully just) a typo in the paper. Arranging our expression in a similar fashion to his:
+$$k_{\parallel} = \left(\frac{A_{l}(E_{u_{0}}-E) + A_{u}(\hw - E_{l_{0}}-E)}{D_{s}}\right)^{1/2}$$
+It appears that the $A_{u} = \frac{\hbar^{2}}{2m_{u\perp}}$ was omitted (as well as the Jacobian in the denominator).
+\end{warnbox}
+
+\begin{warnbox}[Discrepancy \#2 -- Integration Limits]
+Let us unpack the upper integration limit derived in this article and compare to Rosei's equation number (8) in the paper:
+\begin{align*}
+E_{\text{max}}(\hw) &= E_{u_{0}} + \frac{A_{u}}{\overline{A}}(\hw-E_{g}) \\
+&= E_{u_{0}} + \frac{\frac{\hbar^{2}}{2m_{u\perp}}}{\frac{\hbar^{2}}{2m_{u\perp}} + \frac{\hbar^{2}}{2m_{u\parallel}}}(\hw-E_{u_{0}}-E_{l_{0}}) \\
+&= E_{u_{0}} + \frac{m_{u\parallel}}{m_{u\perp} + m_{u\parallel}}(\hw-E_{u_{0}}-E_{l_{0}}) \\[6pt]
+E^{\text{rosei}}_{\text{max}}(\hw) &= E_{u_{0}} + \frac{m_{u\parallel}}{m_{u\parallel} - m_{u\perp}}(E_{u_{0}}+E_{l_{0}}-\hw)
+\end{align*}
+This difference stems from the sign of $m_{u\parallel}$. Here we assume absolute values (based on C\&S) and absorb the sign into the dispersion relation, not sure what Rosei did, but from our expression it appears as though he's taken $m_{u\parallel}<0$ (doesn't align with C\&S data though which he himself cites).
+\end{warnbox}
+
+\begin{warnbox}[Discrepancy \#3 -- EDJDOS]
+This EDJDOS differs from Rosei's (equation 4 in the paper) which is given by:
+$$\Dc_{l\to u}^{\text{rosei}}(E,\hw) = (8\pi^{2}\hbar^{2})^{-1}\Fc_{l\to u}\ k_{\parallel}^{-1}$$
+The discrepancy boils down to:
+$$\frac{\Dc_{\text{mine}}}{\Dc_{\text{rosei}}} = \frac{\frac{4\pi \Fc^{2}}{\hbar^{4}k_{\parallel}}}{\frac{\Fc}{8\pi^{2}\hbar^{2}k_{\parallel}}} = \frac{2\pi\Fc}{\hbar^{2}} = \frac{\pi}{\sqrt{D}}$$
+In terms of units
+$$\left[\frac{1}{\sqrt{D}}\right]\propto \left[\frac{1}{A}\right]\propto \left[\frac{m}{\hbar^{2}}\right]$$
+The ratio depends on the determinant, it is unclear whether and if Rosei absorbed it into one of his fit parameters, it seems however unlikely and I can't spot an issue with my derivation.
+\end{warnbox}
+
+\section*{Notes}
+in the numeric integration we're simply going to take $E_{max}^{int}=\min(E_{max},E_{approx})$ and $E_{min}^{int}=\max(E_{min},-E_{approx})$
+\begin{equation}
+k_{\text{approx}}=\frac{\pi}{10a} \;;\; E_{\text{approx}}= \frac{\hbar^{2}k_{\text{approx}}^{2}}{2m}
+\tag{5.1}
+\end{equation}
+
+\end{document}

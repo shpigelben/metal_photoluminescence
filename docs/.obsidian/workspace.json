@@ -4,56 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "4509724f8bf84da7",
+        "id": "6ca8d556c5080197",
         "type": "tabs",
         "children": [
           {
-            "id": "f6b7ecbfd4f0ee7d",
+            "id": "d00360e929f7c23b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "notes/concepts/A9 - Kirchhoff's Law Of Radiation.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
+                "file": "references/PDFs/7 - Rosei.pdf"
               },
-              "icon": "lucide-file",
-              "title": "A9 - Kirchhoff's Law Of Radiation"
+              "icon": "lucide-file-text",
+              "title": "7 - Rosei"
             }
           },
           {
-            "id": "a61a0cc6ae043737",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/derivations/master/rosei_master.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "rosei_master"
-            }
-          },
-          {
-            "id": "e7a7b303c61786dc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/derivations/sources/mine/A8 - Interband Transitions (Rosei).md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "A8 - Interband Transitions (Rosei)"
-            }
-          },
-          {
-            "id": "6d8704dbf07f4bd6",
+            "id": "2af78bece7c3ff90",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -68,7 +35,7 @@
             }
           },
           {
-            "id": "f037680cdc76c472",
+            "id": "31d0647fdd545bca",
             "type": "leaf",
             "state": {
               "type": "pdf",
@@ -80,7 +47,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -137,12 +104,24 @@
               "icon": "lucide-list",
               "title": "Outline of Interband Absorption in Gold"
             }
+          },
+          {
+            "id": "76cc9fad18d3551d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 276.5
+    "width": 276.5,
+    "collapsed": true
   },
   "right": {
     "id": "ff902569427872ea",
@@ -251,93 +230,59 @@
       "obsidian-excalidraw-plugin:New drawing": false,
       "homepage:Open homepage": false,
       "pexels-banner:🚩 Pixel Banner Menu": false,
-      "obsidian-stille:Toggle Stille": false
+      "obsidian-stille:Toggle Stille": false,
+      "equation-citator:Auto-number current file equations": false,
+      "equation-citator:Auto-number current file figures": false,
+      "equation-citator:Open equation manage panel": false
     }
   },
-  "floating": {
-    "id": "fea4ed00cfa2ca6b",
-    "type": "floating",
-    "children": [
-      {
-        "id": "086a607f41559311",
-        "type": "window",
-        "children": [
-          {
-            "id": "5d50ce87ad855701",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "9a7dc696fd415b69",
-                "type": "leaf",
-                "state": {
-                  "type": "pdf",
-                  "state": {
-                    "file": "references/PDFs/7 - Rosei.pdf"
-                  },
-                  "icon": "lucide-file-text",
-                  "title": "7 - Rosei"
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": 2115,
-        "y": 274,
-        "width": 1217,
-        "height": 764,
-        "maximize": true,
-        "zoom": 1
-      }
-    ]
-  },
-  "active": "6d8704dbf07f4bd6",
+  "active": "2af78bece7c3ff90",
   "lastOpenFiles": [
-    "notes/derivations/sources/mine/A8 - Interband Transitions (Rosei).md",
-    "Interband Absorption in Gold.md",
-    "notes/derivations/master/rosei_master.md",
-    "notes/concepts/A8 - Interband Transitions (Rosei).md",
     "references/PDFs/7 - Rosei.pdf",
-    "notes/concepts/A9 - Kirchhoff's Law Of Radiation.md",
-    "notes/derivations/sources/mine/A8.R - EDJDOS to epsilon_2 (Rosei's Eqs 4, 5, 9).md",
-    "notes/concepts/A8.L - Interband Transitions at L (Rosei).md.tmp.37169.d5b774febae2",
-    "notes/derivations/sources/mine/A8.L - Interband Transitions at L (Rosei).md",
+    "Interband Absorption in Gold.md",
+    "Interband Absorption in Gold.tex",
     "notes/derivations/master/rosei_master.pdf",
-    "notes/derivations/master/rosei_grw_v2.md",
+    "4 Misc/Attachments/Pasted image 20260729175739.png",
+    "4 Misc/Attachments/Pasted image 20260729173639.png",
+    "4 Misc/Attachments/Pasted image 20260729173340.png",
+    "4 Misc/Attachments/Pasted image 20260729173605.png",
+    "4 Misc/Attachments/Pasted image 20260729071825.png",
+    "4 Misc/Attachments/Drawing 2026-07-29 07.31.54.excalidraw.md",
+    "notes/concepts/A6 - Boltzmann Equation.md",
+    "notes/concepts/A5 - Numeric Delta Approximation.md",
+    "notes/concepts/A4 - Electronic Density of States.md",
+    "notes/concepts/A3 - Thermal Factor Energy Space.md",
+    "notes/concepts/A2 - Derivation of Analytic Approximation.md",
+    "notes/concepts/A1 - Derivation of the General Emission Integral.md",
+    "notes/concepts/3 - Intraband Transitions.md",
+    "notes/derivations/master/rosei_master.md",
+    "notes/Absorption Integral (Using Rosei's Notations).md",
+    "notes/log/Log.md",
+    "notes/log/3.3 - Constant eDOS Approximation.md",
+    "notes/log/3.2 - Analytic Approximations.md",
+    "notes/log/3.1 - Numeric Convergence.md",
+    "notes/derivations/master/rosei_equivalence_derivation.pdf",
+    "Roise - Point Agnostic Derivation.md",
+    "notes/concepts/A8 - Interband Transitions (Rosei).md",
+    "references/REFERENCES.md",
+    "notes/concepts/X & L Dispersion Relations.md",
+    "notes/concepts/Non-equilibrium Emission in Metals.md",
+    "notes/concepts/Lifetime Broadening.md",
+    "notes/derivations/sources/mine/Effective Mass Extraction.md",
+    "notes/derivations/sources/mine/Absorption Integral (Using Rosei's Notations).md",
+    "notes/derivations/sources/mine/A2 - Derivation of Analytic Approximation.md",
+    "notes/derivations/sources/mine/A3 - Thermal Factor Energy Space.md",
+    "notes/derivations/master/rosei_grw_v2.pdf",
+    "notes/derivations/master/rosei_grw.pdf",
+    "notes/concepts/A8.L - Interband Transitions at L (Rosei).md.tmp.37169.d5b774febae2",
     "notes/derivations/master/rt_test.pdf",
     "notes/derivations/master/pdflatex3111.fls",
     "notes/derivations/master/pdflatex3102.fls",
-    "notes/derivations/master/pdflatex3100.fls",
-    "notes/derivations/master/rt_test.out",
-    "notes/derivations/master/rt_test.log",
-    "notes/derivations/master/rt_test.fls",
-    "notes/derivations/master/rosei_master_new.md",
-    "Roise - Point Agnostic Derivation.md",
-    "notes/derivations/master/Rebuilding Rosei's Interband Absorption in His Own Notation & Suggesting Possible Fixes.md",
-    "notes/derivations/sources/mine/Absorption Integral (Using Rosei's Notations).md",
-    "notes/derivations/sources/mine/A1 - Derivation of the General Emission Integral.md",
-    "references/REFERENCES.md",
-    "notes/derivations/sources/mine/rosei_model_formulas.md",
-    "notes/derivations/sources/mine/X & L Dispersion Relations.md",
-    "notes/derivations/sources/mine/Interband Absorption at X and L (Rosei's Notation).md",
-    "notes/derivations/sources/mine/Integration Limits of X & L Points vs the Center of BZ.md",
-    "notes/derivations/sources/mine/First Order TDM.md",
-    "notes/derivations/sources/mine/Equivalence of My Absorption Integral and Rosei's.md",
-    "notes/derivations/sources/mine/Effective Mass Extraction.md",
-    "notes/derivations/sources/mine/A3 - Thermal Factor Energy Space.md",
-    "notes/derivations/sources/mine/A2 - Derivation of Analytic Approximation.md",
-    "notes/derivations/README.md",
-    "notes/concepts/Non-equilibrium Emission in Metals.md",
     "4 Misc/Attachments/thermal_factor_distributions_default.png",
     "4 Misc/Attachments/step_size_convergence.png",
     "4 Misc/Attachments/stage_4_spectral_profile.png",
     "4 Misc/Attachments/stage_4_sigma_convergence.png",
     "4 Misc/Attachments/stage_3_rel_error_T300K.png",
-    "4 Misc/Attachments/stage_3_rel_error_nonthermal_heatmap.png",
-    "4 Misc/Attachments/stage_3_edos_vs_const_edos_heatmap.png",
-    "4 Misc/Attachments/stage_2_step_convergence_T300K.png",
-    "4 Misc/Attachments/stage_2_rel_error_grid.png",
-    "4 Misc/Attachments/stage_2_rel_error_grid_50x50.png",
     "references/PDFs/MOC.canvas",
     "MOC Canvas.canvas",
     "notes/Outline & Questions/emission integral tree.canvas",

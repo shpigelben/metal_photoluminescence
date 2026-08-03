@@ -26,6 +26,7 @@ The rest of the derivation is a sequence of changes of variables that makes the 
 
 # Cylindrical Symmetry
 The first change of variables is a trivial one that adopts the cylindrical symmetry in k-space near the X and L points.
+
 $$
 dk_{x}dk_{y} dk_{z}\to k_{\perp}dk_{\perp}dk_{\parallel}dk_{\phi}\to 2\pi k_{\perp} dk_{\perp} dk_{\parallel}
 $$
