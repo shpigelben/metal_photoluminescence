@@ -1,0 +1,5 @@
+- ***04/08 Rossei absorption recreation***
+	- [ ] make the derivation more chronological and clearer.
+	- [ ] dimensional analysis for EDJDOS and JDOS.
+	- [ ] add citation for the band approximations.
+	- [ ] schedule another meeting for 11/08

@@ -23,7 +23,7 @@ $$
 
 The objective is finding the *EDJDOS*, $\mathcal{D}(E,\hbar\omega)$, and integration limits $E_{\mathrm{min}}(\hbar\omega)$ and $E_{\mathrm{max}}(\hbar\omega)$.
 # I. EDJDOS & Integration Limits
-Azimuthal symmetry allows us to integrate over $k_{\phi}$ and remain with only two integration variables. 
+Azimuthal symmetry allows us to integrate over $k_{\phi}$ and remain with only two integration variables.
 $$
 dk_{x}dk_{y} dk_{z}\to k_{\perp}dk_{\perp}dk_{\parallel}dk_{\phi}\to 2\pi k_{\perp} dk_{\perp} dk_{\parallel} \tag{1.1}
 $$
